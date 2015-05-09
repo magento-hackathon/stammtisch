@@ -8,8 +8,8 @@
  */
 ?>
 
-	</div><!-- #content -->
-
+        </div><!-- #content -->
+    </div><!-- div.row (header.php)-->
 	<footer id="colophon" class="site-footer container" role="contentinfo">
 		<div class="site-info">
 			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'firegento_stammtisch' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'firegento_stammtisch' ), 'WordPress' ); ?></a>
