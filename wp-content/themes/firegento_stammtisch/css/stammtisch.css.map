@@ -1,1 +1,1 @@
-{"version":3,"file":"stammtisch.css","sources":["layout\\header.less","stammtisch.less"],"names":[],"mappings":"AAAA,kBACE,4BAAA,CACA,aAAA,CACA,eAAA,CACA,aCCF,KACE,gBAMF,IAAK,OACH","sourceRoot":"..\\less"}
+{"version":3,"file":"stammtisch.css","sources":["layout\\header.less","layout\\content.less","stammtisch.less"],"names":[],"mappings":"AAAA,kBACE,4BAAA,CACA,aAAA,CACA,eAAA,CACA,aCJF,KACE,eACE,eAAA,CACA,qBAAA,CACA,WAAY,uFAAZ,CACA,mCAAA,CACA,sCAAA,CACA,8BAAA,CACA,OAAQ,gFCFZ,KACE,gBAMF,IAAK,OACH","sourceRoot":"..\\less"}

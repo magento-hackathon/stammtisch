@@ -96,6 +96,8 @@ function firegento_stammtisch_widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'firegento_stammtisch_widgets_init' );
+add_theme_support( 'custom-header' );
+
 
 /**
  * Enqueue scripts and styles.
