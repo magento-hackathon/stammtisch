@@ -66,7 +66,7 @@
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>Magento Stammtisch in Hamburg</h1>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                            <p class="sliderdescriotion" >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                             <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">In Hamburg einchecken</a>
                             </p>
                         </div>
@@ -77,7 +77,7 @@
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>Magento Stammtisch veröffentlichen</h1>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                            <p class="sliderdescriotion" >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                             <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>All Magento Events</h1>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                            <p class="sliderdescriotion">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                             <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
                         </div>
                     </div>

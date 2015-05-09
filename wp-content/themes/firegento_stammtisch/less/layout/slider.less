@@ -1,12 +1,32 @@
 #Firegento_Stammtisch_Carousel {
   .btn {
-    background:@c-orange;
+    background: rgba(255,255,255,0.3);
     color: @c-white;
+    border:1px solid @c-white;
+    transition: all 0.5s ease-out;
+  }
+
+  .btn:hover {
+    background: rgba(22,22,22,0.9);
+    padding:10px 50px
   }
 
   h1 {
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight:700;
+    background:rgba(244, 123, 32, 0.8);
+    padding:10px 20px;
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=14, Direction=0, Color=#000000)";/*IE 8*/
     text-shadow: 0 0 14px #000000;/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=14, Direction=135, Color=#000000); /*IE 5.5-7*/
   }
+
+  p.sliderdescriotion {
+    border-radius: 5px;
+    padding:10px 15px;
+    background:rgba(51, 51, 51, 0.7);
+  }
+
+
 }
