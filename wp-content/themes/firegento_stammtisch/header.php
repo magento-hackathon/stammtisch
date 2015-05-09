@@ -25,8 +25,16 @@
             <div class="container">
                 <div class="navbar-header">
                     <div class="site-branding container">
-                        <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-                        <h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+                        <div class="row">
+                            <?php if (get_header_image()):?>
+                                <div class="header-image col-xs-12 col-md-4"><img src="<?php echo get_header_image(); ?>" alt="<?php bloginfo( 'description' ); ?>" /></div>
+                            <?php else : ?>
+                                <h1 class="site-title col-xs-12 col-md-8"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+                                <h2 class="site-description col-xs-12 col-md-8"><?php bloginfo( 'description' ); ?></h2>
+                            <?php endif;?>
+                        </div>
+
+
                     </div><!-- .site-branding -->
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
