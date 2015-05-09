@@ -13,32 +13,31 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-            <div class="row">
-                <div id="blog" class="col-xs-12 col-md-8">
-                    <?php if ( have_posts() ) : ?>
+<div id="primary" class="content-area container col-md-8">
+    <main id="main" class="site-main" role="main">
+        <div class="row">
+            <div id="blog" class="col-xs-12 col-md-8">
+                <?php if (have_posts()) : ?>
 
-                        <?php /* Start the Loop */ ?>
-                        <?php while ( have_posts() ) : the_post(); ?>
+                    <?php /* Start the Loop */ ?>
+                    <?php while (have_posts()) : the_post(); ?>
 
-                            <?php
-                                get_template_part( 'template-parts/content', get_post_format() );
-                            ?>
+                        <?php get_template_part('template-parts/content', get_post_format());                ?>
 
-                        <?php endwhile; ?>
+                    <?php endwhile; ?>
 
-                        <?php the_posts_navigation(); ?>
+                    <?php the_posts_navigation(); ?>
 
-                    <?php else : ?>
+                <?php else : ?>
 
-                        <?php get_template_part( 'template-parts/content', 'none' ); ?>
+                    <?php get_template_part('template-parts/content', 'none'); ?>
 
-                    <?php endif; ?>
-                </div>
+                <?php endif; ?>
             </div>
-		</main><!-- #main -->
-	</div><!-- #primary -->
+        </div>
+    </main>
+    <!-- #main -->
+</div><!-- #primary -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

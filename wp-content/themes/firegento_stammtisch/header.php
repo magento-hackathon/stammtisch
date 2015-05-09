@@ -24,11 +24,14 @@
         <nav class="navbar navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-
                     <div class="container">
                         <div class="row">
                             <?php if (get_header_image()):?>
-                                <div class="header-image col-xs-12 col-md-4"><img src="<?php echo get_header_image(); ?>" alt="<?php bloginfo( 'description' ); ?>" /></div>
+                                <div class="header-image col-xs-12 col-md-4">
+                                    <a href="<?php echo home_url();?>" title="<?php bloginfo( 'name' ); ?>">
+                                        <img src="<?php echo get_header_image(); ?>" alt="<?php bloginfo( 'description' ); ?>" />
+                                    </a>
+                                </div>
                             <?php else : ?>
                                 <h1 class="site-title col-xs-12 col-md-8"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
                                 <h2 class="site-description col-xs-12 col-md-8"><?php bloginfo( 'description' ); ?></h2>
@@ -64,7 +67,7 @@
                         <div class="carousel-caption">
                             <h1>Magento Stammtisch in Hamburg</h1>
                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                            <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">Zum nächsten Magento Stammtisch</a>
+                            <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">In Hamburg einchecken</a>
                             </p>
                         </div>
                     </div>

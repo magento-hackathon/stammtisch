@@ -3,4 +3,10 @@
     background:@c-orange;
     color: @c-white;
   }
+
+  h1 {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=14, Direction=0, Color=#000000)";/*IE 8*/
+    text-shadow: 0 0 14px #000000;/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=14, Direction=135, Color=#000000); /*IE 5.5-7*/
+  }
 }
