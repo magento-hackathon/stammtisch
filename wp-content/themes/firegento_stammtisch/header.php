@@ -29,6 +29,7 @@
         <nav class="navbar navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
+
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -73,9 +74,9 @@
                     <img src="http://images.magento-stammtisch-hamburg.de/files/slideshow/hamburg.jpg" style="width:100%" class="img-responsive">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>Bootstrap 3 Carousel Layout</h1>
-                            <p></p>
-                            <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">Learn More</a>
+                            <h1>Magento Stammtisch in Hamburg</h1>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                            <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">Zum nächsten Magento Stammtisch</a>
                             </p>
                         </div>
                     </div>
@@ -84,8 +85,8 @@
                     <img src="http://images.magento-stammtisch-hamburg.de/files/slideshow/Location.jpg" class="img-responsive">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>Changes to the Grid</h1>
-                            <p>Bootstrap 3 still features a 12-column grid, but many of the CSS class names have completely changed.</p>
+                            <h1>Magento Stammtisch veröffentlichen</h1>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                             <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
                         </div>
                     </div>
@@ -94,8 +95,8 @@
                     <img src="http://images.magento-stammtisch-hamburg.de/files/slideshow/People.jpg" class="img-responsive">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>Percentage-based sizing</h1>
-                            <p>With "mobile-first" there is now only one percentage-based grid.</p>
+                            <h1>All Magento Events</h1>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                             <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
                         </div>
                     </div>
