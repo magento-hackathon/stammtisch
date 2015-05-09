@@ -115,7 +115,6 @@ function firegento_stammtisch_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'firegento_stammtisch_scripts' );
-
 remove_filter ('the_content', 'wpautop');
 
 /**
