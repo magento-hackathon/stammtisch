@@ -24,7 +24,8 @@
         <nav class="navbar navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <div class="site-branding container">
+
+                    <div class="container">
                         <div class="row">
                             <?php if (get_header_image()):?>
                                 <div class="header-image col-xs-12 col-md-4"><img src="<?php echo get_header_image(); ?>" alt="<?php bloginfo( 'description' ); ?>" /></div>
@@ -32,17 +33,15 @@
                                 <h1 class="site-title col-xs-12 col-md-8"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
                                 <h2 class="site-description col-xs-12 col-md-8"><?php bloginfo( 'description' ); ?></h2>
                             <?php endif;?>
+                                <nav class="header-navigation col-md-8" role="navigation">
+                                    <button class="menu-toggle" aria-controls="header-menu" aria-expanded="false"><?php esc_html_e( 'Header Menu', 'firegento_stammtisch' ); ?></button>
+                                    <?php wp_nav_menu( array( 'theme_location' => 'header', 'menu_id' => 'header-menu' ) ); ?>
+                                </nav>
                         </div>
+                    </div>
 
-
-                    </div><!-- .site-branding -->
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <nav id="site-navigation" class="main-navigation" role="navigation">
-                        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'firegento_stammtisch' ); ?></button>
-                        <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-                    </nav>
-                </div><!--/.navbar-collapse -->
+
             </div>
         </nav>
 
