@@ -50,6 +50,7 @@ function firegento_stammtisch_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
+		'header' => esc_html__( 'Header Menu', 'firegento_stammtisch' ),
 		'primary' => esc_html__( 'Primary Menu', 'firegento_stammtisch' ),
 	) );
 
