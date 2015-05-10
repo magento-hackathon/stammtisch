@@ -12,9 +12,7 @@
     </div><!-- div.row (header.php)-->
 	<footer id="colophon" class="site-footer container" role="contentinfo">
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'firegento_stammtisch' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'firegento_stammtisch' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'firegento_stammtisch' ), 'firegento_stammtisch', '<a href="http://underscores.me/" rel="designer">Underscores.me</a>' ); ?>
+			<a href="<?php echo esc_url( __( 'http://firegento.com/', 'firegento_stammtisch' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'firegento_stammtisch' ), 'FireGento' ); ?></a>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

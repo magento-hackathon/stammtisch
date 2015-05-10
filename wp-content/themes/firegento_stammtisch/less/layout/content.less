@@ -10,7 +10,6 @@
 /*==================================*/
 
 #content {
-  border-radius: 5px;
   background: @c-white;
 }
 
@@ -18,8 +17,10 @@
 @media only all and (min-width: 900px) {
 
   #content {
-    margin-top:-73px;
+    border-radius: 0 0 5px 5px;
+    margin-top:-75px;
     border:1px solid @c-lightgrey;
+    border-top:0;
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=8, Direction=0, Color=@c-lightgrey)";/*IE 8*/
     -moz-box-shadow: 0 3px 8px -1px @c-lightgrey;/*FF 3.5+*/
     -webkit-box-shadow: 0 3px 8px -1px @c-lightgrey;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
