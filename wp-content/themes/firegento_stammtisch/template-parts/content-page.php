@@ -5,7 +5,7 @@
  * @package firegento_stammtisch
  */
 ?>
-
+<div class="col-md-12">
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
@@ -25,3 +25,4 @@
 		<?php edit_post_link( esc_html__( 'Edit', 'firegento_stammtisch' ), '<span class="edit-link">', '</span>' ); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->
+</div>
