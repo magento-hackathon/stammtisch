@@ -32,6 +32,7 @@ function firegento_stammtisch_setup() {
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
+    add_filter('show_admin_bar', '__return_false');
 
 	/*
 	 * Let WordPress manage the document title.
@@ -40,6 +41,7 @@ function firegento_stammtisch_setup() {
 	 * provide it for us.
 	 */
 	add_theme_support( 'title-tag' );
+
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.

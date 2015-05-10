@@ -40,22 +40,22 @@
             </div>
         </div>
         <div class="item">
+            <img src="http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/mage-developer.jpg" class="img-responsive">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>FireGento Hackathon 2015 (#mhlej15)</h1>
+                    <p class="sliderdescriotion">How many Magento Developer are required to realize a WordPress Stammtisch-Project?</p>
+                    <p><a class="btn btn-large btn-primary" href="#">More about FireGento</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
             <img src="http://images.magento-stammtisch-hamburg.de/files/slideshow/Location.jpg" class="img-responsive">
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Magento Stammtisch veröffentlichen</h1>
                     <p class="sliderdescriotion" >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                     <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img src="http://images.magento-stammtisch-hamburg.de/files/slideshow/People.jpg" class="img-responsive">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>All Magento Events</h1>
-                    <p class="sliderdescriotion">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                    <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
                 </div>
             </div>
         </div>
