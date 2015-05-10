@@ -40,15 +40,20 @@ if( !empty($_REQUEST['success']) ){
 				<?php do_action('em_font_event_form_guest'); ?>
 			</div>
 		<?php endif; ?>
-		<h3 class="event-form-name"><?php esc_html_e( 'Event Name', 'dbem' ); ?></h3>
+
+        <label><?php esc_html_e('Stadt', 'dbem'); ?></label>
+        <?php if(get_option('dbem_categories_enabled')) { em_locate_template('forms/event/categories-public.php',true); }  ?>
+
+        <br />
+		<label class="event-form-name"><?php esc_html_e( 'Event Name', 'dbem' ); ?></label>
 		<div class="inside event-form-name">
-			<input type="text" name="event_name" id="event-name" value="<?php echo esc_attr($EM_Event->event_name,ENT_QUOTES); ?>" /><?php echo $required; ?>
+			<input type="text" name="event_name" id="event-name" placeholder="<?php /** @todo translate */ ?>Format: 99. Magento-Stammtisch in Berlin" value="<?php echo esc_attr($EM_Event->event_name,ENT_QUOTES); ?>" /><?php echo $required; ?>
 			<br />
-			<?php esc_html_e('The event name. Example: Birthday party', 'dbem'); ?>
 			<?php em_locate_template('forms/event/group.php',true); ?>
 		</div>
-					
-		<h3 class="event-form-when"><?php esc_html_e( 'When', 'dbem' ); ?></h3>
+
+        <br />
+        <h3 class="event-form-where"><?php /** @todo translate */ esc_html_e( 'Zeit', 'dbem' ); ?></h3>
 		<div class="inside event-form-when">
 		<?php 
 			if( empty($EM_Event->event_id) && $EM_Event->can_manage('edit_recurring_events','edit_others_recurring_events') && get_option('dbem_recurrence_enabled') ){
@@ -62,6 +67,7 @@ if( !empty($_REQUEST['success']) ){
 		</div>
 
 		<?php if( get_option('dbem_locations_enabled') ): ?>
+        <br />
 		<h3 class="event-form-where"><?php esc_html_e( 'Where', 'dbem' ); ?></h3>
 		<div class="inside event-form-where">
 		<?php em_locate_template('forms/event/location.php',true); ?>
@@ -81,7 +87,6 @@ if( !empty($_REQUEST['success']) ){
 			</div>
 			<div class="event-extra-details">
 				<?php if(get_option('dbem_attributes_enabled')) { em_locate_template('forms/event/attributes-public.php',true); }  ?>
-				<?php if(get_option('dbem_categories_enabled')) { em_locate_template('forms/event/categories-public.php',true); }  ?>
 			</div>
 		</div>
 		
@@ -94,8 +99,7 @@ if( !empty($_REQUEST['success']) ){
 		
 		<?php if( get_option('dbem_rsvp_enabled') && $EM_Event->can_manage('manage_bookings','manage_others_bookings') ) : ?>
 		<!-- START Bookings -->
-		<h3><?php esc_html_e('Bookings/Registration','dbem'); ?></h3>
-		<div class="inside event-form-bookings">				
+		<div class="inside event-form-bookings">
 			<?php em_locate_template('forms/event/bookings.php',true); ?>
 		</div>
 		<!-- END Bookings -->

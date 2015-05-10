@@ -755,7 +755,9 @@ function em_setup_timepicker(wrap){
 	wrap = jQuery(wrap);
 	wrap.find(".em-time-input").timePicker({
 		show24Hours: EM.show24hours == 1,
-		step:15
+		step:30,
+        startTime:'18:00',
+        endTime:'23:30'
 	});
 	
 	// Keep the duration between the two inputs.
