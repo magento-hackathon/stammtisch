@@ -1,15 +1,27 @@
-.header-navigation {
-  ul {
 
-    margin-bottom:0;
-    li {
-      display: inline-block;
-      list-style: none;
-      a {
-        color:@c-black;
-        display: block;
-        padding:15px 30px;
-        font-size: 20px;
+.header-navigation {
+  display: none
+}
+
+@media only all and (min-width: 992px) {
+  .header-navigation {
+    display: block;
+    ul {
+      margin-bottom:0;
+      li {
+        display: inline-block;
+        list-style: none;
+        a {
+          color:@c-black;
+          display: block;
+          padding:40px 30px;
+          font-size: 20px;
+        }
+
+        a:hover {
+          text-decoration: none;
+          color:@c-orange;
+        }
       }
     }
   }
