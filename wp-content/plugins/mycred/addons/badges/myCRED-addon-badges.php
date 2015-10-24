@@ -943,7 +943,7 @@ jQuery(function($) {
 		 * Add to General Settings
 		 * @version 1.0.1
 		 */
-		public function after_general_settings( $mycred ) {
+		public function after_general_settings() {
 			$settings = $this->badges;
 
 			$buddypress = false; 

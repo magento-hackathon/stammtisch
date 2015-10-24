@@ -564,7 +564,7 @@ endif;
  * to a pre-set user. A simpler version of the mycred_transfer shortcode.
  * @see http://codex.mycred.me/shortcodes/mycred_send/ 
  * @since 1.1
- * @version 1.1
+ * @version 1.2
  */
 if ( ! function_exists( 'mycred_render_shortcode_send' ) ) :
 	function mycred_render_shortcode_send( $atts, $content = '' ) {
@@ -576,7 +576,8 @@ if ( ! function_exists( 'mycred_render_shortcode_send' ) ) :
 			'to'     => '',
 			'log'    => '',
 			'ref'    => 'gift',
-			'type'   => 'mycred_default'
+			'type'   => 'mycred_default',
+			'class'  => ''
 		), $atts ) );
 
 		if ( $to == 'author' ) {
@@ -609,7 +610,10 @@ if ( ! function_exists( 'mycred_render_shortcode_send' ) ) :
 		// We are ready!
 		$mycred_sending_points = true;
 
-		$render = '<input type="button" class="mycred-send-points-button button button-primary btn btn-primary" data-to="' . $to . '" data-ref="' . $ref . '" data-log="' . $log . '" data-amount="' . $amount . '" data-type="' . $type . '" value="' . $mycred->template_tags_general( $content ) . '" />';
+		if ( $class != '' )
+			$class = ' ' . sanitize_text_field( $class );
+
+		$render = '<button type="button" class="mycred-send-points-button button button-primary btn btn-primary' . $class . '" data-to="' . $to . '" data-ref="' . $ref . '" data-log="' . $log . '" data-amount="' . $amount . '" data-type="' . $type . '">' . $mycred->template_tags_general( $content ) . '</button>';
 		return apply_filters( 'mycred_send', $render, $atts, $content );
 
 	}
@@ -739,26 +743,38 @@ endif;
  * for watchinga YouTube video.
  * @see http://codex.mycred.me/shortcodes/mycred_video/
  * @since 1.2
- * @version 1.2
+ * @version 1.2.2
  */
 if ( ! function_exists( 'mycred_render_shortcode_video' ) ) :
 	function mycred_render_shortcode_video( $atts ) {
 
 		global $mycred_video_points;
 
-		$hooks = mycred_get_option( 'mycred_pref_hooks', false );
-		if ( $hooks === false ) return;
-		$prefs = $hooks['hook_prefs']['video_view'];
-
 		extract( shortcode_atts( array(
 			'id'       => NULL,
 			'width'    => 560,
 			'height'   => 315,
-			'amount'   => $prefs['creds'],
-			'logic'    => $prefs['logic'],
-			'interval' => $prefs['interval'],
+			'amount'   => NULL,
+			'logic'    => NULL,
+			'interval' => NULL,
 			'ctype'    => 'mycred_default'
 		), $atts ) );
+
+		$hooks = get_option( 'mycred_pref_hooks', false );
+		if ( $ctype != 'mycred_default' )
+			$hooks = get_option( 'mycred_pref_hooks_' . sanitize_key( $ctype ), false );
+
+		if ( $hooks === false ) return;
+		$prefs = $hooks['hook_prefs']['video_view'];
+
+		if ( $amount === NULL )
+			$amount = $prefs['creds'];
+
+		if ( $logic === NULL )
+			$logic = $prefs['logic'];
+
+		if ( $interval === NULL )
+			$interval = $prefs['interval'];
 
 		// ID is required
 		if ( $id === NULL || empty( $id ) ) return __( 'A video ID is required for this shortcode', 'mycred' );
@@ -799,7 +815,7 @@ if ( ! function_exists( 'mycred_render_shortcode_video' ) ) :
 
 ?>
 <div class="mycred-video-wrapper youtube-video">
-	<iframe id="mycred_vvideo_v<?php echo $video_id; ?>" class="mycred-video mycred-youtube-video" data-vid="<?php echo $video_id; ?>" src="<?php echo $url; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	<iframe id="mycred_vvideo_v<?php echo $video_id; ?>" class="mycred-video mycred-youtube-video" data-vid="<?php echo $video_id; ?>" src="<?php echo esc_url( $url ); ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 	<script type="text/javascript">
 function mycred_vvideo_v<?php echo $video_id; ?>( state ) {
 	duration[ "<?php echo $video_id; ?>" ] = state.target.getDuration();
@@ -1160,6 +1176,110 @@ table.mycred-hook-table th { font-weight: bold; }
 		ob_end_clean();
 
 		return apply_filters( 'mycred_render_hook_table', $content, $atts );
+
+	}
+endif;
+
+/**
+ * Total Points
+ * Allows to show total points of a specific point type or add up
+ * points from the log based on reference, reference id or user id.
+ * @since 1.6.6
+ * @version 1.0
+ */
+if ( ! function_exists( 'mycred_render_shortcode_total_points' ) ) :
+	function mycred_render_shortcode_total_points( $atts ) {
+
+		extract( shortcode_atts( array(
+			'type'      => 'mycred_default',
+			'ref'       => '',
+			'ref_id'    => '',
+			'user_id'   => '',
+			'formatted' => 1
+		), $atts ) );
+
+		$types = mycred_get_types();
+		if ( ! array_key_exists( $type, $types ) )
+			$type = 'mycred_default';
+
+		// First we construct the meta_key
+		$point_type = $type;
+		if ( is_multisite() && $GLOBALS['blog_id'] > 1 && ! mycred_centralize_log() )
+			$type .= '_' . $GLOBALS['blog_id'];
+
+		elseif ( is_multisite() && $GLOBALS['blog_id'] > 1 && ! mycred_override_settings() )
+			$type .= '_' . $GLOBALS['blog_id'];
+
+		$mycred = mycred( $point_type );
+
+		global $wpdb;
+
+		// Simple
+		if ( $ref == '' && $ref_id == '' && $user_id == '' ) {
+
+			// Check if cached value exists
+			$total = mycred_get_option( 'mycred-cache-total-' . $point_type, false );
+			if ( $total === false ) {
+
+				// Add up all balances
+				$total = $wpdb->get_var( $wpdb->prepare( "SELECT SUM( meta_value ) FROM {$wpdb->usermeta} WHERE meta_key = %s", $type ) );
+				if ( $total !== NULL )
+					mycred_update_option( 'mycred-cache-total-' . $point_type, $total );
+
+			}
+
+		}
+
+		// Complex
+		else {
+
+			$wheres = array();
+			$wheres[] = $wpdb->prepare( "ctype = %s", $point_type );
+
+			$ref = sanitize_key( $ref );
+			if ( strlen( $ref ) > 0 ) {
+
+				// Either we have just one reference
+				$multiple = explode( ',', $ref );
+				if ( count( $multiple ) == 1 )
+					$wheres[] = $wpdb->prepare( "ref = %s", $ref );
+
+				// Or a comma seperated list of references
+				else {
+					$_clean = array();
+					foreach ( $multiple as $ref ) {
+						$ref = sanitize_key( $ref );
+						if ( strlen( $ref ) > 0 )
+							$_clean[] = $ref;
+					}
+
+					if ( ! empty( $_clean ) )
+						$wheres[] = "ref IN ( '" . implode( "', '", $_clean ) . "' )";
+
+				}
+
+			}
+
+			$ref_id = sanitize_text_field( $ref );
+			if ( strlen( $ref_id ) > 0 )
+				$wheres[] = $wpdb->prepare( "ref_id = %d", $ref_id );
+
+			$user_id = sanitize_text_field( $ref );
+			if ( strlen( $user_id ) > 0 )
+				$wheres[] = $wpdb->prepare( "user_id = %d", $user_id );
+
+			$wheres = implode( " AND ", $wheres );
+			$total = $wpdb->get_var( "SELECT SUM( creds ) FROM {$mycred->log_table} WHERE {$wheres};" );
+
+		}
+
+		if ( $total === NULL )
+			$total = 0;
+
+		if ( $formatted == 1 )
+			return $mycred->format_creds( $total );
+
+		return $total;
 
 	}
 endif;

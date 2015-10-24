@@ -1,7 +1,7 @@
 /**
  * myCRED Admin Styling
  * @since 0.1
- * @version 1.3.1
+ * @version 1.3.2
 */
 #myCRED-wrap table .column-username { width: 190px; }
 #myCRED-wrap table .column-creds { width: 80px; }
@@ -11,6 +11,10 @@
 #myCRED-wrap table tbody tr td { padding: 6px; }
 #myCRED-wrap table tr.deleted-row td { background-color: red !important; color: white !important; }
 #myCRED-wrap table tr.updated-row td { background-color: yellow; }
+
+#myCRED-wrap input[type=radio] { margin-top: 0; }
+#myCRED-wrap input.large-text, #myCRED-wrap textarea.large-text { display: block; width: 80%; }
+#myCRED-wrap textarea.large-text { margin-bottom: 6px; }
 
 /* Text Alignments */
 .tl { text-align: left; }

@@ -170,7 +170,7 @@ if ( ! class_exists( 'myCRED_Coupons_Module' ) ) {
 		/**
 		 * Adjust Column Body
 		 * @since 1.4
-		 * @version 1.1
+		 * @version 1.1.1
 		 */
 		public function adjust_column_content( $column_name, $post_id ) {
 			global $mycred;
@@ -199,7 +199,7 @@ if ( ! class_exists( 'myCRED_Coupons_Module' ) ) {
 							$page .= '_' . $set_type;
 
 						$url = add_query_arg( array( 'page' => $page, 'ref' => 'coupon', 'data' => get_the_title( $post_id ) ), admin_url( 'admin.php' ) );
-						echo '<a href="' . $url . '">' . sprintf( __( '1 time', '%d times', $count, 'mycred' ), $count ) . '</a>';
+						echo '<a href="' . esc_url( $url ) . '">' . sprintf( __( '1 time', '%d times', $count, 'mycred' ), $count ) . '</a>';
 					}
 
 				break;
@@ -466,7 +466,7 @@ table td textarea { width: 95%; }
 					$page .= '_' . $set_type;
 
 				$url = add_query_arg( array( 'page' => $page, 'ref' => 'coupon', 'data' => $post->post_title ), admin_url( 'admin.php' ) );
-				echo '<a href="' . $url . '">' . sprintf( __( '1 time', '%d times', $count, 'mycred' ), $count ) . '</a>';
+				echo '<a href="' . esc_url( $url ) . '">' . sprintf( __( '1 time', '%d times', $count, 'mycred' ), $count ) . '</a>';
 			}
 
 		}
@@ -491,7 +491,7 @@ table td textarea { width: 95%; }
 		 * @since 1.4
 		 * @version 1.0
 		 */
-		public function after_general_settings( $mycred ) {
+		public function after_general_settings() {
 			if ( ! isset( $this->coupons ) )
 				$prefs = $this->default_prefs;
 			else

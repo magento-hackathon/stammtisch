@@ -3,13 +3,13 @@
  * Plugin Name: myCRED
  * Plugin URI: http://mycred.me
  * Description: <strong>my</strong>CRED is an adaptive points management system for WordPress powered websites, giving you full control on how points are gained, used, traded, managed, logged or presented.
- * Version: 1.6.3
+ * Version: 1.6.6
  * Tags: points, tokens, credit, management, reward, charge, buddypress, bbpress, jetpack, woocommerce, marketpress, wp e-commerce, gravity forms, simplepress
  * Author: Gabriel S Merovingi
  * Author URI: http://www.merovingi.com
  * Author Email: support@mycred.me
  * Requires at least: WP 3.8
- * Tested up to: WP 4.1
+ * Tested up to: WP 4.3
  * Text Domain: mycred
  * Domain Path: /lang
  * License: GPLv2 or later
@@ -20,7 +20,7 @@
  * BuddyPress Compatible: yes
  * Forum URI: http://mycred.me/support/forums/
  */
-define( 'myCRED_VERSION',      '1.6.3' );
+define( 'myCRED_VERSION',      '1.6.6' );
 define( 'myCRED_SLUG',         'mycred' );
 define( 'myCRED_NAME',         '<strong>my</strong>CRED' );
 
@@ -47,7 +47,7 @@ require_once myCRED_ABSTRACTS_DIR . 'mycred-abstract-module.php';
  * @since 1.3
  * @version 1.0
  */
-if ( ! class_exists( 'myCRED_Core' ) ) {
+if ( ! class_exists( 'myCRED_Core' ) ) :
 	final class myCRED_Core {
 
 		/**
@@ -56,8 +56,9 @@ if ( ! class_exists( 'myCRED_Core' ) ) {
 		function __construct() {
 			_deprecated_function( __CLASS__, '1.3', 'mycred_load()' );
 		}
+
 	}
-}
+endif;
 
 /**
  * Required
@@ -65,8 +66,8 @@ if ( ! class_exists( 'myCRED_Core' ) ) {
  * @version 1.2
  */
 if ( ! function_exists( 'mycred_load' ) ) :
-	function mycred_load()
-	{
+	function mycred_load() {
+
 		// Check Network blocking
 		if ( mycred_is_site_blocked() ) return;
 
@@ -84,6 +85,7 @@ if ( ! function_exists( 'mycred_load' ) ) :
 
 		// Add-ons
 		require_once myCRED_MODULES_DIR . 'mycred-module-addons.php';
+
 		$addons = new myCRED_Addons_Module();
 		$addons->load();
 		$addons->run_addons();
@@ -113,8 +115,8 @@ mycred_load();
  * @version 1.1.1
  */
 if ( ! function_exists( 'mycred_plugin_activation' ) ) :
-	function mycred_plugin_activation()
-	{
+	function mycred_plugin_activation() {
+
 		// Load Installer
 		require_once myCRED_INCLUDES_DIR . 'mycred-install.php';
 		$install = new myCRED_Install();
@@ -138,8 +140,8 @@ endif;
  * @version 1.0
  */
 if ( ! function_exists( 'mycred_plugin_deactivation' ) ) :
-	function mycred_plugin_deactivation()
-	{
+	function mycred_plugin_deactivation() {
+
 		// Clear Cron
 		wp_clear_scheduled_hook( 'mycred_reset_key' );
 		wp_clear_scheduled_hook( 'mycred_banking_recurring_payout' );
@@ -147,6 +149,7 @@ if ( ! function_exists( 'mycred_plugin_deactivation' ) ) :
 		wp_clear_scheduled_hook( 'mycred_banking_interest_payout' );
 
 		do_action( 'mycred_deactivation' );
+
 	}
 endif;
 
@@ -156,8 +159,8 @@ endif;
  * @version 1.0
  */
 if ( ! function_exists( 'mycred_plugin_uninstall' ) ) :
-	function mycred_plugin_uninstall()
-	{
+	function mycred_plugin_uninstall() {
+
 		// Load Installer
 		require_once myCRED_INCLUDES_DIR . 'mycred-install.php';
 		$install = new myCRED_Install();
@@ -169,6 +172,7 @@ if ( ! function_exists( 'mycred_plugin_uninstall' ) ) :
 
 		do_action( 'mycred_after_deletion', $install );
 		unset( $install );
+
 	}
 endif;
 
@@ -178,11 +182,11 @@ endif;
  * @version 1.6
  */
 if ( ! function_exists( 'mycred_plugin_start_up' ) ) :
-	function mycred_plugin_start_up()
-	{
-		global $mycred, $mycred_types, $mycred_modules;
-		$mycred = new myCRED_Settings();
+	function mycred_plugin_start_up() {
 
+		global $mycred, $mycred_types, $mycred_modules;
+
+		$mycred       = new myCRED_Settings();
 		$mycred_types = mycred_get_types();
 
 		require_once myCRED_INCLUDES_DIR . 'mycred-shortcodes.php';
@@ -210,6 +214,7 @@ if ( ! function_exists( 'mycred_plugin_start_up' ) ) :
 
 		// Load Settings
 		require_once myCRED_MODULES_DIR . 'mycred-module-settings.php';
+
 		foreach ( $mycred_types as $type => $title ) {
 			$mycred_modules[ $type ]['settings'] = new myCRED_Settings_Module( $type );
 			$mycred_modules[ $type ]['settings']->load();
@@ -275,6 +280,7 @@ if ( ! function_exists( 'mycred_plugin_start_up' ) ) :
 
 		// Load hooks
 		require_once myCRED_MODULES_DIR . 'mycred-module-hooks.php';
+
 		foreach ( $mycred_types as $type => $title ) {
 			$mycred_modules[ $type ]['hooks'] = new myCRED_Hooks_Module( $type );
 			$mycred_modules[ $type ]['hooks']->load();
@@ -282,6 +288,7 @@ if ( ! function_exists( 'mycred_plugin_start_up' ) ) :
 
 		// Load log
 		require_once myCRED_MODULES_DIR . 'mycred-module-log.php';
+
 		foreach ( $mycred_types as $type => $title ) {
 			$mycred_modules[ $type ]['log'] = new myCRED_Log_Module( $type );
 			$mycred_modules[ $type ]['log']->load();
@@ -302,6 +309,7 @@ if ( ! function_exists( 'mycred_plugin_start_up' ) ) :
 		$admin->load();
 
 		do_action( 'mycred_pre_init' );
+
 	}
 endif;
 
@@ -311,8 +319,8 @@ endif;
  * @version 1.3.1
  */
 if ( ! function_exists( 'mycred_init' ) ) :
-	function mycred_init()
-	{
+	function mycred_init() {
+
 		// Add Cron Schedule
 		if ( ! wp_next_scheduled( 'mycred_reset_key' ) )
 			wp_schedule_event( date_i18n( 'U' ), apply_filters( 'mycred_cron_reset_key', 'daily' ), 'mycred_reset_key' );
@@ -335,6 +343,7 @@ if ( ! function_exists( 'mycred_init' ) ) :
 		add_shortcode( 'mycred_total_balance', 'mycred_render_shortcode_total' );
 		add_shortcode( 'mycred_exchange',      'mycred_render_shortcode_exchange' );
 		add_shortcode( 'mycred_hook_table',    'mycred_render_shortcode_hook_table' );
+		add_shortcode( 'mycred_total_points',  'mycred_render_shortcode_total_points' );
 
 		// Shortcode related
 		add_action( 'wp_footer',                  'mycred_send_shortcode_footer' );
@@ -351,6 +360,7 @@ if ( ! function_exists( 'mycred_init' ) ) :
 
 		// Let others play
 		do_action( 'mycred_init' );
+
 	}
 endif;
 
@@ -360,8 +370,8 @@ endif;
  * @version 1.1
  */
 if ( ! function_exists( 'mycred_widgets_init' ) ) :
-	function mycred_widgets_init()
-	{
+	function mycred_widgets_init() {
+
 		// Register Widgets
 		register_widget( 'myCRED_Widget_Balance' );
 		register_widget( 'myCRED_Widget_Leaderboard' );
@@ -372,6 +382,7 @@ if ( ! function_exists( 'mycred_widgets_init' ) ) :
 
 		// Let others play
 		do_action( 'mycred_widgets_init' );
+
 	}
 endif;
 
@@ -381,8 +392,8 @@ endif;
  * @version 1.3
  */
 if ( ! function_exists( 'mycred_admin_init' ) ) :
-	function mycred_admin_init()
-	{
+	function mycred_admin_init() {
+
 		// Run update if needed
 		$mycred_version = get_option( 'mycred_version', myCRED_VERSION );
 		if ( $mycred_version != myCRED_VERSION )
@@ -403,9 +414,9 @@ if ( ! function_exists( 'mycred_admin_init' ) ) :
 
 		delete_transient( '_mycred_activation_redirect' );
 
-		$url = add_query_arg( array( 'page' => 'mycred' ), admin_url( 'index.php' ) );
-		wp_safe_redirect( $url );
+		wp_safe_redirect( add_query_arg( array( 'page' => 'mycred' ), admin_url( 'index.php' ) ) );
 		die;
+
 	}
 endif;
 
@@ -415,11 +426,12 @@ endif;
  * @version 1.1
  */
 if ( ! function_exists( 'mycred_admin_head' ) ) :
-	function mycred_admin_head()
-	{
+	function mycred_admin_head() {
+
 		remove_submenu_page( 'index.php', 'mycred' );
 		remove_submenu_page( 'index.php', 'mycred-credit' );
 		remove_submenu_page( 'users.php', 'mycred-edit-balance' );
+
 	}
 endif;
 
@@ -429,8 +441,8 @@ endif;
  * @version 1.4.2
  */
 if ( ! function_exists( 'mycred_hook_into_toolbar' ) ) :
-	function mycred_hook_into_toolbar( $wp_admin_bar )
-	{
+	function mycred_hook_into_toolbar( $wp_admin_bar ) {
+
 		if ( ! is_user_logged_in() || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) return;
 
 		$user_id = get_current_user_id();
@@ -525,6 +537,7 @@ if ( ! function_exists( 'mycred_hook_into_toolbar' ) ) :
 
 		// Let others play
 		do_action( 'mycred_tool_bar', $wp_admin_bar, $mycred );
+
 	}
 endif;
 
@@ -535,10 +548,10 @@ endif;
  * @version 1.2
  */
 if ( ! function_exists( 'mycred_admin_menu' ) ) :
-	function mycred_admin_menu()
-	{
+	function mycred_admin_menu() {
+
 		$mycred = mycred();
-		$name = mycred_label( true );
+		$name   = mycred_label( true );
 
 		global $mycred_types, $wp_version;
 
@@ -588,6 +601,7 @@ if ( ! function_exists( 'mycred_admin_menu' ) ) :
 
 		// Let others play
 		do_action( 'mycred_add_menu', $mycred );
+
 	}
 endif;
 
@@ -598,8 +612,8 @@ endif;
  * @version 1.0
  */
 if ( ! function_exists( 'mycred_enqueue_front' ) ) :
-	function mycred_enqueue_front()
-	{
+	function mycred_enqueue_front() {
+
 		global $mycred_sending_points;
 
 		// Send Points Shortcode
@@ -625,6 +639,7 @@ if ( ! function_exists( 'mycred_enqueue_front' ) ) :
 
 		// Let others play
 		do_action( 'mycred_front_enqueue' );
+
 	}
 endif;
 
@@ -634,9 +649,10 @@ endif;
  * @version 1.2.1
  */
 if ( ! function_exists( 'mycred_enqueue_admin' ) ) :
-	function mycred_enqueue_admin()
-	{
+	function mycred_enqueue_admin() {
+
 		$mycred = mycred();
+
 		// General Admin Script
 		wp_register_script(
 			'mycred-admin',
@@ -686,7 +702,7 @@ if ( ! function_exists( 'mycred_enqueue_admin' ) ) :
 				'working' => esc_attr__( 'Processing...', 'mycred' )
 			)
 		);
-		
+
 		// Log Edit Script
 		wp_register_script(
 			'mycred-edit-log',
@@ -721,6 +737,7 @@ if ( ! function_exists( 'mycred_enqueue_admin' ) ) :
 			myCRED_VERSION . '.1',
 			'all'
 		);
+
 		wp_register_style(
 			'mycred-inline-edit',
 			plugins_url( 'assets/css/inline-edit.css', myCRED_THIS ),
@@ -731,6 +748,7 @@ if ( ! function_exists( 'mycred_enqueue_admin' ) ) :
 
 		// Let others play
 		do_action( 'mycred_admin_enqueue' );
+
 	}
 endif;
 
@@ -740,9 +758,10 @@ endif;
  * @version 1.0
  */
 if ( ! function_exists( 'mycred_admin_page_styles' ) ) :
-	function mycred_admin_page_styles()
-	{
+	function mycred_admin_page_styles() {
+
 		wp_enqueue_style( 'mycred-admin' );
+
 	}
 endif;
 
@@ -752,8 +771,8 @@ endif;
  * @version 1.1
  */
 if ( ! function_exists( 'mycred_plugin_links' ) ) :
-	function mycred_plugin_links( $actions, $plugin_file, $plugin_data, $context )
-	{
+	function mycred_plugin_links( $actions, $plugin_file, $plugin_data, $context ) {
+
 		if ( mycred_is_site_blocked() ) return $actions;
 
 		// Link to Setup
@@ -764,6 +783,7 @@ if ( ! function_exists( 'mycred_plugin_links' ) ) :
 
 		ksort( $actions );
 		return $actions;
+
 	}
 endif;
 
@@ -773,10 +793,10 @@ endif;
  * @version 1.1
  */
 if ( ! function_exists( 'mycred_plugin_description_links' ) ) :
-	function mycred_plugin_description_links( $links, $file )
-	{
+	function mycred_plugin_description_links( $links, $file ) {
+
 		if ( $file != plugin_basename( myCRED_THIS ) ) return $links;
-	
+
 		// Link to Setup
 		if ( ! is_mycred_ready() ) {
 			$links[] = '<a href="' . admin_url( 'plugins.php?page=myCRED-setup' ) . '">' . __( 'Setup', 'mycred' ) . '</a>';
@@ -789,6 +809,7 @@ if ( ! function_exists( 'mycred_plugin_description_links' ) ) :
 		$links[] = '<a href="http://mycred.me/store/" target="_blank">Store</a>';
 
 		return $links;
+
 	}
 endif;
 
@@ -800,7 +821,9 @@ endif;
  */
 if ( ! function_exists( 'mycred_update_warning' ) ) :
 	function mycred_update_warning() {
+
 		echo '<div style="color:#cc0000;">' . __( 'Make sure to backup your database and files before updating, in case anything goes wrong!', 'mycred' ) . '</div>';
+
 	}
 endif;
 
@@ -810,10 +833,11 @@ endif;
  * @version 1.1
  */
 if ( ! function_exists( 'mycred_reset_key' ) ) :
-	function mycred_reset_key()
-	{
+	function mycred_reset_key() {
+
 		$protect = mycred_protect();
 		if ( $protect !== false )
 			$protect->reset_key();
+
 	}
 endif;

@@ -7,7 +7,7 @@ if ( ! defined( 'myCRED_VERSION' ) ) exit;
  * @since 0.1
  * @version 1.3
  */
-if ( ! class_exists( 'myCRED_Admin' ) ) {
+if ( ! class_exists( 'myCRED_Admin' ) ) :
 	class myCRED_Admin {
 
 		public $core;
@@ -19,15 +19,18 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 		 * @version 1.0
 		 */
 		function __construct( $settings = array() ) {
+
 			$this->core = mycred();
+
 		}
 
 		/**
 		 * Load
 		 * @since 0.1
-		 * @version 1.3
+		 * @version 1.3.1
 		 */
 		public function load() {
+
 			// Admin Styling
 			add_action( 'admin_head',                 array( $this, 'admin_header' ) );
 			add_action( 'admin_notices',              array( $this, 'admin_notices' ) );
@@ -58,6 +61,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 			// Inline Editing
 			add_action( 'wp_ajax_mycred-inline-edit-users-balance', array( $this, 'inline_edit_user_balance' ) );
 			add_action( 'in_admin_footer',                          array( $this, 'admin_footer' )             );
+
 		}
 
 		/**
@@ -215,6 +219,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 		 * @version 1.1
 		 */
 		public function inline_edit_user_balance() {
+
 			// Security
 			check_ajax_referer( 'mycred-update-users-balance', 'token' );
 
@@ -262,6 +267,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 				wp_send_json_success( $mycred->get_users_cred( $user_id, $type ) );
 			else
 				wp_send_json_error( array( 'error' => 'ERROR_5', 'message' => __( 'Failed to update this uses balance.', 'mycred' ) ) );
+
 		}
 
 		/**
@@ -270,11 +276,13 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 		 * @version 1.4
 		 */
 		public function admin_header() {
+
 			$screen = get_current_screen();
 			if ( $screen->id == 'users' ) {
 				wp_enqueue_script( 'mycred-inline-edit' );
 				wp_enqueue_style( 'mycred-inline-edit' );
 			}
+
 		}
 
 		/**
@@ -283,10 +291,12 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 		 * @version 1.1
 		 */
 		public function custom_user_column( $columns ) {
+
 			global $mycred_types;
 
 			if ( count( $mycred_types ) == 1 )
 				$columns['mycred_default'] = $this->core->plural();
+
 			else {
 				foreach ( $mycred_types as $type => $label ) {
 					if ( $type == 'mycred_default' ) $label = $this->core->plural();
@@ -295,6 +305,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 			}
 
 			return $columns;
+
 		}
 
 		/**
@@ -303,6 +314,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 		 * @version 1.1
 		 */
 		public function sortable_points_column( $columns ) {
+
 			$mycred_types = mycred_get_types();
 
 			if ( count( $mycred_types ) == 1 )
@@ -313,6 +325,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 			}
 
 			return $columns;
+
 		}
 
 		/**
@@ -321,11 +334,14 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 		 * @version 1.3
 		 */
 		public function sort_by_points( $query ) {
+
 			if ( ! is_admin() || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || ! function_exists( 'get_current_screen' ) ) return;
+
 			$screen = get_current_screen();
 			if ( $screen === NULL || $screen->id != 'users' ) return;
 
 			if ( isset( $query->query_vars['orderby'] ) ) {
+
 				global $wpdb;
 
 				$mycred_types = mycred_get_types();
@@ -366,6 +382,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 				}
 
 			}
+
 		}
 
 		/**
@@ -375,6 +392,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 		 * @version 1.3.2
 		 */
 		public function custom_user_column_content( $value, $column_name, $user_id ) {
+
 			global $mycred_types;
 
 			if ( ! array_key_exists( $column_name, $mycred_types ) ) return $value;
@@ -402,13 +420,14 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 
 			// Row actions
 			$row = array();
-			$row['history'] = '<a href="' . admin_url( 'admin.php?page=' . $page . '&user_id=' . $user_id ) . '">' . __( 'History', 'mycred' ) . '</a>';
+			$row['history'] = '<a href="' . esc_url( admin_url( 'admin.php?page=' . $page . '&user_id=' . $user_id ) ) . '">' . __( 'History', 'mycred' ) . '</a>';
 			$row['adjust'] = '<a href="javascript:void(0)" class="mycred-open-points-editor" data-userid="' . $user_id . '" data-current="' . $ubalance . '" data-type="' . $column_name . '" data-username="' . $user->display_name . '">' . __( 'Adjust', 'mycred' ) . '</a>';
 
 			$rows = apply_filters( 'mycred_user_row_actions', $row, $user_id, $mycred );
 			$balance .= $this->row_actions( $rows );
 
 			return $balance;
+
 		}
 
 		/**
@@ -417,6 +436,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 		 * @version 1.0
 		 */
 		public function row_actions( $actions, $always_visible = false ) {
+
 			$action_count = count( $actions );
 			$i = 0;
 
@@ -432,6 +452,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 			$out .= '</div>';
 
 			return $out;
+
 		}
 
 		/**
@@ -440,6 +461,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 		 * @version 1.0.1
 		 */
 		public function edit_profile_menu( $pages = array(), $mycred ) {
+
 			$pages[] = add_users_page(
 				__( 'Edit Balance', 'mycred' ),
 				__( 'Edit Balance', 'mycred' ),
@@ -448,27 +470,29 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 				array( $this, 'edit_profile_screen' )
 			);
 			return $pages;
+
 		}
 
 		/**
 		 * User Nav
 		 * @since 1.5
-		 * @version 1.0
+		 * @version 1.0.1
 		 */
 		public function user_nav( $user, $current = NULL ) {
+
 			$types = mycred_get_types();
 
 			$tabs = array();
 			$tabs[] = array(
 				'label'   => __( 'Profile', 'mycred' ),
-				'url'     => add_query_arg( array( 'user_id' => $user->ID ), admin_url( 'user-edit.php' ) ),
+				'url'     => esc_url( add_query_arg( array( 'user_id' => $user->ID ), admin_url( 'user-edit.php' ) ) ),
 				'classes' => ( $current === NULL ) ? 'nav-tab nav-tab-active' : 'nav-tab'
 			);
 
 			if ( $this->using_bp )
 				$tabs[] = array(
 					'label'   => __( 'Extended Profile', 'mycred' ),
-					'url'     => add_query_arg( array( 'page' => 'bp-profile-edit', 'user_id' => $user->ID ), admin_url( 'users.php' ) ),
+					'url'     => esc_url( add_query_arg( array( 'page' => 'bp-profile-edit', 'user_id' => $user->ID ), admin_url( 'users.php' ) ) ),
 					'classes' => 'nav-tab'
 				);
 
@@ -481,7 +505,7 @@ if ( ! class_exists( 'myCRED_Admin' ) ) {
 
 				$tabs[] = array(
 					'label'   => $mycred->plural(),
-					'url'     => add_query_arg( array( 'page' => 'mycred-edit-balance', 'user_id' => $user->ID, 'ctype' => $type ), admin_url( 'users.php' ) ),
+					'url'     => esc_url( add_query_arg( array( 'page' => 'mycred-edit-balance', 'user_id' => $user->ID, 'ctype' => $type ), admin_url( 'users.php' ) ) ),
 					'classes' => $classes
 				);
 			}
@@ -506,14 +530,16 @@ ul#profile-nav li a:hover, ul#profile-nav li.nav-tab-active a {text-decoration: 
 
 </ul>
 <?php
+
 		}
 
 		/**
 		 * BuddyPress User Nav
 		 * @since 1.5
-		 * @version 1.0
+		 * @version 1.0.1
 		 */
 		public function bp_user_nav( $active, $user ) {
+
 			$types = mycred_get_types();
 
 			$tabs = array();
@@ -523,7 +549,7 @@ ul#profile-nav li a:hover, ul#profile-nav li.nav-tab-active a {text-decoration: 
 
 				$tabs[] = array(
 					'label'   => $mycred->plural(),
-					'url'     => add_query_arg( array( 'page' => 'mycred-edit-balance', 'user_id' => $user->ID, 'ctype' => $type ), admin_url( 'users.php' ) ),
+					'url'     => esc_url( add_query_arg( array( 'page' => 'mycred-edit-balance', 'user_id' => $user->ID, 'ctype' => $type ), admin_url( 'users.php' ) ) ),
 					'classes' => 'nav-tab'
 				);
 			}
@@ -532,14 +558,16 @@ ul#profile-nav li a:hover, ul#profile-nav li.nav-tab-active a {text-decoration: 
 
 			if ( ! empty( $tabs ) )
 				foreach ( $tabs as $tab ) echo '<li class="' . $tab['classes'] . '"><a href="' . $tab['url'] . '">' . $tab['label'] . '</a></li>';
+
 		}
 
 		/**
 		 * Edit Profile Screen
 		 * @since 1.5
-		 * @version 1.0.1
+		 * @version 1.0.2
 		 */
 		public function edit_profile_screen() {
+
 			if ( ! isset( $_GET['user_id'] ) ) return;
 
 			$user_id = absint( $_GET['user_id'] );
@@ -568,8 +596,9 @@ ul#profile-nav li a:hover, ul#profile-nav li.nav-tab-active a {text-decoration: 
 				$log_slug = 'myCRED_' . $type;
 
 			$history_url = add_query_arg( array( 'page' => $log_slug, 'user_id' => $user->ID ), admin_url( 'admin.php' ) );
-			$exclude_url = add_query_arg( array( 'action' => 'exclude' ) ) ?>
+			$exclude_url = add_query_arg( array( 'action' => 'exclude' ) );
 
+?>
 <style type="text/css">
 div#edit-balance-page table.table { width: 100%; margin-top: 24px; }
 div#edit-balance-page table.table th { text-align: left; }
@@ -607,8 +636,8 @@ div#edit-balance-page.wrap form#your-profile h3 { margin-top: 3em; }
 				</tr>
 			</tbody>
 		</table>
-		<a href="<?php echo $history_url; ?>" class="button button-secondary"><?php _e( 'View History', 'mycred' ); ?></a>
-		<a href="<?php echo $exclude_url; ?>" class="button button-primary" id="mycred-exclude-this-user"><?php _e( 'Exclude User', 'mycred' ); ?></a>
+		<a href="<?php echo esc_url( $history_url ); ?>" class="button button-secondary"><?php _e( 'View History', 'mycred' ); ?></a>
+		<a href="<?php echo esc_url( $exclude_url ); ?>" class="button button-primary" id="mycred-exclude-this-user"><?php _e( 'Exclude User', 'mycred' ); ?></a>
 
 		<?php do_action( 'mycred_before_edit_profile', $user, $type ); ?>
 
@@ -628,6 +657,7 @@ jQuery(function($) {
 	</script>
 </div>
 <?php
+
 		}
 
 		/**
@@ -636,6 +666,7 @@ jQuery(function($) {
 		 * @version 1.0
 		 */
 		public function get_users_total_accumulated( $user_id, $type ) {
+
 			global $wpdb;
 
 			return $wpdb->get_var( $wpdb->prepare( "
@@ -644,6 +675,7 @@ jQuery(function($) {
 				WHERE ctype = %s 
 				AND user_id = %d 
 				AND creds > 0;", $type, $user_id ) );
+
 		}
 
 		/**
@@ -652,6 +684,7 @@ jQuery(function($) {
 		 * @version 1.0
 		 */
 		public function get_users_total_spent( $user_id, $type ) {
+
 			global $wpdb;
 
 			return $wpdb->get_var( $wpdb->prepare( "
@@ -660,6 +693,7 @@ jQuery(function($) {
 				WHERE ctype = %s 
 				AND user_id = %d 
 				AND creds < 0;", $type, $user_id ) );
+
 		}
 
 		/**
@@ -668,6 +702,7 @@ jQuery(function($) {
 		 * @version 1.1
 		 */
 		public function show_my_balance( $user ) {
+
 			$user_id = $user->ID;
 			$mycred_types = mycred_get_types();
 
@@ -676,14 +711,17 @@ jQuery(function($) {
 				if ( $mycred->exclude_user( $user_id ) ) continue;
 
 				$balance = $mycred->get_users_cred( $user_id, $type );
-				$balance = $mycred->format_creds( $balance ); ?>
+				$balance = $mycred->format_creds( $balance );
 
+?>
 <tr>
 	<th scope="row"><?php echo $mycred->template_tags_general( __( '%singular% balance', 'mycred' ) ); ?></th>
 	<td><h2 style="margin:0;padding:0;"><?php echo $balance; ?></h2></td>
 </tr>
 <?php
+
 			}
+
 		}
 
 		/**
@@ -692,6 +730,7 @@ jQuery(function($) {
 		 * @version 1.2.1
 		 */
 		public function adjust_users_balance( $user ) {
+
 			if ( ! isset( $_GET['ctype'] ) )
 				$type = 'mycred_default';
 			else
@@ -702,8 +741,9 @@ jQuery(function($) {
 			if ( $mycred->can_edit_creds() && ! $mycred->can_edit_plugin() )
 				$req = '(<strong>' . __( 'required', 'mycred' ) . '</strong>)'; 
 			else
-				$req = '(' . __( 'optional', 'mycred' ) . ')'; ?>
+				$req = '(' . __( 'optional', 'mycred' ) . ')';
 
+?>
 <table class="form-table">
 	<tr>
 		<th scope="row"><label for="myCRED-manual-add-points"><?php _e( 'Amount', 'mycred' ) ?></label></th>
@@ -724,13 +764,14 @@ jQuery(function($) {
 	</tr>
 </table>
 <?php
+
 		}
 
 		/**
 		 * Admin Footer
 		 * Inserts the Inline Edit Form modal.
 		 * @since 1.2
-		 * @version 1.3
+		 * @version 1.3.1
 		 */
 		public function admin_footer() {
 
@@ -746,8 +787,9 @@ jQuery(function($) {
 				else
 					$req = '(' . __( 'optional', 'mycred' ) . ')';
 
-				ob_start(); ?>
+				ob_start();
 
+?>
 <div id="edit-mycred-balance" style="display: none;">
 	<div class="mycred-adjustment-form">
 		<p class="row inline" style="width: 20%"><label><?php _e( 'ID', 'mycred' ); ?>:</label><span id="mycred-userid"></span></p>
@@ -776,6 +818,7 @@ jQuery(function($) {
 			elseif ( $screen->id == 'user-edit' || $screen->id == 'profile' || $screen->id == 'users_page_bp-profile-edit' ) {
 
 				global $bp;
+
 				if ( $this->using_bp && version_compare( $bp->version, '2.1', '>=' ) ) {
 
 					$types = mycred_get_types();
@@ -794,7 +837,7 @@ jQuery(function($) {
 
 						$tabs[] = array(
 							'label'   => $mycred->plural(),
-							'url'     => add_query_arg( array( 'page' => 'mycred-edit-balance', 'user_id' => $user_id, 'ctype' => $type ), admin_url( 'users.php' ) ),
+							'url'     => esc_url( add_query_arg( array( 'page' => 'mycred-edit-balance', 'user_id' => $user_id, 'ctype' => $type ), admin_url( 'users.php' ) ) ),
 							'classes' => $classes
 						);
 					}
@@ -828,6 +871,7 @@ jQuery(document).ready(function($) {
 			}
 
 		}
+
 	}
-}
+endif;
 ?>

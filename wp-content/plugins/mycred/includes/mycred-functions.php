@@ -912,7 +912,7 @@ if ( ! class_exists( 'myCRED_Settings' ) ) :
 		 * @param $amount (int|float), amount to add/deduct from users balance. This value must be pre-formated.
 		 * @returns the new balance.
 		 * @since 0.1
-		 * @version 1.4
+		 * @version 1.4.1
 		 */
 		public function update_users_balance( $user_id = NULL, $amount = NULL, $type = 'mycred_default' ) {
 
@@ -937,6 +937,9 @@ if ( ! class_exists( 'myCRED_Settings' ) ) :
 			// Update total creds
 			$total = mycred_query_users_total( $user_id, $type );
 			mycred_update_user_meta( $user_id, $type, '_total', $total );
+
+			// Clear caches
+			mycred_delete_option( 'mycred-cache-total-' . $type );
 
 			// Let others play
 			do_action( 'mycred_update_user_balance', $user_id, $current_balance, $amount, $type );
@@ -2083,21 +2086,21 @@ endif;
 /**
  * Check if site is blocked
  * @since 1.5.4
- * @version 1.0
+ * @version 1.0.1
  */
 if ( ! function_exists( 'mycred_is_site_blocked' ) ) :
 	function mycred_is_site_blocked( $blog_id = NULL )
 	{
 		// Only applicable for multisites
-		if ( ! is_multisite() || ! isset( $GLOBALS['blog_id'] ) ) return false;
+		if ( ! is_multisite() ) return false;
 
-		$reply = false;
-
+		// Blog ID
 		if ( $blog_id === NULL )
-			$blog_id = $GLOBALS['blog_id'];
+			$blog_id = get_current_blog_id();
 
 		// Get Network settings
 		$network = mycred_get_settings_network();
+		$blocked = false;
 
 		// Only applicable if the block is set and this is not the main blog
 		if ( ! empty( $network['block'] ) && $blog_id > 1 ) {
@@ -2106,15 +2109,16 @@ if ( ! function_exists( 'mycred_is_site_blocked' ) ) :
 			$list = explode( ',', $network['block'] );
 			$clean = array();
 			foreach ( $list as $blog_id ) {
-				$clean[] = trim( $blog_id );
+				$clean[] = absint( $blog_id );
 			}
 
 			// Check if blog is blocked from using myCRED.
-			if ( in_array( $blog_id, $clean ) ) $reply = true;
+			if ( in_array( $blog_id, $clean ) )
+				$blocked = true;
 
 		}
 
-		return apply_filters( 'mycred_is_site_blocked', $reply, $blog_id );
+		return apply_filters( 'mycred_is_site_blocked', $blocked, $blog_id );
 
 	}
 endif;

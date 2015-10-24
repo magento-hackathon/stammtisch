@@ -89,7 +89,7 @@ if ( ! class_exists( 'myCRED_BuddyPress_Module' ) ) :
 
 			}
 
-			return apply_filters( 'mycred_bp_logout_url', $logouturl, $this );
+			return apply_filters( 'mycred_bp_logout_url', esc_url( $logouturl ), $this );
 
 		}
 
@@ -242,7 +242,7 @@ if ( ! class_exists( 'myCRED_BuddyPress_Module' ) ) :
 
 			$ctype = '/';
 			if ( $this->selected_type != 'mycred_default' )
-				$ctype .= add_query_arg( array( 'show-ctype' => $this->selected_type ) );
+				$ctype .= esc_url( add_query_arg( array( 'show-ctype' => $this->selected_type ) ) );
 
 			// "All" is default
 			bp_core_new_subnav_item( array(
@@ -406,7 +406,7 @@ if ( ! class_exists( 'myCRED_BuddyPress_Module' ) ) :
 		 * @since 0.1
 		 * @version 1.3
 		 */
-		public function after_general_settings( $mycred ) {
+		public function after_general_settings() {
 
 			// Settings
 			global $bp;

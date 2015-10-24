@@ -5,7 +5,7 @@ if ( ! defined( 'myCRED_VERSION' ) ) exit;
  * Shortcode: mycred_my_badges
  * Allows you to show the current users earned badges.
  * @since 1.5
- * @version 1.1.1
+ * @version 1.1.2
  */
 if ( ! function_exists( 'mycred_render_my_badges' ) ) :
 	function mycred_render_my_badges( $atts, $content = '' )
@@ -45,7 +45,8 @@ if ( ! function_exists( 'mycred_render_my_badges' ) ) :
 					if ( $level_image == '' )
 						$level_image = get_post_meta( $badge_id, 'main_image', true );
 
-					echo apply_filters( 'mycred_my_badge', '<img src="' . $level_image . '"' . $width . $height . ' class="mycred-badge earned" alt="' . get_the_title( $badge_id ) . '" title="' . get_the_title( $badge_id ) . '" />', $badge_id, $level, $user_id, $atts );
+					$badge_title = get_the_title( $badge_id );
+					echo apply_filters( 'mycred_my_badge', '<img src="' . $level_image . '"' . $width . $height . ' class="mycred-badge earned" alt="' . esc_attr( $badge_title ) . '" title="' . esc_attr( $badge_title ) . '" />', $badge_id, $level, $user_id, $atts );
 
 				}
 

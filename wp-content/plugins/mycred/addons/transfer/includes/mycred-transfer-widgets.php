@@ -12,23 +12,25 @@ if ( ! class_exists( 'myCRED_Widget_Transfer' ) ) :
 		/**
 		 * Construct
 		 */
-		function myCRED_Widget_Transfer() {
+		public function __construct() {
 
-			// Basic details about our widget
-			$widget_ops = array( 
-				'classname'   => 'widget-my-cred-transfer',
-				'description' => __( 'Allow transfers between users.', 'mycred' )
+			$name = mycred_label( true );
+
+			parent::__construct(
+				'mycred_widget_transfer',
+				sprintf( __( '(%s) Transfer', 'mycred' ), $name ),
+				array(
+					'classname'   => 'widget-my-cred-transfer',
+					'description' => __( 'Allow transfers between users.', 'mycred' )
+				)
 			);
-
-			$this->WP_Widget( 'mycred_widget_transfer', sprintf( __( '(%s) Transfer', 'mycred' ), mycred_label( true ) ), $widget_ops );
-			$this->alt_option_name = 'mycred_widget_transfer';
 
 		}
 
 		/**
 		 * Widget Output
 		 */
-		function widget( $args, $instance ) {
+		public function widget( $args, $instance ) {
 
 			extract( $args, EXTR_SKIP );
 
@@ -104,7 +106,7 @@ if ( ! class_exists( 'myCRED_Widget_Transfer' ) ) :
 		/**
 		 * Outputs the options form on admin
 		 */
-		function form( $instance ) {
+		public function form( $instance ) {
 
 			// Defaults
 			$title        = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : 'Transfer %plural%';
@@ -137,12 +139,12 @@ if ( ! class_exists( 'myCRED_Widget_Transfer' ) ) :
 		/**
 		 * Processes widget options to be saved
 		 */
-		function update( $new_instance, $old_instance ) {
+		public function update( $new_instance, $old_instance ) {
 
 			global $mycred;
 
 			$instance = $old_instance;
-			$allowed = $mycred->allowed_html_tags();
+			$allowed  = $mycred->allowed_html_tags();
 
 			$instance['title']        = wp_kses( $new_instance['title'], $allowed );
 			$instance['show_balance'] = ( isset( $new_instance['show_balance'] ) ) ? $new_instance['show_balance'] : 0;

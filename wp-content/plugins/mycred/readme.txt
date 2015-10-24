@@ -2,8 +2,8 @@
 Contributors: designbymerovingi
 Tags:points, tokens, credit, management, reward, charge, community, contest, buddypress, jetpack, bbpress, simple press, woocommerce, marketpress, wp e-commerce, gravity forms, share-this
 Requires at least: 3.8
-Tested up to: 4.1.1
-Stable tag: 1.6.3
+Tested up to: 4.3.1
+Stable tag: 1.6.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,45 +11,54 @@ myCRED is an adaptive points management system that lets you award / charge your
 
 == Description ==
 
-> #### Read before updating to 1.6
-> Version 1.6 brings some major core changes for your point type settings and hooks. Please read [this guide](http://codex.mycred.me/updating-to-mycred-1-6/) before updating! 
-
 > #### Plugin Support
-> Free support is offered Monday - Friday 9 - 5 (UTC+1) via the [myCRED support forum](http://mycred.me/support/forums/).
+> Free support is offered  via the [myCRED support forum](http://mycred.me/support/forums/). No support is provided here on the wordpress.org support forum.
 
-I felt that todays WordPress community lacks a flexible points management system. Existing system often feel restrictive, stale or lack support for popular plugins.
+myCRED is a adaptive points management tool to help you build reward programs, monetize your website or just reward users with points for posting comments or publishing content.
 
-So I built an adaptive plugin which gives it’s users full control on how points are awarded, used, traded, managed, logged and presented. Built on the "opt-in" principle, it is up to you what features you want to use and how. If your WordPress installation does not support a feature it is hidden from you to keep things clean and simple.
-
-**my**CRED comes packed with features along with built-in support for some of the most popular [WordPress plugins](http://mycred.me/about/supported-plugins/) out there. But of course **my**CRED does not support everything out of the box so I have documented as much as possible in the **my**CRED [codex](http://codex.mycred.me) and you can find several [tutorials](http://mycred.me/support/tutorials/) that can help you better acquaint yourself with **my**CRED.
-
-I am here to help where ever I can but please remember that right now this is a one man show and I do need an occasional coffee break.
-
-You are welcome to post your issues or questions under the "Support" tab but remember that  **my**CRED has it's own [online forum](http://mycred.me/support/forums/) along with [F.A.Q.](http://mycred.me/about/faq/) page and an online [support page](http://mycred.me/support/).
-
-**About Hooks**
-
-**my**CRED hooks are instances where you award or deduct points from a user. By default you can award point for: registrations, logins, content publishing, commenting, clicking on links and viewing YouTube videos. You can find more information on built-in hooks [here](http://mycred.me/about/hooks/).
+Packed with features, myCRED also supports some of the most popular WordPress plugins like WooCommerce, BuddyPress, Jetpack, Contact Form 7 and [more](http://mycred.me/about/supported-plugins/).
 
 
-**About Add-ons**
+= Points =
 
-**my**CRED add-ons allows you to enable more complex features that is not just about awarding / deducting points. Features include: [Sell Content](http://mycred.me/add-ons/sell-content/) with points, [Buy points](http://mycred.me/add-ons/buycred/) for real money, [Transfer](http://mycred.me/add-ons/transfer/) points between users, award [ranks](http://mycred.me/add-ons/ranks/) according to points balances. You can find a complete list of [built-in](http://mycred.me/add-on-types/built-in/) and [premium](http://mycred.me/add-on-types/premium/) add-ons [here](http://mycred.me/add-ons/).
-
-
-**The Codex**
-
-If you are comfortable with PHP or have some experience with customising your WordPress installation, I have documented as much as possible of **my**CRED in the [Codex](http://codex.mycred.me/).
+Each user on your WordPress websites gets their own point balance which you can manually [adjust](http://mycred.me/about/features/easy-manual-adjustments/) at any time. As of version 1.4, myCRED also supports multiple point types for those who need more then one type of points on their website.
 
 
-**Contact**
+= Log =
 
-* [General Inquiries](http://mycred.me/contact/)
+Each time myCRED adds or deducts points from a user, the adjustment is [logged](http://mycred.me/about/features/the-log/) in a dedicated log, allowing your users to browse their history. The log is also used to provide you with statistics or enforce limits you set.
+
+
+= Awarding or Deducting Points Automatically =
+
+myCRED supports a vast set of ways you can automatically give / take points from a user. Everything from new comments to store purchases. These automatic adjustments are managed by so called Hooks which you can setup in your admin area.
+
+
+= Third-party plugin Support =
+
+myCRED supports some of the most [popular plugins](http://mycred.me/about/supported-plugins/) for WordPress like BuddyPress, WooCommerce, Jetpack, Contact Form 7 etc. To prevent to much cluttering in the admin area with settings, myCRED will automatically hide settings for plugins that you are not using.
+
+
+= Add-ons =
+
+There is so much more to myCRED then just adjusting balances. The plugin comes with several [built-in add-ons](http://mycred.me/add-ons/) which enabled more complex features such as allowing point transfers, buying points for real money, allow payments in stores etc.
+
+To help fund development of myCRED, I also provide an ever growing set of [premium add-ons](http://mycred.me/store/) that brings you even more features or add support for more payment gateways.
+
+
+= Documentation =
+
+The myCRED [Codex](http://codex.mycred.me/) provides a large amount of documentation for users and developers. You can also find installation guides on each add-ons page on the myCRED.me website.
+
+
+= Support =
+
+I provide free technical support via the [myCRED website](http://mycred.me/support/forums/). Support is **NOT** provided here on the wordpress.org support forum. This also means I do not provide support for forks or clones of this plugin.
 
 
 == Installation ==
 
-**myCRED Guides**
+= myCRED Guides =
 
 [myCRED Codex - Setup Guides](http://codex.mycred.me/get-started/)
 
@@ -70,13 +79,21 @@ If you are comfortable with PHP or have some experience with customising your Wo
 
 Yep! myCRED also offers you the option to centralize your log or enforce your main sites installation on all sub sites via the "Master Template" feature.
 
-= What point types does myCRED support? =
+= Can I as an administrator adjust my users balances? =
 
-myCRED points can be whole numbers or use up to 20 decimals.
+Yes of course. Administrators have full access to all users point types, balances and history.
 
 = Does myCRED support Multiple Point Types? =
 
 Yes! myCRED as of version 1.4 officially supports multiple point types. You can setup an unlimited number of point types with it's own settings, available hooks and log page for each administration. Note that add-ons have limited support. Please consult the myCRED website for more information.
+
+= What point formats does myCRED support? =
+
+myCRED supports whole numbers or the use of decimals (max 20 decimal places). You can setup to use both if you use mutliple point types however the default point type must be set to use the highest number of decimal places.
+
+= How many point types does myCRED support? =
+
+There is no built-in limit for how many point types you can setup, however, with that being said, I do not recommend more then 5-6 types. Remember that myCRED will add an admin menu for each point type so with large sets of point types, you will have a very long admin menu.
 
 = Can users use points to pay for items in my store? =
 
@@ -84,7 +101,7 @@ Yes, myCRED supports WooCommerce, MarketPress and WP E-Commerce straight out of 
 
 = Can myCRED award points for users sharing posts on social media sites? =
 
-No. myCRED can only detect and award / deduct points for actions done on your website. You can always create an app on the social media site in question that calls back to your website and informs myCRED of actions taken by your users but this is not supported out of the box.
+No. myCRED does not support this but there are WordPress plugins out there that can provide this functionality with support for myCRED.
 
 = Can I award points for watching videos? =
 
@@ -106,8 +123,8 @@ myCRED supports importing, exporting, inline editing and manual deletion of log 
 
 == Upgrade Notice ==
 
-= 1.6.3 =
-Translation updates with proper escaping, adjusted log module, badge module and buyCRED module.
+= 1.6.6 =
+Critical bug fixes.
 
 
 == Other Notes ==
@@ -126,150 +143,17 @@ Translation updates with proper escaping, adjusted log module, badge module and 
 * Russian - Skladchik
 * Chinese - suifengtec [Website](http://coolwp.com)
 * Portuguese (Brazil) - Guilherme
+* Japanese - Mochizuki Hiroshi
 
 
 == Changelog ==
 
-= 1.6.3 =
-FIX - Coupons min- or max- requirement is not enforced.
-FIX - mycred_my_badges shortcode is using a bad loop.
-FIX - WooCommerce refunds fails when refunding an order paid with points.
-FIX - Banking add-ons recurring payout service is using a bad SQL query when decimals are used.
-FIX - Fixed error in mycred_hook_table shortcode when looping through hooks.
-FIX - Fixed bad logic for mycred_translate_limit_code.
-FIX - over_hook_limit() should also take into account the point type.
-FIX - Added missing table cell classes for order display function in buyCRED.
-TWEAK - Adjusted exclude_user() to always handle a user ID even if nothing is passed to the function.
-TWEAK - Cleaned up the affiliate hook and replaced the built in hook limit with the new 1.6 system.
-TWEAK - Wrapped myCRED scripts in anonymous functions.
-TWEAK - Improved the transfer.js script.
-TWEAK - Added <br> element to allowed html.
-UPDATE - Updated plugin credit page.
-NEW - Added new mycred_my_badge filter to adjust how each badge is presented when viewing a users earned badges.
-NEW - Query Log class now also accepts username/login/email filtering instead of just ID.
+= 1.6.6 =
+NEW - Added new mycred_total_points shortcode.
+FIX - PayPal IPN Verification is missing User-Agent.
+FIX - Ranks add-on causes an error that prevents the settings page from loading.
+FIX - Multisite block list is not being enforced.
+TWEAK - Updated Settings page styling slightly for better fit.
 
-= 1.6.2 = 
+= Previous Versions =
 http://mycred.me/support/changelog/
-
-= 1.6.1 =
-http://mycred.me/support/changelog/
-
-= 1.6 =
-http://mycred.me/support/changelog/
-
-= 1.5.4 =
-http://mycred.me/support/changelog/
-
-= 1.5.3 =
-http://mycred.me/support/changelog/
-
-= 1.5.2 =
-http://mycred.me/support/changelog/
-
-= 1.5.1 =
-http://mycred.me/support/changelog/
-
-= 1.5 =
-http://mycred.me/support/changelog/
-
-= 1.4.7 =
-http://mycred.me/support/changelog/2/
-
-= 1.4.6 =
-http://mycred.me/support/changelog/2/
-
-= 1.4.5 =
-http://mycred.me/support/changelog/2/
-
-= 1.4.4 =
-http://mycred.me/support/changelog/2/
-
-= 1.4.3 =
-http://mycred.me/support/changelog/2/
-
-= 1.4.2 =
-http://mycred.me/support/changelog/2/
-
-= 1.4.1 =
-http://mycred.me/support/changelog/2/
-
-= 1.4 =
-http://mycred.me/support/changelog/2/
-
-= 1.3.3.2 =
-http://mycred.me/support/changelog/3/
-
-= 1.3.3.1 =
-http://mycred.me/support/changelog/3/
-
-= 1.3.3 =
-http://mycred.me/support/changelog/3/
-
-= 1.3.2 =
-http://mycred.me/support/changelog/3/
-
-= 1.3.1 =
-http://mycred.me/support/changelog/3/
-
-= 1.3 =
-http://mycred.me/support/changelog/3/
-
-= 1.2.3 =
-http://mycred.me/support/changelog/4/
-
-= 1.2.2 =
-http://mycred.me/support/changelog/4/
-
-= 1.2.1 =
-http://mycred.me/support/changelog/4/
-
-= 1.2 =
-http://mycred.me/support/changelog/4/
-
-= 1.1.2 =
-http://mycred.me/support/changelog/5/
-
-= 1.1.1 =
-http://mycred.me/support/changelog/5/
-
-= 1.1 =
-http://mycred.me/support/changelog/5/
-
-= 1.0.9.3 =
-http://mycred.me/support/changelog/6/
-
-= 1.0.9.2 =
-http://mycred.me/support/changelog/6/
-
-= 1.0.9.1 =
-http://mycred.me/support/changelog/6/
-
-= 1.0.9 =
-http://mycred.me/support/changelog/6/
-
-= 1.0.8 =
-http://mycred.me/support/changelog/6/
-
-= 1.0.7 =
-http://mycred.me/support/changelog/6/
-
-= 1.0.6 =
-http://mycred.me/support/changelog/6/
-
-= 1.0.5 =
-http://mycred.me/support/changelog/6/
-
-= 1.0.4 =
-http://mycred.me/support/changelog/6/
-
-= 1.0.3 =
-http://mycred.me/support/changelog/6/
-
-= 1.0.2 =
-http://mycred.me/support/changelog/6/
-
-= 1.0.1 =
-http://mycred.me/support/changelog/6/
-
-= 1.0 =
-http://mycred.me/support/changelog/6/

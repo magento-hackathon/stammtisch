@@ -499,7 +499,7 @@ if ( ! class_exists( 'myCRED_Ranks_Module' ) ) :
 		/**
 		 * AJAX: Calculate Totals
 		 * @since 1.2
-		 * @version 1.3
+		 * @version 1.3.1
 		 */
 		public function calculate_totals() {
 
@@ -511,6 +511,7 @@ if ( ! class_exists( 'myCRED_Ranks_Module' ) ) :
 				$type = sanitize_text_field( $_POST['ctype'] );
 
 			$balance_key = $type;
+			$mycred      = mycred( $type );
 
 			if ( $mycred->is_multisite && $GLOBALS['blog_id'] > 1 && ! $mycred->use_central_logging )
 				$balance_key .= '_' . $GLOBALS['blog_id'];
@@ -1288,7 +1289,7 @@ if ( ! class_exists( 'myCRED_Ranks_Module' ) ) :
 		 */
 		public function after_general_settings( $mycred ) {
 
-			$prefs = $this->rank;
+			$prefs             = $this->rank;
 			$this->add_to_core = true;
 			if ( $mycred->mycred_type != 'mycred_default' ) {
 
@@ -1301,7 +1302,7 @@ if ( ! class_exists( 'myCRED_Ranks_Module' ) ) :
 
 			}
 
-			if ( $this->rank['base'] == 'current' )
+			if ( $prefs['base'] == 'current' )
 				$box = 'display: none;';
 			else
 				$box = 'display: block;';

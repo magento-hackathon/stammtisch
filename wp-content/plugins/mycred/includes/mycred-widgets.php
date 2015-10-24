@@ -4,7 +4,7 @@ if ( ! defined( 'myCRED_VERSION' ) ) exit;
 /**
  * Widget: myCRED Balance
  * @since 0.1
- * @version 1.4
+ * @version 1.4.1
  */
 if ( ! class_exists( 'myCRED_Widget_Balance' ) ) :
 	class myCRED_Widget_Balance extends WP_Widget {
@@ -12,25 +12,25 @@ if ( ! class_exists( 'myCRED_Widget_Balance' ) ) :
 		/**
 		 * Construct
 		 */
-		function myCRED_Widget_Balance() {
+		public function __construct() {
 
 			$name = mycred_label( true );
 
-			// Basic details about our widget
-			$widget_ops = array( 
-				'classname'   => 'widget-my-cred',
-				'description' => sprintf( __( 'Show the current users %s balance', 'mycred' ), $name )
+			parent::__construct(
+				'mycred_widget_balance',
+				sprintf( __( '(%s) My Balance', 'mycred' ), $name ),
+				array(
+					'classname'   => 'widget-my-cred',
+					'description' => sprintf( __( 'Show the current users %s balance', 'mycred' ), $name )
+				)
 			);
-
-			$this->WP_Widget( 'mycred_widget_balance', sprintf( __( '(%s) My Balance', 'mycred' ), $name ), $widget_ops );
-			$this->alt_option_name = 'mycred_widget_balance';
 
 		}
 
 		/**
 		 * Widget Output
 		 */
-		function widget( $args, $instance ) {
+		public function widget( $args, $instance ) {
 
 			extract( $args, EXTR_SKIP );
 
@@ -159,7 +159,7 @@ if ( ! class_exists( 'myCRED_Widget_Balance' ) ) :
 		/**
 		 * Outputs the options form on admin
 		 */
-		function form( $instance ) {
+		public function form( $instance ) {
 
 			// Defaults
 			$title          = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : 'My Balance';
@@ -243,13 +243,14 @@ if ( ! class_exists( 'myCRED_Widget_Balance' ) ) :
 jQuery(function($) {
 	$(document).ready(function(){
 
-		$('#<?php echo esc_attr( $this->get_field_id( 'show_history' ) ); ?>').click(function(){
+		$( '#<?php echo esc_attr( $this->get_field_id( 'show_history' ) ); ?>' ).click(function(){
 			$(this).next().next().next().toggleClass( 'ex-field' );
 		});
 
-		$('#<?php echo esc_attr( $this->get_field_id( 'show_visitors' ) ); ?>').click(function(){
+		$( '#<?php echo esc_attr( $this->get_field_id( 'show_visitors' ) ); ?>' ).click(function(){
 			$(this).next().next().next().toggleClass( 'ex-field' );
 		});
+
 	});
 });//]]>
 </script>
@@ -260,7 +261,7 @@ jQuery(function($) {
 		/**
 		 * Processes widget options to be saved
 		 */
-		function update( $new_instance, $old_instance ) {
+		public function update( $new_instance, $old_instance ) {
 
 			global $mycred;
 
@@ -288,7 +289,7 @@ endif;
 /**
  * Widget: Leaderboard
  * @since 0.1
- * @version 1.3
+ * @version 1.3.1
  */
 if ( ! class_exists( 'myCRED_Widget_Leaderboard' ) ) :
 	class myCRED_Widget_Leaderboard extends WP_Widget {
@@ -296,25 +297,25 @@ if ( ! class_exists( 'myCRED_Widget_Leaderboard' ) ) :
 		/**
 		 * Construct
 		 */
-		function myCRED_Widget_Leaderboard() {
+		public function __construct() {
 
 			$name = mycred_label( true );
 
-			// Basic details about our widget
-			$widget_ops = array( 
-				'classname'   => 'widget-mycred-list',
-				'description' => sprintf( __( 'Show a list of users sorted by their %s balance', 'mycred' ), $name )
+			parent::__construct(
+				'mycred_widget_list',
+				sprintf( __( '(%s) Leaderboard', 'mycred' ), $name ),
+				array(
+					'classname'   => 'widget-mycred-list',
+					'description' => sprintf( __( 'Show a list of users sorted by their %s balance', 'mycred' ), $name )
+				)
 			);
-
-			$this->WP_Widget( 'mycred_widget_list', sprintf( __( '(%s) Leaderboard', 'mycred' ), $name ), $widget_ops );
-			$this->alt_option_name = 'mycred_widget_list';
 
 		}
 
 		/**
 		 * Widget Output
 		 */
-		function widget( $args, $instance ) {
+		public function widget( $args, $instance ) {
 
 			extract( $args, EXTR_SKIP );
 
@@ -362,7 +363,7 @@ if ( ! class_exists( 'myCRED_Widget_Leaderboard' ) ) :
 		/**
 		 * Outputs the options form on admin
 		 */
-		function form( $instance ) {
+		public function form( $instance ) {
 
 			// Defaults
 			$title         = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : 'Leaderboard';
@@ -448,7 +449,7 @@ if ( ! class_exists( 'myCRED_Widget_Leaderboard' ) ) :
 		/**
 		 * Processes widget options to be saved
 		 */
-		function update( $new_instance, $old_instance ) {
+		public function update( $new_instance, $old_instance ) {
 
 			global $mycred;
 
@@ -477,7 +478,7 @@ endif;
 /**
  * Widget: myCRED Wallet
  * @since 1.4
- * @version 1.0
+ * @version 1.0.1
  */
 if ( ! class_exists( 'myCRED_Widget_Wallet' ) ) :
 	class myCRED_Widget_Wallet extends WP_Widget {
@@ -485,23 +486,25 @@ if ( ! class_exists( 'myCRED_Widget_Wallet' ) ) :
 		/**
 		 * Construct
 		 */
-		function myCRED_Widget_Wallet() {
+		public function __construct() {
 
-			// Basic details about our widget
-			$widget_ops = array( 
-				'classname'   => 'widget-my-wallet',
-				'description' => __( 'Shows the current users balances for each point type.', 'mycred' )
+			$name = mycred_label( true );
+
+			parent::__construct(
+				'mycred_widget_wallet',
+				sprintf( __( '(%s) Wallet', 'mycred' ), $name ),
+				array(
+					'classname'   => 'widget-my-wallet',
+					'description' => __( 'Shows the current users balances for each point type.', 'mycred' )
+				)
 			);
-
-			$this->WP_Widget( 'mycred_widget_wallet', sprintf( __( '(%s) Wallet', 'mycred' ), mycred_label( true ) ), $widget_ops );
-			$this->alt_option_name = 'mycred_widget_wallet';
 
 		}
 
 		/**
 		 * Widget Output
 		 */
-		function widget( $args, $instance ) {
+		public function widget( $args, $instance ) {
 
 			extract( $args, EXTR_SKIP );
 
@@ -574,7 +577,7 @@ if ( ! class_exists( 'myCRED_Widget_Wallet' ) ) :
 		/**
 		 * Outputs the options form on admin
 		 */
-		function form( $instance ) {
+		public function form( $instance ) {
 
 			$mycred = mycred();
 
@@ -586,7 +589,6 @@ if ( ! class_exists( 'myCRED_Widget_Wallet' ) ) :
 			$message       = isset( $instance['message'] ) ? esc_attr( $instance['message'] ) : '<a href="%login_url_here%">Login</a> to view your balance.';
 
 ?>
-
 <!-- Widget Options -->
 <p class="myCRED-widget-field">
 	<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title', 'mycred' ); ?>:</label>
@@ -621,7 +623,7 @@ if ( ! class_exists( 'myCRED_Widget_Wallet' ) ) :
 		/**
 		 * Processes widget options to be saved
 		 */
-		function update( $new_instance, $old_instance ) {
+		public function update( $new_instance, $old_instance ) {
 
 			global $mycred;
 
@@ -642,4 +644,5 @@ if ( ! class_exists( 'myCRED_Widget_Wallet' ) ) :
 
 	}
 endif;
+
 ?>

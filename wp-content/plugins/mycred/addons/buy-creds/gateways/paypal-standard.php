@@ -39,7 +39,7 @@ if ( ! class_exists( 'myCRED_PayPal_Standard' ) ) :
 		 * IPN - Is Valid Call
 		 * Replaces the default check
 		 * @since 1.4
-		 * @version 1.0
+		 * @version 1.0.1
 		 */
 		public function IPN_is_valid_call() {
 
@@ -83,7 +83,7 @@ if ( ! class_exists( 'myCRED_PayPal_Standard' ) ) :
 				curl_setopt( $call, CURLOPT_SSL_VERIFYHOST, 2 );
 				curl_setopt( $call, CURLOPT_FRESH_CONNECT, 1 );
 				curl_setopt( $call, CURLOPT_FORBID_REUSE, 1 );
-				curl_setopt( $call, CURLOPT_HTTPHEADER, array( 'Connection: Close' ) );
+				curl_setopt( $call, CURLOPT_HTTPHEADER, array( 'Connection: Close', 'User-Agent: myCRED' ) );
 				$result = curl_exec( $call );
 
 				// End on success

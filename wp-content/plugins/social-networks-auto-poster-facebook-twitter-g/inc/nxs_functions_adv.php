@@ -5,7 +5,8 @@ if (!function_exists("nsFormatMessage")) { function nsFormatMessage($msg, $postI
   $post = get_post($postID); $options = $plgn_NS_SNAutoPoster->nxs_options;   
   if (!empty($options['brokenCntFilters'])) { $msg = str_replace('%FULLTITLE%','%TITLE%',$msg); $msg = str_replace('%PANNOUNCE%','%ANNOUNCE%',$msg); $msg = str_replace('%PANNOUNCER%','%ANNOUNCER%',$msg); 
     $msg = str_replace('%EXCERPT%','%RAWEXCERPT%',$msg);  $msg = str_replace('%FULLTEXT%','%RAWTEXT%',$msg);  
-  } if (!empty($options['nxsHTSpace'])) $htS = $options['nxsHTSpace']; else $htS = '';
+  } if (!empty($options['nxsHTSpace'])) $htS = $options['nxsHTSpace']; else $htS = ''; 
+  if (!empty($options['nxsHTSepar'])) $htSep = $options['nxsHTSepar']; else $htSep = ', '; $htSep = str_replace('_',' ',$htSep); $htSep = str_replace('c',',',$htSep);
   // if ($addURLParams=='' && $options['addURLParams']!='') $addURLParams = $options['addURLParams'];
   $msg = str_replace('%TEXT%','%EXCERPT%',$msg); $msg = str_replace('%RAWEXTEXT%','%RAWEXCERPT%',$msg);
   $msg = stripcslashes($msg); if (isset($ShownAds)) $ShownAdsL = $ShownAds; // $msg = htmlspecialchars(stripcslashes($msg)); 
@@ -63,11 +64,11 @@ if (!function_exists("nsFormatMessage")) { function nsFormatMessage($msg, $postI
   }
   if (preg_match('/%HCATS%/', $msg)) { $t = wp_get_post_categories($postID); $cats = array();  
     foreach($t as $c){ $cat = get_category($c);  $cats[] = "#".trim(str_replace(' ',$htS, str_replace('  ', ' ', trim(str_ireplace('&','',str_ireplace('&amp;','',$cat->name)))))); } 
-    $ctts = implode(', ',$cats); $msg = str_ireplace("%HCATS%", $ctts, $msg);
+    $ctts = implode($htSep,$cats); $msg = str_ireplace("%HCATS%", $ctts, $msg);
   }  
   if (preg_match('/%HTAGS%/', $msg)) { $t = wp_get_object_terms($postID, 'product_tag'); if ( empty($t) || is_wp_error($pt) || !is_array($t) ) $t = wp_get_post_tags($postID);
     $tggs = array(); foreach ($t as $tagA){$tggs[] = "#".trim(str_replace(' ', $htS, preg_replace('/[^a-zA-Z0-9\p{L}\p{N}\s]/u', '', trim(nxs_ucwords(str_ireplace('&','',str_ireplace('&amp;','',$tagA->name)))))));} 
-    $tags = implode(', ',$tggs); $msg = str_ireplace("%HTAGS%", $tags, $msg);
+    $tags = implode($htSep,$tggs); $msg = str_ireplace("%HTAGS%", $tags, $msg);
   } 
   if (preg_match('/%+CF-[a-zA-Z0-9-_]+%/', $msg)) { $msgA = explode('%CF', $msg); $mout = '';
     foreach ($msgA as $mms) { 
@@ -114,7 +115,7 @@ if (!function_exists('nxs_showListRow')){function nxs_showListRow($ntParams) { $
             <div class="nxs_box_header"> 
               <div class="nsx_iconedTitle" style="margin-bottom:1px;background-image:url(<?php echo $nxs_plurl;?>img/<?php echo $ntInfo['lcode']; ?>16.png);"><?php echo $ntInfo['name']; ?>
               <?php $cbo = count($ntOpts); ?> 
-              <?php if ($cbo>1){ ?><div class="nsBigText"><?php echo "(".($cbo=='0'?'No':$cbo)." "; _e('accounts', 'nxs_snap'); echo ")"; ?></div><?php } ?>
+              <?php if ($cbo>1){ ?><div class="nsBigText"><?php echo "(".($cbo=='0'?'No':$cbo)." "; _e('accounts', 'social-networks-auto-poster-facebook-twitter-g'); echo ")"; ?></div><?php } ?>
               </div>
             </div>
             <div class="nxs_box_inside">            
@@ -127,10 +128,10 @@ if (!function_exists('nxs_showListRow')){function nxs_showListRow($ntParams) { $
               <?php } ?>       
               <?php if (isset($pbo['catSel']) && (int)$pbo['catSel'] == 1) { ?> <span onmouseout="nxs_hidePopUpInfo('popOnlyCat');" onmouseover="nxs_showPopUpInfo('popOnlyCat', event);"><?php echo "*[".(substr_count($pbo['catSelEd'], ",")+1)."]*" ?></span><?php } ?>
               <?php if (isset($pbo['rpstOn']) && (int)$pbo['rpstOn'] == 1) { ?> <span onmouseout="nxs_hidePopUpInfo('popReActive');" onmouseover="nxs_showPopUpInfo('popReActive', event);"><?php echo "*[R]*" ?></span><?php } ?>
-              <strong><?php  _e('Auto-publish to', 'nxs_snap'); ?> <?php echo $ntInfo['name']; ?> <i style="color: #005800;"><?php if($pbo['nName']!='') echo "(".$pbo['nName'].")"; ?></i></strong>
-              &nbsp;&nbsp;<?php if ($ntInfo['tstReq'] && (!isset($pbo[$ntInfo['lcode'].'OK']) || $pbo[$ntInfo['lcode'].'OK']=='')){ ?><b style="color: #800000"><?php  _e('Attention requred. Unfinished setup', 'nxs_snap'); ?> ==&gt;</b><?php } ?>
-              <a id="do<?php echo $ntInfo['code'].$indx; ?>AG" href="#" onclick="doGetHideNTBlock('<?php echo $ntInfo['code'];?>' , '<?php echo $indx; ?>');return false;">[<?php  _e('Show Settings', 'nxs_snap'); ?>]</a>&nbsp;&nbsp;          
-              <a href="#" onclick="doDelAcct('<?php echo $ntInfo['lcode']; ?>', '<?php echo $indx; ?>', '<?php if (isset($pbo['bgBlogID'])) echo $pbo['nName']; ?>');return false;">[<?php  _e('Remove Account', 'nxs_snap'); ?>]</a>
+              <strong><?php  _e('Auto-publish to', 'social-networks-auto-poster-facebook-twitter-g'); ?> <?php echo $ntInfo['name']; ?> <i style="color: #005800;"><?php if($pbo['nName']!='') echo "(".$pbo['nName'].")"; ?></i></strong>
+              &nbsp;&nbsp;<?php if ($ntInfo['tstReq'] && (!isset($pbo[$ntInfo['lcode'].'OK']) || $pbo[$ntInfo['lcode'].'OK']=='')){ ?><b style="color: #800000"><?php  _e('Attention requred. Unfinished setup', 'social-networks-auto-poster-facebook-twitter-g'); ?> ==&gt;</b><?php } ?>
+              <a id="do<?php echo $ntInfo['code'].$indx; ?>AG" href="#" onclick="doGetHideNTBlock('<?php echo $ntInfo['code'];?>' , '<?php echo $indx; ?>');return false;">[<?php  _e('Show Settings', 'social-networks-auto-poster-facebook-twitter-g'); ?>]</a>&nbsp;&nbsp;          
+              <a href="#" onclick="doDelAcct('<?php echo $ntInfo['lcode']; ?>', '<?php echo $indx; ?>', '<?php if (isset($pbo['bgBlogID'])) echo $pbo['nName']; ?>');return false;">[<?php  _e('Remove Account', 'social-networks-auto-poster-facebook-twitter-g'); ?>]</a>
               </p><div id="nxsNTSetDiv<?php echo $ntInfo['code'].$indx; ?>"></div>
             <?php } ?>
             </div>
@@ -188,6 +189,26 @@ if (!function_exists("nxs_cron_check")){function nxs_cron_check() { if (stripos(
   } elseif (empty($cronCheckArray['status']) &&  is_array($cronCheckArray['cronChecks'])) $cronCheckArray['status'] = (count($cronCheckArray['cronChecks'])<17 && count($cronCheckArray['cronChecks'])>1)?1:0;
   update_option("NXS_cronCheck", $cronCheckArray);    
 }}}
+
+function nxs_show_noLibWrn($msg){ ?> <div style="border: 2px solid darkred; padding: 25px 15px 15px 15px; margin: 3px; background-color: #fffaf0;"> 
+            <span style="font-size: 16px; color:darkred;"><?php echo $msg ?></span>&nbsp;<a href="http://www.nextscripts.com/faq/third-party-libraries-autopost-google-pinterest/" target="_blank">More info about third party libraries.</a><br/><hr/> <div style="font-size: 16px; color:#005800; font-weight: bold; margin-top: 12px; margin-bottom: 7px;">You can get API library from NextScripts.</div>
+            <div style="padding-bottom: 5px;"><a href="http://www.nextscripts.com/snap-api/">SNAP API Libarary</a> adds autoposting to:</div> <span class="nxs_txtIcon nxs_ti_gp">Google+</span>, <span class="nxs_txtIcon nxs_ti_pn">Pinterest</span>, <span class="nxs_txtIcon nxs_ti_rd">Reddit</span>, <span class="nxs_txtIcon nxs_ti_bg">Blogger</span>,&nbsp;&nbsp;<span class="nxs_txtIcon nxs_ti_yt">YouTube</span>,&nbsp;&nbsp;<span class="nxs_txtIcon nxs_ti_fp">Flipboard</span>, <span class="nxs_txtIcon nxs_ti_li">LinkedIn Company Pages and Groups</span><br><br>          
+            All NextScripts SNAP API libraries are included and automatically installed with the  <a href="http://www.nextscripts.com/social-networks-auto-poster-for-wp-multiple-accounts/" target="_blank">"Pro" (Multiaccount) Edition of the SNAP plugin</a>. Pro version upgrade also adds the ability to configure more then one account for each social network and some addidional features.<br><br>
+            <div align="center"><a target="_blank" href="http://www.nextscripts.com/social-networks-auto-poster-for-wp-multiple-accounts/#getit" class="NXSButton" id="nxs_snapUPG">Get SNAP Pro Plugin with SNAP API</a></div>
+            <div style="font-size: 10px; margin-top: 20px;">*If you already have API, please follow instructions from the readme.txt file.</div>
+          </div> <?php 
+}
+
+if (!function_exists("nxs_save_glbNtwrks")) { function nxs_save_glbNtwrks($nt, $ii, $ntOptsOrVal, $field='', $networks='')  { if (empty($networks)) {
+    if (class_exists('NS_SNAutoPoster')) { global $plgn_NS_SNAutoPoster; if (!isset($plgn_NS_SNAutoPoster)) $plgn_NS_SNAutoPoster = new nxs_SNAP(); $networks = $plgn_NS_SNAutoPoster->nxs_options; } 
+      elseif (function_exists("nxs_settings_open")) $networks = nxs_settings_open();
+  } if(!empty($field)) $networks[$nt][$ii][$field] = $ntOptsOrVal; else $networks[$nt][$ii] = $ntOptsOrVal; nxs_save_ntwrksOpts($networks);   
+  if (isset($plgn_NS_SNAutoPoster)) $plgn_NS_SNAutoPoster->nxs_options = $networks;
+}}
+
+if (!function_exists("nxs_save_ntwrksOpts")) { function nxs_save_ntwrksOpts($networks) { if (function_exists('nxs_settings_save')) nxs_settings_save($networks);
+  if (function_exists('get_option')) { if (!empty($networks)) update_option('NS_SNAutoPoster', $networks);  }    
+}}
 
 function nxs_toolbar_link_to_mypage( $wp_admin_bar ) {
     $args = array(

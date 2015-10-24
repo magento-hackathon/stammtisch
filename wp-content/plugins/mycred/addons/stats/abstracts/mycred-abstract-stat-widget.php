@@ -83,7 +83,7 @@ if ( ! class_exists( 'myCRED_Statistics_Widget' ) ) :
 
 		/**
 		 * Action Buttons
-		 * @version 1.0
+		 * @version 1.0.1
 		 */
 		function action_buttons() {
 
@@ -99,13 +99,13 @@ if ( ! class_exists( 'myCRED_Statistics_Widget' ) ) :
 					$screen_id .= '_' . $this->args['ctypes'];
 
 				$url = add_query_arg( array( 'page' => $screen_id ), admin_url( 'admin.php' ) );
-				$buttons[] = '<a href="' . $url . '" class="button button-secondary button-large">' . __( 'View Log', 'mycred' ) . '</a>';
+				$buttons[] = '<a href="' . esc_url( $url ) . '" class="button button-secondary button-large">' . __( 'View Log', 'mycred' ) . '</a>';
 
 				$url = add_query_arg( array( 'page' => $screen_id . '_page_hooks' ), admin_url( 'admin.php' ) );
-				$buttons[] = '<a href="' . $url . '" class="button button-secondary button-large">' . __( 'Hooks', 'mycred' ) . '</a>';
+				$buttons[] = '<a href="' . esc_url( $url ) . '" class="button button-secondary button-large">' . __( 'Hooks', 'mycred' ) . '</a>';
 
 				$url = add_query_arg( array( 'page' => $screen_id . '_page_settings' ), admin_url( 'admin.php' ) );
-				$buttons[] = '<a href="' . $url . '" class="button button-secondary button-large">' . __( 'Settings', 'mycred' ) . '</a>';
+				$buttons[] = '<a href="' . esc_url( $url ) . '" class="button button-secondary button-large">' . __( 'Settings', 'mycred' ) . '</a>';
 
 			}
 

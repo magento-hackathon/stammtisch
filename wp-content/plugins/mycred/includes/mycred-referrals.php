@@ -26,7 +26,7 @@ function mycred_load_referral_program() {
 /**
  * Detect Referred Visits
  * @since 1.5.3
- * @version 1.0
+ * @version 1.0.1
  */
 if ( ! function_exists( 'mycred_detect_referred_visits' ) ) :
 	function mycred_detect_referred_visits() {

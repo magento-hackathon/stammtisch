@@ -365,7 +365,7 @@ if ( ! class_exists( 'myCRED_Addons_Module' ) ) :
 		/**
 		 * Activate / Deactivate Button
 		 * @since 0.1
-		 * @version 1.0
+		 * @version 1.0.1
 		 */
 		public function activate_deactivate( $key ) {
 
@@ -391,7 +391,7 @@ if ( ! class_exists( 'myCRED_Addons_Module' ) ) :
 				$link_text = __( 'Activate', 'mycred' );
 			}
 
-			return '<a href="' . add_query_arg( $args, $url ) . '" title="' . $link_title . '" class="button button-large button-primary mycred-action">' . $link_text . '</a>';
+			return '<a href="' . esc_url( add_query_arg( $args, $url ) ) . '" title="' . $link_title . '" class="button button-large button-primary mycred-action">' . $link_text . '</a>';
 
 		}
 

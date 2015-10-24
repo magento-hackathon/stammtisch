@@ -186,7 +186,7 @@ if ( ! class_exists( 'myCRED_Notifications_Module' ) ) {
 		 * @since 1.2.3
 		 * @version 1.1
 		 */
-		public function after_general_settings( $mycred ) {
+		public function after_general_settings() {
 
 			$prefs = $this->notifications; ?>
 

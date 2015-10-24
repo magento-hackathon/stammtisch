@@ -174,7 +174,7 @@ if ( ! class_exists( 'myCRED_Stats_Module' ) ) {
 		/**
 		 * Admin Page
 		 * @since 1.6
-		 * @version 1.0
+		 * @version 1.0.1
 		 */
 		public function admin_page() {
 			// Security
@@ -211,7 +211,7 @@ if ( ! class_exists( 'myCRED_Stats_Module' ) ) {
 					else
 						$url = add_query_arg( array( 'page' => $_GET['page'] ), admin_url( 'admin.php' ) );
 
-					echo '<li class="' . $classes . '"><a href="' . $url . '">' . $tab['label'] . '</a></li>';
+					echo '<li class="' . $classes . '"><a href="' . esc_url( $url ) . '">' . $tab['label'] . '</a></li>';
 
 				}
 

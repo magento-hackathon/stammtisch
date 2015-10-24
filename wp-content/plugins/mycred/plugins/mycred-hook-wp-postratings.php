@@ -141,7 +141,7 @@ if ( defined( 'myCRED_VERSION' ) ) {
 			/**
 			 * Preferences for WP Postratings Hook
 			 * @since 1.6
-			 * @version 1.0
+			 * @version 1.0.1
 			 */
 			public function preferences() {
 				$prefs = $this->prefs;
@@ -157,7 +157,7 @@ if ( defined( 'myCRED_VERSION' ) ) {
 		<?php echo $this->hook_limit_setting( $this->field_name( array( 'rating', 'limit' ) ), $this->field_id( array( 'rating', 'limit' ) ), $prefs['rating']['limit'] ); ?>
 	</li>
 	<li>
-		<label for="<?php echo $this->field_id( array( 'rating', 'value' ) ); ?>"><input type="checkbox" name="<?php echo $this->field_name( array( 'rate', 'value' ) ); ?>" id="<?php echo $this->field_id( array( 'rating', 'value' ) ); ?>" <?php checked( $prefs['rating']['value'], 1 ); ?> value="1" /> <?php _e( 'Use the Rating Value instead of the amount set here.', 'mycred' ); ?></label>
+		<label for="<?php echo $this->field_id( array( 'rating', 'value' ) ); ?>"><input type="checkbox" name="<?php echo $this->field_name( array( 'rating', 'value' ) ); ?>" id="<?php echo $this->field_id( array( 'rating', 'value' ) ); ?>" <?php checked( $prefs['rating']['value'], 1 ); ?> value="1" /> <?php _e( 'Use the Rating Value instead of the amount set here.', 'mycred' ); ?></label>
 	</li>
 	<li class="empty">&nbsp;</li>
 	<li>

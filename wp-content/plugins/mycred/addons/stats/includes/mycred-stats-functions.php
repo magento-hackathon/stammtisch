@@ -81,11 +81,11 @@ if ( ! function_exists( 'mycred_get_type_color' ) ) :
 
 		//$set = array( 'rgba(221,73,167,1)', 'rgba(106,187,218,1)', 'rgba(111,70,161,1)' );
 		//$set = array( 'rgba(213,78,33,1)', 'rgba(46,162,204,1)', 'rgba(34,34,34,1)' );
-		$set = array( 'rgba(204,175,11,1)', 'rgba(221,130,59,1)', 'rgba(207,73,68,1)', 'rgba(180,60,56,1)', 'rgba(34,34,34,1)' );
+		$set   = array( 'rgba(204,175,11,1)', 'rgba(221,130,59,1)', 'rgba(207,73,68,1)', 'rgba(180,60,56,1)', 'rgba(34,34,34,1)' );
 		$types = mycred_get_types();
 
 		$colors = array();
-		$row = 0;
+		$row    = 0;
 		foreach ( $types as $type_id => $label ) {
 			$colors[ $type_id ] = $set[ $row ];
 			$row ++;
@@ -182,7 +182,7 @@ endif;
 if ( ! function_exists( 'mycred_inverse_rgb_color' ) ) :
 	function mycred_inverse_rgb_color( $color = '' ) {
 
-		$color = mycred_rgb_to_hex( $color );
+		$color    = mycred_rgb_to_hex( $color );
 		$inversed = mycred_inverse_hex_color( $color );
 		$inversed = mycred_hex_to_rgb( $inversed );
 		return $inversed;

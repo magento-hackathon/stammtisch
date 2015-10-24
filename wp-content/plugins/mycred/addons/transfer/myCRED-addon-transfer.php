@@ -175,7 +175,7 @@ if ( ! class_exists( 'myCRED_Transfer_Module' ) ) :
 		 * @since 0.1
 		 * @version 1.3
 		 */
-		public function after_general_settings( $mycred ) {
+		public function after_general_settings() {
 
 			// Settings
 			$settings = $this->transfers;
@@ -325,13 +325,11 @@ if ( ! class_exists( 'myCRED_Transfer_Module' ) ) :
 		/**
 		 * Sanitize & Save Settings
 		 * @since 0.1
-		 * @version 1.2
+		 * @version 1.2.1
 		 */
 		public function sanitize_extra_settings( $new_data, $data, $general ) {
 
-			global $mycred;
-
-			$allowed = $mycred->allowed_html_tags();
+			$allowed = $this->core->allowed_html_tags();
 
 			$new_data['transfers']['types']                = $data['transfers']['types'];
 			$new_data['transfers']['logs']['sending']      = wp_kses( $data['transfers']['logs']['sending'], $allowed );

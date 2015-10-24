@@ -125,7 +125,7 @@ if ( ! class_exists( 'myCRED_Sell_Content_Module' ) ) {
 		/**
 		 * Save Override
 		 * @since 1.5
-		 * @version 1.1
+		 * @version 1.1.1
 		 */
 		function save_user_override() {
 
@@ -382,7 +382,7 @@ if ( ! class_exists( 'myCRED_Sell_Content_Module' ) ) {
 		 * @since 0.1
 		 * @version 1.3
 		 */
-		public function after_general_settings( $mycred ) {
+		public function after_general_settings() {
 			$sell_content = $this->sell_content;
 			if ( ! isset( $sell_content['defaults']['expire'] ) )
 				$sell_content['defaults']['expire'] = 0;

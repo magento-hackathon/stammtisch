@@ -235,7 +235,7 @@ if ( ! class_exists( 'myCRED_Settings_Module' ) ) :
 		 * Update Log Cred Format Action
 		 * Will attempt to modify the myCRED log's cred column format.
 		 * @since 1.6
-		 * @version 1.0
+		 * @version 1.0.1
 		 */
 		public function action_update_log_cred_format() {
 
@@ -289,7 +289,7 @@ if ( ! class_exists( 'myCRED_Settings_Module' ) ) :
 
 			// Send the good news
 			wp_send_json_success( array(
-				'url'   => add_query_arg( array( 'page' => 'myCRED_page_settings', 'open-tab' => 0 ), admin_url( 'admin.php' ) ),
+				'url'   => esc_url( add_query_arg( array( 'page' => 'myCRED_page_settings', 'open-tab' => 0 ), admin_url( 'admin.php' ) ) ),
 				'label' => __( 'Log Updated', 'mycred' )
 			) );
 
@@ -411,7 +411,7 @@ if ( ! class_exists( 'myCRED_Settings_Module' ) ) :
 		/**
 		 * Adjust Decimal Places Settings
 		 * @since 1.6
-		 * @version 1.0
+		 * @version 1.0.1
 		 */
 		public function adjust_decimal_places() {
 
@@ -462,7 +462,7 @@ if ( ! class_exists( 'myCRED_Settings_Module' ) ) :
 
 ?>
 	</select><br />
-	<span class="description"><?php printf( __( '<a href="%s">Click here</a> to change your default point types setup.', 'mycred' ), $url ); ?></span>
+	<span class="description"><?php printf( __( '<a href="%s">Click here</a> to change your default point types setup.', 'mycred' ), esc_url( $url ) ); ?></span>
 </li>
 <?php
 

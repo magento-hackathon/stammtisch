@@ -417,7 +417,7 @@ endif;
 /**
  * Log Entry: Payment
  * @since 0.1
- * @version 1.3.1
+ * @version 1.3.2
  */
 add_filter( 'mycred_parse_log_entry_woocommerce_payment', 'mycred_woo_log_entry_payment', 90, 2 );
 if ( ! function_exists( 'mycred_woo_log_entry_payment' ) ) :
@@ -445,7 +445,7 @@ if ( ! function_exists( 'mycred_woo_log_entry_payment' ) ) :
 		// Link to order if we can edit plugin or are the user who made the order
 		if ( $cui == $order->user_id || $mycred->can_edit_plugin( $cui ) ) {
 			$url = esc_url( add_query_arg( 'order', $order->id, get_permalink( woocommerce_get_page_id( 'view_order' ) ) ) );
-			$content = str_replace( '%order_link%', '<a href="' . $url . '">#' . $order->id . '</a>', $content );
+			$content = str_replace( '%order_link%', '<a href="' . esc_url( $url ) . '">#' . $order->id . '</a>', $content );
 		}
 		else {
 			$content = str_replace( '%order_link%', '#' . $order->id, $content );
@@ -510,7 +510,7 @@ endif;
 /**
  * Parse Email Notice
  * @since 1.2.2
- * @version 1.0.1
+ * @version 1.0.2
  */
 add_filter( 'mycred_email_before_send', 'mycred_woo_parse_email' );
 if ( ! function_exists( 'mycred_woo_parse_email' ) ) :
@@ -527,7 +527,7 @@ if ( ! function_exists( 'mycred_woo_parse_email' ) ) :
 				$url = esc_url( add_query_arg( 'order', $order->id, get_permalink( woocommerce_get_page_id( 'view_order' ) ) ) );
 
 				$content = str_replace( '%order_id%', $order->id, $email['request']['entry'] );
-				$email['request']['entry'] = str_replace( '%order_link%', '<a href="' . $url . '">#' . $order->id . '</a>', $content );
+				$email['request']['entry'] = str_replace( '%order_link%', '<a href="' . esc_url( $url ) . '">#' . $order->id . '</a>', $content );
 			}
 
 		}

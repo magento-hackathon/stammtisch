@@ -5,9 +5,9 @@ if ( ! defined( 'myCRED_VERSION' ) ) exit;
  * myCRED_Hook class
  * @see http://codex.mycred.me/classes/mycred_hook/
  * @since 0.1
- * @version 1.3
+ * @version 1.3.1
  */
-if ( ! class_exists( 'myCRED_Hook' ) ) {
+if ( ! class_exists( 'myCRED_Hook' ) ) :
 	abstract class myCRED_Hook {
 
 		// Hook ID
@@ -30,6 +30,7 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 		 * Construct
 		 */
 		function __construct( $args = array(), $hook_prefs = NULL, $type = 'mycred_default' ) {
+
 			if ( ! empty( $args ) ) {
 				foreach ( $args as $key => $value ) {
 					$this->$key = $value;
@@ -50,6 +51,7 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 
 			// Grab settings
 			if ( $hook_prefs !== NULL ) {
+
 				// Assign prefs if set
 				if ( isset( $hook_prefs[ $this->id ] ) )
 					$this->prefs = $hook_prefs[ $this->id ];
@@ -57,11 +59,13 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 				// Defaults must be set
 				if ( ! isset( $this->defaults ) )
 					$this->defaults = array();
+
 			}
 
 			// Apply default settings if needed
 			if ( ! empty( $this->defaults ) )
 				$this->prefs = mycred_apply_defaults( $this->defaults, $this->prefs );
+
 		}
 
 		/**
@@ -71,7 +75,9 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 		 * @version 1.0
 		 */
 		function run() {
+
 			wp_die( 'function myCRED_Hook::run() must be over-ridden in a sub-class.' );
+
 		}
 
 		/**
@@ -80,7 +86,9 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 		 * @version 1.0
 		 */
 		function preferences() {
+
 			echo '<p>' . __( 'This Hook has no settings', 'mycred' ) . '</p>';
+
 		}
 
 		/**
@@ -89,7 +97,9 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 		 * @version 1.0
 		 */
 		function sanitise_preferences( $data ) {
+
 			return $data;
+
 		}
 
 		/**
@@ -99,26 +109,34 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 		 * @version 1.1
 		 */
 		function field_name( $field = '' ) {
+
 			if ( is_array( $field ) ) {
+
 				$array = array();
 				foreach ( $field as $parent => $child ) {
+
 					if ( ! is_numeric( $parent ) )
 						$array[] = $parent;
 
 					if ( ! empty( $child ) && ! is_array( $child ) )
 						$array[] = $child;
+
 				}
 				$field = '[' . implode( '][', $array ) . ']';
+
 			}
 			else {
+
 				$field = '[' . $field . ']';
+
 			}
-			
+
 			$option_id = 'mycred_pref_hooks';
 			if ( ! $this->is_main_type )
 				$option_id = $option_id . '_' . $this->mycred_type;
 
 			return $option_id . '[hook_prefs][' . $this->id . ']' . $field;
+
 		}
 
 		/**
@@ -128,19 +146,26 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 		 * @version 1.1
 		 */
 		function field_id( $field = '' ) {
+
 			if ( is_array( $field ) ) {
+
 				$array = array();
 				foreach ( $field as $parent => $child ) {
+
 					if ( ! is_numeric( $parent ) )
 						$array[] = str_replace( '_', '-', $parent );
 
 					if ( ! empty( $child ) && ! is_array( $child ) )
 						$array[] = str_replace( '_', '-', $child );
+
 				}
 				$field = implode( '-', $array );
+
 			}
 			else {
+
 				$field = str_replace( '_', '-', $field );
+
 			}
 
 			$option_id = 'mycred_pref_hooks';
@@ -148,30 +173,35 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 				$option_id = $option_id . '_' . $this->mycred_type;
 
 			$option_id = str_replace( '_', '-', $option_id );
+
 			return $option_id . '-' . str_replace( '_', '-', $this->id ) . '-' . $field;
+
 		}
 
 		/**
 		 * Check Limit
 		 * @since 1.6
-		 * @version 1.0.3
+		 * @version 1.1
 		 */
-		function over_hook_limit( $instance = '', $reference = '', $user_id = NULL ) {
+		function over_hook_limit( $instance = '', $reference = '', $user_id = NULL, $ref_id = NULL ) {
 
+			// Enforce limit if this function is used incorrectly
 			if ( ! isset( $this->prefs[ $instance ] ) && $instance != '' )
 				return true;
 
+			global $wpdb;
+
+			// Prep
+			$wheres = array();
+			$now    = current_time( 'timestamp' );
+
 			// If hook uses multiple instances
-			if ( isset( $this->prefs[ $instance ]['limit'] ) ) {
-				if ( $this->prefs[ $instance ]['limit'] == '0/x' ) return false;
+			if ( isset( $this->prefs[ $instance ]['limit'] ) )
 				$prefs = $this->prefs[ $instance ]['limit'];
-			}
 
 			// Else if hook uses single instance
-			elseif ( isset( $this->prefs['limit'] ) ) {
-				if ( $this->prefs['limit'] == '0/x' ) return false;
+			elseif ( isset( $this->prefs['limit'] ) )
 				$prefs = $this->prefs['limit'];
-			}
 
 			// no support for limits
 			else {
@@ -182,36 +212,60 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 			if ( $user_id === NULL )
 				$user_id = get_current_user_id();
 
+			// If this an existance check or just a regular limit check?
+			$exists_check = false;
+			if ( $ref_id !== NULL && strlen( $ref_id ) > 0 )
+				$exists_check = true;
+
+			// Prep settings
 			list ( $amount, $period ) = explode( '/', $prefs );
 			$amount = (int) $amount;
 
-			global $wpdb;
+			// We start constructing the query.
+			$wheres[] = $wpdb->prepare( "user_id = %d", $user_id );
+			$wheres[] = $wpdb->prepare( "ref = %s", $reference );
+			$wheres[] = $wpdb->prepare( "ctype = %s", $this->mycred_type );
 
-			$from = '';
-			$until = current_time( 'timestamp' );
-			if ( $period == 'd' )
-				$from = $wpdb->prepare( "AND time BETWEEN %d AND %d", mktime( 0, 0, 0, date( 'n', $until ), date( 'j', $until ), date( 'Y', $until ) ), $until );
+			if ( $exists_check )
+				$wheres[] = $wpdb->prepare( "ref_id = %d", $ref_id );
 
-			elseif ( $period == 'w' )
-				$from = $wpdb->prepare( "AND time BETWEEN %d AND %d", mktime( 0, 0, 0, date( "n", $until ), date( "j", $until ) - date( "N", $until ) + 1 ), $until );
+			// If check is based on time
+			if ( ! in_array( $period, array( 't', 'x' ) ) ) {
 
-			elseif ( $period == 'm' )
-				$from = $wpdb->prepare( "AND time BETWEEN %d AND %d", mktime( 0, 0, 0, date( "n", $until ), 1, date( 'Y', $until ) ), $until );
+				// Per day
+				if ( $period == 'd' )
+					$from = mktime( 0, 0, 0, date( 'n', $now ), date( 'j', $now ), date( 'Y', $now ) );
 
-			$count = $wpdb->get_var( $wpdb->prepare( "
-				SELECT COUNT(*) 
-				FROM {$this->core->log_table} 
-				WHERE user_id = %d 
-				AND   ref = %s 
-				AND   ctype = %s {$from};", $user_id, $reference, $this->mycred_type ) );
+				// Per week
+				elseif ( $period == 'w' )
+					$from = mktime( 0, 0, 0, date( "n", $now ), date( "j", $now ) - date( "N", $now ) + 1 );
 
+				// Per Month
+				elseif ( $period == 'm' )
+					$from = mktime( 0, 0, 0, date( "n", $now ), 1, date( 'Y', $now ) );
+
+				$wheres[] = $wpdb->prepare( "time BETWEEN %d AND %d", $from, $now );
+
+			}
+
+			// Put all wheres together into one string
+			$wheres = implode( " AND ", $wheres );
+
+			// Count
+			$count = $wpdb->get_var( "SELECT COUNT(*) FROM {$this->core->log_table} WHERE {$wheres};" );
 			if ( $count === NULL ) $count = 0;
 
-			$result = false;
-			if ( $period != 'x' && $count >= $amount )
-				$result = true;
+			$over_limit = false;
 
-			return $result;
+			// Existence check has first priority
+			if ( $count > 0 && $exists_check )
+				$over_limit = true;
+
+			// Limit check is second priority
+			elseif ( $period != 'x' && $count >= $amount )
+				$over_limit = true;
+
+			return $over_limit;
 
 		}
 
@@ -245,8 +299,10 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 
 			if ( $count == 0 || ( $count == 1 && $check[0] == 0 ) )
 				$selected = array( 0, 'x' );
+
 			elseif ( $count == 1 && $check[0] != '' && is_numeric( $check[0] ) )
 				$selected = array( (int) $check[0], 'd' );
+
 			else
 				$selected = $check;
 
@@ -279,6 +335,7 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 				$output .= '>' . $label . '</option>';
 			}
 			$output .= '</select></div>';
+
 			return $output;
 
 		}
@@ -289,6 +346,7 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 		 * @version 1.3
 		 */
 		function impose_limits_dropdown( $pref_id = '', $use_select = true ) {
+
 			$limits = array(
 				''           => __( 'No limit', 'mycred' ),
 				'twentyfour' => __( 'Once every 24 hours', 'mycred' ),
@@ -304,12 +362,16 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 
 			$settings = '';
 			if ( is_array( $pref_id ) ) {
+
 				reset( $pref_id );
 				$key = key( $pref_id );
 				$settings = $this->prefs[ $key ][ $pref_id[ $key ] ];
+
 			}
 			elseif ( isset( $this->prefs[ $pref_id ] ) ) {
+
 				$settings = $this->prefs[ $pref_id ];
+
 			}
 
 			foreach ( $limits as $value => $description ) {
@@ -318,6 +380,7 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 				echo '>' . $description . '</option>';
 			}
 			echo '</select>';
+
 		}
 
 		/**
@@ -327,10 +390,12 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 		 * @version 1.3
 		 */
 		function has_entry( $action = '', $ref_id = '', $user_id = '', $data = '', $type = '' ) {
+
 			if ( $type == '' )
 				$type = $this->mycred_type;
 
 			return $this->core->has_entry( $action, $ref_id, $user_id, $data, $type );
+
 		}
 
 		/**
@@ -339,31 +404,31 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 		 * @version 1.0
 		 */
 		function available_template_tags( $available = array(), $custom = '' ) {
+
 			return $this->core->available_template_tags( $available, $custom );
+
 		}
 
 		/**
 		 * Over Daily Limit
 		 * @since 1.0
-		 * @version 1.0
+		 * @version 1.1
 		 */
 		public function is_over_daily_limit( $ref = '', $user_id = 0, $max = 0, $ref_id = NULL ) {
+
 			global $wpdb;
 
 			// Prep
 			$reply = true;
 
-			// Times
-			$start = date_i18n( 'U', strtotime( 'today midnight' ) );
-			$end = date_i18n( 'U' );
-
 			// DB Query
-			$total = $this->limit_query( $ref, $user_id, $start, $end, $ref_id );
+			$total = $this->limit_query( $ref, $user_id, strtotime( 'today midnight', $this->now ), $this->now, $ref_id );
 
-			if ( $total !== NULL && $total < $max )
+			if ( $total < $max )
 				$reply = false;
 
 			return apply_filters( 'mycred_hook_over_daily_limit', $reply, $ref, $user_id, $max );
+
 		}
 
 		/**
@@ -377,31 +442,38 @@ if ( ! class_exists( 'myCRED_Hook' ) ) {
 		 * @param $ref_id (int) optional reference id to include in search
 		 * @returns number of entries found (int) or NULL if required params are missing
 		 * @since 1.4
-		 * @version 1.0
+		 * @version 1.1
 		 */
 		public function limit_query( $ref = '', $user_id = 0, $start = 0, $end = 0, $ref_id = NULL ) {
-			global $wpdb;
 
-			// Prep
-			$reply = true;
-
+			// Minimum requirements
 			if ( empty( $ref ) || $user_id == 0 || $start == 0 || $end == 0 )
 				return NULL;
 
-			$ref = '';
+			global $wpdb;
+
+			// Prep
+			$reply    = true;
+			$wheres   = array();
+
+			$wheres[] = $wpdb->prepare( "ref = %s", $ref );
+			$wheres[] = $wpdb->prepare( "user_id = %d", $user_id );
+			$wheres[] = $wpdb->prepare( "time BETWEEN %d AND %d", $start, $end );
+
 			if ( $ref_id !== NULL )
-				$ref = $wpdb->prepare( 'AND ref_id = %d ', $ref_id );
+				$wheres[] = $wpdb->prepare( "ref_id = %d", $ref_id );
+
+			$wheres   = implode( " AND ", $wheres );
 
 			// DB Query
-			$total = $wpdb->get_var( $wpdb->prepare( "
-				SELECT COUNT( * ) 
-				FROM {$this->core->log_table} 
-				WHERE ref = %s {$ref}
-					AND user_id = %d 
-					AND time BETWEEN %d AND %d;", $ref, $user_id, $start, $end ) );
+			$total = $wpdb->get_var( "SELECT COUNT(*) FROM {$this->core->log_table} WHERE {$wheres};" );
+			if ( $total === NULL ) $total = 0;
 
 			return apply_filters( 'mycred_hook_limit_query', $total, $ref, $user_id, $ref_id, $start, $end );
+
 		}
+
 	}
-}
+endif;
+
 ?>

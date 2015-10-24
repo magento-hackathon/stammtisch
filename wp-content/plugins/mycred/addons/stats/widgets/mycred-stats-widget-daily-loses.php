@@ -20,7 +20,7 @@ if ( ! class_exists( 'myCRED_Stats_Widget_Daily_Loses' ) ) :
 		}
 
 		/**
-		 * 
+		 * Get Data
 		 * @version 1.0
 		 */
 		function get_data() {
@@ -42,7 +42,7 @@ if ( ! class_exists( 'myCRED_Stats_Widget_Daily_Loses' ) ) :
 		}
 
 		/**
-		 * 
+		 * Get Spending
 		 * @version 1.0
 		 */
 		function get_spending() {
@@ -110,8 +110,8 @@ if ( ! class_exists( 'myCRED_Stats_Widget_Daily_Loses' ) ) :
 		}
 
 		/**
-		 * 
-		 * @version 1.0
+		 * Display
+		 * @version 1.0.1
 		 */
 		function widget() {
 
@@ -142,14 +142,13 @@ if ( ! class_exists( 'myCRED_Stats_Widget_Daily_Loses' ) ) :
 					if ( $item->type != 'mycred_default' )
 						$page_id .= '_' . $item->type;
 
-					$base_url = add_query_arg( array( 'page' => $page_id ), admin_url( 'admin.php' ) );
-
-					$url = add_query_arg( array( 'ref' => $item->ref ), $base_url );
+					$base_url = admin_url( 'admin.php' );
+					$url = add_query_arg( array( 'ref' => $item->ref, 'page' => $page_id ), $base_url );
 
 ?>
 <li>
 	<strong style="color:<?php echo $this->colors[ $item->type ]; ?>;"><?php echo $label; ?></strong>
-	<span class="view"><a href="<?php echo $url; ?>"><?php _e( 'View', 'mycred' ); ?></a></span>
+	<span class="view"><a href="<?php echo esc_url( $url ); ?>"><?php _e( 'View', 'mycred' ); ?></a></span>
 	<ul>
 		<li><?php echo number_format( $item->total, 0, '.', ' ' ); ?></li>
 		<li><?php echo $item->count; ?></li>

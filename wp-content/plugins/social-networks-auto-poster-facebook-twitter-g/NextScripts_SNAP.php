@@ -4,19 +4,18 @@ Plugin Name: NextScripts: Social Networks Auto-Poster
 Plugin URI: http://www.nextscripts.com/social-networks-auto-poster-for-wordpress
 Description: This plugin automatically publishes posts from your blog to multiple accounts on Facebook, Twitter, and Google+ profiles and/or pages.
 Author: Next Scripts
-Version: 3.4.16
+Version: 3.4.26
 Author URI: http://www.nextscripts.com
 Text Domain: nxs_snap
 Copyright 2012-2015  Next Scripts, Inc
 */
-define( 'NextScripts_SNAP_Version' , '3.4.16' );
+define( 'NextScripts_SNAP_Version' , '3.4.26' );
 
 $nxs_mLimit = ini_get('memory_limit'); if (strpos($nxs_mLimit, 'G')) {$nxs_mLimit = (int)$nxs_mLimit * 1024;} else {$nxs_mLimit = (int)$nxs_mLimit;}
   if ($nxs_mLimit>0 && $nxs_mLimit<64) { add_filter('plugin_action_links','ns_add_nomem_link', 10, 2 );
 if (!function_exists("ns_add_nomem_link")) { function ns_add_nomem_link($links, $file) { global $nxs_mLimit; static $this_plugin; if (!$this_plugin) $this_plugin = plugin_basename(__FILE__);
   if ($file == $this_plugin){ $settings_link = '<b style="color:red;">Not Enough Memory allowed for PHP.</b> <br/> You have '.$nxs_mLimit.' MB. You need at least 64MB'; array_unshift($links, $settings_link);} return $links;}}
-} else {
-    
+} else {    
 require_once "nxs_functions.php"; require_once "inc/nxs_functions_adv.php"; require_once "inc/nxs_snap_class.php"; 
 //## Include All Available Networks            
 //error_reporting(E_ALL); ini_set('display_errors', '1');
@@ -36,9 +35,9 @@ if (isset($_GET['page']) && $_GET['page']=='NextScripts_SNAP.php' && isset($_GET
   nxs_cURLTest("http://www.google.com/intl/en/contact/", "HTTP to Google", "Mountain View, CA");
   nxs_cURLTest("https://www.google.com/intl/en/contact/", "HTTPS to Google", "Mountain View, CA");
   nxs_cURLTest("https://www.facebook.com/", "HTTPS to Facebook", 'id="facebook"');
-  nxs_cURLTest("https://graph.facebook.com/nextscripts", "HTTPS to API (Graph) Facebook", '270851199672443');  
-  nxs_cURLTest("https://www.linkedin.com/", "HTTPS to LinkedIn", 'rel="canonical" href="https://www.linkedin.com/"');
-  nxs_cURLTest("https://twitter.com/", "HTTPS to Twitter", '<link rel="canonical" href="https://twitter.com/">');
+  nxs_cURLTest("https://graph.facebook.com/", "HTTPS to API (Graph) Facebook", 'get');  
+  nxs_cURLTest("https://www.linkedin.com/nhome/", "HTTPS to LinkedIn", 'rel="canonical" href="https://www.linkedin.com/');
+  nxs_cURLTest("https://twitter.com/", "HTTPS to Twitter", '<link rel="canonical" href="https://twitter.com');
   nxs_cURLTest("https://www.pinterest.com/", "HTTPS to Pinterest", 'content="Pinterest"');
   nxs_cURLTest("http://www.livejournal.com/", "HTTP to LiveJournal", '1999 LiveJournal');  
   die('Done');
@@ -98,7 +97,7 @@ if (!function_exists("nxs_delPostSettings_ajax")) { function nxs_delPostSettings
 if (!function_exists("nsGetGPCats_ajax")) { 
   function nsGetGPCats_ajax() { global $nxs_gCookiesArr; check_ajax_referer('nxsSsPageWPN'); global $plgn_NS_SNAutoPoster; if (!isset($plgn_NS_SNAutoPoster)) return; $options = $plgn_NS_SNAutoPoster->nxs_options; 
   if (get_magic_quotes_gpc() || $_POST['nxs_mqTest']=="\'") { $_POST['u'] = stripslashes($_POST['u']);  $_POST['p'] = stripslashes($_POST['p']);} $_POST['p'] = trim($_POST['p']); $u = trim($_POST['u']);  
-   $loginError = doConnectToGooglePlus2($_POST['u'],  substr($_POST['p'], 0, 5)=='g9c1a'?nsx_doDecode(substr($_POST['p'], 5)):$_POST['p'] );  if ($loginError!==false) {echo $loginError; return "BAD USER/PASS";} 
+   $loginError = doConnectToGooglePlus2($_POST['u'],  substr($_POST['p'], 0, 5)=='g9c1a'?nsx_doDecode(substr($_POST['p'], 5)):$_POST['p'] ); if ($loginError!==false) {echo $loginError; return "BAD USER/PASS";} 
    $gGPCCats = doGetCCatsFromGooglePlus($_POST['c']);  $options['gp'][$_POST['ii']]['gpCCatsList'] = base64_encode($gGPCCats);
    if (is_array($options)) update_option('NS_SNAutoPoster', $options); echo $gGPCCats; die();
   }
@@ -225,7 +224,7 @@ if (!function_exists("nxs_snapPublishTo")) { function nxs_snapPublishTo($postArr
             if (!empty($optMt['tagsSel'])) { $inclTags = explode(',',strtolower($optMt['tagsSel'])); $postTags = wp_get_post_tags( $postID, array( 'fields' => 'slugs' ) ); $postCust = array();
               //## Get all custom post types
               foreach ($inclTags as $iTag){ 
-                if (strpos($iTag,'|')!==false){ $dd=explode('',$itag); if (empty($postCust[$dd[0]])) $postCust[$dd[0]]=wp_get_object_terms($postID,$dd[0],array('fields'=>'slugs')); 
+                if (strpos($iTag,'|')!==false){ $dd=explode('|',$itag); if (empty($postCust[$dd[0]])) $postCust[$dd[0]]=wp_get_object_terms($postID,$dd[0],array('fields'=>'slugs')); 
                   if (!in_array(strtolower($dd[1]), $postCust[$dd[0]])) $doPost = false; else {$doPost = true; break;}
                 } else if (!in_array(strtolower($iTag), $postTags)) $doPost = false; else {$doPost = true; break;}              
               }
@@ -308,7 +307,7 @@ function nxs_ogtgCallback($content){ global $post, $plgn_NS_SNAutoPoster;
     $ogSN = '<meta property="og:site_name" content="'.get_bloginfo('name').'" />'."\r\n";
     $ogLoc = strtolower(esc_attr(get_locale())); if (strlen($ogLoc)==2) $ogLoc .= "_".strtoupper($ogLoc);
     $ogLoc = '<meta property="og:locale" content="'.$ogLoc.'" />'."\r\n"; $iss = is_home();  
-    $ogType = is_singular()?'article':'website'; if($vidsFromPost == false) $ogType = '<meta property="og:type" content="'.esc_attr(apply_filters('nxsog_type', $ogType)).'" />'."\r\n";                  
+    $ogType = is_singular()?'article':'website'; if(empty($vidsFromPost)) $ogType = '<meta property="og:type" content="'.esc_attr(apply_filters('nxsog_type', $ogType)).'" />'."\r\n";                  
         
     if (is_home() || is_front_page()) $ogUrl = get_bloginfo( 'url' ); else $ogUrl = 'http' . (is_ssl() ? 's' : '') . "://".$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     $ogUrl = '<meta property="og:url" content="'.esc_url( apply_filters( 'nxsog_url', $ogUrl ) ) . '" />' . "\r\n";
@@ -320,17 +319,16 @@ function nxs_ogtgCallback($content){ global $post, $plgn_NS_SNAutoPoster;
       echo '<meta property="og:video:height" content="360" />'."\n";
       echo '<meta property="og:image" content="http://i2.ytimg.com/vi/'.$vidsFromPost[0].'/mqdefault.jpg" />'."\n";
       echo '<meta property="og:type" content="video" />'."\n"; 
-    } */
-    
-      
-      $imgURL = nxs_getPostImage($post->ID, 'full', $options['ogImgDef']); if (!empty($imgURL)) $ogimgs[] = $imgURL;
-      $imgsFromPost = nsFindImgsInPost($post, (int)$options['advFindOGImg']==1);           
-      if ($imgsFromPost !== false && is_singular() && is_array($ogimgs) && is_array($imgsFromPost))  $ogimgs = array_merge($ogimgs, $imgsFromPost);       
+    } */    
+      if (is_object($post)) { $imgURL = nxs_getPostImage($post->ID, 'full', $options['ogImgDef']); if (!empty($imgURL)) $ogimgs[] = $imgURL;
+        $imgsFromPost = nsFindImgsInPost($post, (int)$options['advFindOGImg']==1);           
+        if ($imgsFromPost !== false && is_singular() && is_array($ogimgs) && is_array($imgsFromPost))  $ogimgs = array_merge($ogimgs, $imgsFromPost);       
+      }
     }       
     //## Add default image to the endof the array
     if ( count($ogimgs)<1 && isset($options['ogImgDef']) && $options['ogImgDef']!='') $ogimgs[] = $options['ogImgDef']; 
     //## Output og:image tags
-    if (!empty($ogimgs) && is_array($ogimgs)) foreach ($ogimgs as $ogimage)  $ogImgsOut = '<meta property="og:image" content="'.esc_url(apply_filters('ns_ogimage', $ogimage)).'" />'."\r\n"; 
+    $ogImgsOut = ''; if (!empty($ogimgs) && is_array($ogimgs)) foreach ($ogimgs as $ogimage)  $ogImgsOut .= '<meta property="og:image" content="'.esc_url(apply_filters('ns_ogimage', $ogimage)).'" />'."\r\n"; 
     $ogOut  = "\r\n".$ogSN.$ogT.$ogD.$ogType.$ogUrl.$ogLoc.$ogImgsOut;
   } $content = str_ireplace('<!-- ## NXSOGTAGS ## -->', $ogOut, $content); 
   return $content;
@@ -382,7 +380,7 @@ function nxs_showNewPostForm($options, $air = true) { global $nxs_snapAvNts, $nx
      
     <div class="nxsNPRow">
     <div style="float: right; font-size: 12px;" >
-      <a href="#" onclick="jQuery('.nxsNPDoChb').attr('checked','checked'); return false;"><?php  _e('Check All', 'nxs_snap'); ?></a>&nbsp;<a href="#" onclick="jQuery('.nxsNPDoChb').removeAttr('checked'); return false;"><?php _e('Uncheck All', 'nxs_snap'); ?></a>
+      <a href="#" onclick="jQuery('.nxsNPDoChb').attr('checked','checked'); return false;"><?php  _e('Check All', 'social-networks-auto-poster-facebook-twitter-g'); ?></a>&nbsp;<a href="#" onclick="jQuery('.nxsNPDoChb').removeAttr('checked'); return false;"><?php _e('Uncheck All', 'social-networks-auto-poster-facebook-twitter-g'); ?></a>
     </div>
     <label class="nxsNPLabel">Networks:</label><br/> 
     <div class="nxsNPRow" style="font-size: 12px;">
@@ -415,7 +413,7 @@ function nxs_doNewNPPost($options){ global $nxs_snapAvNts, $nxs_plurl; $postResu
       $message['pText'] = $_POST['mText'];   $message['pTitle'] = $_POST['mTitle'];
       //## Get URL info
       if (!empty($_POST['mLink']) && substr($_POST['mLink'], 0, 4)=='http') { $message['url'] = $_POST['mLink'];            
-        $flds = array('id'=>$message['url'], 'scrape'=>'true');      $response =  wp_remote_post('http://graph.facebook.com', array('body' => $flds)); 
+        $flds = array('id'=>$message['url'], 'scrape'=>'true');      $response =  wp_remote_post('https://graph.facebook.com/v2.3/', array('body' => $flds)); 
         if (is_wp_error($response)) $badOut['Error'] = print_r($response, true)." - ERROR"; else { $response = json_decode($response['body'], true);  
           if (!empty($response['description'])) $message['urlDescr'] = $response['description'];  if (!empty($response['title'])) $message['urlTitle'] =  $response['title'];
           if (!empty($response['site_name'])) $message['siteName'] = $response['site_name'];
@@ -438,12 +436,19 @@ function nxs_doNewNPPost($options){ global $nxs_snapAvNts, $nxs_plurl; $postResu
     } echo "Done. Results:<br/> ".$postResults; }
 }
 
-if (!function_exists("nxs_snapAjax")) { function nxs_snapAjax() { check_ajax_referer('nxsSsPageWPN'); global $plgn_NS_SNAutoPoster; if (!isset($plgn_NS_SNAutoPoster)) return; $options = $plgn_NS_SNAutoPoster->nxs_options; 
-  if ($_POST['nxsact']=='getNTset') { $ii = $_POST['ii']; $nt = $_POST['nt']; $ntl = strtolower($nt); $pbo = $options[$ntl][$ii];  $pbo['ntInfo']['lcode'] = $ntl; $clName = 'nxs_snapClass'.$nt; $ntObj = new $clName();  
+if (!function_exists("nxs_snapAjax")) { function nxs_snapAjax() { check_ajax_referer('nxsSsPageWPN'); 
+  global $plgn_NS_SNAutoPoster; if (!isset($plgn_NS_SNAutoPoster)) return; $options = $plgn_NS_SNAutoPoster->nxs_options; 
+  if ($_POST['nxsact']=='getNTset'){$ii = $_POST['ii'];$nt = $_POST['nt'];$ntl = strtolower($nt); $pbo = $options[$ntl][$ii];  $pbo['ntInfo']['lcode'] = $ntl; $clName = 'nxs_snapClass'.$nt; $ntObj = new $clName();  
      $ntObj->showNTSettings($ii, $pbo);  
+  }
+  if ($_POST['nxsact']=='svEdFlds') { 
+    $cn = str_replace(']','',$_POST['cname']); $cna = explode('[',$cn); prr($cna);  $id = $_POST['pid']; $nt = $cna[0]; $ntU = strtoupper($nt); $ii = $cna[1]; $fname = $cna[2];
+    $savedMeta = maybe_unserialize(get_post_meta($id, 'snap'.$ntU, true));  $savedMeta[$ii][$fname] = $_POST['cval'];  prr($savedMeta);
+    delete_post_meta($id, 'snap'.$ntU); add_post_meta($id, 'snap'.$ntU, str_replace('\\','\\\\',serialize($savedMeta)));   
   }
   if ($_POST['nxsact']=='getNewPostDlg') nxs_showNewPostForm($options);
   if ($_POST['nxsact']=='doNewPost') nxs_doNewNPPost($options);
+  if ($_POST['nxsact']=='nxsCptCheckGP') nxs_CptCheckGP($options);
   die();
 }}
 
@@ -557,15 +562,6 @@ if (isset($plgn_NS_SNAutoPoster)) { //## Actions
       if (function_exists('nxs_add_style')) add_action( 'admin_footer', 'nxs_add_style' );  
       if (function_exists('nxs_saveSiteSets_ajax')) add_action('wp_ajax_nxs_saveSiteSets', 'nxs_saveSiteSets_ajax');
   }
-}
-
-add_action( 'activated_plugin', 'nxs_act_hook', 5, 1 ); function nxs_act_hook($plg){ $ac = get_option( 'active_plugins' ); update_option('nxs_temp_aplgs', $ac);
-  $key = array_search('social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php', $ac); unset($ac[$key]); update_option('active_plugins', $ac);
-}
-add_action( 'activated_plugin', 'nxs_act_hook2', 15, 1 ); function nxs_act_hook2($plg){ $ac = get_option( 'nxs_temp_aplgs' ); update_option('active_plugins', $ac); delete_option('nxs_temp_aplgs');}
-
-
-
-
+ }
 }
 ?>

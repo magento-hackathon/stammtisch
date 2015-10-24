@@ -77,16 +77,28 @@ $required = apply_filters('em_required_html','<i>*</i>');
 				<input id="location-address" type="text" name="location_address" value="<?php echo esc_attr($EM_Location->location_address, ENT_QUOTES); ; ?>" /><?php echo $required; ?>
 			</td>
 		</tr>
-        <tr class="em-location-data-postcode">
-            <th><?php _e ( 'Postcode:', 'dbem' )?>&nbsp;</th>
-            <td>
-                <input id="location-postcode" type="text" name="location_postcode" value="<?php echo esc_attr($EM_Location->location_postcode, ENT_QUOTES); ?>" />
-            </td>
-        </tr>
 		<tr class="em-location-data-town">
 			<th><?php _e ( 'City/Town:', 'dbem' )?>&nbsp;</th>
 			<td>
 				<input id="location-town" type="text" name="location_town" value="<?php echo esc_attr($EM_Location->location_town, ENT_QUOTES); ?>" /><?php echo $required; ?>
+			</td>
+		</tr>
+		<tr class="em-location-data-state">
+			<th><?php _e ( 'State/County:', 'dbem' )?>&nbsp;</th>
+			<td>
+				<input id="location-state" type="text" name="location_state" value="<?php echo esc_attr($EM_Location->location_state, ENT_QUOTES); ?>" />
+			</td>
+		</tr>
+		<tr class="em-location-data-postcode">
+			<th><?php _e ( 'Postcode:', 'dbem' )?>&nbsp;</th>
+			<td>
+				<input id="location-postcode" type="text" name="location_postcode" value="<?php echo esc_attr($EM_Location->location_postcode, ENT_QUOTES); ?>" />
+			</td>
+		</tr>
+		<tr class="em-location-data-region">
+			<th><?php _e ( 'Region:', 'dbem' )?>&nbsp;</th>
+			<td>
+				<input id="location-region" type="text" name="location_region" value="<?php echo esc_attr($EM_Location->location_region, ENT_QUOTES); ?>" />
 			</td>
 		</tr>
 		<tr class="em-location-data-country">

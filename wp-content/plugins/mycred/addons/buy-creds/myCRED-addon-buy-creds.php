@@ -115,7 +115,7 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 		 * Process
 		 * Processes Gateway returns and IPN calls
 		 * @since 0.1
-		 * @version 1.1
+		 * @version 1.3
 		 */
 		public function module_init() {
 
@@ -127,16 +127,9 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 			add_shortcode( 'mycred_buy_form',    array( $this, 'render_shortcode_form' ) );
 			add_shortcode( 'mycred_buy_pending', array( $this, 'render_shortcode_pending' ) );
 
-			if ( isset( $_REQUEST['buycred_cancel'] ) && $_REQUEST['buycred_cancel'] != '' ) {
-				$post_title = sanitize_key( $_REQUEST['buycred_cancel'] );
-				$check = get_page_by_title( $post_title, ARRAY_A, 'buycred_payment' );
-				if ( $check !== NULL ) {
-					wp_delete_post( $check['ID'], true );
-					$url = remove_query_arg( array( 'buycred_cancel' ) );
-					wp_redirect( $url );
-					exit;
-				}
-			}
+			// Intercept payment cancellations
+			if ( isset( $_REQUEST['buycred_cancel'] ) && strlen( $_REQUEST['buycred_cancel'] ) > 5 )
+				$this->delete_pending_payment( $_REQUEST['buycred_cancel'] );
 
 			$gateway = NULL;
 
@@ -151,8 +144,10 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 			 * for to determen if they are responsible for handling the return.
 			 */
 			foreach ( $installed as $id => $data ) {
+
 				if ( ! $this->is_active( $id ) ) continue;
 				$this->call( 'returning', $installed[ $id ]['callback'] );
+
 			}
 
 			/**
@@ -160,17 +155,23 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 			 * Checks to see if a gateway should be loaded.
 			 */
 			$gateway_id = '';
+			$process    = false;
 			if ( isset( $_REQUEST['mycred_call'] ) )
 				$gateway_id = trim( $_REQUEST['mycred_call'] );
+
 			elseif ( isset( $_REQUEST['mycred_buy'] ) && is_user_logged_in() )
 				$gateway_id = trim( $_REQUEST['mycred_buy'] );
-			elseif ( isset( $_REQUEST['wp_zombaio_ips'] ) || isset( $_REQUEST['ZombaioGWPass'] ) )
+
+			elseif ( isset( $_REQUEST['wp_zombaio_ips'] ) || isset( $_REQUEST['ZombaioGWPass'] ) ) {
 				$gateway_id = 'zombaio';
+				$process    = true;
+			}
 
 			$gateway_id = apply_filters( 'mycred_gateway_id', $gateway_id );
 
 			// If we have a valid gateway ID and the gateway is active, lets run that gateway.
 			if ( ! empty( $gateway_id ) && array_key_exists( $gateway_id, $installed ) && $this->is_active( $gateway_id ) ) {
+
 				// Gateway Class
 				$class = $installed[ $gateway_id ]['callback'][0];
 
@@ -178,32 +179,39 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 				$gateway = new $class( $this->gateway_prefs );
 
 				// Check payment processing
-				if ( isset( $_REQUEST['mycred_call'] ) || $gateway_id == 'zombaio' ) {
+				if ( isset( $_REQUEST['mycred_call'] ) || ( $gateway_id == 'zombaio' && $process ) ) {
+
 					$gateway->process();
 
 					do_action( 'mycred_buycred_process', $gateway_id, $this->gateway_prefs, $this->core->buy_creds );
 					do_action( 'mycred_buycred_process_' . $gateway_id, $this->gateway_prefs, $this->core->buy_creds );
+
 				}
 
 				// Check purchase request
 				if ( isset( $_REQUEST['mycred_buy'] ) ) {
+
 					// Validate token
 					$token = false;
 					if ( isset( $_REQUEST['token'] ) && wp_verify_nonce( $_REQUEST['token'], 'mycred-buy-creds' ) )
 						$token = true;
 
-					// Validate amount
+					// Validate amount ( amount is not zero and higher then minimum required
 					$amount = false;
 					if ( isset( $_REQUEST['amount'] ) && $_REQUEST['amount'] != 0 && $_REQUEST['amount'] >= $this->core->buy_creds['minimum'] )
 						$amount = true;
 
 					if ( $token && $amount ) {
+
 						$gateway->buy();
 
 						do_action( 'mycred_buycred_buy', $gateway_id, $this->gateway_prefs, $this->core->buy_creds );
 						do_action( 'mycred_buycred_buy_' . $gateway_id, $this->gateway_prefs, $this->core->buy_creds );
+
 					}
+
 				}
+
 			}
 
 		}
@@ -219,12 +227,13 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 
 				$pending_id = absint( $_GET['credit'] );
 				$point_type = sanitize_text_field( $_GET['ctype'] );
-				$mycred = mycred( $point_type );
+				$mycred     = mycred( $point_type );
 
 				if ( ! $mycred->can_edit_creds() ) return;
 
 				$gateway_id = sanitize_text_field( $_GET['gateway'] );
-				$installed = $this->get();
+				$installed  = $this->get();
+
 				if ( array_key_exists( $gateway_id, $installed ) ) {
 
 					$class = $installed[ $gateway_id ]['callback'][0];
@@ -239,9 +248,11 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 					$gateway->complete_payment( $pending_payment, get_the_title( $pending_id ) );
 
 					wp_delete_post( $pending_id );
+
 					$url = remove_query_arg( array( 'credit', 'ctype', 'gateway' ) );
 					$url = add_query_arg( array( 'credited' => 1 ), $url );
 					wp_safe_redirect( $url );
+
 					exit;
 
 				}
@@ -290,6 +301,31 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 				'capability_type'     => 'page'
 			);
 			register_post_type( 'buycred_payment', apply_filters( 'mycred_setup_pending_payment', $args ) );
+
+		}
+
+		/**
+		 * Delete Pending Payment
+		 * @since 1.6.4
+		 * @version 1.0
+		 */
+		function delete_pending_payment( $payment_id = '' ) {
+
+			if ( $this->current_user_id == 0 ) return;
+
+			$payment_id = sanitize_key( $payment_id );
+			$payment    = get_page_by_title( strtoupper( $post_title ), OBJECT, 'buycred_payment' );
+
+			// If the pending transaction is found and it is ours, delete it now.
+			if ( isset( $payment->ID ) && get_post_meta( $payment->ID, 'from', true ) == $this->current_user_id ) {
+
+				wp_delete_post( $payment_id, true );
+
+				wp_redirect( remove_query_arg( array( 'buycred_cancel' ) ) );
+
+				exit;
+
+			}
 
 		}
 
@@ -385,7 +421,7 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 		/**
 		 * Pending Payment Row Actions
 		 * @since 1.5
-		 * @version 1.0
+		 * @version 1.0.1
 		 */
 		function adjust_row_actions( $actions, $post ) {
 
@@ -402,7 +438,7 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 						'post_type' => $post->post_type,
 						'gateway'   => get_post_meta( $post->ID, 'gateway', true )
 					) );
-					$actions['credit'] = '<a href="' . $credit . '">' . __( 'Pay Out', 'mycred' ) . '</a>';
+					$actions['credit'] = '<a href="' . esc_url( $credit ) . '">' . __( 'Pay Out', 'mycred' ) . '</a>';
 				}
 			}
 
@@ -418,6 +454,7 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 		function add_to_menu() {
 
 			if ( isset( $this->core->buy_creds['custom_log'] ) && $this->core->buy_creds['custom_log'] ) {
+
 				// Menu Slug
 				$menu_slug = 'myCRED';
 
@@ -441,14 +478,18 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 						'myCRED_page_gateways_log_' . $type,
 						array( $this, 'purchase_log_page' )
 					);
+
 				}
 
 				foreach ( $pages as $page ) {
+
 					add_action( 'admin_print_styles-' . $page, array( $this, 'settings_page_enqueue' ) );
 					add_action( 'load-' . $page,               array( $this, 'screen_options' ) );
+
 				}
 
 				$this->purchase_log = $pages;
+
 			}
 
 		}
@@ -561,7 +602,7 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 		 * @since 0.1
 		 * @version 1.1
 		 */
-		public function after_general_settings( $mycred ) {
+		public function after_general_settings() {
 
 			// Since we are both registering our own settings and want to hook into
 			// the core settings, we need to define our "defaults" here.
@@ -658,8 +699,6 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 			wp_dropdown_pages( $thankyou_args );
 
 ?>
-
-
 		</li>
 	</ol>
 	<label class="subheader"><?php _e( 'Cancellation Page', 'mycred' ); ?></label>
@@ -727,22 +766,22 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 			else
 				$new_data['buy_creds']['types'] = $data['buy_creds']['types'];
 
-			$new_data['buy_creds']['log'] = sanitize_text_field( $data['buy_creds']['log'] );
+			$new_data['buy_creds']['log']   = sanitize_text_field( $data['buy_creds']['log'] );
 			$new_data['buy_creds']['login'] = trim( $data['buy_creds']['login'] );
 
-			$new_data['buy_creds']['thankyou']['use'] = sanitize_text_field( $data['buy_creds']['thankyou']['use'] );
-			$new_data['buy_creds']['thankyou']['custom'] = sanitize_text_field( $data['buy_creds']['thankyou']['custom'] );
-			$new_data['buy_creds']['thankyou']['page'] = abs( $data['buy_creds']['thankyou']['page'] );
+			$new_data['buy_creds']['thankyou']['use']     = sanitize_text_field( $data['buy_creds']['thankyou']['use'] );
+			$new_data['buy_creds']['thankyou']['custom']  = sanitize_text_field( $data['buy_creds']['thankyou']['custom'] );
+			$new_data['buy_creds']['thankyou']['page']    = absint( $data['buy_creds']['thankyou']['page'] );
 
-			$new_data['buy_creds']['cancelled']['use'] = sanitize_text_field( $data['buy_creds']['cancelled']['use'] );
+			$new_data['buy_creds']['cancelled']['use']    = sanitize_text_field( $data['buy_creds']['cancelled']['use'] );
 			$new_data['buy_creds']['cancelled']['custom'] = sanitize_text_field( $data['buy_creds']['cancelled']['custom'] );
-			$new_data['buy_creds']['cancelled']['page'] = abs( $data['buy_creds']['cancelled']['page'] );
+			$new_data['buy_creds']['cancelled']['page']   = absint( $data['buy_creds']['cancelled']['page'] );
 
-			$new_data['buy_creds']['custom_log'] = ( ! isset( $data['buy_creds']['custom_log'] ) ) ? 0 : 1;
+			$new_data['buy_creds']['custom_log']          = ( ! isset( $data['buy_creds']['custom_log'] ) ) ? 0 : 1;
 
-			$new_data['buy_creds']['gifting']['members'] = ( ! isset( $data['buy_creds']['gifting']['members'] ) ) ? 0 : 1;
-			$new_data['buy_creds']['gifting']['authors'] = ( ! isset( $data['buy_creds']['gifting']['authors'] ) ) ? 0 : 1;
-			$new_data['buy_creds']['gifting']['log'] = sanitize_text_field( $data['buy_creds']['gifting']['log'] );
+			$new_data['buy_creds']['gifting']['members']  = ( ! isset( $data['buy_creds']['gifting']['members'] ) ) ? 0 : 1;
+			$new_data['buy_creds']['gifting']['authors']  = ( ! isset( $data['buy_creds']['gifting']['authors'] ) ) ? 0 : 1;
+			$new_data['buy_creds']['gifting']['log']      = sanitize_text_field( $data['buy_creds']['gifting']['log'] );
 
 			delete_option( 'mycred_buycred_reset' );
 
@@ -766,21 +805,26 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 
 			$usable = array();
 			foreach ( $installed as $gateway_id => $prefs ) {
+
 				if ( ! $this->is_active( $gateway_id ) || ! isset( $this->gateway_prefs[ $gateway_id ] ) ) continue;
+
 				$gateway_prefs = $this->gateway_prefs[ $gateway_id ];
+
 				if ( ! isset( $gateway_prefs['exchange'][ $type ] ) || ( isset( $gateway_prefs['currency'] ) && $gateway_prefs['currency'] == '' ) ) continue;
+
 				$usable[ $gateway_id ] = $gateway_prefs;
 				$usable[ $gateway_id ]['title'] = $prefs['title'];
 
 				if ( ! isset( $users_saved_overrides[ $gateway_id ] ) )
 					$users_saved_overrides[ $gateway_id ] = '';
+
 			}
+
 			if ( empty( $usable ) ) return;
 
 			$mycred = mycred( $type );
 
 ?>
-
 <h3><strong>buy</strong>CRED</h3>
 <table class="form-table">
 	<?php foreach ( $usable as $gateway_id => $gateway_prefs ) : if ( ! isset( $gateway_prefs['currency'] ) ) $gateway_prefs['currency'] = 'USD'; ?>
@@ -809,16 +853,15 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 		/**
 		 * Save Override
 		 * @since 1.5
-		 * @version 1.1
+		 * @version 1.1.1
 		 */
 		public function save_user_override() {
 
 			if ( isset( $_POST['mycred_adjust_users_buyrates_run'] ) && isset( $_POST['mycred_adjust_users_buyrates'] ) ) {
 
-				$ctype = sanitize_key( $_GET['ctype'] );
+				$ctype   = sanitize_key( $_GET['ctype'] );
 				$user_id = absint( $_GET['user_id'] );
-
-				$mycred = mycred( $ctype );
+				$mycred  = mycred( $ctype );
 
 				if ( $mycred->edit_plugin_cap() && ! $mycred->exclude_user( $user_id ) ) {
 
@@ -838,6 +881,7 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 						mycred_delete_user_meta( $user_id, 'mycred_buycred_rates_' . $ctype );
 
 					wp_safe_redirect( add_query_arg( array( 'result' => 'buycred_rates' ) ) );
+
 					exit;
 
 				}
@@ -891,9 +935,11 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 
 		<div class="list-items expandable-li" id="accordion">
 <?php
-			if ( ! empty( $installed ) ) {
-				foreach ( $installed as $key => $data ) { ?>
 
+			if ( ! empty( $installed ) ) {
+				foreach ( $installed as $key => $data ) {
+
+?>
 			<h4><div class="gate-icon <?php
 
 					// Mark
@@ -921,16 +967,20 @@ if ( ! class_exists( 'myCRED_buyCRED_Module' ) ) :
 					</li>
 				</ol>
 <?php
+
 					endif;
 
-					echo $this->call( 'preferences', $data['callback'] ); ?>
+					echo $this->call( 'preferences', $data['callback'] );
 
+?>
 				<input type="hidden" name="mycred_pref_buycreds[installed]" value="<?php echo $key; ?>" />
 			</div>
 <?php
-				}
-			} ?>
 
+				}
+			}
+
+?>
 		</div>
 		<?php do_action( 'mycred_after_buycreds_page', $this ); ?>
 
@@ -957,7 +1007,7 @@ jQuery(function($) {
 		/**
 		 * Custom Log Page
 		 * @since 1.4
-		 * @version 1.3
+		 * @version 1.3.1
 		 */
 		public function purchase_log_page() {
 
@@ -1029,10 +1079,12 @@ jQuery(function($) {
 				'column-tranid'   => __( 'Transaction ID', 'mycred' )
 			) );
 
+			$filter_url = admin_url( 'admin.php?page=myCRED_page_gateways_log_' . $type );
+
 ?>
 <div class="wrap list" id="myCRED-wrap">
 	<h2><?php _e( '<strong>buy</strong>CRED Purchase Log', 'mycred' ); ?> <a href="<?php echo admin_url( 'admin.php?page=myCRED_page_gateways' ); ?>" class="click-to-toggle add-new-h2"><?php _e( 'Gateway Settings', 'mycred' ); ?></a> <a href="<?php echo $this->get_settings_url( 'buycred_module' ); ?>" class="click-to-toggle add-new-h2"><?php _e( 'buyCRED Settings', 'mycred' ); ?></a></h2>
-	<?php $log->filter_dates( admin_url( 'admin.php?page=myCRED_page_gateways_log_' . $type ) ); ?>
+	<?php $log->filter_dates( esc_url( $filter_url ) ); ?>
 
 	<div class="clear"></div>
 	<form method="get" action="">
@@ -1058,7 +1110,7 @@ jQuery(function($) {
 
 			$log->search(); ?>
 
-		<input type="hidden" name="page" value="<?php echo $_GET['page']; ?>" />
+		<input type="hidden" name="page" value="<?php echo esc_attr( $_GET['page'] ); ?>" />
 		<?php do_action( 'mycred_above_payment_log_table', $this ); ?>
 
 		<div class="tablenav top">
@@ -1238,7 +1290,7 @@ jQuery(function($) {
 		/**
 		 * Get Sales Data from Log Data
 		 * @since 1.4
-		 * @version 1.0
+		 * @version 1.0.1
 		 */
 		public function get_sales_data_from_log_data( $log_data = '' ) {
 
@@ -1258,7 +1310,7 @@ jQuery(function($) {
 					$found_data = $log_data;
 			}
 
-			return mycred_apply_defaults( $defaults, $found_data );
+			return wp_parse_args( $found_data, $defaults );
 
 		}
 
@@ -1286,7 +1338,7 @@ jQuery(function($) {
 		 * Render Shortcode Basic
 		 * This shortcode returns a link element to a specified payment gateway.
 		 * @since 0.1
-		 * @version 1.5
+		 * @version 1.5.1
 		 */
 		public function render_shortcode_basic( $atts, $title = '' ) {
 
@@ -1321,7 +1373,7 @@ jQuery(function($) {
 
 			$buy_author = false;
 			$buy_member = false;
-			$buy_self = false;
+			$buy_self   = false;
 
 			// Gifting is allowed
 			if ( $this->core->buy_creds['gifting']['authors'] == 1 ) {
@@ -1355,9 +1407,9 @@ jQuery(function($) {
 
 			// Adjust title
 			if ( $buy_self === false ) {
-				$user = get_userdata( (int) $user_id );
+				$user     = get_userdata( (int) $user_id );
 				$username = $user->user_login;
-				$title = $this->core->template_tags_user( $title, $user );
+				$title    = $this->core->template_tags_user( $title, $user );
 				unset( $user );
 			}
 			else {
@@ -1383,15 +1435,17 @@ jQuery(function($) {
 
 			// Classes
 			$classes = explode( ' ', $class );
+
 			if ( empty( $classes ) )
 				$classes = array( 'mycred-buy-link', 'button large', 'custom' );
+
 			$classes[] = $gateway;
 
 			if ( $buy_author || $buy_member )
 				$args = array_merge_recursive( $args, array( 'gift_to' => $user_id ) );
 
 			// Element to return
-			$element = '<a href="' . add_query_arg( $args, $url ) . '" class="' . implode( ' ', $classes ) . '" title="' . $title . '">' . $title . '</a>';
+			$element = '<a href="' . esc_url( add_query_arg( $args, $url ) ) . '" class="' . implode( ' ', $classes ) . '" title="' . $title . '">' . $title . '</a>';
 
 			return $element;
 
@@ -1436,8 +1490,8 @@ jQuery(function($) {
 			$buy_author = false;
 			$buy_member = false;
 			$buy_others = false;
-			$buy_self = false;
-			$classes = array( 'myCRED-buy-form' );
+			$buy_self   = false;
+			$classes    = array( 'myCRED-buy-form' );
 
 			// Gifting is enabled
 			if ( $this->core->buy_creds['gifting']['authors'] ) {

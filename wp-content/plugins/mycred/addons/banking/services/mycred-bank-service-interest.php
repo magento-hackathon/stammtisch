@@ -568,7 +568,7 @@ if ( ! class_exists( 'myCRED_Banking_Service_Interest' ) ) :
 		/**
 		 * Save User Override
 		 * @since 1.5.2
-		 * @version 1.0.1
+		 * @version 1.0.2
 		 */
 		function save_user_override() {
 

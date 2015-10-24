@@ -11,7 +11,7 @@ if (!class_exists("nxs_class_SNAP_FB")) { class nxs_class_SNAP_FB {
       foreach ($options as $ii=>$ntOpts) $out[$ii] = $this->doPostToNT($ntOpts, $message);
       return $out;
     }
-    function doPostToNT($options, $message){ $badOut = array('Warning'=>'', 'Error'=>''); $wprg = array('sslverify'=>false); 
+    function doPostToNT($options, $message){ $badOut = array('Warning'=>'', 'Error'=>''); $wprg = array('sslverify'=>false, 'timeout' => 30); 
       //## Check settings
       if (!is_array($options)) { $badOut['Error'] = 'No Options'; return $badOut; }      
       if (empty($options['fbAppAuthToken']) && empty($options['atpKey']) && empty($options['uName'])) { $badOut['Error'] = 'No Auth Token Found/Not configured'; return $badOut; }
@@ -29,8 +29,8 @@ if (!class_exists("nxs_class_SNAP_FB")) { class nxs_class_SNAP_FB {
       if ($fbPostType!='I' && $fbPostType!='T') { $url = $message['url']; $flds = array('id'=>$url, 'scrape'=>'true'); sleep(2); }            
       //## Get URL info.      
       if ($fbPostType!='I' && $fbPostType!='T' && !empty($options['atchUse']) && $options['atchUse'] == 'F') { 
-        $response =  wp_remote_post('http://graph.facebook.com', array('body' => $flds, 'sslverify'=>false ));      
-        if (is_wp_error($response)) $badOut['Error'] = print_r($response, true)." - ERROR"; else { $response = json_decode($response['body'], true);     //  prr($response);     die();
+        $response =  wp_remote_post('http://graph.facebook.com', array('body' => $flds, 'sslverify'=>false, 'timeout' => 30 ));      
+        if (is_wp_error($response)) $badOut['Error'] = "Error(URL-Info): ". print_r($response, true); else { $response = json_decode($response['body'], true);     //  prr($response);     die();
             if (!empty($response['description'])) $message['urlDescr'] = $response['description'];  if (!empty($response['title'])) $message['urlTitle'] =  $response['title'];
             if (!empty($response['site_name'])) $message['siteName'] = $response['site_name']; elseif ($message['siteName']=='') $message['siteName'] = $message['title'];
             if (!empty($response['image'][0]['url'])) $message['imageURL'] = $response['image'][0]['url'];
@@ -63,17 +63,17 @@ if (!class_exists("nxs_class_SNAP_FB")) { class nxs_class_SNAP_FB {
           if ($options['imgUpl']=='T') { //## Try to Post to TImeline
             $aacct = array('access_token'=>$options['fbAppPageAuthToken'], 'appsecret_proof'=>$options['appsecret_proof'], 'method'=>'get');  
             $res = wp_remote_get( "https://graph.facebook.com/$page_id/albums?".http_build_query($aacct, null, '&'),$wprg); 
-            if (is_wp_error($res) || empty($res['body'])) $badOut['Error'] = ' [ERROR] '.print_r($res, true); else {
-              $albums = json_decode($res['body'], true);  if (empty($albums)) $badOut['Error'] .= "JSON ERROR: ".print_r($res, true); else {
+            if (is_wp_error($res) || empty($res['body'])) $badOut['Error'] = ' [ERROR(Albums)] '.print_r($res, true); else {
+              $albums = json_decode($res['body'], true);  if (empty($albums)) $badOut['Error'] .= "JSON ERROR (Albums): ".print_r($res, true); else {
                 if (is_array($albums) && is_array($albums["data"])) foreach ($albums["data"] as $album) { if ($album["type"] == "wall") { $chosen_album = $album; break;}}
                 if (isset($chosen_album) && isset($chosen_album["id"])) $page_id = $chosen_album["id"];
               }
             }
           }        
-        } 
+        }         
         //## Actual Post                
-        $destURL = "https://graph.facebook.com/$page_id/".$fbWhere;  // prr($destURL); //prr($args);   prr($mssg); //die();
-        $response = wp_remote_post( $destURL, array( 'method' => 'POST', 'httpversion' => '1.1', 'timeout' => 45, 'sslverify'=>false, 'redirection' => 0, 'body' => $mssg)); 
+        $destURL = "https://graph.facebook.com/$page_id/".$fbWhere; //  prr($destURL); prr($args);   prr($mssg); //die();
+        $response = wp_remote_post( $destURL, array( 'method' => 'POST', 'httpversion' => '1.1', 'timeout' => 30, 'sslverify'=>false, 'redirection' => 0, 'body' => $mssg)); 
       }     
       
       if (is_wp_error($response) || empty($response['body'])) return "ERROR: ".print_r($response, true);
@@ -84,6 +84,7 @@ if (!class_exists("nxs_class_SNAP_FB")) { class nxs_class_SNAP_FB {
               else $badOut['Error'] .= " [ERROR] (invalid app_id) Authorization Error. <br/>\r\n<br/>\r\n Possible Reasons: <br/>\r\n 1. Your app is not authorized. Please go to the Plugin Settings - Facebook and authorize it.<br/>\r\n 2. The current authorized user have no rights to post to the specified page. Please login to Facebook as the correct user and Re-Authorize the Plugin.<br/>\r\n 3. You clicked 'Skip' or unchecked the 'Manage Pages' or 'Post on your behalf' permissions when Authorization wizard asked you. Please Re-Authorize the Plugin<br/>\r\n"; 
         }
         if (stripos($res['error']['message'], 'Some of the aliases you requested do not exist')!==false) $badOut['Error'] .= '| Please check what do you have in the "Facebook URL" field.';
+        if (stripos($res['error']['message'], 'Unsupported post request')!==false) $badOut['Error'] .= "<br/>\r\n".'| Are you posting to a secret group? Please see: <a href="http://gd.is/fbe2">http://gd.is/fbe2</a>';
         if (stripos($res['error']['message'], 'The target user has not authorized this action')!==false) $badOut['Error'] .= '| Please Authorize the plugin from the plugin settings Page - Facebook.';
         
         return $badOut;          

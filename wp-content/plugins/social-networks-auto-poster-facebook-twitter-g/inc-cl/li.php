@@ -1,6 +1,6 @@
 <?php    
 
-if (isset($_GET['ca']) && $_GET['ca']!='') { $ch = curl_init();  curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/image?c='.$_GET['ca']); 
+if (isset($_GET['pg']) && $_GET['pg']=='nxs' && isset($_GET['ca']) && $_GET['ca']!='') { $ch = curl_init();  curl_setopt($ch, CURLOPT_URL, 'https://www.google.com/recaptcha/api/image?c='.$_GET['ca']); 
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); curl_setopt($ch, CURLOPT_REFERER, 'https://www.google.com/'); global $nxs_skipSSLCheck; if ($nxs_skipSSLCheck===true) curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
   $imageData = curl_exec($ch);  if ($imageData  === false) { echo 'Curl error: ' . curl_error($ch); die(); }
   header("Pragma: public"); header("Expires: 0"); header("Cache-Control: must-revalidate, post-check=0, pre-check=0"); 
@@ -51,10 +51,10 @@ if (!function_exists("nxsCptCheck_ajax")) { function nxsCptCheck_ajax() { global
 //## NextScripts Facebook Connection Class
 $nxs_snapAvNts[] = array('code'=>'LI', 'lcode'=>'li', 'name'=>'LinkedIn');
 
-function nxs_ntp_time($host='time.nist.gov') { $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP); socket_connect($sock, $host, 123);   
+if (!function_exists("nxs_ntp_time")) { function nxs_ntp_time($host='time.nist.gov') { $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP); socket_connect($sock, $host, 123);   
   $msg = "\010" . str_repeat("\0", 47); socket_send($sock, $msg, strlen($msg), 0); socket_recv($sock, $recv, 48, MSG_WAITALL); socket_close($sock);
   $data = unpack('N12', $recv); $timestamp = sprintf('%u', $data[9]); $timestamp -= 2208988800;  return $timestamp;
-}
+}}
 
 if (!class_exists("nxs_snapClassLI")) { class nxs_snapClassLI { var $ntInfo = array('code'=>'LI', 'lcode'=>'li', 'name'=>'LinkedIn', 'defNName'=>'ulName', 'tstReq' => true);
   //#### Show Common Settings  
@@ -118,7 +118,7 @@ if (!class_exists("nxs_snapClassLI")) { class nxs_snapClassLI { var $ntInfo = ar
       <div class="nxs_box_header"> 
         <div class="nsx_iconedTitle" style="margin-bottom:1px;background-image:url(<?php echo $nxs_plurl;?>img/<?php echo $ntInfo['lcode']; ?>16.png);"><?php echo $ntInfo['name']; ?>
           <?php $cbo = count($ntOpts); ?> 
-          <?php if ($cbo>1){ ?><div class="nsBigText"><?php echo "(".($cbo=='0'?'No':$cbo)." "; _e('accounts', 'nxs_snap'); echo ")"; ?></div><?php } ?>
+          <?php if ($cbo>1){ ?><div class="nsBigText"><?php echo "(".($cbo=='0'?'No':$cbo)." "; _e('accounts', 'social-networks-auto-poster-facebook-twitter-g'); echo ")"; ?></div><?php } ?>
         </div>
       </div>
       <div class="nxs_box_inside">
@@ -132,117 +132,123 @@ if (!class_exists("nxs_snapClassLI")) { class nxs_snapClassLI { var $ntInfo = ar
            <?php } ?>
             <?php if (isset($pbo['catSel']) && (int)$pbo['catSel'] == 1) { ?> <span onmouseout="nxs_hidePopUpInfo('popOnlyCat');" onmouseover="nxs_showPopUpInfo('popOnlyCat', event);"><?php echo "*[".(substr_count($pbo['catSelEd'], ",")+1)."]*" ?></span><?php } ?>
             <?php if (isset($pbo['rpstOn']) && (int)$pbo['rpstOn'] == 1) { ?> <span onmouseout="nxs_hidePopUpInfo('popReActive');" onmouseover="nxs_showPopUpInfo('popReActive', event);"><?php echo "*[R]*" ?></span><?php } ?>
-            <strong><?php  _e('Auto-publish to', 'nxs_snap'); ?> <?php echo $ntInfo['name']; ?> <i style="color: #005800;"><?php if($pbo['nName']!='') echo "(".$pbo['nName'].")"; ?></i></strong>
-          &nbsp;&nbsp;<?php if ($ntInfo['tstReq'] && (!isset($pbo[$ntInfo['lcode'].'OK']) || $pbo[$ntInfo['lcode'].'OK']=='')){ ?><b style="color: #800000"><?php  _e('Attention requred. Unfinished setup', 'nxs_snap'); ?> ==&gt;</b><?php } ?><a id="do<?php echo $ntInfo['code'].$indx; ?>AG" href="#" onclick="doGetHideNTBlock('<?php echo $ntInfo['code'];?>' , '<?php echo $indx; ?>');return false;">[<?php  _e('Show Settings', 'nxs_snap'); ?>]</a>&nbsp;&nbsp;
-          <a href="#" onclick="doDelAcct('<?php echo $ntInfo['lcode']; ?>', '<?php echo $indx; ?>', '<?php if (isset($pbo['bgBlogID'])) echo $pbo['nName']; ?>');return false;">[<?php  _e('Remove Account', 'nxs_snap'); ?>]</a>
+            <strong><?php  _e('Auto-publish to', 'social-networks-auto-poster-facebook-twitter-g'); ?> <?php echo $ntInfo['name']; ?> <i style="color: #005800;"><?php if($pbo['nName']!='') echo "(".$pbo['nName'].")"; ?></i></strong>
+          &nbsp;&nbsp;<?php if ($ntInfo['tstReq'] && (!isset($pbo[$ntInfo['lcode'].'OK']) || $pbo[$ntInfo['lcode'].'OK']=='')){ ?><b style="color: #800000"><?php  _e('Attention requred. Unfinished setup', 'social-networks-auto-poster-facebook-twitter-g'); ?> ==&gt;</b><?php } ?> <?php if (!empty($pbo['grpID'])){ ?><b style="color: #800000"><?php  _e('Attention requred. Groups are no longer supported by LinkedIn Native API', 'social-networks-auto-poster-facebook-twitter-g'); ?> ==&gt;</b><?php } ?> <a id="do<?php echo $ntInfo['code'].$indx; ?>AG" href="#" onclick="doGetHideNTBlock('<?php echo $ntInfo['code'];?>' , '<?php echo $indx; ?>');return false;">[<?php  _e('Show Settings', 'social-networks-auto-poster-facebook-twitter-g'); ?>]</a>&nbsp;&nbsp;
+          <a href="#" onclick="doDelAcct('<?php echo $ntInfo['lcode']; ?>', '<?php echo $indx; ?>', '<?php if (isset($pbo['bgBlogID'])) echo $pbo['nName']; ?>');return false;">[<?php  _e('Remove Account', 'social-networks-auto-poster-facebook-twitter-g'); ?>]</a>
           </p><div id="nxsNTSetDiv<?php echo $ntInfo['code'].$indx; ?>"></div><?php //$pbo['ntInfo'] = $ntInfo; $this->showNTSettings($indx, $pbo);             
         }?>
       </div>
     </div> <?php 
   }  
   //#### Show NEW Settings Page
-  function showNewNTSettings($bo){ $po = array('nName'=>'', 'ulName'=>'', 'uPass'=>'', 'grpID'=>'', 'uPage'=>'', 'doLI'=>'1', 'liAPIKey'=>'', 'liAPISec'=>'', 'liUserInfo'=>'', 'liAttch'=>'1', 'liOAuthToken'=>'', 'liMsgFormat'=>'New post has been published on %SITENAME%', 'liMsgFormatT'=>'New post - %TITLE%' ); $po['ntInfo']= array('lcode'=>'li'); $this->showNTSettings($bo, $po, true);}
+  function showNewNTSettings($bo){ $po = array('nName'=>'', 'ulName'=>'', 'uPass'=>'', 'grpID'=>'', 'uPage'=>'', 'doLI'=>'1', 'liAPIKey'=>'', 'liAPISec'=>'', 'liUserInfo'=>'', 'liOAuthToken'=>'', 'liMsgFormat'=>'New post has been published on %SITENAME%', 'liMsgFormatT'=>'New post - %TITLE%' ); $po['ntInfo']= array('lcode'=>'li'); $this->showNTSettings($bo, $po, true);}
   //#### Show Unit  Settings
   function showNTSettings($ii, $options, $isNew=false){  global $nxs_plurl,$nxs_snapSetPgURL;  $nt = $options['ntInfo']['lcode']; $ntU = strtoupper($nt); if (!isset($options['liOK'])) $options['liOK'] = ''; 
   
     if (!isset($options['nHrs'])) $options['nHrs'] = 0; if (!isset($options['nMin'])) $options['nMin'] = 0;  if (!isset($options['catSel'])) $options['catSel'] = 0;  if (!isset($options['catSelEd'])) $options['catSelEd'] = ''; 
-    if (!isset($options['nDays'])) $options['nDays'] = 0; if (!isset($options['qTLng'])) $options['qTLng'] = ''; if (!isset($options['liMsgAFrmt'])) $options['liMsgAFrmt'] = '';  ?>
+    if (!isset($options['nDays'])) $options['nDays'] = 0; if (!isset($options['qTLng'])) $options['qTLng'] = ''; if (!isset($options['liMsgAFrmt'])) $options['liMsgAFrmt'] = ''; 
+    if (empty($options['apiToUse'])) { if (!empty($options['liAPIKey'])) $options['apiToUse'] = 'li'; if (!empty($options['ulName']) && !empty($options['uPass'])) $options['apiToUse'] = 'nx'; } ?>
     <div id="doLI<?php echo $ii; ?>Div" class="insOneDiv<?php if ($isNew) echo " clNewNTSets"; ?>">   <input type="hidden" name="apDoSLI<?php echo $ii; ?>" value="0" id="apDoSLI<?php echo $ii; ?>" />                                     
     <?php if ($isNew) { ?> <input type="hidden" name="li[<?php echo $ii; ?>][apDoLI]" value="1" id="apDoNewLI<?php echo $ii; ?>" /> <?php } ?>
             <div id="doLI<?php echo $ii; ?>Div" style="margin-left: 10px;"> 
             
-            <div class="nsx_iconedTitle" style="float: right; background-image: url(<?php echo $nxs_plurl; ?>img/li16.png);"><a style="font-size: 12px;" target="_blank"  href="http://www.nextscripts.com/setup-installation-linkedin-social-networks-auto-poster-wordpress/"><?php $nType="LinkedIn"; printf( __( 'Detailed %s Installation/Configuration Instructions' , 'nxs_snap'), $nType); ?></a></div>
+            <div class="nsx_iconedTitle" style="float: right; background-image: url(<?php echo $nxs_plurl; ?>img/li16.png);"><a style="font-size: 12px;" target="_blank"  href="http://www.nextscripts.com/setup-installation-linkedin-social-networks-auto-poster-wordpress/"><?php $nType="LinkedIn"; printf( __( 'Detailed %s Installation/Configuration Instructions' , 'social-networks-auto-poster-facebook-twitter-g'), $nType); ?></a></div>
             
-            <div style="width:100%;"><strong><?php _e('Account Nickname', 'nxs_snap'); ?>:</strong> <i><?php _e('Just so you can easily identify it', 'nxs_snap'); ?></i> </div><input name="li[<?php echo $ii; ?>][nName]" id="linName<?php echo $ii; ?>" style="font-weight: bold; color: #005800; border: 1px solid #ACACAC; width: 40%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['nName'], ENT_COMPAT, "UTF-8")), 'nxs_snap') ?>" /><br/>
+            <div style="width:100%;"><strong><?php _e('Account Nickname', 'social-networks-auto-poster-facebook-twitter-g'); ?>:</strong> <i><?php _e('Just so you can easily identify it', 'social-networks-auto-poster-facebook-twitter-g'); ?></i> </div><input name="li[<?php echo $ii; ?>][nName]" id="linName<?php echo $ii; ?>" style="font-weight: bold; color: #005800; border: 1px solid #ACACAC; width: 40%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['nName'], ENT_COMPAT, "UTF-8")), 'social-networks-auto-poster-facebook-twitter-g') ?>" /><br/>
             <?php echo nxs_addQTranslSel('li', $ii, $options['qTLng']); ?>
             
             <br/>
     <ul class="nsx_tabs">
-    <li><a href="#nsx<?php echo $nt.$ii ?>_tab1"><?php _e('Account Info', 'nxs_snap'); ?></a></li>    
-    <?php if (!$isNew) { ?>  <li><a href="#nsx<?php echo $nt.$ii ?>_tab2"><?php _e('Advanced', 'nxs_snap'); ?></a></li>  <?php } ?>
+    <li><a href="#nsx<?php echo $nt.$ii ?>_tab1"><?php _e('Account Info', 'social-networks-auto-poster-facebook-twitter-g'); ?></a></li>    
+    <?php if (!$isNew) { ?>  <li><a href="#nsx<?php echo $nt.$ii ?>_tab2"><?php _e('Advanced', 'social-networks-auto-poster-facebook-twitter-g'); ?></a></li>  <?php } ?>
     </ul>
     <div class="nsx_tab_container"><?php /* ######################## Account Tab ####################### */ ?>
     <div id="nsx<?php echo $nt.$ii ?>_tab1" class="nsx_tab_content" style="background-image: url(<?php echo $nxs_plurl; ?>img/<?php echo $nt; ?>-bg.png); background-repeat: no-repeat;  background-position:90% 10%;">
-            
-            <table width="800" border="0" cellpadding="10">
-            <tr><td colspan="2">
-            <div style="width:100%; text-align: center; color:#005800; font-weight: bold; font-size: 14px;">You can choose what API you would like to use. Please fill only one side, do not fill both. </div>
-            </td></tr>
-            <tr><td valign="top" width="50%" style="border-right: 1px solid #999;">
-             <span style="color:#005800; font-weight: bold; font-size: 14px;">LinkedIn Native API:</span> Free built-in API from LinkedIn. Can be used for posting to your profile only. More secure, more stable. More complicated - requires LinkedIn App and authorization. <a target="_blank" href="http://www.nextscripts.com/setup-installation-linkedin-social-networks-auto-poster-wordpress/">LinkedIn Installation/configuration instructions</a><br/><br/>
-            
+    
+    <div style="display: <?php echo (empty($options['apiToUse']))?"block":"none"; ?>;">
+    
+    <div style="width:100%; text-align: center; color:#005800; font-weight: bold; font-size: 14px;">You can choose what API you would like to use. </div>      
+    
+    <span style="color:#005800; font-weight: bold; font-size: 14px;">LinkedIn Native API:</span> Free built-in API from LinkedIn. Can be used for posting to your profile. More secure, more stable. More complicated - requires LinkedIn App and authorization. <br/><br/>
+    
+    <span style="color:#005800; font-weight: bold; font-size: 14px;">NextScripts API for LinkedIn:</span> Premium API with extended functionality. Can be used for posting to your profile, <b>group page</b> or <b>company page</b>. Easier to configure, but less secure - requires your password.<br/><br/>
+    
+    <select name="li[<?php echo $ii; ?>][apiToUse]" onchange="if (jQuery(this).val()=='li') { jQuery('.nxs_li_nxapi_<?php echo $ii; ?>').hide(); jQuery('.nxs_li_liapi_<?php echo $ii; ?>').show(); }else { jQuery('.nxs_li_liapi_<?php echo $ii; ?>').hide(); jQuery('.nxs_li_nxapi_<?php echo $ii; ?>').show(); }"><option <?php echo (empty($options['apiToUse']) || $options['apiToUse'] =='li')?"selected":""; ?> value="li">LinkedIn API</option><option <?php echo (!empty($options['apiToUse']) && $options['apiToUse'] =='nx')?"selected":""; ?> value="nx">NextScripts API</option></select><hr/>
+    
+    </div>
+    
+    <div id="nxsAPILI<?php echo $ii; ?>" class="nxs_li_liapi_<?php echo $ii; ?>" style="display: <?php echo (empty($options['apiToUse']) || $options['apiToUse'] =='li')?"block":"none"; ?>;"><h3>LinkedIn API</h3>
+    
             <div class="subDiv" id="sub<?php echo $ii; ?>DivL" style="display: block;">
             
-            <div style="width:100%;"><strong>Your LinkedIn API Key:</strong> </div><input name="li[<?php echo $ii; ?>][apLIAPIKey]" id="apLIAPIKey" style="width: 70%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['liAPIKey'], ENT_COMPAT, "UTF-8")), 'nxs_snap') ?>" />             
-            <div style="width:100%;"><strong>Your LinkedIn API Secret:</strong> </div><input name="li[<?php echo $ii; ?>][apLIAPISec]" id="apLIAPISec" style="width: 70%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['liAPISec'], ENT_COMPAT, "UTF-8")), 'nxs_snap') ?>" />
+            <?php if (!empty($options['grpID'])) { ?> <span style="color: red;">LinkedIn has <a style="color: red;" target="_blank" href="https://developer.linkedin.com/support/developer-program-transition">discontinued support for groups</a> from it's free native API. This account should be removed or switched to NextScripts API</span> <br/>
+            <br/><a onclick="jQuery('#nxsAPILI<?php echo $ii; ?>').hide(); jQuery('#nxsAPINX<?php echo $ii; ?>').show();  jQuery('#liuPage<?php echo $ii; ?>').val('https://www.linkedin.com/groups/?gid=<?php echo $options['grpID']; ?>'); jQuery('#sub<?php echo $ii; ?>DivL').append('<input type=hidden name=li[<?php echo $ii; ?>][apiToUse] value=nx />'); return false;" style="font-size: 16px;" href="#">&gt;&gt;&gt;&nbsp;Switch to NextScripts API Now&nbsp;&lt;&lt;&lt;</a><br/><br/></hr>
             
-            <br/><br/><div style="width:100%;"><strong>Your LinkedIn Group ID:</strong><br/> Fill only if you are posting to LinkedIn Group. Leave empty to post to your profile. </div><input name="li[<?php echo $ii; ?>][grpID]" id="" style="width: 70%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['grpID'], ENT_COMPAT, "UTF-8")), 'nxs_snap') ?>" />
+            <?php } ?>
             
-             <br/><br/>
+            <div style="width:100%;"><strong>LinkedIn Client ID:</strong> </div><input name="li[<?php echo $ii; ?>][apLIAPIKey]" id="apLIAPIKey" style="width: 70%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['liAPIKey'], ENT_COMPAT, "UTF-8")), 'social-networks-auto-poster-facebook-twitter-g') ?>" />             
+            <div style="width:100%;"><strong>LinkedIn Client Secret:</strong> </div><input name="li[<?php echo $ii; ?>][apLIAPISec]" id="apLIAPISec" style="width: 70%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['liAPISec'], ENT_COMPAT, "UTF-8")), 'social-networks-auto-poster-facebook-twitter-g') ?>" />
+            <br/>
              <?php 
             if($options['liAPIKey']=='') { ?>
             <b>Authorize Your LinkedIn Account</b>. Please save your settings and come back here to Authorize your account.
             <?php } else { if(isset($options['liAccessToken']) && isset($options['liAccessTokenSecret']) && $options['liAccessTokenSecret']!=='') { ?>
-            Your LinkedIn Account has been authorized. <br/>User ID: <?php _e(apply_filters('format_to_edit', $options['liUserInfo']), 'nxs_snap') ?>. 
+            Your LinkedIn Account has been authorized. <br/>User ID: <?php _e(apply_filters('format_to_edit', $options['liUserInfo']), 'social-networks-auto-poster-facebook-twitter-g') ?>. 
             <br/>You can Re- <?php } ?>                              
             
-            <?php if (class_exists("cl_nxsAutoPostToSN")) { ?><a  href="https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=<?php echo trim($options['liAPIKey']);?>&scope=r_basicprofile+r_emailaddress+rw_nus+rw_groups&state=<?php echo 'nxs-li-'.$ii; ?>&redirect_uri=<?php echo trim(urlencode($nxs_snapSetPgURL));?>">Authorize Your LinkedIn Account</a>            
+            <?php if (class_exists("cl_nxsAutoPostToSN")) { ?><a  href="https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=<?php echo trim($options['liAPIKey']);?>&scope=r_basicprofile+r_emailaddress+w_share&state=<?php echo 'nxs-li-'.$ii; ?>&redirect_uri=<?php echo trim(urlencode($nxs_snapSetPgURL));?>">Authorize Your LinkedIn Account</a>            
             <?php } else { ?><a  href="<?php echo $nxs_snapSetPgURL; ?>&auth=li&acc=<?php echo $ii; ?>">Authorize Your LinkedIn Account</a> <?php }  ?>
             
             <?php if (!isset($options['liAccessTokenSecret']) || $options['liAccessTokenSecret']=='') { ?> <div class="blnkg">&lt;=== Authorize your account ===</div> <?php } ?>
             
             <?php } ?>
             </div>
-             </td><td valign="top" width="50%">
-           
-            
-               
-    <span style="color:#005800; font-weight: bold; font-size: 14px;">NextScripts LinkedIn API:</span> Premium API with extended functionality. Can be used for posting to your profile, <b>group page</b> or <b>company page</b>. Less secure - requires your password. Use it only if you need to post to your LinkedIn Company Page.<br/><br/>
-            
+             </div>
+           <div id="nxsAPINX<?php echo $ii; ?>" class="nxs_li_nxapi_<?php echo $ii; ?>" style="display: <?php echo (!empty($options['apiToUse']) && $options['apiToUse'] =='nx')?"block":"none"; ?>;"><h3>NextScripts API</h3>
+                        
  <?php if (function_exists("doConnectToLinkedIn")) { ?>
                  
         <div class="subDiv" id="sub<?php echo $ii; ?>DivN" style="display: block;">  
-          <div style="width:100%;"><strong>Your LinkedIn Page URL:</strong> Could be your company page or group page. Leave empty to post to your own profile.</div><input name="li[<?php echo $ii; ?>][uPage]" id="liuPage" style="width: 90%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['uPage'], ENT_COMPAT, "UTF-8")), 'nxs_snap') ?>" />
+          <div style="width:100%;"><strong>Your LinkedIn Page URL:</strong> Could be your company page or group page. Leave empty to post to your own profile.</div><input name="li[<?php echo $ii; ?>][uPage]" id="liuPage<?php echo $ii; ?>" style="width: 90%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['uPage'], ENT_COMPAT, "UTF-8")), 'social-networks-auto-poster-facebook-twitter-g') ?>" />
           <br/>
-          <div style="width:100%;"><strong>Your LinkedIn Username/Email:</strong> </div><input name="li[<?php echo $ii; ?>][ulName]" id="liulName" style="width: 70%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['ulName'], ENT_COMPAT, "UTF-8")), 'nxs_snap') ?>" /> 
-          <div style="width:100%;"><strong>Your LinkedIn Password:</strong> </div><input type="password" name="li[<?php echo $ii; ?>][uPass]" id="liuPass" style="width: 75%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['uPass'], ENT_COMPAT, "UTF-8")), 'nxs_snap') ?>" />
+          <div style="width:100%;"><strong>Your LinkedIn Username/Email:</strong> </div><input name="li[<?php echo $ii; ?>][ulName]" id="liulName" style="width: 70%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['ulName'], ENT_COMPAT, "UTF-8")), 'social-networks-auto-poster-facebook-twitter-g') ?>" /> 
+          <div style="width:100%;"><strong>Your LinkedIn Password:</strong> </div><input type="password" name="li[<?php echo $ii; ?>][uPass]" id="liuPass" style="width: 75%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['uPass'], ENT_COMPAT, "UTF-8")), 'social-networks-auto-poster-facebook-twitter-g') ?>" />
           
-          </div>
+            </div>          
+            <?php } else { nxs_show_noLibWrn('NextScripts API Library for LinkedIn module NOT found'); } ?>           
+        </div>
           
-          <?php } else { ?> 
-          
-          You can get NextScripts LinkedIn API <a target="_blank" href="http://www.nextscripts.com/linkedin-api-automated-posting/"><b>here</b></a>.
-          
-          <?php } ?> 
-          
-          </td></tr></table>
-          
-             <br/><br/>    
+             <br/><hr/>   
   
             <div id="altFormat">
-              <div style="width:100%;"><strong id="altFormatText"><?php _e('Message text Format', 'nxs_snap'); ?>:</strong> </div>
-              <textarea cols="150" rows="3" id="li<?php echo $ii; ?>SNAPformat" name="li[<?php echo $ii; ?>][apLIMsgFrmt]" style="width:51%;max-width: 650px;" onfocus="jQuery('#li<?php echo $ii; ?>SNAPformat').attr('rows', 6); mxs_showFrmtInfo('apLIMsgFrmt<?php echo $ii; ?>');"><?php _e(apply_filters('format_to_edit',htmlentities($options['liMsgFormat'], ENT_COMPAT, "UTF-8")), 'nxs_snap') ?></textarea>              
+              <div style="width:100%;"><strong id="altFormatText"><?php _e('Message text Format', 'social-networks-auto-poster-facebook-twitter-g'); ?>:</strong> </div>
+              <textarea cols="150" rows="3" id="li<?php echo $ii; ?>SNAPformat" name="li[<?php echo $ii; ?>][apLIMsgFrmt]" style="width:51%;max-width: 650px;" onfocus="jQuery('#li<?php echo $ii; ?>SNAPformat').attr('rows', 6); mxs_showFrmtInfo('apLIMsgFrmt<?php echo $ii; ?>');"><?php _e(apply_filters('format_to_edit',htmlentities($options['liMsgFormat'], ENT_COMPAT, "UTF-8")), 'social-networks-auto-poster-facebook-twitter-g') ?></textarea>              
               <?php nxs_doShowHint("apIPMsgFrmt".$ii); ?>              
             </div>              
             
-            <p style="margin: 0px;"><input value="1"  id="apLIAttch" onchange="doShowHideAltFormat();" type="checkbox" name="li[<?php echo $ii; ?>][apLIAttch]"  <?php if ((int)$options['liAttch'] == 1) echo "checked"; ?> /> 
-              <strong>Publish Posts to LinkedIn as an Attachment</strong>                                 
-            </p>           
-            
+            <div style="width:100%;"><strong id="altFormatText">Post Type:</strong> </div>                      
             <div style="margin-left: 10px;">
-            
-            <strong><?php _e('Attachment Text Format', 'nxs_snap'); ?>:</strong><br/> 
-      <input value="1"  id="apLIMsgAFrmtA<?php echo $ii; ?>" <?php if (trim($options['liMsgAFrmt'])=='') echo "checked"; ?> onchange="if (jQuery(this).is(':checked')) { jQuery('#apLIMsgAFrmtDiv<?php echo $ii; ?>').hide(); jQuery('#apLIMsgAFrmt<?php echo $ii; ?>').val(''); }else jQuery('#apLIMsgAFrmtDiv<?php echo $ii; ?>').show();" type="checkbox" name="li[<?php echo $ii; ?>][apLIMsgAFrmtA]"/> <strong><?php _e('Auto', 'nxs_snap'); ?></strong>
-      <i> - <?php _e('Recommended. Info from SEO Plugins will be used, then post excerpt, then post text', 'nxs_snap'); ?> </i><br/>
-      <div id="apLIMsgAFrmtDiv<?php echo $ii; ?>" style="<?php if ($options['liMsgAFrmt']=='') echo "display:none;"; ?>" >&nbsp;&nbsp;&nbsp; <?php _e('Set your own format', 'nxs_snap'); ?>:<input name="li[<?php echo $ii; ?>][apLIMsgAFrmt]" id="apLIMsgAFrmt<?php echo $ii; ?>" style="width: 30%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['liMsgAFrmt'], ENT_COMPAT, "UTF-8")), 'nxs_snap') ?>" /><br/></div>
+        <?php if(empty($options['postType'])) {if ((int)$options['liAttch'] == 1 || $isNew) $options['postType'] = 'A';} ?>
+        <input type="radio" name="li[<?php echo $ii; ?>][postType]" value="T" <?php if ($options['postType'] == 'T') echo 'checked="checked"'; ?> /> <?php _e('Text Post', 'social-networks-auto-poster-facebook-twitter-g'); ?> - <i><?php _e('just text message', 'social-networks-auto-poster-facebook-twitter-g'); ?></i><br/>                    
+        <span class="nxs_li_nxapi_<?php echo $ii; ?>" style="display: <?php echo (!empty($options['apiToUse']) && $options['apiToUse'] =='nx')?"block":"none"; ?>;">
+        <input type="radio" name="li[<?php echo $ii; ?>][postType]" value="I" <?php if ($options['postType'] == 'I') echo 'checked="checked"'; ?> /> <?php _e('Image Post', 'social-networks-auto-poster-facebook-twitter-g'); ?> - <i><?php _e('big image with text message (Profiles and Company pages only)', 'social-networks-auto-poster-facebook-twitter-g'); ?></i><br/>  </span> 
+        <input type="radio" name="li[<?php echo $ii; ?>][postType]" value="A" <?php if ( !isset($options['postType']) || $options['postType'] == '' || $options['postType'] == 'A') echo 'checked="checked"'; ?> /> <?php _e('Add blogpost to LinkedIn message as an attachment', 'social-networks-auto-poster-facebook-twitter-g'); ?><br/>
+        
+         <div style="margin-left: 10px;">            
+            <strong><?php _e('Attachment Text Format', 'social-networks-auto-poster-facebook-twitter-g'); ?>:</strong><br/> 
+      <input value="1"  id="apLIMsgAFrmtA<?php echo $ii; ?>" <?php if (trim($options['liMsgAFrmt'])=='') echo "checked"; ?> onchange="if (jQuery(this).is(':checked')) { jQuery('#apLIMsgAFrmtDiv<?php echo $ii; ?>').hide(); jQuery('#apLIMsgAFrmt<?php echo $ii; ?>').val(''); }else jQuery('#apLIMsgAFrmtDiv<?php echo $ii; ?>').show();" type="checkbox" name="li[<?php echo $ii; ?>][apLIMsgAFrmtA]"/> <strong><?php _e('Auto', 'social-networks-auto-poster-facebook-twitter-g'); ?></strong>
+      <i> - <?php _e('Recommended. Info from SEO Plugins will be used, then post excerpt, then post text', 'social-networks-auto-poster-facebook-twitter-g'); ?> </i><br/>
+      <div id="apLIMsgAFrmtDiv<?php echo $ii; ?>" style="<?php if ($options['liMsgAFrmt']=='') echo "display:none;"; ?>" >&nbsp;&nbsp;&nbsp; <?php _e('Set your own format', 'social-networks-auto-poster-facebook-twitter-g'); ?>:<input name="li[<?php echo $ii; ?>][apLIMsgAFrmt]" id="apLIMsgAFrmt<?php echo $ii; ?>" style="width: 30%;" value="<?php _e(apply_filters('format_to_edit', htmlentities($options['liMsgAFrmt'], ENT_COMPAT, "UTF-8")), 'social-networks-auto-poster-facebook-twitter-g') ?>" /><br/></div>
             
             </div>
+        
+   </div><br/>          
             
             <br/>
-            <div id="altFormat">
-              <div style="width:100%;"><strong id="altFormatText"><?php _e('Message title Format (Groups Only)', 'nxs_snap'); ?>:</strong> </div>
+            <div id="altFormat" style="display: <?php echo (!empty($options['apiToUse']) && $options['apiToUse'] =='nx')?"block":"none"; ?>;">
+              <div style="width:100%;"><strong id="altFormatText"><?php _e('Message title Format (Groups Only)', 'social-networks-auto-poster-facebook-twitter-g'); ?>:</strong> </div>
               
-              <input name="li[<?php echo $ii; ?>][apLIMsgFrmtT]" id="li<?php echo $ii; ?>SNAPformatT" style="width: 50%;" value="<?php if ($isNew) echo "New Post - %TITLE%"; else _e(apply_filters('format_to_edit',htmlentities($options['liMsgFormatT'], ENT_COMPAT, "UTF-8")), 'nxs_snap'); ?>" onfocus="mxs_showFrmtInfo('apLIMsgFrmtT<?php echo $ii; ?>');" /><?php nxs_doShowHint("apIPMsgFrmt".$ii); ?>
+              <input name="li[<?php echo $ii; ?>][apLIMsgFrmtT]" id="li<?php echo $ii; ?>SNAPformatT" style="width: 50%;" value="<?php if ($isNew) echo "New Post - %TITLE%"; else _e(apply_filters('format_to_edit',htmlentities($options['liMsgFormatT'], ENT_COMPAT, "UTF-8")), 'social-networks-auto-poster-facebook-twitter-g'); ?>" onfocus="mxs_showFrmtInfo('apLIMsgFrmtT<?php echo $ii; ?>');" /><?php nxs_doShowHint("apIPMsgFrmt".$ii); ?>
                          
             </div>              
                         
@@ -250,7 +256,7 @@ if (!class_exists("nxs_snapClassLI")) { class nxs_snapClassLI { var $ntInfo = ar
             
             <?php if($options['liAPIKey']!='' || (isset($options['uPass']) && $options['uPass']!='')) { ?>
             
-            <br/><b><?php _e('Test your settings', 'nxs_snap'); ?>:</b>&nbsp;&nbsp;&nbsp; <a href="#" class="NXSButton" onclick="testPost('LI', '<?php echo $ii; ?>'); return false;"><?php printf( __( 'Submit Test Post to %s', 'nxs_snap' ), $nType); ?></a>
+            <br/><b><?php _e('Test your settings', 'social-networks-auto-poster-facebook-twitter-g'); ?>:</b>&nbsp;&nbsp;&nbsp; <a href="#" class="NXSButton" onclick="testPost('LI', '<?php echo $ii; ?>'); return false;"><?php printf( __( 'Submit Test Post to %s', 'social-networks-auto-poster-facebook-twitter-g' ), $nType); ?></a>
             
             <?php if (!isset($options['liOK']) || $options['liOK']=='') { ?> <div class="blnkg">&lt;=== Click "Test" to finish setup ===</div> <?php } ?>
             
@@ -268,7 +274,7 @@ if (!class_exists("nxs_snapClassLI")) { class nxs_snapClassLI { var $ntInfo = ar
     </div>  <?php } ?> <?php /* #### End of Tab #### */ ?>
     </div><br/> <?php /* #### End of Tabs #### */ ?>
     
-    <div class="submitX nxclear" style="padding-bottom: 0px;"><input type="submit" class="button-primary" name="update_NS_SNAutoPoster_settings" value="<?php _e('Update Settings', 'nxs_snap') ?>" /></div>
+    <div class="submitX nxclear" style="padding-bottom: 0px;"><input type="submit" class="button-primary" name="update_NS_SNAutoPoster_settings" value="<?php _e('Update Settings', 'social-networks-auto-poster-facebook-twitter-g') ?>" /></div>
             
             </div>
         </div>
@@ -282,9 +288,16 @@ if (!class_exists("nxs_snapClassLI")) { class nxs_snapClassLI { var $ntInfo = ar
       if ( (isset($pval['apLIAPIKey']) && $pval['apLIAPISec']!='') || (isset($pval['uPass']) && $pval['uPass']!='') ) { if (!isset($options[$ii])) $options[$ii] = array();  $options[$ii]['ii'] = $ii;        
         if (isset($pval['apDoLI']))    $options[$ii]['doLI'] = $pval['apDoLI']; else $options[$ii]['doLI'] = 0;
         if (isset($pval['nName']))     $options[$ii]['nName'] = trim($pval['nName']);
+        
+        if (isset($pval['apiToUse'])) $options[$ii]['apiToUse'] = trim($pval['apiToUse']);                                
+        
+        if (isset($options[$ii]['grpID']) && isset($pval['apiToUse']) && ($pval['apiToUse'])=='nx') unset($options[$ii]['grpID']); //## Switch/Upgrade
+        
         if (isset($pval['apLIAPIKey']))$options[$ii]['liAPIKey'] = trim($pval['apLIAPIKey']);                                
-        if (isset($pval['apLIAPISec']))$options[$ii]['liAPISec'] = trim($pval['apLIAPISec']);        
-        if (isset($pval['apLIAttch'])) $options[$ii]['liAttch'] = $pval['apLIAttch']; else $options[$ii]['liAttch'] = 0;        
+        if (isset($pval['apLIAPISec']))$options[$ii]['liAPISec'] = trim($pval['apLIAPISec']);                
+        if (isset($pval['postType']))     $options[$ii]['postType'] = trim($pval['postType']);      
+        
+        if (isset($pval['apiToUse']) && $pval['apiToUse']=='li' && ($options[$ii]['postType']=='I')) $options[$ii]['postType'] = 'T';
         
         if (isset($pval['catSel'])) $options[$ii]['catSel'] = trim($pval['catSel']); else $options[$ii]['catSel'] = 0;
         if ($options[$ii]['catSel']=='1' && trim($pval['catSelEd'])!='') $options[$ii]['catSelEd'] = trim($pval['catSelEd']); else $options[$ii]['catSelEd'] = '';
@@ -311,7 +324,7 @@ if (!class_exists("nxs_snapClassLI")) { class nxs_snapClassLI { var $ntInfo = ar
       if (empty($ntOpt['imgToUse'])) $ntOpt['imgToUse'] = '';  if (empty($ntOpt['urlToUse'])) $ntOpt['urlToUse'] = '';  if (empty($ntOpt['catSel'])) $ntOpt['catSel'] = '';
       $doLI = $ntOpt['doLI'] && (is_array($pMeta) || $ntOpt['catSel']!='1');  $imgToUse = $ntOpt['imgToUse'];  $urlToUse = $ntOpt['urlToUse']; 
       $isAvailLI =  (isset($ntOpt['liOAuthVerifier']) && $ntOpt['liOAuthVerifier']!='' && $ntOpt['liAccessTokenSecret']!='' && $ntOpt['liAccessToken']!='' && $ntOpt['liAPIKey']!='') || ($ntOpt['ulName']!=='' && $ntOpt['uPass']!=='');
-      $isAttachLI = $ntOpt['liAttch']; $liMsgFormat = htmlentities($ntOpt['liMsgFormat'], ENT_COMPAT, "UTF-8"); $liMsgFormatT = htmlentities($ntOpt['liMsgFormatT'], ENT_COMPAT, "UTF-8"); 
+      $liMsgFormat = htmlentities($ntOpt['liMsgFormat'], ENT_COMPAT, "UTF-8"); $liMsgFormatT = htmlentities($ntOpt['liMsgFormatT'], ENT_COMPAT, "UTF-8"); 
       ?>  
       
 <tr><th style="text-align:left;" colspan="2">
@@ -319,13 +332,13 @@ if (!class_exists("nxs_snapClassLI")) { class nxs_snapClassLI { var $ntInfo = ar
       <?php if (!empty($ntOpt['tagsSelX'])) { ?>  <input type="hidden" class="nxs_TG" id="nxs_TG_<?php echo $ntU; ?><?php echo $ii; ?>" value="<?php echo $ntOpt['tagsSelX']; ?>" /> <?php } ?>
       <?php if ($isAvailLI) { ?><input class="nxsGrpDoChb" value="1" id="doLI<?php echo $ii; ?>" <?php if ($post->post_status == "publish") echo 'disabled="disabled"';?> type="checkbox" name="li[<?php echo $ii; ?>][doLI]" <?php if ((int)$doLI == 1) echo 'checked="checked" title="def"';  ?> /> 
       <?php if ($post->post_status == "publish") { ?> <input type="hidden" name="li[<?php echo $ii; ?>][doLI]" value="<?php echo $doLI;?>"> <?php } ?> <?php } ?>
-      <div class="nsx_iconedTitle" style="display: inline; font-size: 13px; background-image: url(<?php echo $nxs_plurl; ?>img/li16.png);">LinkedIn - <?php _e('publish to', 'nxs_snap') ?> (<i style="color: #005800;"><?php echo $ntOpt['nName']; ?></i>)</div></th><td><?php //## Only show RePost button if the post is "published"
-                    if ($post->post_status == "publish" && $isAvailLI) { ?><input alt="<?php echo $ii; ?>" style="float: right;" onmouseout="hidePopShAtt('SV');" onmouseover="showPopShAtt('SV', event);" onclick="return false;" type="button" class="button" name="rePostToLI_repostButton" id="rePostToLI_button" value="<?php _e('Repost to LinkedIn', 'nxs_snap') ?>" />
+      <div class="nsx_iconedTitle" style="display: inline; font-size: 13px; background-image: url(<?php echo $nxs_plurl; ?>img/li16.png);">LinkedIn - <?php _e('publish to', 'social-networks-auto-poster-facebook-twitter-g') ?> (<i style="color: #005800;"><?php echo $ntOpt['nName']; ?></i>)</div></th><td><?php //## Only show RePost button if the post is "published"
+                    if ($post->post_status == "publish" && $isAvailLI) { ?><input alt="<?php echo $ii; ?>" style="float: right;" onmouseout="hidePopShAtt('SV');" onmouseover="showPopShAtt('SV', event);" onclick="return false;" type="button" class="button" name="rePostToLI_repostButton" id="rePostToLI_button" value="<?php _e('Repost to LinkedIn', 'social-networks-auto-poster-facebook-twitter-g') ?>" />
                     <?php } ?>
                     
                     <?php if (is_array($pMeta) && isset($pMeta[$ii]) && is_array($pMeta[$ii]) && isset($pMeta[$ii]['pgID']) ) {  // prr($pMeta[$ii]);                       
                         ?> <span id="pstdLI<?php echo $ii; ?>" style="float: right;padding-top: 4px; padding-right: 10px;">
-                      <a style="font-size: 10px;" href="<?php if ( $pMeta[$ii]['postURL']!='')  echo $pMeta[$ii]['postURL']; elseif ($ntOpt['uPage']!='') echo $ntOpt['uPage']; else { } ?>" target="_blank"><?php $nType="LinkedIn"; printf( __( 'Posted on', 'nxs_snap' ), $nType); ?>  <?php echo (isset($pMeta[$ii]['pDate']) && $pMeta[$ii]['pDate']!='')?(" (".$pMeta[$ii]['pDate'].")"):""; ?></a>
+                      <a style="font-size: 10px;" href="<?php if ( $pMeta[$ii]['postURL']!='')  echo $pMeta[$ii]['postURL']; elseif ($ntOpt['uPage']!='') echo $ntOpt['uPage']; else { } ?>" target="_blank"><?php $nType="LinkedIn"; printf( __( 'Posted on', 'social-networks-auto-poster-facebook-twitter-g' ), $nType); ?>  <?php echo (isset($pMeta[$ii]['pDate']) && $pMeta[$ii]['pDate']!='')?(" (".$pMeta[$ii]['pDate'].")"):""; ?></a>
                     </span><?php } ?>
                     
                 </td></tr>
@@ -337,19 +350,24 @@ if (!class_exists("nxs_snapClassLI")) { class nxs_snapClassLI { var $ntInfo = ar
                 <tr id="altFormat1" style=""><th scope="row" class="nxsTHRow">
                 <input value="0"  type="hidden" name="<?php echo $nt; ?>[<?php echo $ii; ?>][rpstPostIncl]"/><input value="nxsi<?php echo $ii; ?>li" type="checkbox" name="<?php echo $nt; ?>[<?php echo $ii; ?>][rpstPostIncl]"  <?php if (!empty($ntOpt['rpstPostIncl'])) echo "checked"; ?> />
                 </th>
-                <td> <?php _e('Include in "Auto-Reposting" to this network.', 'nxs_snap') ?>               
+                <td> <?php _e('Include in "Auto-Reposting" to this network.', 'social-networks-auto-poster-facebook-twitter-g') ?>               
                 </td></tr> <?php } ?>
                 
-                <tr><th scope="row" style="text-align:right; width:150px; vertical-align:top; padding-top: 5px; padding-right:10px;">
-                <input value="0"  type="hidden" name="li[<?php echo $ii; ?>][AttachPost]"/>
-                <input value="1"  id="SNAP_AttachLI" onchange="doShowHideAltFormatX();" type="checkbox" name="li[<?php echo $ii; ?>][AttachPost]"  <?php if ((int)$isAttachLI == 1) echo "checked"; ?> /> </th><td><strong>Publish Post to LinkedIn as Attachment</strong></td> </tr>               
+                <tr><th scope="row" style="text-align:right; width:150px; vertical-align:top; padding-top: 0px; padding-right:10px;"> <?php _e('Post Type:', 'social-networks-auto-poster-facebook-twitter-g') ?> 
+                </th><td>     
+        
+        <input type="radio" name="li[<?php echo $ii; ?>][postType]" value="T" <?php if ($ntOpt['postType'] == 'T') echo 'checked="checked"'; ?> /><?php _e('Text Post', 'social-networks-auto-poster-facebook-twitter-g') ?>  - <i><?php _e('just text message', 'social-networks-auto-poster-facebook-twitter-g') ?></i><br/>       
+        <span class="nxs_li_nxapi_<?php echo $ii; ?>" style="display: <?php echo (!empty($ntOpt['apiToUse']) && $ntOpt['apiToUse'] =='nx')?"block":"none"; ?>;">
+        <input type="radio" name="li[<?php echo $ii; ?>][postType]" value="I" <?php if ($ntOpt['postType'] == 'I') echo 'checked="checked"'; ?> onchange="jQuery('#altFormatIMG<?php echo $nt.$ii;?>').show();" /> <?php _e('Post to LinkedIn as "Image post"', 'social-networks-auto-poster-facebook-twitter-g') ?> - <i><?php _e('big image with text message', 'social-networks-auto-poster-facebook-twitter-g') ?></i><br/> </span>            
+        <input type="radio" name="li[<?php echo $ii; ?>][postType]" value="A" <?php if ( !isset($ntOpt['postType']) || $ntOpt['postType'] == '' || $ntOpt['postType'] == 'A') echo 'checked="checked"'; ?> onchange="jQuery('#altFormatIMG<?php echo $nt.$ii;?>').hide();" /><?php _e('Text Post with "attached" blogpost', 'social-networks-auto-poster-facebook-twitter-g') ?>        
+     </td></tr>
                 
-                <tr id="altFormat1" style=""><th scope="row" style="vertical-align:top; padding-top: 6px; text-align:right; width:60px; padding-right:10px;"><?php _e('Message Format:', 'nxs_snap') ?></th>
+                <tr id="altFormat1" style=""><th scope="row" style="vertical-align:top; padding-top: 6px; text-align:right; width:60px; padding-right:10px;"><?php _e('Message Format:', 'social-networks-auto-poster-facebook-twitter-g') ?></th>
                 <td>                
                 <textarea cols="150" rows="1" id="li<?php echo $ii; ?>SNAPformat" name="li[<?php echo $ii; ?>][SNAPformat]"  style="width:60%;max-width: 610px;" onfocus="jQuery('#li<?php echo $ii; ?>SNAPformat').attr('rows', 4); jQuery('.nxs_FRMTHint').hide();mxs_showFrmtInfo('apLIMsgFrmt<?php echo $ii; ?>');"><?php echo $liMsgFormat; ?></textarea>
                 <?php nxs_doShowHint("apLIMsgFrmt".$ii); ?></td></tr>
                 
-                <tr id="altFormat1" style=""><th scope="row" style="vertical-align:top; padding-top: 6px; text-align:right; width:60px; padding-right:10px;"><?php _e('Title Format (Groups Only):', 'nxs_snap') ?></th>
+                <tr id="altFormat1" style=""><th scope="row" style="vertical-align:top; padding-top: 6px; text-align:right; width:60px; padding-right:10px;"><?php _e('Title Format (Groups Only):', 'social-networks-auto-poster-facebook-twitter-g') ?></th>
                 <td><input value="<?php echo $liMsgFormatT ?>" type="text" name="li[<?php echo $ii; ?>][SNAPformatT]"  style="width:60%;max-width: 610px;" onfocus="jQuery('.nxs_FRMTHint').hide();mxs_showFrmtInfo('apLIMsgFrmtT<?php echo $ii; ?>');"/><?php nxs_doShowHint("apLIMsgFrmtT".$ii, '', '58'); ?></td></tr>                
                 <?php /* ## Select Image & URL ## */ nxs_showImgToUseDlg($nt, $ii, $imgToUse); nxs_showURLToUseDlg($nt, $ii, $urlToUse); ?>
 
@@ -361,8 +379,8 @@ if (!class_exists("nxs_snapClassLI")) { class nxs_snapClassLI { var $ntInfo = ar
      if (isset($pMeta['SNAPformat'])) $optMt['liMsgFormat'] = $pMeta['SNAPformat']; if (trim($optMt['liMsgFormat'])=='') $optMt['liMsgFormat'] = ' ';     
      if (isset($pMeta['SNAPformatT'])) $optMt['liMsgFormatT'] = $pMeta['SNAPformatT']; if (trim($optMt['liMsgFormatT'])=='') $optMt['liMsgFormatT'] = ' ';
      if (isset($pMeta['imgToUse'])) $optMt['imgToUse'] = $pMeta['imgToUse']; if (isset($pMeta['urlToUse'])) $optMt['urlToUse'] = $pMeta['urlToUse']; 
-     if (isset($pMeta['timeToRun']))  $optMt['timeToRun'] = $pMeta['timeToRun'];  if (isset($pMeta['rpstPostIncl']))  $optMt['rpstPostIncl'] = $pMeta['rpstPostIncl'];    
-     if (isset($pMeta['AttachPost'])) $optMt['liAttch'] = $pMeta['AttachPost'] == 1?1:0; else { if (isset($pMeta['SNAPformat'])) $optMt['liAttch'] = 0; }
+     if (isset($pMeta['postType'])) $optMt['postType'] = $pMeta['postType'];
+     if (isset($pMeta['timeToRun']))  $optMt['timeToRun'] = $pMeta['timeToRun'];  if (isset($pMeta['rpstPostIncl']))  $optMt['rpstPostIncl'] = $pMeta['rpstPostIncl'];         
      if (isset($pMeta['doLI'])) $optMt['doLI'] = $pMeta['doLI'] == 1?1:0; else { if (isset($pMeta['SNAPformat'])) $optMt['doLI'] = 0; } 
      if (isset($pMeta['SNAPincludeLI']) && $pMeta['SNAPincludeLI'] == '1' ) $optMt['doLI'] = 1; 
      return $optMt;
@@ -397,20 +415,20 @@ if (!function_exists("nxs_doPublishToLI")) { //## Second Function to Post to LI
     }
   
     $blogTitle = htmlspecialchars_decode(get_bloginfo('name'), ENT_QUOTES); if ($blogTitle=='') $blogTitle = home_url();  $imgURL=''; // prr($options);
-    if ($postID=='0') { echo "Testing ... <br/><br/>"; $options['liMsgFormatT'] = 'Test Post from '.$blogTitle;  $urlToGo = home_url(); $options['liMsgFormat'] = 'Test Post from '.$blogTitle. " ".$urlToGo; $isAttachLI = ''; $title = $blogTitle; }
+    if ($postID=='0') { echo "Testing ... <br/><br/>"; $options['liMsgFormatT'] = 'Test Post from '.$blogTitle;  $urlToGo = home_url(); $options['liMsgFormat'] = 'Test Post from '.$blogTitle. " ".$urlToGo; $title = $blogTitle; }
       else { $post = get_post($postID); if(!$post) return;   
         $options['liMsgFormat'] = nsFormatMessage($options['liMsgFormat'], $postID, $addParams);  $options['liMsgFormatT'] = nsTrnc(nsFormatMessage($options['liMsgFormatT'], $postID, $addParams), 200); 
         //## MyURL - URLToGo code
         $options = nxs_getURL($options, $postID, $addParams); $urlToGo = $options['urlToUse'];     
-        $isAttachLI = $options['liAttch']; $title = nsTrnc($post->post_title, 200); nxs_metaMarkAsPosted($postID, $ntCd, $options['ii'], array('isPrePosted'=>'1')); 
-        
-        if ($options['liAttch']=='1') { 
+        $title = nsTrnc($post->post_title, 200); nxs_metaMarkAsPosted($postID, $ntCd, $options['ii'], array('isPrePosted'=>'1')); 
+                
+      if(empty($options['postType'])) { if ((int)$options['liAttch'] == 1 || $isNew) $options['postType'] = 'A';}        
+      if ($options['postType'] == 'A' || $options['postType'] == 'I') { 
         if (trim($options['liMsgAFrmt'])!='') { $urlDescr = nsFormatMessage($options['liMsgAFrmt'], $postID, $addParams); } else { 
             $urlDescr = trim(apply_filters('the_content', $post->post_excerpt)); if ($urlDescr=='') $urlDescr = apply_filters('the_content', $post->post_content);  
-        } if (trim($options['imgToUse'])!='') $imgURL = $options['imgToUse']; else $imgURL = nxs_getPostImage($postID, 'full');
+        } if (trim($options['imgToUse'])!='') $imgURL = $options['imgToUse']; else $imgURL = nxs_getPostImage($postID, 'full'); 
         if (preg_match("/noImg.\.png/i", $imgURL)) $imgURL = '';          
-        $urlDescr = strip_tags($urlDescr); $urlDescr = nxs_decodeEntitiesFull($urlDescr); $urlDescr = nxs_html_to_utf8($urlDescr);  $urlDescr = nsTrnc($urlDescr, 300);        
-        
+        $urlDescr = strip_tags($urlDescr); $urlDescr = nxs_decodeEntitiesFull($urlDescr); $urlDescr = nxs_html_to_utf8($urlDescr);  $urlDescr = nsTrnc($urlDescr, 300);                
       }  
     }
     $extInfo = ' | PostID: '.$postID." - ".(isset($post) && is_object($post)?$post->post_title:''); 
@@ -421,9 +439,10 @@ if (!function_exists("nxs_doPublishToLI")) { //## Second Function to Post to LI
     //## Process Results
     if (!is_array($ret) || $ret['isPosted']!='1') { //## Error 
       if ($postID=='0') prr($ret); nxs_addToLogN('E', 'Error', $logNT, '-=ERROR=- '.print_r($ret, true), $extInfo); 
-    } else {  // ## All Good - log it.
-      if ($postID=='0')  { nxs_addToLogN('S', 'Test', $logNT, 'OK - TEST Message Posted '); echo _e('OK - Message Posted, please see your '.$logNT.' Page. ', 'nxs_snap'); } 
-        else  { nxs_metaMarkAsPosted($postID, $ntCd, $options['ii'], array('isPosted'=>'1', 'postID'=>$ret['postID'], 'postURL'=>$ret['postURL'], 'pgID'=>$ret['postID'], 'pDate'=>date('Y-m-d H:i:s'))); nxs_addToLogN('S', 'Posted', $logNT, 'OK - Message Posted ', $extInfo); }
+    } else {  $extInfo .= ' | '.$ret['postID']; // ## All Good - log it.
+      if ($postID=='0')  { nxs_addToLogN('S', 'Test', $logNT, 'OK - TEST Message Posted '); echo _e('OK - Message Posted, please see your '.$logNT.' Page. ', 'social-networks-auto-poster-facebook-twitter-g'); } 
+        else  { nxs_metaMarkAsPosted($postID, $ntCd, $options['ii'], array('isPosted'=>'1', 'postID'=>$ret['postID'], 'postURL'=>$ret['postURL'], 'pgID'=>$ret['postID'], 'pDate'=>date('Y-m-d H:i:s'))); 
+        if (!empty($ret['postURL'])) $extInfo .= ' | <a href="'.$ret['postURL'].'" target="_blank">Post Link</a>'; nxs_addToLogN('S', 'Posted', $logNT, 'OK - Message Posted ', $extInfo); }
     }
     //## Return Result
     if ($ret['isPosted']=='1') return 200; else return print_r($ret, true);     

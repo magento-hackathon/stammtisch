@@ -2,7 +2,7 @@
 if ( ! defined( 'myCRED_STATS_VERSION' ) ) exit;
 
 /**
- * Stats Widget: 
+ * Stats Widget: Circulation
  * @version 1.0
  */
 if ( ! class_exists( 'myCRED_Stats_Widget_Circulation' ) ) :
@@ -127,8 +127,8 @@ if ( ! class_exists( 'myCRED_Stats_Widget_Circulation' ) ) :
 		}
 
 		/**
-		 * 
-		 * @version 1.0
+		 * Display
+		 * @version 1.0.1
 		 */
 		function widget() {
 
@@ -222,9 +222,9 @@ if ( ! class_exists( 'myCRED_Stats_Widget_Circulation' ) ) :
 			$base_url = add_query_arg( array( 'page' => $page_id ), admin_url( 'admin.php' ) );
 			foreach ( $dates as $key => $item ) {
 				$url = add_query_arg( array( 'show' => $key ), $base_url );
-				echo '<td class="cell"><a href="' . $url . '">' . $mycred->format_number( $item['gains'] ) . '</a></td>';
+				echo '<td class="cell"><a href="' . esc_url( $url ) . '">' . $mycred->format_number( $item['gains'] ) . '</a></td>';
 				$url = add_query_arg( array( 'show' => $key, 'num' => 0, 'compare' => urlencode( '<' ) ), $base_url );
-				echo '<td class="cell"><a href="' . $url . '">' . $mycred->format_number( $item['loses'] ) . '</a></td>';
+				echo '<td class="cell"><a href="' . esc_url( $url ) . '">' . $mycred->format_number( $item['loses'] ) . '</a></td>';
 			}
 
 		}

@@ -101,11 +101,11 @@ endif;
  * Returns all users who have the given rank with the option to show the rank logo and optional content.
  * @see http://mycred.me/shortcodes/mycred_users_of_rank/
  * @since 1.1
- * @version 1.1
+ * @version 1.1.1
  */
 if ( ! function_exists( 'mycred_render_users_of_rank' ) ) :
-	function mycred_render_users_of_rank( $atts, $row_template = NULL )
-	{
+	function mycred_render_users_of_rank( $atts, $row_template = NULL ) {
+
 		extract( shortcode_atts( array(
 			'rank_id' => NULL,
 			'login'   => '',
@@ -113,72 +113,80 @@ if ( ! function_exists( 'mycred_render_users_of_rank' ) ) :
 			'wrap'    => 'div',
 			'col'     => 1,
 			'nothing' => __( 'No users found with this rank', 'mycred' ),
-			'ctype'   => NULL,
+			'ctype'   => 'mycred_default',
 			'order'   => 'DESC'
 		), $atts ) );
-		
+
 		// Rank ID required
 		if ( $rank_id === NULL )
-			return '<strong>' . __( 'error', 'mycred' ) . '</strong> ' . __( 'Rank ID is required!', 'mycred' );
+			return '<strong>ERROR</strong> ' . __( 'Rank ID is required!', 'mycred' );
 
-		$mycred = mycred( ( $ctype === NULL ) ? 'mycred_default' : $ctype );
+		if ( $ctype == '' )
+			$ctype = 'mycred_default';
+
+		$mycred = mycred( $ctype );
 
 		// User is not logged in
 		if ( ! is_user_logged_in() && $login != '' )
 			return $mycred->template_tags_general( $login );
-		
-		// ID is not a post id but a rank title
-		if ( ! is_numeric( $rank_id ) )
-			$rank_id = mycred_get_rank_id_from_title( $rank_id );
 
-		if ( $ctype === NULL ) {
-			$type = get_post_meta( $rank_id, 'type', true );
-			if ( $type != '' )
-				$ctype = $type;
-		}
+		// Get rank by title
+		if ( ! is_numeric( $rank_id ) )
+			$rank = get_page_by_title( $rank_id, OBJECT, 'mycred_rank' );
+
+		// Else get rank by post ID
+		else
+			$rank = get_post( $rank_id );
 
 		$output = '';
-		$rank = get_post( $rank_id );
+
 		// Make sure rank exist
-		if ( $rank !== NULL ) {
-			if ( $row_template === NULL || empty( $row_template ) )
-				$row_template = '<p class="user-row">%user_profile_link% with %balance% %_plural%</p>';
+		if ( ! isset( $rank->ID ) )
+			return '<strong>ERROR</strong> ' . __( 'Rank not found. Please check the id and try again.', 'mycred' );
 
-			// Let others play
-			$row_template = apply_filters( 'mycred_users_of_rank', $row_template, $atts, $mycred );
+		if ( $row_template === NULL || empty( $row_template ) )
+			$row_template = '<p class="user-row">%user_profile_link% with %balance% %_plural%</p>';
 
-			// Get users of this rank if there are any
-			$users = mycred_get_users_of_rank( $rank_id, $number, $order, $ctype );
-			if ( ! empty( $users ) ) {
-				// Add support for table
-				if ( $wrap != 'table' && ! empty( $wrap ) )
-					$output .= '<' . $wrap . ' class="mycred-users-of-rank-wrapper">';
-				
-				// Loop
-				foreach ( $users as $user ) {
-					$output .= $mycred->template_tags_user( $row_template, $user['user_id'] );
-				}
-				
-				// Add support for table
-				if ( $wrap != 'table' && ! empty( $wrap ) )
-					$output .= '</' . $wrap . '>' . "\n";
-			}
-			// No users found
-			else {
-				// Add support for table
-				if ( $wrap == 'table' ) {
-					$output .= '<tr><td';
-					if ( $col > 1 ) $output .= ' colspan="' . $col . '"';
-					$output .= '>' . $nothing . '</td></tr>';
-				}
-				else {
-					if ( empty( $wrap ) ) $wrap = 'p';
-					$output .= '<' . $wrap . '>' . $nothing . '</' . $wrap . '>' . "\n";
-				}
-			}
+		// Let others play
+		$row_template = apply_filters( 'mycred_users_of_rank', $row_template, $atts, $mycred );
+
+		// Get users of this rank if there are any
+		$users = mycred_get_users_of_rank( $rank_id, $number, $order, $ctype );
+		if ( ! empty( $users ) ) {
+
+			// Add support for table
+			if ( $wrap != 'table' && ! empty( $wrap ) )
+				$output .= '<' . $wrap . ' class="mycred-users-of-rank-wrapper">';
+
+			// Loop
+			foreach ( $users as $user )
+				$output .= $mycred->template_tags_user( $row_template, $user['user_id'] );
+
+			// Add support for table
+			if ( $wrap != 'table' && ! empty( $wrap ) )
+				$output .= '</' . $wrap . '>' . "\n";
+
 		}
-		
+
+		// No users found
+		else {
+
+			// Add support for table
+			if ( $wrap == 'table' ) {
+				$output .= '<tr><td';
+				if ( $col > 1 ) $output .= ' colspan="' . $col . '"';
+				$output .= '>' . $nothing . '</td></tr>';
+			}
+
+			else {
+				if ( empty( $wrap ) ) $wrap = 'p';
+				$output .= '<' . $wrap . '>' . $nothing . '</' . $wrap . '>' . "\n";
+			}
+
+		}
+
 		return do_shortcode( $output );
+
 	}
 endif;
 

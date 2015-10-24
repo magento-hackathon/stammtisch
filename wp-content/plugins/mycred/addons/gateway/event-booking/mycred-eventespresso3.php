@@ -224,7 +224,7 @@ if ( ! class_exists( 'myCRED_Espresso_Gateway' ) ) {
 		/**
 		 * Payment Page
 		 * @since 1.2
-		 * @version 1.1
+		 * @version 1.1.1
 		 */
 		public function payment_page( $payment_data ) {
 			extract( $payment_data );
@@ -286,7 +286,7 @@ if ( ! class_exists( 'myCRED_Espresso_Gateway' ) ) {
 					<td class="amount"><?php echo $this->core->format_creds( $after_purchase ); ?></td>
 				</tr>
 			</table>
-			<p><a href="<?php echo $finalize_link; ?>" class="button button-large button-primary" style="float:right;"><?php echo $this->prefs['labels']['button']; ?></a></p>
+			<p><a href="<?php echo esc_url( $finalize_link ); ?>" class="button button-large button-primary" style="float:right;"><?php echo $this->prefs['labels']['button']; ?></a></p>
 		</div>
 <?php elseif ( $member && ! $solvent ) : ?>
 

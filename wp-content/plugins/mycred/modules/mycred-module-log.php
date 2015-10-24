@@ -428,8 +428,6 @@ if ( ! class_exists( 'myCRED_Log_Module' ) ) :
 
 	<?php do_action( 'mycred_top_log_page', $this ); ?>
 
-	<div class="clear"></div>
-
 	<?php $log->exporter( __( 'Export', 'mycred' ) ); ?>
 
 	<form method="get" action="" name="mycred-thelog-form" novalidate>
@@ -699,8 +697,6 @@ if ( ! class_exists( 'myCRED_Log_Module' ) ) :
 	<?php $log->filter_dates( admin_url( 'users.php?page=' . $_GET['page'] ) ); ?>
 
 	<?php do_action( 'mycred_top_my_log_page', $this ); ?>
-
-	<div class="clear"></div>
 
 	<?php $log->exporter( __( 'Export', 'mycred' ), true ); ?>
 

@@ -16,9 +16,9 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 		public $num_rows;
 		public $max_num_pages;
 		public $total_rows;
-		
+
 		public $results;
-		
+
 		public $headers;
 		public $core;
 
@@ -26,6 +26,7 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 		 * Construct
 		 */
 		public function __construct( $args = array(), $array = false ) {
+
 			if ( empty( $args ) ) return false;
 
 			global $wpdb;
@@ -64,7 +65,7 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 				'paged'    => $this->get_pagenum()
 			);
 			$this->args = wp_parse_args( $args, $defaults );
-			
+
 			// Difference between default and given args
 			$this->diff = array_diff_assoc( $this->args, $defaults );
 			if ( isset( $this->diff['number'] ) )
@@ -78,11 +79,12 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 				else
 					$data = get_transient( 'mycred_log_query_' . $cache_id );
 			}
+
 			if ( $data === false ) {
-				
+
 				// Type
 				$wheres[] = 'ctype = %s';
-				$prep[] = $this->args['ctype'];
+				$prep[]   = $this->args['ctype'];
 
 				// User ID
 				if ( $this->args['user_id'] !== NULL && $this->args['user_id'] != '' ) {
@@ -91,28 +93,34 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 
 					if ( $user_id !== false ) {
 						$wheres[] = 'user_id = %d';
-						$prep[] = $user_id;
+						$prep[]   = $user_id;
 					}
+
 				}
 
 				// Reference
 				if ( $this->args['ref'] !== NULL && $this->args['ref'] != '' ) {
-					$refs = explode( ',', $this->args['ref'] );
+
+					$refs      = explode( ',', $this->args['ref'] );
 					$ref_count = count( $refs );
+
 					if ( $ref_count > 1 ) {
 						$ref_count = $ref_count-1;
 						$wheres[] = 'ref IN (%s' . str_repeat( ',%s', $ref_count ) . ')';
 						foreach ( $refs as $ref )
 							$prep[] = sanitize_text_field( $ref );
 					}
+
 					else {
 						$wheres[] = 'ref = %s';
-						$prep[] = sanitize_text_field( $refs[0] );
+						$prep[]   = sanitize_text_field( $refs[0] );
 					}
+
 				}
 
 				// Reference ID
 				if ( $this->args['ref_id'] !== NULL && $this->args['ref_id'] != '' ) {
+
 					$ref_ids = explode( ',', $this->args['ref_id'] );
 					if ( count( $ref_ids ) > 1 ) {
 						$ref_id_count = count( $ref_ids )-1;
@@ -122,30 +130,37 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 					}
 					else {
 						$wheres[] = 'ref_id = %d';
-						$prep[] = (int) sanitize_text_field( $this->args['ref_id'] );
+						$prep[]   = (int) sanitize_text_field( $this->args['ref_id'] );
 					}
+
 				}
 
 				// Amount
 				if ( $this->args['amount'] !== NULL && $this->args['amount'] != '' ) {
+
 					// Advanced query
 					if ( is_array( $this->args['amount'] ) ) {
+
 						// Range
 						if ( isset( $this->args['amount']['start'] ) && isset( $this->args['amount']['end'] ) ) {
 							$wheres[] = 'creds BETWEEN ' . $format . ' AND ' . $format;
 							$prep[] = $this->core->number( sanitize_text_field( $this->args['amount']['start'] ) );
 							$prep[] = $this->core->number( sanitize_text_field( $this->args['amount']['end'] ) );
 						}
+
 						// Compare
 						elseif ( isset( $this->args['amount']['num'] ) && isset( $this->args['amount']['compare'] ) ) {
 							$compare = urldecode( $this->args['amount']['compare'] );
 							$wheres[] = 'creds ' . trim( $compare ) . ' ' . $format;
 							$prep[] = $this->core->number( sanitize_text_field( $this->args['amount']['num'] ) );
 						}
+
 					}
+
 					// Specific amount(s)
 					else {
-						$amounts = explode( ',', $this->args['amount'] );
+
+						$amounts      = explode( ',', $this->args['amount'] );
 						$amount_count = count( $amounts );
 						if ( $amount_count > 1 ) {
 							$amount_count = $amount_count-1;
@@ -153,97 +168,119 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 							foreach ( $amount_count as $amount )
 								$prep[] = $this->core->number( sanitize_text_field( $amount ) );
 						}
+
 						else {
 							$wheres[] = 'creds = ' . $format;
-							$prep[] = $this->core->number( sanitize_text_field( $amounts[0] ) );
+							$prep[]   = $this->core->number( sanitize_text_field( $amounts[0] ) );
 						}
+
 					}
+
 				}
 
 				// Time
 				if ( $this->args['time'] !== NULL && $this->args['time'] != '' ) {
-					$now = date_i18n( 'U' );
-					$today = strtotime( date_i18n( 'Y/m/d' ) . ' midnight' );
+
+					$now         = date_i18n( 'U' );
+					$today       = strtotime( date_i18n( 'Y/m/d' ) . ' midnight' );
 					$todays_date = date_i18n( 'd' );
 
 					// Show todays entries
 					if ( $this->args['time'] == 'today' ) {
 						$wheres[] = "time BETWEEN $today AND $now";
 					}
+
 					// Show yesterdays entries
 					elseif ( $this->args['time'] == 'yesterday' ) {
 						$yesterday = strtotime( '-1 day midnight' );
 						$wheres[] = "time BETWEEN $yesterday AND $today";
 					}
+
 					// Show this weeks entries
 					elseif ( $this->args['time'] == 'thisweek' ) {
+
 						$weekday = date_i18n( 'w' );
 						// New week started today so show only todays
 						if ( get_option( 'start_of_week' ) == $weekday ) {
 							$wheres[] = "time BETWEEN $today AND $now";
 						}
+
 						// Show rest of this week
 						else {
 							$week_start = strtotime( '-' . ( $weekday+1 ) . ' days midnight' );
-							$wheres[] = "time BETWEEN $week_start AND $now";
+							$wheres[]   = "time BETWEEN $week_start AND $now";
 						}
+
 					}
+
 					// Show this months entries
 					elseif ( $this->args['time'] == 'thismonth' ) {
 						$start_of_month = strtotime( date_i18n( 'Y/m/01' ) . ' midnight' );
-						$wheres[] = "time BETWEEN $start_of_month AND $now";
+						$wheres[]       = "time BETWEEN $start_of_month AND $now";
 					}
+
 					else {
+
 						$times = explode( ',', $this->args['time'] );
 						if ( count( $times ) == 2 ) {
-							$from = sanitize_key( $times[0] );
-							$to = sanitize_key( $times[1] );
+							$from     = sanitize_key( $times[0] );
+							$to       = sanitize_key( $times[1] );
 							$wheres[] = "time BETWEEN $from AND $to";
 						}
+
 					}
+
 				}
 
 				// Entry Search
 				if ( $this->args['s'] !== NULL && $this->args['s'] != '' ) {
+
 					$search_query = sanitize_text_field( $this->args['s'] );
 
 					if ( is_int( $search_query ) )
 						$search_query = (string) $search_query;
 
 					$wheres[] = "entry LIKE %s";
-					$prep[] = "%$search_query%";
+					$prep[]   = "%$search_query%";
+
 				}
 
 				// Data
 				if ( $this->args['data'] !== NULL && $this->args['data'] != '' ) {
+
 					$data_query = sanitize_text_field( $this->args['data'] );
 
 					if ( is_int( $data_query ) )
 						$data_query = (string) $data_query;
 
 					$wheres[] = "data LIKE %s";
-					$prep[] = $data_query;
+					$prep[]   = $data_query;
+
 				}
 
 				// Order by
 				if ( $this->args['orderby'] != '' ) {
+
 					// Make sure $sortby is valid
 					$sortbys = array( 'id', 'ref', 'ref_id', 'user_id', 'creds', 'ctype', 'entry', 'data', 'time' );
 					$allowed = apply_filters( 'mycred_allowed_sortby', $sortbys );
 					if ( in_array( $this->args['orderby'], $allowed ) ) {
 						$sortby = "ORDER BY " . $this->args['orderby'] . " " . $this->args['order'];
 					}
+
 				}
 
 				// Number of results
 				$number = $this->args['number'];
 				if ( $number < -1 )
 					$number = abs( $number );
+
 				elseif ( $number == 0 || $number == -1 )
 					$number = NULL;
 
 				// Limits
 				if ( $number !== NULL ) {
+
 					$page = 1;
 					if ( $this->args['paged'] !== NULL ) {
 						$page = absint( $this->args['paged'] );
@@ -254,6 +291,7 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 					if ( $this->args['offset'] == '' ) {
 						$pgstrt = ($page - 1) * $number . ', ';
 					}
+
 					else {
 						$offset = absint( $this->args['offset'] );
 						$pgstrt = $offset . ', ';
@@ -268,9 +306,10 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 				// Prep return
 				if ( $this->args['ids'] === true )
 					$select = 'id';
+
 				else
 					$select = '*';
-				
+
 				$found_rows = '';
 				if ( $limits != '' )
 					$found_rows = 'SQL_CALC_FOUND_ROWS';
@@ -287,10 +326,9 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 
 				// Run
 				$this->request = $wpdb->prepare( "SELECT {$found_rows} {$select} FROM {$this->core->log_table} {$where} {$sortby} {$limits}", $prep );
-				$this->prep = $prep;
-				
+				$this->prep    = $prep;
 				$this->results = $wpdb->get_results( $this->request, $array ? ARRAY_A : OBJECT );
-				
+
 				if ( $limits != '' )
 					$this->num_rows = $wpdb->get_var( 'SELECT FOUND_ROWS()' );
 				else
@@ -305,20 +343,24 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 					else
 						set_transient( 'mycred_log_query_' . $cache_id, $this->results, DAY_IN_SECONDS * 1 );
 				}
-				
+
 				$this->total_rows = $wpdb->get_var( "SELECT COUNT( * ) FROM {$this->core->log_table}" );
+
 			}
 
 			// Return the transient
 			else {
+
 				$this->request = 'transient';
 				$this->results = $data;
 				$this->prep = '';
-				
+
 				$this->num_rows = count( $data );
+
 			}
 
 			$this->headers = $this->table_headers();
+
 		}
 
 		/**
@@ -333,12 +375,14 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 
 				$user = get_user_by( 'login', $string );
 				if ( ! isset( $user->ID ) ) {
+
 					$user = get_user_by( 'email', $string );
 					if ( ! isset( $user->ID ) ) {
 						$user = get_user_by( 'slug', $string );
 						if ( ! isset( $user->ID ) )
 							return false;
 					}
+
 				}
 				return absint( $user->ID );
 
@@ -355,8 +399,10 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 		 * @version 1.0
 		 */
 		public function have_entries() {
+
 			if ( ! empty( $this->results ) ) return true;
 			return false;
+
 		}
 
 		/**
@@ -365,6 +411,7 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 		 * @version 1.1
 		 */
 		public function table_nav( $location = 'top', $is_profile = false ) {
+
 			if ( $location == 'top' ) {
 
 				$this->filter_options( $is_profile );
@@ -376,6 +423,7 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 				$this->navigation( $location );
 
 			}
+
 		}
 
 		/**
@@ -383,13 +431,15 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 		 * @since 0.1
 		 * @version 1.1
 		 */
-		public function navigation( $location = 'top', $id = '' ) { ?>
+		public function navigation( $location = 'top', $id = '' ) {
 
+?>
 <div class="tablenav-pages<?php if ( $this->max_num_pages == 1 ) echo ' one-page'; ?>">
 	<?php $this->pagination( $location, $id ); ?>
 
 </div>
 <?php
+
 		}
 
 		/**
@@ -398,8 +448,9 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 		 * @version 1.0
 		 */
 		public function get_pagenum() {
+
 			global $paged;
-			
+
 			if ( $paged > 0 )
 				$pagenum = absint( $paged );
 
@@ -409,6 +460,7 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 			else return 1;
 
 			return max( 1, $pagenum );
+
 		}
 
 		/**
@@ -417,12 +469,15 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 		 * @version 1.0.2
 		 */
 		public function pagination( $location = 'top', $id = '' ) {
-			$output = '';
+
+			$output      = '';
 			$total_pages = $this->max_num_pages;
-			$current = $this->get_pagenum();
+			$current     = $this->get_pagenum();
 			$current_url = set_url_scheme( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . $id );
+
 			if ( ! is_admin() )
 				$current_url = str_replace( '/page/' . $current . '/', '/', $current_url );
+
 			$current_url = remove_query_arg( array( 'hotkeys_highlight_last', 'hotkeys_highlight_first' ), $current_url );
 
 			if ( $this->have_entries() ) {
@@ -436,6 +491,7 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 			$disable_first = $disable_last = '';
 			if ( $current == 1 )
 				$disable_first = ' disabled';
+
 			if ( $current == $total_pages )
 				$disable_last = ' disabled';
 
@@ -455,6 +511,7 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 
 			if ( 'bottom' == $location )
 				$html_current_page = $current;
+
 			else
 				$html_current_page = sprintf( '<input class="current-page" title="%s" type="text" name="paged" value="%s" size="%d" />',
 					esc_attr__( 'Current page', 'mycred' ),
@@ -483,10 +540,12 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 
 			if ( $total_pages )
 				$page_class = $total_pages < 2 ? ' one-page' : '';
+
 			else
 				$page_class = ' no-pages';
 
 			echo '<div class="tablenav-pages' . $page_class . '">' . $output . '</div>';
+
 		}
 
 		/**
@@ -496,6 +555,7 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 		 * @version 1.1
 		 */
 		public function get_refs( $req = array() ) {
+
 			$refs = mycred_get_used_references( $this->args['ctype'] );
 
 			foreach ( $refs as $i => $ref ) {
@@ -505,6 +565,7 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 			$refs = array_values( $refs );
 
 			return apply_filters( 'mycred_log_get_refs', $refs );
+
 		}
 
 		/**
@@ -514,9 +575,11 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 		 * @version 1.0
 		 */
 		protected function get_users() {
+
 			$users = wp_cache_get( 'mycred_users' );
 
 			if ( false === $users ) {
+
 				$users = array();
 				$blog_users = get_users( array( 'orderby' => 'display_name' ) );
 				foreach ( $blog_users as $user ) {
@@ -524,9 +587,11 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 						$users[ $user->ID ] = $user->display_name;
 				}
 				wp_cache_set( 'mycred_users', $users );
+
 			}
 
 			return apply_filters( 'mycred_log_get_users', $users );
+
 		}
 
 		/**
@@ -535,41 +600,52 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 		 * @version 1.3
 		 */
 		public function filter_options( $is_profile = false, $refs = array() ) {
+
 			echo '<div class="alignleft actions">';
 			$show = false;
 
 			// Filter by reference
 			$references = $this->get_refs( $refs );
 			if ( ! empty( $references ) ) {
+
 				echo '<select name="ref" id="myCRED-reference-filter"><option value="">' . __( 'Show all references', 'mycred' ) . '</option>';
 				foreach ( $references as $ref ) {
+
 					$label = str_replace( array( '_', '-' ), ' ', $ref );
 					echo '<option value="' . $ref . '"';
 					if ( isset( $_GET['ref'] ) && $_GET['ref'] == $ref ) echo ' selected="selected"';
 					echo '>' . ucwords( $label ) . '</option>';
+
 				}
 				echo '</select>';
 				$show = true;
+
 			}
 
 			// Filter by user
 			if ( $this->core->can_edit_creds() && ! $is_profile && $this->num_rows > 0 ) {
+
 				echo '<input type="text" class="form-control" name="user" id="myCRED-user-filter" size="32" placeholder="' . __( 'User ID, Username, Email or Nicename', 'mycred' ) . '" value="' . ( ( isset( $_GET['user'] ) ) ? $_GET['user'] : '' ) . '" /> ';
 				$show = true;
+
 			}
 
 			// Filter Order
 			if ( $this->num_rows > 0 ) {
+
 				echo '<select name="order" id="myCRED-order-filter"><option value="">' . __( 'Show in order', 'mycred' ) . '</option>';
 				$options = array( 'ASC' => __( 'Ascending', 'mycred' ), 'DESC' => __( 'Descending', 'mycred' ) );
 				foreach ( $options as $value => $label ) {
+
 					echo '<option value="' . $value . '"';
 					if ( ! isset( $_GET['order'] ) && $value == 'DESC' ) echo ' selected="selected"';
 					elseif ( isset( $_GET['order'] ) && $_GET['order'] == $value ) echo ' selected="selected"';
 					echo '>' . $label . '</option>';
+
 				}
 				echo '</select>';
 				$show = true;
+
 			}
 
 			// Let others play
@@ -579,18 +655,20 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 			}
 
 			if ( $show === true )
-				echo '<input type="submit" class="btn btn-default button button-secondary button-large" value="' . __( 'Filter', 'mycred' ) . '" />';
+				echo '<input type="submit" class="btn btn-default button button-secondary" value="' . __( 'Filter', 'mycred' ) . '" />';
 
 			echo '</div>';
+
 		}
 
 		/**
 		 * Exporter
 		 * Displays all available export options.
 		 * @since 0.1
-		 * @version 1.0
+		 * @version 1.0.1
 		 */
 		public function exporter( $title = '', $is_profile = false ) {
+
 			// Must be logged in
 			if ( ! is_user_logged_in() ) return;
 
@@ -606,22 +684,25 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 			// A difference in the default aguments should show us "search results"
 			if ( empty( $this->diff ) || ( ! empty( $this->diff ) && $this->max_num_pages < 2 ) )
 				unset( $exports['search'] );
-			
+
 			// Entire log export is not available when viewing our own history
 			if ( $is_profile )
-				unset( $exports['all'] ); ?>
+				unset( $exports['all'] );
 
+?>
 <div style="display:none;" class="clear" id="export-log-history">
-	<?php	if ( ! empty( $title ) ) : ?><h3 class="group-title"><?php echo $title; ?></h3><?php endif; ?>
-	<form action="<?php echo add_query_arg( array( 'mycred-export' => 'do' ) ); ?>" method="post">
+	<?php if ( ! empty( $title ) ) : ?><h3 class="group-title"><?php echo $title; ?></h3><?php endif; ?>
+	<form action="<?php echo esc_url( add_query_arg( array( 'mycred-export' => 'do' ) ) ); ?>" method="post">
 		<input type="hidden" name="token" value="<?php echo wp_create_nonce( 'mycred-run-log-export' ); ?>" />
 <?php
+
 			if ( ! empty( $exports ) ) {
 
 				foreach ( (array) $this->args as $arg_key => $arg_value )
 					echo '<input type="hidden" name="' . $arg_key . '" value="' . $arg_value . '" />';
 
 				foreach ( (array) $exports as $id => $data ) {
+
 					// Label
 					if ( $is_profile )
 						$label = $data['my_label'];
@@ -629,15 +710,22 @@ if ( ! class_exists( 'myCRED_Query_Log' ) ) :
 						$label = $data['label'];
 
 					echo '<input type="submit" class="' . $data['class'] . '" name="action" value="' . $label . '" /> ';
+
 				}
+
 ?>
 	</form>
 	<p><span class="description"><?php _e( 'Log entries are exported to a CSV file and depending on the number of entries selected, the process may take a few seconds.', 'mycred' ); ?></span></p>
 <?php
+
 			}
+
 			else {
+
 				echo '<p>' . __( 'No export options available.', 'mycred' ) . '</p>';
+
 			}
+
 ?>
 </div>
 <script type="text/javascript">
@@ -648,6 +736,7 @@ jQuery(function($) {
 });
 </script>
 <?php
+
 		}
 
 		/**
@@ -659,6 +748,7 @@ jQuery(function($) {
 		 * @version 1.1
 		 */
 		public function table_headers() {
+
 			global $mycred_types;
 
 			return apply_filters( 'mycred_log_column_headers', array(
@@ -667,6 +757,7 @@ jQuery(function($) {
 				'column-creds'    => $this->core->plural(),
 				'column-entry'    => __( 'Entry', 'mycred' )
 			), $this );
+
 		}
 
 		/**
@@ -675,7 +766,9 @@ jQuery(function($) {
 		 * @version 1.0
 		 */
 		public function display() {
+
 			echo $this->get_display();
+
 		}
 
 		/**
@@ -686,6 +779,7 @@ jQuery(function($) {
 		 * @version 1.0
 		 */
 		public function get_display() {
+
 			$output = '
 <table class="table mycred-table widefat log-entries table-striped" cellspacing="0">
 	<thead>
@@ -713,8 +807,9 @@ jQuery(function($) {
 			// Loop
 			if ( $this->have_entries() ) {
 				$alt = 0;
-				
+
 				foreach ( $this->results as $log_entry ) {
+
 					$row_class = apply_filters( 'mycred_log_row_classes', array( 'myCRED-log-row' ), $log_entry );
 
 					$alt = $alt+1;
@@ -724,11 +819,15 @@ jQuery(function($) {
 					$output .= '<tr class="' . implode( ' ', $row_class ) . '">';
 					$output .= $this->get_the_entry( $log_entry );
 					$output .= '</tr>';
+
 				}
+
 			}
 			// No log entry
 			else {
+
 				$output .= '<tr><td colspan="' . count( $this->headers ) . '" class="no-entries">' . $this->get_no_entries() . '</td></tr>';
+
 			}
 
 			$output .= '
@@ -736,6 +835,7 @@ jQuery(function($) {
 </table>' . "\n";
 
 			return $output;
+
 		}
 
 		/**
@@ -744,7 +844,9 @@ jQuery(function($) {
 		 * @version 1.1
 		 */
 		public function the_entry( $log_entry, $wrap = 'td' ) {
+
 			echo $this->get_the_entry( $log_entry, $wrap );
+
 		}
 
 		/**
@@ -755,12 +857,15 @@ jQuery(function($) {
 		 * @version 1.3
 		 */
 		public function get_the_entry( $log_entry, $wrap = 'td' ) {
+
 			$date_format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
-			$entry_data = '';
+			$entry_data  = '';
 
 			// Run though columns
 			foreach ( $this->headers as $column_id => $column_name ) {
+
 				switch ( $column_id ) {
+
 					// Username Column
 					case 'column-username' :
 
@@ -769,16 +874,18 @@ jQuery(function($) {
 							$content = '<span>' . __( 'User Missing', 'mycred' ) . ' (ID: ' . $log_entry->user_id . ')</span>';
 						else
 							$content = '<span>' . $user->display_name . '</span>';
-						
+
 						$content = apply_filters( 'mycred_log_username', $content, $log_entry->user_id, $log_entry );
 
 					break;
+
 					// Date & Time Column
 					case 'column-time' :
 
 						$content = $time = apply_filters( 'mycred_log_date', date_i18n( $date_format, $log_entry->time ), $log_entry->time, $log_entry );
 
 					break;
+
 					// Amount Column
 					case 'column-creds' :
 
@@ -786,6 +893,7 @@ jQuery(function($) {
 						$content = apply_filters( 'mycred_log_creds', $content, $log_entry->creds, $log_entry );
 
 					break;
+
 					// Log Entry Column
 					case 'column-entry' :
 
@@ -794,16 +902,22 @@ jQuery(function($) {
 						$content = apply_filters( 'mycred_log_entry', $content, $log_entry->entry, $log_entry );
 
 					break;
+
 					// Let others play
 					default :
-					
+
 						$content = apply_filters( 'mycred_log_' . $column_id, '', $log_entry );
-					
+
 					break;
+
 				}
+
 				$entry_data .= '<' . $wrap . ' class="' . $column_id . '">' . $content . '</' . $wrap . '>';
+
 			}
+
 			return $entry_data;
+
 		}
 
 		/**
@@ -812,6 +926,7 @@ jQuery(function($) {
 		 * @version 1.0
 		 */
 		public function mobile_support() {
+
 			echo '<style type="text/css">' . apply_filters( 'mycred_log_mobile_support', '
 @media all and (max-width: 480px) {
 	.column-time, .column-creds { display: none; }
@@ -819,6 +934,7 @@ jQuery(function($) {
 	.mycred-mobile-log div { float: right; font-weight: bold; }
 }
 ' ) . '</style>';
+
 		}
 
 		/**
@@ -827,7 +943,9 @@ jQuery(function($) {
 		 * @version 1.0
 		 */
 		public function no_entries() {
+
 			echo $this->get_no_entries();
+
 		}
 
 		/**
@@ -836,26 +954,31 @@ jQuery(function($) {
 		 * @version 1.0
 		 */
 		public function get_no_entries() {
+
 			return __( 'No log entries found', 'mycred' );
+
 		}
 
 		/**
 		 * Log Search
 		 * @since 0.1
-		 * @version 1.0.1
+		 * @version 1.0.2
 		 */
 		public function search() {
+
 			if ( isset( $_GET['s'] ) && $_GET['s'] != '' )
 				$serarch_string = $_GET['s'];
 			else
-				$serarch_string = ''; ?>
+				$serarch_string = '';
 
+?>
 			<p class="search-box">
 				<label class="screen-reader-text" for=""><?php _e( 'Search Log', 'mycred' ); ?>:</label>
-				<input type="search" name="s" value="<?php echo $serarch_string; ?>" placeholder="<?php _e( 'search log entries', 'mycred' ); ?>" />
+				<input type="search" name="s" value="<?php echo esc_url( $serarch_string ); ?>" placeholder="<?php _e( 'search log entries', 'mycred' ); ?>" />
 				<input type="submit" name="mycred-search-log" id="search-submit" class="button button-medium button-secondary" value="<?php _e( 'Search Log', 'mycred' ); ?>" />
 			</p>
 <?php
+
 		}
 
 		/**
@@ -864,6 +987,7 @@ jQuery(function($) {
 		 * @version 1.0
 		 */
 		public function filter_dates( $url = '' ) {
+
 			$date_sorting = apply_filters( 'mycred_sort_by_time', array(
 				''          => __( 'All', 'mycred' ),
 				'today'     => __( 'Today', 'mycred' ),
@@ -873,31 +997,41 @@ jQuery(function($) {
 			) );
 
 			if ( ! empty( $date_sorting ) ) {
+
 				$total = count( $date_sorting );
 				$count = 0;
+
 				echo '<ul class="subsubsub">';
+
 				foreach ( $date_sorting as $sorting_id => $sorting_name ) {
+
 					$count = $count+1;
+
 					echo '<li class="' . $sorting_id . '"><a href="';
 
 					// Build Query Args
 					$url_args = array();
 					if ( isset( $_GET['user_id'] ) && $_GET['user_id'] != '' )
 						$url_args['user_id'] = $_GET['user_id'];
+
 					if ( isset( $_GET['ref'] ) && $_GET['ref'] != '' )
 						$url_args['ref'] = $_GET['ref'];
+
 					if ( isset( $_GET['order'] ) && $_GET['order'] != '' )
 						$url_args['order'] = $_GET['order'];
+
 					if ( isset( $_GET['s'] ) && $_GET['s'] != '' )
 						$url_args['s'] = $_GET['s'];
+
 					if ( $sorting_id != '' )
 						$url_args['show'] = $sorting_id;
 
 					// Build URL
 					if ( ! empty( $url_args ) )
-						echo add_query_arg( $url_args, $url );
+						echo esc_url( add_query_arg( $url_args, $url ) );
+
 					else
-						echo $url;
+						echo esc_url( $url );
 
 					echo '"';
 
@@ -907,28 +1041,32 @@ jQuery(function($) {
 					echo '>' . $sorting_name . '</a>';
 					if ( $count != $total ) echo ' | ';
 					echo '</li>';
+
 				}
 				echo '</ul>';
+
 			}
+
 		}
-		
+
 		/**
 		 * Reset Query
 		 * @since 1.3
 		 * @version 1.0
 		 */
 		public function reset_query() {
-			$this->args = NULL;
-			$this->request = NULL;
-			$this->prep = NULL;
-			$this->num_rows = NULL;
+
+			$this->args          = NULL;
+			$this->request       = NULL;
+			$this->prep          = NULL;
+			$this->num_rows      = NULL;
 			$this->max_num_pages = NULL;
-			$this->total_rows = NULL;
-		
-			$this->results = NULL;
-		
-			$this->headers = NULL;
+			$this->total_rows    = NULL;
+			$this->results       = NULL;
+			$this->headers       = NULL;
+
 		}
+
 	}
 endif;
 ?>

@@ -1,10 +1,12 @@
 /**
  * myCRED Points for Link Clicks jQuery Scripts
  * @since 0.1
- * @version 1.1
+ * @version 1.2
  */
 jQuery(function($) {
+
 	var mycred_send = function( button, label ) {
+
 		$.ajax({
 			type : "POST",
 			data : {
@@ -30,12 +32,13 @@ jQuery(function($) {
 					button.attr( 'value', myCREDsend.done );
 					setTimeout( function(){
 						button.attr( 'value', label );
-						button.removeAttr( 'disabled' ); }, 2000 );
+						button.removeAttr( 'disabled' );
+					}, 2000 );
 				}
 				// Transfer complete but now account has reached zero
 				else if ( data == 'zero' ) {
 					// Loop though each button disable and hide
-					$('.mycred-send-points-button').each(function(){
+					$( 'button.mycred-send-points-button' ).each(function(){
 						$(this).attr( 'disabled', 'disabled' );
 						$(this).hide();
 					});
@@ -43,7 +46,7 @@ jQuery(function($) {
 				// Transfer complete but this amount can not be sent again
 				else if ( data == 'minus' ) {
 					// Loop though each button
-					$('.mycred-send-points-button').each(function(){
+					$( 'button.mycred-send-points-button' ).each(function(){
 						// If amount is larger or equal to this buttons amount disable and hide
 						if ( $(this).attr( 'data-amount' ) && $(this).attr( 'data-amount' ) >= button.attr( 'data-amount' ) ) {
 							$(this).attr( 'disabled', 'disabled' );
@@ -53,9 +56,13 @@ jQuery(function($) {
 				}
 			}
 		});
+
 	};
 	
-	$('.mycred-send-points-button').click(function(){
+	$( 'button.mycred-send-points-button' ).click(function(){
+
 		mycred_send( $(this), $(this).attr( 'value' ) );
+
 	});
+
 });

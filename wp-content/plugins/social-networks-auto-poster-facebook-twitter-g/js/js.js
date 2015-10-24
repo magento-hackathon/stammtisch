@@ -7,7 +7,7 @@ jQuery(document).ready(function() {
   //jQuery( "input[onchange^='nxs_doShowWarning']" ).prop("indeterminate", true).css( "-webkit-appearance", "checkbox" );  
   //jQuery( "input[onchange^='nxs_doShowWarning']" ).prop("indeterminate", true).css("background", "#D0D0D0").css("border-color", "#999");    
   //## Submit Serialized Form - avoid Max.Vars limit.
-  jQuery('#nsStFormMisc').submit(function() { var dataA = jQuery('#nsStForm').serialize(); jQuery('#nxsMainFromElementAccts').val(dataA); });
+  jQuery('#nsStFormMisc').submit(function() { var dataA = jQuery('#nsStForm').serialize(); jQuery('#nxsMainFromElementAccts').val(dataA); jQuery('#_wpnonce').val(jQuery('input#nxsSsPageWPN_wpnonce').val()); });
   jQuery('#nsStForm').submit(function() { jQuery('#nsStFormMisc').submit(); return false; });  
   var nxs_isPrevirew = false;   
   jQuery('#post-preview').click(function(event) { nxs_isPrevirew = true; });  
@@ -15,11 +15,13 @@ jQuery(document).ready(function() {
       var nxsmf = jQuery('#nxs_tempForm').serialize();  jQuery( "#NXS_MetaFieldsIN" ).remove(); jQuery('#nxs_snapPostOptions').val(nxsmf); //alert(nxsmf);  alert(jQuery('#nxs_snapPostOptions').val()); return false; 
   });  
   
-  
+  jQuery('.nxs_postEditCtrl').on("change", function(e) { var psst = jQuery('#original_post_status').val(); if (psst=='auto-draft') return; var pid = jQuery('#post_ID').val();  var curr = jQuery(e.target); 
+    jQuery.post(ajaxurl,{action: 'nxs_snap_aj',"nxsact":"svEdFlds", cname: curr.attr('name'), cval: curr.val(), pid: pid,  nxs_mqTest:"'", _wpnonce: jQuery('#nxsSsPageWPN_wpnonce').val()}, function(j){  
+         console.log(j);          
+    }, "html")
+  });
   
 });
-
-
 
 (function($) {
   $(function() {

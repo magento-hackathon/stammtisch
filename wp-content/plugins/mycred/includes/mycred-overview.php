@@ -5,7 +5,7 @@ if ( ! defined( 'myCRED_VERSION' ) ) exit;
  * Dashboard Widget: Overview
  * @see https://codex.wordpress.org/Example_Dashboard_Widget
  * @since 1.3.3
- * @version 1.2.2
+ * @version 1.2.3
  */
 add_action( 'wp_dashboard_setup', array( 'myCRED_Dashboard_Widget_Overview', 'init' ) );
 if ( ! class_exists( 'myCRED_Dashboard_Widget_Overview' ) ) {
@@ -78,10 +78,10 @@ div.overview-module-wrap div.mycred-type .overview .section strong { padding: 0 
 		<div class="module-title"><div class="type-icon"></div><?php echo $mycred->plural(); ?><a href="<?php echo $url; ?>" title="<?php _e( 'Total amount in circulation', 'mycred' ); ?>"><?php echo $mycred->format_creds( $total ); ?></a></div>
 		<div class="overview clear">
 			<div class="section border" style="width: 50%;">
-				<p><strong style="color:green;"><?php _e( 'Awarded', 'mycred' ); ?>:</strong> <a href="<?php echo $gain_url; ?>"><?php echo $mycred->format_creds( $gained ); ?></a></p>
+				<p><strong style="color:green;"><?php _e( 'Awarded', 'mycred' ); ?>:</strong> <a href="<?php echo esc_url( $gain_url ); ?>"><?php echo $mycred->format_creds( $gained ); ?></a></p>
 			</div>
 			<div class="section border" style="width: 50%; margin-left: -1px;">
-				<p><strong style="color:red;"><?php _e( 'Deducted', 'mycred' ); ?>:</strong> <a href="<?php echo $loose_url; ?>"><?php echo $mycred->format_creds( $lost ); ?></a></p>
+				<p><strong style="color:red;"><?php _e( 'Deducted', 'mycred' ); ?>:</strong> <a href="<?php echo esc_url( $loose_url ); ?>"><?php echo $mycred->format_creds( $lost ); ?></a></p>
 			</div>
 		</div>
 		<div class="overview clear">
