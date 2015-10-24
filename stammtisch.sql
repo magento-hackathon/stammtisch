@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Erstellungszeit: 24. Okt 2015 um 13:43
+-- Erstellungszeit: 24. Okt 2015 um 17:52
 -- Server Version: 5.5.37
 -- PHP-Version: 5.4.45-1~dotdeb+7.1
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Tabellenstruktur für Tabelle `wp_bp_activity`
 --
 
+DROP TABLE IF EXISTS `wp_bp_activity`;
 CREATE TABLE IF NOT EXISTS `wp_bp_activity` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
@@ -52,14 +53,14 @@ CREATE TABLE IF NOT EXISTS `wp_bp_activity` (
   KEY `mptt_right` (`mptt_right`),
   KEY `hide_sitewide` (`hide_sitewide`),
   KEY `is_spam` (`is_spam`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=11 ;
 
 --
 -- Daten für Tabelle `wp_bp_activity`
 --
 
 INSERT INTO `wp_bp_activity` (`id`, `user_id`, `component`, `type`, `action`, `content`, `primary_link`, `item_id`, `secondary_item_id`, `date_recorded`, `hide_sitewide`, `mptt_left`, `mptt_right`, `is_spam`) VALUES
-(1, 1, 'members', 'last_activity', '', '', '', 0, NULL, '2015-10-24 11:36:17', 0, 0, 0, 0),
+(1, 1, 'members', 'last_activity', '', '', '', 0, NULL, '2015-10-24 12:00:14', 0, 0, 0, 0),
 (2, 1, 'events-manager', 'new_event', '<a href=''http://stammtisch.localhost/members/admin/''>admin</a> hat die Veranstaltung <a href="http://stammtisch.localhost/events/24-magento-stammtisch-in-hamburg-24-juni-19-uhr/" title="24. Magento-Stammtisch in Hamburg - 24. Juni - 19 Uhr">24. Magento-Stammtisch in Hamburg - 24. Juni - 19 Uhr</a> hinzugefügt', '', 'http://stammtisch.localhost/events/24-magento-stammtisch-in-hamburg-24-juni-19-uhr/', 2, 0, '2015-05-09 13:03:24', 0, 0, 0, 0),
 (3, 1, 'events-manager', 'new_event', '<a href=''http://stammtisch.localhost/members/admin/''>admin</a> hat die Veranstaltung <a href="http://stammtisch.localhost/?event=99-stammtisch-hamburg" title="99. Stammtisch Hamburg">99. Stammtisch Hamburg</a> hinzugefügt', '', 'http://stammtisch.localhost/?event=99-stammtisch-hamburg', 3, 0, '2015-05-09 13:33:14', 0, 0, 0, 0),
 (4, 1, 'events-manager', 'new_event', '<a href=''http://stammtisch.localhost/members/admin/''>admin</a> hat die Veranstaltung <a href="http://stammtisch.localhost/?event=15-magento-stammtisch-in-zuerich" title="15. Magento-Stammtisch in Zürich">15. Magento-Stammtisch in Zürich</a> hinzugefügt', '', 'http://stammtisch.localhost/?event=15-magento-stammtisch-in-zuerich', 4, 0, '2015-05-09 14:01:47', 0, 0, 0, 0),
@@ -67,7 +68,8 @@ INSERT INTO `wp_bp_activity` (`id`, `user_id`, `component`, `type`, `action`, `c
 (6, 1, 'events-manager', 'new_event', '<a href=''http://stammtisch.localhost/members/admin/''>admin</a> hat die Veranstaltung <a href="http://stammtisch.localhost/?event=7-magento-stammtisch-in-paderborn" title="7. Magento Stammtisch in Paderborn">7. Magento Stammtisch in Paderborn</a> hinzugefügt', '', 'http://stammtisch.localhost/?event=7-magento-stammtisch-in-paderborn', 6, 0, '2015-05-09 14:21:39', 0, 0, 0, 0),
 (7, 1, 'events-manager', 'new_event', '<a href=''http://stammtisch.localhost/members/admin/''>admin</a> hat die Veranstaltung <a href="http://stammtisch.localhost/?event=18-magento-stammtisch-in-aachen" title="18. Magento-Stammtisch in Aachen">18. Magento-Stammtisch in Aachen</a> hinzugefügt', '', 'http://stammtisch.localhost/?event=18-magento-stammtisch-in-aachen', 7, 0, '2015-05-09 14:28:26', 0, 0, 0, 0),
 (8, 1, 'events-manager', 'new_event', '<a href=''http://stammtisch.localhost/members/admin/''>admin</a> hat die Veranstaltung <a href="http://stammtisch.localhost/?event=13-magento-stammtisch-in-wien" title="13. Magento-Stammtisch in Wien">13. Magento-Stammtisch in Wien</a> hinzugefügt', '', 'http://stammtisch.localhost/?event=13-magento-stammtisch-in-wien', 8, 0, '2015-05-09 14:34:41', 0, 0, 0, 0),
-(9, 1, 'events-manager', 'new_event', '<a href=''http://beta.magento-stammtisch.de/members/admin/''>admin</a> hat die Veranstaltung <a href="http://beta.magento-stammtisch.de/events/test-paderborn/" title="Test Paderborn">Test Paderborn</a> hinzugefügt', '', 'http://beta.magento-stammtisch.de/events/test-paderborn/', 1, 0, '2015-10-24 11:42:13', 0, 0, 0, 0);
+(9, 1, 'events-manager', 'new_event', '<a href=''http://beta.magento-stammtisch.de/members/admin/''>admin</a> hat die Veranstaltung <a href="http://beta.magento-stammtisch.de/events/test-paderborn/" title="Test Paderborn">Test Paderborn</a> hinzugefügt', '', 'http://beta.magento-stammtisch.de/events/test-paderborn/', 1, 0, '2015-10-24 11:42:13', 0, 0, 0, 0),
+(10, 1, 'events-manager', 'new_event', '<a href=''http://beta.magento-stammtisch.de/members/admin/''>admin</a> hat die Veranstaltung <a href="http://beta.magento-stammtisch.de/events/magento-stammtisch-20/" title="Magento Stammtisch #20">Magento Stammtisch #20</a> hinzugefügt', '', 'http://beta.magento-stammtisch.de/events/magento-stammtisch-20/', 2, 0, '2015-10-24 11:47:50', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -75,6 +77,7 @@ INSERT INTO `wp_bp_activity` (`id`, `user_id`, `component`, `type`, `action`, `c
 -- Tabellenstruktur für Tabelle `wp_bp_activity_meta`
 --
 
+DROP TABLE IF EXISTS `wp_bp_activity_meta`;
 CREATE TABLE IF NOT EXISTS `wp_bp_activity_meta` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `activity_id` bigint(20) NOT NULL,
@@ -91,6 +94,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_activity_meta` (
 -- Tabellenstruktur für Tabelle `wp_bp_notifications`
 --
 
+DROP TABLE IF EXISTS `wp_bp_notifications`;
 CREATE TABLE IF NOT EXISTS `wp_bp_notifications` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
@@ -116,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_notifications` (
 -- Tabellenstruktur für Tabelle `wp_bp_notifications_meta`
 --
 
+DROP TABLE IF EXISTS `wp_bp_notifications_meta`;
 CREATE TABLE IF NOT EXISTS `wp_bp_notifications_meta` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `notification_id` bigint(20) NOT NULL,
@@ -132,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_notifications_meta` (
 -- Tabellenstruktur für Tabelle `wp_bp_xprofile_data`
 --
 
+DROP TABLE IF EXISTS `wp_bp_xprofile_data`;
 CREATE TABLE IF NOT EXISTS `wp_bp_xprofile_data` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `field_id` bigint(20) unsigned NOT NULL,
@@ -156,6 +162,7 @@ INSERT INTO `wp_bp_xprofile_data` (`id`, `field_id`, `user_id`, `value`, `last_u
 -- Tabellenstruktur für Tabelle `wp_bp_xprofile_fields`
 --
 
+DROP TABLE IF EXISTS `wp_bp_xprofile_fields`;
 CREATE TABLE IF NOT EXISTS `wp_bp_xprofile_fields` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `group_id` bigint(20) unsigned NOT NULL,
@@ -190,6 +197,7 @@ INSERT INTO `wp_bp_xprofile_fields` (`id`, `group_id`, `parent_id`, `type`, `nam
 -- Tabellenstruktur für Tabelle `wp_bp_xprofile_groups`
 --
 
+DROP TABLE IF EXISTS `wp_bp_xprofile_groups`;
 CREATE TABLE IF NOT EXISTS `wp_bp_xprofile_groups` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
@@ -213,6 +221,7 @@ INSERT INTO `wp_bp_xprofile_groups` (`id`, `name`, `description`, `group_order`,
 -- Tabellenstruktur für Tabelle `wp_bp_xprofile_meta`
 --
 
+DROP TABLE IF EXISTS `wp_bp_xprofile_meta`;
 CREATE TABLE IF NOT EXISTS `wp_bp_xprofile_meta` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `object_id` bigint(20) NOT NULL,
@@ -230,6 +239,7 @@ CREATE TABLE IF NOT EXISTS `wp_bp_xprofile_meta` (
 -- Tabellenstruktur für Tabelle `wp_commentmeta`
 --
 
+DROP TABLE IF EXISTS `wp_commentmeta`;
 CREATE TABLE IF NOT EXISTS `wp_commentmeta` (
   `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `comment_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -238,7 +248,15 @@ CREATE TABLE IF NOT EXISTS `wp_commentmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `comment_id` (`comment_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Daten für Tabelle `wp_commentmeta`
+--
+
+INSERT INTO `wp_commentmeta` (`meta_id`, `comment_id`, `meta_key`, `meta_value`) VALUES
+(1, 1, '_wp_trash_meta_status', '1'),
+(2, 1, '_wp_trash_meta_time', '1445698676');
 
 -- --------------------------------------------------------
 
@@ -246,6 +264,7 @@ CREATE TABLE IF NOT EXISTS `wp_commentmeta` (
 -- Tabellenstruktur für Tabelle `wp_comments`
 --
 
+DROP TABLE IF EXISTS `wp_comments`;
 CREATE TABLE IF NOT EXISTS `wp_comments` (
   `comment_ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `comment_post_ID` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -275,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `wp_comments` (
 --
 
 INSERT INTO `wp_comments` (`comment_ID`, `comment_post_ID`, `comment_author`, `comment_author_email`, `comment_author_url`, `comment_author_IP`, `comment_date`, `comment_date_gmt`, `comment_content`, `comment_karma`, `comment_approved`, `comment_agent`, `comment_type`, `comment_parent`, `user_id`) VALUES
-(1, 1, 'Mr WordPress', '', 'https://wordpress.org/', '', '2015-05-09 09:44:22', '2015-05-09 09:44:22', 'Hi, this is a comment.\nTo delete a comment, just log in and view the post&#039;s comments. There you will have the option to edit or delete them.', 0, '1', '', '', 0, 0);
+(1, 1, 'Mr WordPress', '', 'https://wordpress.org/', '', '2015-05-09 09:44:22', '2015-05-09 09:44:22', 'Hi, this is a comment.\nTo delete a comment, just log in and view the post&#039;s comments. There you will have the option to edit or delete them.', 0, 'trash', '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -283,6 +302,7 @@ INSERT INTO `wp_comments` (`comment_ID`, `comment_post_ID`, `comment_author`, `c
 -- Tabellenstruktur für Tabelle `wp_em_bookings`
 --
 
+DROP TABLE IF EXISTS `wp_em_bookings`;
 CREATE TABLE IF NOT EXISTS `wp_em_bookings` (
   `booking_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `event_id` bigint(20) unsigned NOT NULL,
@@ -307,6 +327,7 @@ CREATE TABLE IF NOT EXISTS `wp_em_bookings` (
 -- Tabellenstruktur für Tabelle `wp_em_events`
 --
 
+DROP TABLE IF EXISTS `wp_em_events`;
 CREATE TABLE IF NOT EXISTS `wp_em_events` (
   `event_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `post_id` bigint(20) unsigned NOT NULL,
@@ -347,14 +368,15 @@ CREATE TABLE IF NOT EXISTS `wp_em_events` (
   KEY `blog_id` (`blog_id`),
   KEY `group_id` (`group_id`),
   KEY `location_id` (`location_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `wp_em_events`
 --
 
 INSERT INTO `wp_em_events` (`event_id`, `post_id`, `event_slug`, `event_owner`, `event_status`, `event_name`, `event_start_time`, `event_end_time`, `event_all_day`, `event_start_date`, `event_end_date`, `post_content`, `event_rsvp`, `event_rsvp_date`, `event_rsvp_time`, `event_rsvp_spaces`, `event_spaces`, `event_private`, `location_id`, `recurrence_id`, `event_category_id`, `event_attributes`, `event_date_created`, `event_date_modified`, `recurrence`, `recurrence_interval`, `recurrence_freq`, `recurrence_byday`, `recurrence_byweekno`, `recurrence_days`, `recurrence_rsvp_days`, `blog_id`, `group_id`) VALUES
-(1, 42, 'test-paderborn', 1, 1, 'Test Paderborn', '19:00:00', '20:00:00', 0, '2015-10-30', '2015-10-31', 'test', 0, NULL, '00:00:00', NULL, 0, 0, 3, NULL, NULL, 'a:4:{s:17:"snap_isAutoPosted";s:1:"1";s:10:"snap_MYURL";s:0:"";s:8:"snapEdIT";s:1:"1";s:6:"snapTW";s:150:"s:141:"a:1:{i:0;a:5:{s:10:"SNAPformat";s:15:"%TITLE% - %URL%";s:8:"attchImg";s:1:"0";s:9:"isAutoImg";s:1:"A";s:8:"imgToUse";s:0:"";s:4:"doTW";i:0;}}";";}', '2015-10-24 13:42:13', NULL, 0, NULL, NULL, NULL, NULL, 0, NULL, NULL, 0);
+(1, 42, 'test-paderborn', 1, 1, 'Test Paderborn', '19:00:00', '20:00:00', 0, '2015-10-30', '2015-10-31', 'test', 0, NULL, '00:00:00', NULL, 0, 0, 3, NULL, NULL, 'a:4:{s:17:"snap_isAutoPosted";s:1:"1";s:10:"snap_MYURL";s:0:"";s:8:"snapEdIT";s:1:"1";s:6:"snapTW";s:150:"s:141:"a:1:{i:0;a:5:{s:10:"SNAPformat";s:15:"%TITLE% - %URL%";s:8:"attchImg";s:1:"0";s:9:"isAutoImg";s:1:"A";s:8:"imgToUse";s:0:"";s:4:"doTW";i:0;}}";";}', '2015-10-24 13:42:13', NULL, 0, NULL, NULL, NULL, NULL, 0, NULL, NULL, 0),
+(2, 44, 'magento-stammtisch-20', 1, 1, 'Magento Stammtisch #20', '18:30:00', '20:30:00', 0, '2015-11-18', '2015-11-18', 'Monatliches Treffen der Schweizer Magento Community dieses mal im Citizen Space in Zürich, sonst auch in anderen Locations in Zürich oder anderen Schweizer Städten. Openstream sponsort kaltes Bier und Fingerfood, die Themen richten sich an Entwickler und Shop-Betreiber. Jeder ist willkommen, alte Hasen und Magento-Neulinge.', 0, NULL, '00:00:00', NULL, 0, 0, 6, NULL, NULL, 'a:4:{s:17:"snap_isAutoPosted";s:1:"1";s:10:"snap_MYURL";s:0:"";s:8:"snapEdIT";s:1:"1";s:6:"snapTW";s:150:"s:141:"a:1:{i:0;a:5:{s:10:"SNAPformat";s:15:"%TITLE% - %URL%";s:8:"attchImg";s:1:"0";s:9:"isAutoImg";s:1:"A";s:8:"imgToUse";s:0:"";s:4:"doTW";i:0;}}";";}', '2015-10-24 13:47:50', NULL, 0, NULL, NULL, NULL, NULL, 0, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -362,6 +384,7 @@ INSERT INTO `wp_em_events` (`event_id`, `post_id`, `event_slug`, `event_owner`, 
 -- Tabellenstruktur für Tabelle `wp_em_locations`
 --
 
+DROP TABLE IF EXISTS `wp_em_locations`;
 CREATE TABLE IF NOT EXISTS `wp_em_locations` (
   `location_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `post_id` bigint(20) unsigned NOT NULL,
@@ -406,6 +429,7 @@ INSERT INTO `wp_em_locations` (`location_id`, `post_id`, `blog_id`, `location_sl
 -- Tabellenstruktur für Tabelle `wp_em_meta`
 --
 
+DROP TABLE IF EXISTS `wp_em_meta`;
 CREATE TABLE IF NOT EXISTS `wp_em_meta` (
   `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `object_id` bigint(20) unsigned NOT NULL,
@@ -432,6 +456,7 @@ INSERT INTO `wp_em_meta` (`meta_id`, `object_id`, `meta_key`, `meta_value`, `met
 -- Tabellenstruktur für Tabelle `wp_em_tickets`
 --
 
+DROP TABLE IF EXISTS `wp_em_tickets`;
 CREATE TABLE IF NOT EXISTS `wp_em_tickets` (
   `ticket_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `event_id` bigint(20) unsigned NOT NULL,
@@ -465,6 +490,7 @@ INSERT INTO `wp_em_tickets` (`ticket_id`, `event_id`, `ticket_name`, `ticket_des
 -- Tabellenstruktur für Tabelle `wp_em_tickets_bookings`
 --
 
+DROP TABLE IF EXISTS `wp_em_tickets_bookings`;
 CREATE TABLE IF NOT EXISTS `wp_em_tickets_bookings` (
   `ticket_booking_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `booking_id` bigint(20) unsigned NOT NULL,
@@ -482,6 +508,7 @@ CREATE TABLE IF NOT EXISTS `wp_em_tickets_bookings` (
 -- Tabellenstruktur für Tabelle `wp_links`
 --
 
+DROP TABLE IF EXISTS `wp_links`;
 CREATE TABLE IF NOT EXISTS `wp_links` (
   `link_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `link_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -506,6 +533,7 @@ CREATE TABLE IF NOT EXISTS `wp_links` (
 -- Tabellenstruktur für Tabelle `wp_nxs_log`
 --
 
+DROP TABLE IF EXISTS `wp_nxs_log`;
 CREATE TABLE IF NOT EXISTS `wp_nxs_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -515,7 +543,7 @@ CREATE TABLE IF NOT EXISTS `wp_nxs_log` (
   `msg` text NOT NULL,
   `extInfo` text NOT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
 
 --
 -- Daten für Tabelle `wp_nxs_log`
@@ -527,7 +555,48 @@ INSERT INTO `wp_nxs_log` (`id`, `date`, `act`, `nt`, `type`, `msg`, `extInfo`) V
 (3, '2015-10-24 13:42:13', 'Skipped', 'Twitter (MagentoHamburg)', 'GR', '-=[Unchecked Account]=- - PostID:42', ''),
 (4, '2015-10-24 13:42:20', '*** ID: 43, Type: location', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
 (5, '2015-10-24 13:42:20', 'Start =- ', '', 'BG', '------=========#### NEW AUTO-POST REQUEST  PostID:(43) Scheduled +5 ####=========------', ''),
-(6, '2015-10-24 13:42:20', 'Skipped', 'Twitter (MagentoHamburg)', 'GR', '-=[Unchecked Account]=- - PostID:43', '');
+(6, '2015-10-24 13:42:20', 'Skipped', 'Twitter (MagentoHamburg)', 'GR', '-=[Unchecked Account]=- - PostID:43', ''),
+(7, '2015-10-24 13:47:50', '*** ID: 44, Type: event', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(8, '2015-10-24 13:47:50', 'Start =- ', '', 'BG', '------=========#### NEW AUTO-POST REQUEST  PostID:(44) Scheduled +5 ####=========------', ''),
+(9, '2015-10-24 13:47:50', 'Skipped', 'Twitter (MagentoHamburg)', 'GR', '-=[Unchecked Account]=- - PostID:44', ''),
+(10, '2015-10-24 15:04:20', '*** ID: 47, Type: ja-event', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(11, '2015-10-24 15:04:20', 'Skipped', '', 'I', 'Excluded Post Type: ja-event (Post ID: 47)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(12, '2015-10-24 15:09:16', '*** ID: 51, Type: ja-event', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(13, '2015-10-24 15:09:16', 'Skipped', '', 'I', 'Excluded Post Type: ja-event (Post ID: 51)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(14, '2015-10-24 15:10:59', '*** ID: 52, Type: ja-speaker', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(15, '2015-10-24 15:10:59', 'Skipped', '', 'I', 'Excluded Post Type: ja-speaker (Post ID: 52)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(16, '2015-10-24 15:12:08', '*** ID: 53, Type: ja-session', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(17, '2015-10-24 15:12:08', 'Skipped', '', 'I', 'Excluded Post Type: ja-session (Post ID: 53)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(18, '2015-10-24 15:25:19', '*** ID: 66, Type: nav_menu_item', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(19, '2015-10-24 15:25:19', 'Skipped', '', 'I', 'Excluded Post Type: nav_menu_item (Post ID: 66)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(20, '2015-10-24 15:28:50', '*** ID: 68, Type: nav_menu_item', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(21, '2015-10-24 15:28:50', 'Skipped', '', 'I', 'Excluded Post Type: nav_menu_item (Post ID: 68)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(22, '2015-10-24 15:35:43', '*** ID: 69, Type: page', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(23, '2015-10-24 15:35:43', 'Skipped', '', 'I', 'Excluded Post Type: page (Post ID: 69)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(24, '2015-10-24 15:37:51', '*** ID: 71, Type: nav_menu_item', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(25, '2015-10-24 15:37:51', 'Skipped', '', 'I', 'Excluded Post Type: nav_menu_item (Post ID: 71)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(26, '2015-10-24 15:47:03', '*** ID: 76, Type: nav_menu_item', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(27, '2015-10-24 15:47:03', 'Skipped', '', 'I', 'Excluded Post Type: nav_menu_item (Post ID: 76)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(28, '2015-10-24 15:51:52', '*** ID: 78, Type: page', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(29, '2015-10-24 15:51:52', 'Skipped', '', 'I', 'Excluded Post Type: page (Post ID: 78)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(30, '2015-10-24 16:32:45', '*** ID: 81, Type: ja-event', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(31, '2015-10-24 16:32:45', 'Skipped', '', 'I', 'Excluded Post Type: ja-event (Post ID: 81)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(32, '2015-10-24 16:45:07', '*** ID: 85, Type: ja-event', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(33, '2015-10-24 16:45:07', 'Skipped', '', 'I', 'Excluded Post Type: ja-event (Post ID: 85)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(34, '2015-10-24 16:55:06', '*** ID: 89, Type: ja-session', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(35, '2015-10-24 16:55:06', 'Skipped', '', 'I', 'Excluded Post Type: ja-session (Post ID: 89)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(36, '2015-10-24 16:58:53', '*** ID: 91, Type: ja-event', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(37, '2015-10-24 16:58:53', 'Skipped', '', 'I', 'Excluded Post Type: ja-event (Post ID: 91)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(38, '2015-10-24 16:59:01', '*** ID: 96, Type: page', '', 'BG', ' Status Changed: auto-draft_to_publish. Autopost requested.', ''),
+(39, '2015-10-24 16:59:01', 'Skipped', '', 'I', 'Excluded Post Type: page (Post ID: 96)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(40, '2015-10-24 16:59:43', '*** ID: 98, Type: nav_menu_item', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(41, '2015-10-24 16:59:43', 'Skipped', '', 'I', 'Excluded Post Type: nav_menu_item (Post ID: 98)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(42, '2015-10-24 17:03:04', '*** ID: 102, Type: ja-speaker', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(43, '2015-10-24 17:03:04', 'Skipped', '', 'I', 'Excluded Post Type: ja-speaker (Post ID: 102)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(44, '2015-10-24 17:05:43', '*** ID: 100, Type: ja-session', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(45, '2015-10-24 17:05:43', 'Skipped', '', 'I', 'Excluded Post Type: ja-session (Post ID: 100)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', ''),
+(46, '2015-10-24 17:10:25', '*** ID: 105, Type: ja-event', '', 'BG', ' Status Changed: draft_to_publish. Autopost requested.', ''),
+(47, '2015-10-24 17:10:25', 'Skipped', '', 'I', 'Excluded Post Type: ja-event (Post ID: 105)| NOT IN (Array\n(\n    [0] => 0\n    [1] => location\n    [2] => event\n)\n)| ALL (Array\n(\n)\n)', '');
 
 -- --------------------------------------------------------
 
@@ -535,6 +604,7 @@ INSERT INTO `wp_nxs_log` (`id`, `date`, `act`, `nt`, `type`, `msg`, `extInfo`) V
 -- Tabellenstruktur für Tabelle `wp_options`
 --
 
+DROP TABLE IF EXISTS `wp_options`;
 CREATE TABLE IF NOT EXISTS `wp_options` (
   `option_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `option_name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -542,7 +612,7 @@ CREATE TABLE IF NOT EXISTS `wp_options` (
   `autoload` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=893 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1111 ;
 
 --
 -- Daten für Tabelle `wp_options`
@@ -576,21 +646,21 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (25, 'links_updated_date_format', 'F j, Y g:i a', 'yes'),
 (26, 'comment_moderation', '', 'yes'),
 (27, 'moderation_notify', '1', 'yes'),
-(28, 'permalink_structure', '/%year%/%monthnum%/%day%/%postname%/', 'yes'),
+(28, 'permalink_structure', '/%postname%/', 'yes'),
 (29, 'gzipcompression', '0', 'yes'),
 (30, 'hack_file', '0', 'yes'),
 (31, 'blog_charset', 'UTF-8', 'yes'),
 (32, 'moderation_keys', '', 'no'),
-(33, 'active_plugins', 'a:3:{i:0;s:24:"buddypress/bp-loader.php";i:1;s:33:"events-manager/events-manager.php";i:2;s:67:"social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php";}', 'yes'),
+(33, 'active_plugins', 'a:1:{i:2;s:67:"social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php";}', 'yes'),
 (34, 'category_base', '', 'yes'),
 (35, 'ping_sites', 'http://rpc.pingomatic.com/', 'yes'),
 (36, 'advanced_edit', '0', 'yes'),
 (37, 'comment_max_links', '2', 'yes'),
 (38, 'gmt_offset', '2', 'yes'),
 (39, 'default_email_category', '1', 'yes'),
-(40, 'recently_edited', '', 'no'),
-(41, 'template', 'firegento_stammtisch', 'yes'),
-(42, 'stylesheet', 'firegento_stammtisch', 'yes'),
+(40, 'recently_edited', 'a:2:{i:0;s:83:"/var/www/share/beta.magento-stammtisch.de/htdocs/wp-content/themes/januas/style.css";i:1;s:0:"";}', 'no'),
+(41, 'template', 'januas', 'yes'),
+(42, 'stylesheet', 'januas', 'yes'),
 (43, 'comment_whitelist', '1', 'yes'),
 (44, 'blacklist_keys', '', 'no'),
 (45, 'comment_registration', '', 'yes'),
@@ -643,10 +713,10 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (92, 'widget_recent-comments', 'a:2:{i:2;a:2:{s:5:"title";s:0:"";s:6:"number";i:5;}s:12:"_multiwidget";i:1;}', 'yes'),
 (93, 'widget_archives', 'a:2:{i:2;a:3:{s:5:"title";s:0:"";s:5:"count";i:0;s:8:"dropdown";i:0;}s:12:"_multiwidget";i:1;}', 'yes'),
 (94, 'widget_meta', 'a:2:{i:2;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
-(95, 'sidebars_widgets', 'a:3:{s:19:"wp_inactive_widgets";a:0:{}s:9:"sidebar-1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}s:13:"array_version";i:3;}', 'yes'),
-(97, 'cron', 'a:7:{i:1445686998;a:1:{s:19:"nxs_querypost_event";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:11:"nxsreposter";s:4:"args";a:0:{}s:8:"interval";i:90;}}}i:1445687448;a:1:{s:16:"nxs_hourly_event";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1445713800;a:1:{s:20:"wp_maybe_auto_update";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1445723062;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1445766280;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1445766832;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}s:7:"version";i:2;}', 'yes'),
-(107, '_transient_random_seed', 'a2860155f33f8aafab2847e65537c9ba', 'yes'),
-(128, 'recently_activated', 'a:0:{}', 'yes'),
+(95, 'sidebars_widgets', 'a:12:{s:19:"wp_inactive_widgets";a:0:{}s:7:"primary";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}s:12:"header-right";a:0:{}s:13:"home-top-left";a:0:{}s:14:"home-top-right";a:0:{}s:11:"home-bottom";a:0:{}s:10:"footer-top";a:1:{i:0;s:10:"nav_menu-2";}s:13:"footer-middle";a:0:{}s:18:"footer-bottom-left";a:0:{}s:20:"footer-bottom-center";a:0:{}s:19:"footer-bottom-right";a:0:{}s:13:"array_version";i:3;}', 'yes'),
+(97, 'cron', 'a:7:{i:1445702028;a:1:{s:19:"nxs_querypost_event";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:11:"nxsreposter";s:4:"args";a:0:{}s:8:"interval";i:90;}}}i:1445705448;a:1:{s:16:"nxs_hourly_event";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1445713800;a:1:{s:20:"wp_maybe_auto_update";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1445723062;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1445766280;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1445766832;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}s:7:"version";i:2;}', 'yes'),
+(107, '_transient_random_seed', '3544b9ae782c40728cc704afdd46c233', 'yes'),
+(128, 'recently_activated', 'a:2:{s:33:"events-manager/events-manager.php";i:1445691771;s:24:"buddypress/bp-loader.php";i:1445690229;}', 'yes'),
 (130, 'dbem_events_page', '4', 'yes'),
 (131, 'dbem_locations_page', '5', 'yes'),
 (132, 'dbem_categories_page', '6', 'yes'),
@@ -969,9 +1039,9 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (449, 'dbem_feedback_reminder', '1431164691', 'yes'),
 (450, 'dbem_credits', '0', 'yes'),
 (451, 'dbem_version', '5.61', 'yes'),
-(456, 'theme_mods_twentyfifteen', 'a:2:{s:18:"nav_menu_locations";a:1:{s:7:"primary";i:2;}s:16:"sidebars_widgets";a:2:{s:4:"time";i:1431185785;s:4:"data";a:2:{s:19:"wp_inactive_widgets";a:0:{}s:9:"sidebar-1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}}}}', 'yes'),
+(456, 'theme_mods_twentyfifteen', 'a:2:{s:18:"nav_menu_locations";a:1:{s:7:"primary";i:2;}s:16:"sidebars_widgets";a:2:{s:4:"time";i:1445691259;s:4:"data";a:2:{s:19:"wp_inactive_widgets";a:0:{}s:9:"sidebar-1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}}}}', 'yes'),
 (457, 'nav_menu_options', 'a:2:{i:0;b:0;s:8:"auto_add";a:0:{}}', 'yes'),
-(461, 'em_last_modified', '1445686940', 'yes'),
+(461, 'em_last_modified', '1445687270', 'yes'),
 (467, 'WPLANG', 'de_DE', 'yes'),
 (472, 'dbem_thumbnails_enabled', '0', 'yes'),
 (473, 'dbem_js_limit', '0', 'yes'),
@@ -1038,19 +1108,17 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (566, 'NS_SNriPosts', 'a:2:{i:0;i:26;i:1;i:18;}', 'yes'),
 (600, 'NSX_LastTChecked', '1431179196', 'yes'),
 (626, 'event-categories_children', 'a:0:{}', 'yes'),
-(688, 'current_theme', 'firegento_stammtisch', 'yes'),
-(689, 'theme_mods_firegento_stammtisch', 'a:4:{i:0;b:0;s:12:"header_image";s:84:"http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/magento-stammtisch1.png";s:17:"header_image_data";O:8:"stdClass":5:{s:13:"attachment_id";i:38;s:3:"url";s:84:"http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/magento-stammtisch1.png";s:13:"thumbnail_url";s:84:"http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/magento-stammtisch1.png";s:6:"height";i:120;s:5:"width";i:338;}s:18:"nav_menu_locations";a:1:{s:6:"header";i:2;}}', 'yes'),
+(688, 'current_theme', 'Januas', 'yes'),
+(689, 'theme_mods_firegento_stammtisch', 'a:5:{i:0;b:0;s:12:"header_image";s:84:"http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/magento-stammtisch1.png";s:17:"header_image_data";O:8:"stdClass":5:{s:13:"attachment_id";i:38;s:3:"url";s:84:"http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/magento-stammtisch1.png";s:13:"thumbnail_url";s:84:"http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/magento-stammtisch1.png";s:6:"height";i:120;s:5:"width";i:338;}s:18:"nav_menu_locations";a:1:{s:6:"header";i:2;}s:16:"sidebars_widgets";a:2:{s:4:"time";i:1445687635;s:4:"data";a:2:{s:19:"wp_inactive_widgets";a:0:{}s:9:"sidebar-1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}}}}', 'yes'),
 (690, 'theme_switched', '', 'yes'),
 (694, '_transient_twentyfifteen_categories', '1', 'yes'),
 (737, 'widget_em_locations_widget', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (738, 'widget_em_widget', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
-(739, 'widget_nav_menu', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
+(739, 'widget_nav_menu', 'a:3:{i:1;a:0:{}i:2;a:1:{s:8:"nav_menu";i:24;}s:12:"_multiwidget";i:1;}', 'yes'),
 (740, 'widget_calendar', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (742, 'widget_tag_cloud', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (743, 'widget_pages', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
 (745, 'widget_em_calendar', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
-(825, '_site_transient_timeout_theme_roots', '1445683661', 'yes'),
-(826, '_site_transient_theme_roots', 'a:4:{s:20:"firegento_stammtisch";s:7:"/themes";s:13:"twentyfifteen";s:7:"/themes";s:14:"twentyfourteen";s:7:"/themes";s:14:"twentythirteen";s:7:"/themes";}', 'yes'),
 (837, 'finished_splitting_shared_terms', '1', 'yes'),
 (838, 'db_upgraded', '', 'yes'),
 (840, 'dbem_small_calendar_long_events', '0', 'yes'),
@@ -1072,21 +1140,47 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (858, '_transient_feed_b9388c83948825c1edaef0d856b7b109', 'a:4:{s:5:"child";a:1:{s:0:"";a:1:{s:3:"rss";a:1:{i:0;a:6:{s:4:"data";s:3:"\n	\n";s:7:"attribs";a:1:{s:0:"";a:1:{s:7:"version";s:3:"2.0";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:1:{s:0:"";a:1:{s:7:"channel";a:1:{i:0;a:6:{s:4:"data";s:117:"\n		\n		\n		\n		\n		\n		\n				\n\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n		\n\n	";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:7:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:34:"WordPress Plugins » View: Popular";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:45:"https://wordpress.org/plugins/browse/popular/";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:34:"WordPress Plugins » View: Popular";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:8:"language";a:1:{i:0;a:5:{s:4:"data";s:5:"en-US";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Sat, 24 Oct 2015 10:00:57 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:9:"generator";a:1:{i:0;a:5:{s:4:"data";s:25:"http://bbpress.org/?v=1.1";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"item";a:30:{i:0;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:9:"Yoast SEO";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:54:"https://wordpress.org/plugins/wordpress-seo/#post-8321";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 01 Jan 2009 20:34:44 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"8321@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:114:"Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using Yoast SEO plugin.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Joost de Valk";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:1;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:14:"WP Super Cache";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:55:"https://wordpress.org/plugins/wp-super-cache/#post-2572";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 05 Nov 2007 11:40:04 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"2572@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:73:"A very fast caching engine for WordPress that produces static html files.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:16:"Donncha O Caoimh";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:2;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:18:"Wordfence Security";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:51:"https://wordpress.org/plugins/wordfence/#post-29832";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Sun, 04 Sep 2011 03:13:51 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"29832@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:138:"The Wordfence WordPress security plugin provides free enterprise-class WordPress security, protecting your website from hacks and malware.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:9:"Wordfence";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:3;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:24:"Jetpack by WordPress.com";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:49:"https://wordpress.org/plugins/jetpack/#post-23862";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 20 Jan 2011 02:21:38 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"23862@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:28:"Your WordPress, Streamlined.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:9:"Tim Moore";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:4;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:21:"Regenerate Thumbnails";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:62:"https://wordpress.org/plugins/regenerate-thumbnails/#post-6743";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Sat, 23 Aug 2008 14:38:58 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"6743@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:76:"Allows you to regenerate your thumbnails after changing the thumbnail sizes.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:25:"Alex Mills (Viper007Bond)";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:5;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:15:"NextGEN Gallery";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:56:"https://wordpress.org/plugins/nextgen-gallery/#post-1169";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 23 Apr 2007 20:08:06 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"1169@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:121:"The most popular WordPress gallery plugin and one of the most popular plugins of all time with over 13 million downloads.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:9:"Alex Rabe";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:6;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:16:"TinyMCE Advanced";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:57:"https://wordpress.org/plugins/tinymce-advanced/#post-2082";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 27 Jun 2007 15:00:26 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"2082@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:71:"Enables the advanced features of TinyMCE, the WordPress WYSIWYG editor.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:10:"Andrew Ozz";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:7;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:19:"Google XML Sitemaps";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:64:"https://wordpress.org/plugins/google-sitemap-generator/#post-132";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 09 Mar 2007 22:31:32 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:34:"132@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:105:"This plugin will generate a special XML sitemap which will help search engines to better index your blog.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:14:"Arne Brachhold";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:8;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:25:"Google Analytics by Yoast";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:71:"https://wordpress.org/plugins/google-analytics-for-wordpress/#post-2316";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 14 Sep 2007 12:15:27 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"2316@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:124:"Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Joost de Valk";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:9;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:19:"All in One SEO Pack";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:59:"https://wordpress.org/plugins/all-in-one-seo-pack/#post-753";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 30 Mar 2007 20:08:18 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:34:"753@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:126:"All in One SEO Pack is a WordPress SEO plugin to automatically optimize your WordPress blog for Search Engines such as Google.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:8:"uberdose";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:10;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:11:"Hello Dolly";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:52:"https://wordpress.org/plugins/hello-dolly/#post-5790";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 29 May 2008 22:11:34 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"5790@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:150:"This is not just a plugin, it symbolizes the hope and enthusiasm of an entire generation summed up in two words sung most famously by Louis Armstrong.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:14:"Matt Mullenweg";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:11;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:18:"WordPress Importer";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:60:"https://wordpress.org/plugins/wordpress-importer/#post-18101";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 20 May 2010 17:42:45 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"18101@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:101:"Import posts, pages, comments, custom fields, categories, tags and more from a WordPress export file.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:14:"Brian Colinger";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:12;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:21:"Really Simple CAPTCHA";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:62:"https://wordpress.org/plugins/really-simple-captcha/#post-9542";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 09 Mar 2009 02:17:35 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"9542@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:138:"Really Simple CAPTCHA is a CAPTCHA module intended to be called from other plugins. It is originally created for my Contact Form 7 plugin.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:16:"Takayuki Miyoshi";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:13;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:33:"WooCommerce - excelling eCommerce";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:53:"https://wordpress.org/plugins/woocommerce/#post-29860";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 05 Sep 2011 08:13:36 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"29860@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:97:"WooCommerce is a powerful, extendable eCommerce plugin that helps you sell anything. Beautifully.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:9:"WooThemes";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:14;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:22:"Advanced Custom Fields";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:64:"https://wordpress.org/plugins/advanced-custom-fields/#post-25254";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 17 Mar 2011 04:07:30 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"25254@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:68:"Customise WordPress with powerful, professional and intuitive fields";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:12:"elliotcondon";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:15;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:14:"Contact Form 7";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:55:"https://wordpress.org/plugins/contact-form-7/#post-2141";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 02 Aug 2007 12:45:03 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"2141@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:54:"Just another contact form plugin. Simple but flexible.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:16:"Takayuki Miyoshi";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:16;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:14:"W3 Total Cache";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:56:"https://wordpress.org/plugins/w3-total-cache/#post-12073";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 29 Jul 2009 18:46:31 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"12073@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:132:"Easy Web Performance Optimization (WPO) using caching: browser, page, object, database, minify and content delivery network support.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:16:"Frederick Townes";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:17;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:7:"Akismet";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:46:"https://wordpress.org/plugins/akismet/#post-15";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 09 Mar 2007 22:11:30 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:33:"15@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:98:"Akismet checks your comments against the Akismet Web service to see if they look like spam or not.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:14:"Matt Mullenweg";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:18;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:11:"WP-PageNavi";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:51:"https://wordpress.org/plugins/wp-pagenavi/#post-363";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 09 Mar 2007 23:17:57 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:34:"363@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:49:"Adds a more advanced paging navigation interface.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:11:"Lester Chan";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:19;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:14:"Duplicate Post";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:55:"https://wordpress.org/plugins/duplicate-post/#post-2646";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Wed, 05 Dec 2007 17:40:03 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:35:"2646@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:22:"Clone posts and pages.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:4:"Lopo";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:20;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:16:"Disable Comments";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:58:"https://wordpress.org/plugins/disable-comments/#post-26907";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 27 May 2011 04:42:58 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"26907@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:134:"Allows administrators to globally disable comments on their site. Comments can be disabled according to post type. Multisite friendly.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:10:"Samir Shah";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:21;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:18:"WP Multibyte Patch";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:60:"https://wordpress.org/plugins/wp-multibyte-patch/#post-28395";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 14 Jul 2011 12:22:53 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"28395@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:71:"Multibyte functionality enhancement for the WordPress Japanese package.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"plugin-master";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:22;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:27:"Black Studio TinyMCE Widget";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:69:"https://wordpress.org/plugins/black-studio-tinymce-widget/#post-31973";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 10 Nov 2011 15:06:14 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"31973@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:39:"The visual editor widget for Wordpress.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:12:"Marco Chiesi";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:23;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:46:"iThemes Security (formerly Better WP Security)";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:60:"https://wordpress.org/plugins/better-wp-security/#post-21738";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Fri, 22 Oct 2010 22:06:05 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"21738@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:150:"Protect your WordPress site by hiding vital areas of your site, protecting access to important files, preventing brute-force login attempts, detecting";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:13:"Chris Wiegman";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:24;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:26:"Page Builder by SiteOrigin";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:59:"https://wordpress.org/plugins/siteorigin-panels/#post-51888";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 11 Apr 2013 10:36:42 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"51888@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:111:"Build responsive page layouts using the widgets you know and love using this simple drag and drop page builder.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:11:"Greg Priday";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:25;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:33:"Google Analytics Dashboard for WP";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:75:"https://wordpress.org/plugins/google-analytics-dashboard-for-wp/#post-50539";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Sun, 10 Mar 2013 17:07:11 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"50539@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:127:"Displays Google Analytics reports in your WordPress Dashboard. Inserts the latest Google Analytics tracking code in your pages.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:10:"Alin Marcu";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:26;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:11:"Meta Slider";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:51:"https://wordpress.org/plugins/ml-slider/#post-49521";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 14 Feb 2013 16:56:31 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"49521@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:145:"Easy to use WordPress slider plugin. Create SEO optimised responsive slideshows with Nivo Slider, Flex Slider, Coin Slider and Responsive Slides.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:11:"Matcha Labs";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:27;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:10:"Duplicator";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:52:"https://wordpress.org/plugins/duplicator/#post-26607";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 16 May 2011 12:15:41 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"26607@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:88:"Duplicate, clone, backup, move and transfer an entire site from one location to another.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:10:"Cory Lamle";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:28;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:34:"UpdraftPlus Backup and Restoration";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:53:"https://wordpress.org/plugins/updraftplus/#post-38058";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Mon, 21 May 2012 15:14:11 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"38058@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:148:"Backup and restoration made easy. Complete backups; manual or scheduled (backup to S3, Dropbox, Google Drive, Rackspace, FTP, SFTP, email + others).";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:14:"David Anderson";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}i:29;a:6:{s:4:"data";s:30:"\n			\n			\n			\n			\n			\n			\n					";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";s:5:"child";a:2:{s:0:"";a:5:{s:5:"title";a:1:{i:0;a:5:{s:4:"data";s:30:"Clef Two-Factor Authentication";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:48:"https://wordpress.org/plugins/wpclef/#post-47509";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:7:"pubDate";a:1:{i:0;a:5:{s:4:"data";s:31:"Thu, 27 Dec 2012 01:25:57 +0000";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:4:"guid";a:1:{i:0;a:5:{s:4:"data";s:36:"47509@https://wordpress.org/plugins/";s:7:"attribs";a:1:{s:0:"";a:1:{s:11:"isPermaLink";s:5:"false";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}s:11:"description";a:1:{i:0;a:5:{s:4:"data";s:138:"Modern two-factor that people love to use: strong authentication without passwords or tokens; single sign on/off; magical user experience.";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}s:32:"http://purl.org/dc/elements/1.1/";a:1:{s:7:"creator";a:1:{i:0;a:5:{s:4:"data";s:9:"Dave Ross";s:7:"attribs";a:0:{}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}s:27:"http://www.w3.org/2005/Atom";a:1:{s:4:"link";a:1:{i:0;a:5:{s:4:"data";s:0:"";s:7:"attribs";a:1:{s:0:"";a:3:{s:4:"href";s:46:"https://wordpress.org/plugins/rss/view/popular";s:3:"rel";s:4:"self";s:4:"type";s:19:"application/rss+xml";}}s:8:"xml_base";s:0:"";s:17:"xml_base_explicit";b:0;s:8:"xml_lang";s:0:"";}}}}}}}}}}}}s:4:"type";i:128;s:7:"headers";a:12:{s:6:"server";s:5:"nginx";s:4:"date";s:29:"Sat, 24 Oct 2015 10:21:52 GMT";s:12:"content-type";s:23:"text/xml; charset=UTF-8";s:10:"connection";s:5:"close";s:4:"vary";s:15:"Accept-Encoding";s:25:"strict-transport-security";s:11:"max-age=360";s:7:"expires";s:29:"Sat, 24 Oct 2015 10:35:57 GMT";s:13:"cache-control";s:0:"";s:6:"pragma";s:0:"";s:13:"last-modified";s:31:"Sat, 24 Oct 2015 10:00:57 +0000";s:15:"x-frame-options";s:10:"SAMEORIGIN";s:4:"x-nc";s:11:"HIT lax 250";}s:5:"build";s:14:"20151024100836";}', 'no'),
 (859, '_transient_timeout_feed_mod_b9388c83948825c1edaef0d856b7b109', '1445725312', 'no'),
 (860, '_transient_feed_mod_b9388c83948825c1edaef0d856b7b109', '1445682112', 'no'),
-(861, '_transient_timeout_plugin_slugs', '1445773068', 'no'),
-(862, '_transient_plugin_slugs', 'a:6:{i:0;s:19:"akismet/akismet.php";i:1;s:24:"buddypress/bp-loader.php";i:2;s:33:"events-manager/events-manager.php";i:3;s:9:"hello.php";i:4;s:17:"mycred/mycred.php";i:5;s:67:"social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php";}', 'no'),
+(861, '_transient_timeout_plugin_slugs', '1445781300', 'no'),
+(862, '_transient_plugin_slugs', 'a:4:{i:0;s:19:"akismet/akismet.php";i:1;s:9:"hello.php";i:2;s:17:"mycred/mycred.php";i:3;s:67:"social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php";}', 'no'),
 (863, '_transient_timeout_dash_898c881de4a92ca37616885905bba3b7', '1445725312', 'no'),
 (864, '_transient_dash_898c881de4a92ca37616885905bba3b7', '<div class="rss-widget"><ul><li><a class=''rsswidget'' href=''https://de.wordpress.org/2015/10/23/wordpress-4-4-beta-1-ist-da/''>WordPress 4.4 Beta 1 ist da</a> <span class="rss-date">23. Oktober 2015</span><div class="rssSummary">Die erste Beta-Version des 4.4-Release von WordPress ist verfügbar. Die neue Version bringt unter anderem das nächste Standard-Theme sowie die Unterstützung für Responsive Images mit. Die neue Version wird mit Twenty Sixteen ein neues Standard-Theme mitbringen. Ihr könnt es bereits im Directory herunterladen, es funktioniert aber nur mit 4.4-Entwicklerversionen – nicht mit WordPress 4.3. Ebenfalls [&hellip;]</div></li></ul></div><div class="rss-widget"><ul><li><a class=''rsswidget'' href=''https://de.wordpress.org/2015/10/23/wordpress-4-4-beta-1-ist-da/''>WordPress 4.4 Beta 1 ist da</a></li><li><a class=''rsswidget'' href=''http://www.perun.net/2015/10/20/wordpress-php-code-im-widget/''>WordPress: PHP-Code im Widget</a></li><li><a class=''rsswidget'' href=''https://wpletter.de/archive/149/''>WordPress News #149 / Backups bei Amazon ablegen</a></li></ul></div><div class="rss-widget"><ul><li class=''dashboard-news-plugin''><span>Beliebtes Plugin:</span> <a href=''https://wordpress.org/plugins/ml-slider/'' class=''dashboard-news-plugin-link''>Meta Slider</a>&nbsp;<span>(<a href=''plugin-install.php?tab=plugin-information&amp;plugin=ml-slider&amp;_wpnonce=10047f1ac4&amp;TB_iframe=true&amp;width=600&amp;height=800'' class=''thickbox'' title=''Meta Slider''>Installieren</a>)</span></li></ul></div>', 'no'),
-(869, '_site_transient_update_core', 'O:8:"stdClass":4:{s:7:"updates";a:1:{i:0;O:8:"stdClass":10:{s:8:"response";s:6:"latest";s:8:"download";s:65:"https://downloads.wordpress.org/release/de_DE/wordpress-4.3.1.zip";s:6:"locale";s:5:"de_DE";s:8:"packages";O:8:"stdClass":5:{s:4:"full";s:65:"https://downloads.wordpress.org/release/de_DE/wordpress-4.3.1.zip";s:10:"no_content";b:0;s:11:"new_bundled";b:0;s:7:"partial";b:0;s:8:"rollback";b:0;}s:7:"current";s:5:"4.3.1";s:7:"version";s:5:"4.3.1";s:11:"php_version";s:5:"5.2.4";s:13:"mysql_version";s:3:"5.0";s:11:"new_bundled";s:3:"4.1";s:15:"partial_version";s:0:"";}}s:12:"last_checked";i:1445682256;s:15:"version_checked";s:5:"4.3.1";s:12:"translations";a:0:{}}', 'yes'),
-(870, '_site_transient_update_plugins', 'O:8:"stdClass":5:{s:12:"last_checked";i:1445686664;s:7:"checked";a:6:{s:19:"akismet/akismet.php";s:5:"3.1.5";s:24:"buddypress/bp-loader.php";s:5:"2.3.4";s:33:"events-manager/events-manager.php";s:5:"5.6.1";s:9:"hello.php";s:3:"1.6";s:17:"mycred/mycred.php";s:5:"1.6.6";s:67:"social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php";s:6:"3.4.26";}s:8:"response";a:0:{}s:12:"translations";a:0:{}s:9:"no_update";a:6:{s:19:"akismet/akismet.php";O:8:"stdClass":6:{s:2:"id";s:2:"15";s:4:"slug";s:7:"akismet";s:6:"plugin";s:19:"akismet/akismet.php";s:11:"new_version";s:5:"3.1.5";s:3:"url";s:38:"https://wordpress.org/plugins/akismet/";s:7:"package";s:56:"https://downloads.wordpress.org/plugin/akismet.3.1.5.zip";}s:24:"buddypress/bp-loader.php";O:8:"stdClass":7:{s:2:"id";s:4:"7756";s:4:"slug";s:10:"buddypress";s:6:"plugin";s:24:"buddypress/bp-loader.php";s:11:"new_version";s:5:"2.3.4";s:3:"url";s:41:"https://wordpress.org/plugins/buddypress/";s:7:"package";s:59:"https://downloads.wordpress.org/plugin/buddypress.2.3.4.zip";s:14:"upgrade_notice";s:57:"See: https://codex.buddypress.org/releases/version-2-3-4/";}s:33:"events-manager/events-manager.php";O:8:"stdClass":6:{s:2:"id";s:4:"4075";s:4:"slug";s:14:"events-manager";s:6:"plugin";s:33:"events-manager/events-manager.php";s:11:"new_version";s:5:"5.6.1";s:3:"url";s:45:"https://wordpress.org/plugins/events-manager/";s:7:"package";s:63:"https://downloads.wordpress.org/plugin/events-manager.5.6.1.zip";}s:9:"hello.php";O:8:"stdClass":6:{s:2:"id";s:4:"3564";s:4:"slug";s:11:"hello-dolly";s:6:"plugin";s:9:"hello.php";s:11:"new_version";s:3:"1.6";s:3:"url";s:42:"https://wordpress.org/plugins/hello-dolly/";s:7:"package";s:58:"https://downloads.wordpress.org/plugin/hello-dolly.1.6.zip";}s:17:"mycred/mycred.php";O:8:"stdClass":7:{s:2:"id";s:5:"40289";s:4:"slug";s:6:"mycred";s:6:"plugin";s:17:"mycred/mycred.php";s:11:"new_version";s:5:"1.6.6";s:3:"url";s:37:"https://wordpress.org/plugins/mycred/";s:7:"package";s:55:"https://downloads.wordpress.org/plugin/mycred.1.6.6.zip";s:14:"upgrade_notice";s:19:"Critical bug fixes.";}s:67:"social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php";O:8:"stdClass":6:{s:2:"id";s:5:"29712";s:4:"slug";s:46:"social-networks-auto-poster-facebook-twitter-g";s:6:"plugin";s:67:"social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php";s:11:"new_version";s:6:"3.4.26";s:3:"url";s:77:"https://wordpress.org/plugins/social-networks-auto-poster-facebook-twitter-g/";s:7:"package";s:89:"https://downloads.wordpress.org/plugin/social-networks-auto-poster-facebook-twitter-g.zip";}}}', 'yes');
+(869, '_site_transient_update_core', 'O:8:"stdClass":4:{s:7:"updates";a:1:{i:0;O:8:"stdClass":10:{s:8:"response";s:6:"latest";s:8:"download";s:65:"https://downloads.wordpress.org/release/de_DE/wordpress-4.3.1.zip";s:6:"locale";s:5:"de_DE";s:8:"packages";O:8:"stdClass":5:{s:4:"full";s:65:"https://downloads.wordpress.org/release/de_DE/wordpress-4.3.1.zip";s:10:"no_content";b:0;s:11:"new_bundled";b:0;s:7:"partial";b:0;s:8:"rollback";b:0;}s:7:"current";s:5:"4.3.1";s:7:"version";s:5:"4.3.1";s:11:"php_version";s:5:"5.2.4";s:13:"mysql_version";s:3:"5.0";s:11:"new_bundled";s:3:"4.1";s:15:"partial_version";s:0:"";}}s:12:"last_checked";i:1445691252;s:15:"version_checked";s:5:"4.3.1";s:12:"translations";a:0:{}}', 'yes'),
+(870, '_site_transient_update_plugins', 'O:8:"stdClass":5:{s:12:"last_checked";i:1445691766;s:7:"checked";a:6:{s:19:"akismet/akismet.php";s:5:"3.1.5";s:24:"buddypress/bp-loader.php";s:5:"2.3.4";s:33:"events-manager/events-manager.php";s:5:"5.6.1";s:9:"hello.php";s:3:"1.6";s:17:"mycred/mycred.php";s:5:"1.6.6";s:67:"social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php";s:6:"3.4.26";}s:8:"response";a:0:{}s:12:"translations";a:0:{}s:9:"no_update";a:6:{s:19:"akismet/akismet.php";O:8:"stdClass":6:{s:2:"id";s:2:"15";s:4:"slug";s:7:"akismet";s:6:"plugin";s:19:"akismet/akismet.php";s:11:"new_version";s:5:"3.1.5";s:3:"url";s:38:"https://wordpress.org/plugins/akismet/";s:7:"package";s:56:"https://downloads.wordpress.org/plugin/akismet.3.1.5.zip";}s:24:"buddypress/bp-loader.php";O:8:"stdClass":7:{s:2:"id";s:4:"7756";s:4:"slug";s:10:"buddypress";s:6:"plugin";s:24:"buddypress/bp-loader.php";s:11:"new_version";s:5:"2.3.4";s:3:"url";s:41:"https://wordpress.org/plugins/buddypress/";s:7:"package";s:59:"https://downloads.wordpress.org/plugin/buddypress.2.3.4.zip";s:14:"upgrade_notice";s:57:"See: https://codex.buddypress.org/releases/version-2-3-4/";}s:33:"events-manager/events-manager.php";O:8:"stdClass":6:{s:2:"id";s:4:"4075";s:4:"slug";s:14:"events-manager";s:6:"plugin";s:33:"events-manager/events-manager.php";s:11:"new_version";s:5:"5.6.1";s:3:"url";s:45:"https://wordpress.org/plugins/events-manager/";s:7:"package";s:63:"https://downloads.wordpress.org/plugin/events-manager.5.6.1.zip";}s:9:"hello.php";O:8:"stdClass":6:{s:2:"id";s:4:"3564";s:4:"slug";s:11:"hello-dolly";s:6:"plugin";s:9:"hello.php";s:11:"new_version";s:3:"1.6";s:3:"url";s:42:"https://wordpress.org/plugins/hello-dolly/";s:7:"package";s:58:"https://downloads.wordpress.org/plugin/hello-dolly.1.6.zip";}s:17:"mycred/mycred.php";O:8:"stdClass":7:{s:2:"id";s:5:"40289";s:4:"slug";s:6:"mycred";s:6:"plugin";s:17:"mycred/mycred.php";s:11:"new_version";s:5:"1.6.6";s:3:"url";s:37:"https://wordpress.org/plugins/mycred/";s:7:"package";s:55:"https://downloads.wordpress.org/plugin/mycred.1.6.6.zip";s:14:"upgrade_notice";s:19:"Critical bug fixes.";}s:67:"social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php";O:8:"stdClass":6:{s:2:"id";s:5:"29712";s:4:"slug";s:46:"social-networks-auto-poster-facebook-twitter-g";s:6:"plugin";s:67:"social-networks-auto-poster-facebook-twitter-g/NextScripts_SNAP.php";s:11:"new_version";s:6:"3.4.26";s:3:"url";s:77:"https://wordpress.org/plugins/social-networks-auto-poster-facebook-twitter-g/";s:7:"package";s:89:"https://downloads.wordpress.org/plugin/social-networks-auto-poster-facebook-twitter-g.zip";}}}', 'yes'),
+(879, '_site_transient_timeout_browser_a3867c5757dc4b9c202e5a86d846c14f', '1446287461', 'yes');
 INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
-(871, '_site_transient_update_themes', 'O:8:"stdClass":4:{s:12:"last_checked";i:1445682257;s:7:"checked";a:4:{s:20:"firegento_stammtisch";s:5:"1.0.0";s:13:"twentyfifteen";s:3:"1.3";s:14:"twentyfourteen";s:3:"1.5";s:14:"twentythirteen";s:3:"1.6";}s:8:"response";a:0:{}s:12:"translations";a:0:{}}', 'yes'),
-(875, 'rewrite_rules', 'a:152:{s:27:"events/(\\d{4}-\\d{2}-\\d{2})$";s:51:"index.php?pagename=events/&calendar_day=$matches[1]";s:13:"events/rss/?$";s:35:"index.php?post_type=event&feed=feed";s:14:"events/feed/?$";s:35:"index.php?post_type=event&feed=feed";s:19:"events/locations/?$";s:19:"index.php?page_id=5";s:20:"events/categories/?$";s:19:"index.php?page_id=6";s:14:"events/tags/?$";s:19:"index.php?page_id=7";s:21:"events/my-bookings/?$";s:19:"index.php?page_id=8";s:18:"events/event/(.+)$";s:63:"index.php?pagename=events/&em_redirect=1&event_slug=$matches[1]";s:21:"events/location/(.+)$";s:66:"index.php?pagename=events/&em_redirect=1&location_slug=$matches[1]";s:21:"events/category/(.+)$";s:66:"index.php?pagename=events/&em_redirect=1&category_slug=$matches[1]";s:9:"events/?$";s:25:"index.php?pagename=events";s:22:"events/([^/]+)/ical/?$";s:34:"index.php?event=$matches[1]&ical=1";s:25:"locations/([^/]+)/ical/?$";s:37:"index.php?location=$matches[1]&ical=1";s:33:"events/categories/([^/]+)/ical/?$";s:45:"index.php?event-categories=$matches[1]&ical=1";s:27:"events/tags/([^/]+)/ical/?$";s:39:"index.php?event-tags=$matches[1]&ical=1";s:24:"locations/([^/]+)/rss/?$";s:36:"index.php?location=$matches[1]&rss=1";s:12:"locations/?$";s:28:"index.php?post_type=location";s:42:"locations/feed/(feed|rdf|rss|rss2|atom)/?$";s:45:"index.php?post_type=location&feed=$matches[1]";s:37:"locations/(feed|rdf|rss|rss2|atom)/?$";s:45:"index.php?post_type=location&feed=$matches[1]";s:29:"locations/page/([0-9]{1,})/?$";s:46:"index.php?post_type=location&paged=$matches[1]";s:39:"events/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?post_type=event&feed=$matches[1]";s:34:"events/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?post_type=event&feed=$matches[1]";s:26:"events/page/([0-9]{1,})/?$";s:43:"index.php?post_type=event&paged=$matches[1]";s:47:"category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:42:"category/(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:35:"category/(.+?)/page/?([0-9]{1,})/?$";s:53:"index.php?category_name=$matches[1]&paged=$matches[2]";s:17:"category/(.+?)/?$";s:35:"index.php?category_name=$matches[1]";s:44:"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:39:"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:32:"tag/([^/]+)/page/?([0-9]{1,})/?$";s:43:"index.php?tag=$matches[1]&paged=$matches[2]";s:14:"tag/([^/]+)/?$";s:25:"index.php?tag=$matches[1]";s:45:"type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:40:"type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:33:"type/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?post_format=$matches[1]&paged=$matches[2]";s:15:"type/([^/]+)/?$";s:33:"index.php?post_format=$matches[1]";s:52:"events/tags/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?event-tags=$matches[1]&feed=$matches[2]";s:47:"events/tags/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?event-tags=$matches[1]&feed=$matches[2]";s:40:"events/tags/([^/]+)/page/?([0-9]{1,})/?$";s:50:"index.php?event-tags=$matches[1]&paged=$matches[2]";s:22:"events/tags/([^/]+)/?$";s:32:"index.php?event-tags=$matches[1]";s:56:"events/categories/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:55:"index.php?event-categories=$matches[1]&feed=$matches[2]";s:51:"events/categories/(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:55:"index.php?event-categories=$matches[1]&feed=$matches[2]";s:44:"events/categories/(.+?)/page/?([0-9]{1,})/?$";s:56:"index.php?event-categories=$matches[1]&paged=$matches[2]";s:26:"events/categories/(.+?)/?$";s:38:"index.php?event-categories=$matches[1]";s:37:"locations/[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:47:"locations/[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:67:"locations/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:62:"locations/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:62:"locations/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:30:"locations/([^/]+)/trackback/?$";s:35:"index.php?location=$matches[1]&tb=1";s:50:"locations/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?location=$matches[1]&feed=$matches[2]";s:45:"locations/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?location=$matches[1]&feed=$matches[2]";s:38:"locations/([^/]+)/page/?([0-9]{1,})/?$";s:48:"index.php?location=$matches[1]&paged=$matches[2]";s:45:"locations/([^/]+)/comment-page-([0-9]{1,})/?$";s:48:"index.php?location=$matches[1]&cpage=$matches[2]";s:30:"locations/([^/]+)(/[0-9]+)?/?$";s:47:"index.php?location=$matches[1]&page=$matches[2]";s:26:"locations/[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:36:"locations/[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:56:"locations/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:51:"locations/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:51:"locations/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:34:"events/[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:44:"events/[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:64:"events/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:59:"events/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:59:"events/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:27:"events/([^/]+)/trackback/?$";s:32:"index.php?event=$matches[1]&tb=1";s:47:"events/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:44:"index.php?event=$matches[1]&feed=$matches[2]";s:42:"events/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:44:"index.php?event=$matches[1]&feed=$matches[2]";s:35:"events/([^/]+)/page/?([0-9]{1,})/?$";s:45:"index.php?event=$matches[1]&paged=$matches[2]";s:42:"events/([^/]+)/comment-page-([0-9]{1,})/?$";s:45:"index.php?event=$matches[1]&cpage=$matches[2]";s:27:"events/([^/]+)(/[0-9]+)?/?$";s:44:"index.php?event=$matches[1]&page=$matches[2]";s:23:"events/[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:33:"events/[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:53:"events/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:48:"events/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:48:"events/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:44:"events-recurring/[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:54:"events-recurring/[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:74:"events-recurring/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:69:"events-recurring/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:69:"events-recurring/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:37:"events-recurring/([^/]+)/trackback/?$";s:42:"index.php?event-recurring=$matches[1]&tb=1";s:45:"events-recurring/([^/]+)/page/?([0-9]{1,})/?$";s:55:"index.php?event-recurring=$matches[1]&paged=$matches[2]";s:52:"events-recurring/([^/]+)/comment-page-([0-9]{1,})/?$";s:55:"index.php?event-recurring=$matches[1]&cpage=$matches[2]";s:37:"events-recurring/([^/]+)(/[0-9]+)?/?$";s:54:"index.php?event-recurring=$matches[1]&page=$matches[2]";s:33:"events-recurring/[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:43:"events-recurring/[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:63:"events-recurring/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:58:"events-recurring/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:58:"events-recurring/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:55:"bp_member_type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:53:"index.php?bp_member_type=$matches[1]&feed=$matches[2]";s:50:"bp_member_type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:53:"index.php?bp_member_type=$matches[1]&feed=$matches[2]";s:43:"bp_member_type/([^/]+)/page/?([0-9]{1,})/?$";s:54:"index.php?bp_member_type=$matches[1]&paged=$matches[2]";s:25:"bp_member_type/([^/]+)/?$";s:36:"index.php?bp_member_type=$matches[1]";s:12:"robots\\.txt$";s:18:"index.php?robots=1";s:48:".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$";s:18:"index.php?feed=old";s:20:".*wp-app\\.php(/.*)?$";s:19:"index.php?error=403";s:18:".*wp-register.php$";s:23:"index.php?register=true";s:32:"feed/(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:27:"(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:20:"page/?([0-9]{1,})/?$";s:28:"index.php?&paged=$matches[1]";s:41:"comments/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:36:"comments/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:44:"search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:39:"search/(.+)/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:32:"search/(.+)/page/?([0-9]{1,})/?$";s:41:"index.php?s=$matches[1]&paged=$matches[2]";s:14:"search/(.+)/?$";s:23:"index.php?s=$matches[1]";s:47:"author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:42:"author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:35:"author/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?author_name=$matches[1]&paged=$matches[2]";s:17:"author/([^/]+)/?$";s:33:"index.php?author_name=$matches[1]";s:69:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:64:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:57:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:81:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&paged=$matches[4]";s:39:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$";s:63:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]";s:56:"([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:51:"([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:44:"([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:65:"index.php?year=$matches[1]&monthnum=$matches[2]&paged=$matches[3]";s:26:"([0-9]{4})/([0-9]{1,2})/?$";s:47:"index.php?year=$matches[1]&monthnum=$matches[2]";s:43:"([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:38:"([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:31:"([0-9]{4})/page/?([0-9]{1,})/?$";s:44:"index.php?year=$matches[1]&paged=$matches[2]";s:13:"([0-9]{4})/?$";s:26:"index.php?year=$matches[1]";s:58:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:68:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:88:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:83:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:83:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:57:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)/trackback/?$";s:85:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&tb=1";s:77:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:97:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&feed=$matches[5]";s:72:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:97:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&feed=$matches[5]";s:65:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)/page/?([0-9]{1,})/?$";s:98:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&paged=$matches[5]";s:72:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)/comment-page-([0-9]{1,})/?$";s:98:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&cpage=$matches[5]";s:57:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/([^/]+)(/[0-9]+)?/?$";s:97:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&name=$matches[4]&page=$matches[5]";s:47:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:57:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:77:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:72:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:72:"[0-9]{4}/[0-9]{1,2}/[0-9]{1,2}/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:64:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/comment-page-([0-9]{1,})/?$";s:81:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&cpage=$matches[4]";s:51:"([0-9]{4})/([0-9]{1,2})/comment-page-([0-9]{1,})/?$";s:65:"index.php?year=$matches[1]&monthnum=$matches[2]&cpage=$matches[3]";s:38:"([0-9]{4})/comment-page-([0-9]{1,})/?$";s:44:"index.php?year=$matches[1]&cpage=$matches[2]";s:27:".?.+?/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:37:".?.+?/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:57:".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:20:"(.?.+?)/trackback/?$";s:35:"index.php?pagename=$matches[1]&tb=1";s:40:"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:35:"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:28:"(.?.+?)/page/?([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&paged=$matches[2]";s:35:"(.?.+?)/comment-page-([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&cpage=$matches[2]";s:20:"(.?.+?)(/[0-9]+)?/?$";s:47:"index.php?pagename=$matches[1]&page=$matches[2]";}', 'yes'),
-(879, '_site_transient_timeout_browser_a3867c5757dc4b9c202e5a86d846c14f', '1446287461', 'yes'),
 (880, '_site_transient_browser_a3867c5757dc4b9c202e5a86d846c14f', 'a:9:{s:8:"platform";s:9:"Macintosh";s:4:"name";s:6:"Chrome";s:7:"version";s:12:"46.0.2490.80";s:10:"update_url";s:28:"http://www.google.com/chrome";s:7:"img_src";s:49:"http://s.wordpress.org/images/browsers/chrome.png";s:11:"img_src_ssl";s:48:"https://wordpress.org/images/browsers/chrome.png";s:15:"current_version";s:2:"18";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes'),
 (881, '_site_transient_timeout_browser_e84f96126d2b7e6a88d15f3b973a3779', '1446287475', 'yes'),
 (882, '_site_transient_browser_e84f96126d2b7e6a88d15f3b973a3779', 'a:9:{s:8:"platform";s:7:"Windows";s:4:"name";s:6:"Chrome";s:7:"version";s:12:"46.0.2490.71";s:10:"update_url";s:28:"http://www.google.com/chrome";s:7:"img_src";s:49:"http://s.wordpress.org/images/browsers/chrome.png";s:11:"img_src_ssl";s:48:"https://wordpress.org/images/browsers/chrome.png";s:15:"current_version";s:2:"18";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes'),
 (888, '_site_transient_timeout_available_translations', '1445697480', 'yes'),
-(889, '_site_transient_available_translations', 'a:66:{s:2:"ar";a:8:{s:8:"language";s:2:"ar";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 00:32:07";s:12:"english_name";s:6:"Arabic";s:11:"native_name";s:14:"العربية";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/ar.zip";s:3:"iso";a:2:{i:1;s:2:"ar";i:2;s:3:"ara";}s:7:"strings";a:1:{s:8:"continue";s:16:"المتابعة";}}s:3:"ary";a:8:{s:8:"language";s:3:"ary";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-20 07:06:05";s:12:"english_name";s:15:"Moroccan Arabic";s:11:"native_name";s:31:"العربية المغربية";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.3.1/ary.zip";s:3:"iso";a:2:{i:1;s:5:"ar_MA";i:3;s:3:"ary";}s:7:"strings";a:1:{s:8:"continue";s:16:"المتابعة";}}s:2:"az";a:8:{s:8:"language";s:2:"az";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-22 14:16:17";s:12:"english_name";s:11:"Azerbaijani";s:11:"native_name";s:16:"Azərbaycan dili";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/az.zip";s:3:"iso";a:2:{i:1;s:2:"az";i:2;s:3:"aze";}s:7:"strings";a:1:{s:8:"continue";s:5:"Davam";}}s:5:"bg_BG";a:8:{s:8:"language";s:5:"bg_BG";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-17 10:33:13";s:12:"english_name";s:9:"Bulgarian";s:11:"native_name";s:18:"Български";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/bg_BG.zip";s:3:"iso";a:2:{i:1;s:2:"bg";i:2;s:3:"bul";}s:7:"strings";a:1:{s:8:"continue";s:22:"Продължение";}}s:5:"bn_BD";a:8:{s:8:"language";s:5:"bn_BD";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-16 05:09:40";s:12:"english_name";s:7:"Bengali";s:11:"native_name";s:15:"বাংলা";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/bn_BD.zip";s:3:"iso";a:1:{i:1;s:2:"bn";}s:7:"strings";a:1:{s:8:"continue";s:23:"এগিয়ে চল.";}}s:5:"bs_BA";a:8:{s:8:"language";s:5:"bs_BA";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 21:20:44";s:12:"english_name";s:7:"Bosnian";s:11:"native_name";s:8:"Bosanski";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/bs_BA.zip";s:3:"iso";a:2:{i:1;s:2:"bs";i:2;s:3:"bos";}s:7:"strings";a:1:{s:8:"continue";s:7:"Nastavi";}}s:2:"ca";a:8:{s:8:"language";s:2:"ca";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-07 03:25:59";s:12:"english_name";s:7:"Catalan";s:11:"native_name";s:7:"Català";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/ca.zip";s:3:"iso";a:2:{i:1;s:2:"ca";i:2;s:3:"cat";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continua";}}s:2:"cy";a:8:{s:8:"language";s:2:"cy";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-19 09:17:13";s:12:"english_name";s:5:"Welsh";s:11:"native_name";s:7:"Cymraeg";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/cy.zip";s:3:"iso";a:2:{i:1;s:2:"cy";i:2;s:3:"cym";}s:7:"strings";a:1:{s:8:"continue";s:6:"Parhau";}}s:5:"da_DK";a:8:{s:8:"language";s:5:"da_DK";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 19:34:34";s:12:"english_name";s:6:"Danish";s:11:"native_name";s:5:"Dansk";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/da_DK.zip";s:3:"iso";a:2:{i:1;s:2:"da";i:2;s:3:"dan";}s:7:"strings";a:1:{s:8:"continue";s:12:"Forts&#230;t";}}s:12:"de_DE_formal";a:8:{s:8:"language";s:12:"de_DE_formal";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-14 15:24:20";s:12:"english_name";s:15:"German (Formal)";s:11:"native_name";s:13:"Deutsch (Sie)";s:7:"package";s:71:"https://downloads.wordpress.org/translation/core/4.3.1/de_DE_formal.zip";s:3:"iso";a:1:{i:1;s:2:"de";}s:7:"strings";a:1:{s:8:"continue";s:10:"Fortfahren";}}s:5:"de_DE";a:8:{s:8:"language";s:5:"de_DE";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-30 07:30:55";s:12:"english_name";s:6:"German";s:11:"native_name";s:7:"Deutsch";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/de_DE.zip";s:3:"iso";a:1:{i:1;s:2:"de";}s:7:"strings";a:1:{s:8:"continue";s:10:"Fortfahren";}}s:5:"de_CH";a:8:{s:8:"language";s:5:"de_CH";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-02 05:19:03";s:12:"english_name";s:20:"German (Switzerland)";s:11:"native_name";s:17:"Deutsch (Schweiz)";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/de_CH.zip";s:3:"iso";a:1:{i:1;s:2:"de";}s:7:"strings";a:1:{s:8:"continue";s:10:"Fortfahren";}}s:2:"el";a:8:{s:8:"language";s:2:"el";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-22 08:30:00";s:12:"english_name";s:5:"Greek";s:11:"native_name";s:16:"Ελληνικά";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/el.zip";s:3:"iso";a:2:{i:1;s:2:"el";i:2;s:3:"ell";}s:7:"strings";a:1:{s:8:"continue";s:16:"Συνέχεια";}}s:5:"en_GB";a:8:{s:8:"language";s:5:"en_GB";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-17 20:57:21";s:12:"english_name";s:12:"English (UK)";s:11:"native_name";s:12:"English (UK)";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/en_GB.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_AU";a:8:{s:8:"language";s:5:"en_AU";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-13 23:56:05";s:12:"english_name";s:19:"English (Australia)";s:11:"native_name";s:19:"English (Australia)";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/en_AU.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_CA";a:8:{s:8:"language";s:5:"en_CA";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-14 00:38:16";s:12:"english_name";s:16:"English (Canada)";s:11:"native_name";s:16:"English (Canada)";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/en_CA.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_NZ";a:8:{s:8:"language";s:5:"en_NZ";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-17 22:20:50";s:12:"english_name";s:21:"English (New Zealand)";s:11:"native_name";s:21:"English (New Zealand)";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/en_NZ.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:2:"eo";a:8:{s:8:"language";s:2:"eo";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-16 10:50:33";s:12:"english_name";s:9:"Esperanto";s:11:"native_name";s:9:"Esperanto";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/eo.zip";s:3:"iso";a:2:{i:1;s:2:"eo";i:2;s:3:"epo";}s:7:"strings";a:1:{s:8:"continue";s:8:"Daŭrigi";}}s:5:"es_PE";a:8:{s:8:"language";s:5:"es_PE";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-19 14:33:57";s:12:"english_name";s:14:"Spanish (Peru)";s:11:"native_name";s:17:"Español de Perú";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/es_PE.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_CO";a:8:{s:8:"language";s:5:"es_CO";s:7:"version";s:6:"4.3-RC";s:7:"updated";s:19:"2015-08-04 06:10:33";s:12:"english_name";s:18:"Spanish (Colombia)";s:11:"native_name";s:20:"Español de Colombia";s:7:"package";s:65:"https://downloads.wordpress.org/translation/core/4.3-RC/es_CO.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_ES";a:8:{s:8:"language";s:5:"es_ES";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-26 22:31:40";s:12:"english_name";s:15:"Spanish (Spain)";s:11:"native_name";s:8:"Español";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/es_ES.zip";s:3:"iso";a:1:{i:1;s:2:"es";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_CL";a:8:{s:8:"language";s:5:"es_CL";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-21 19:03:32";s:12:"english_name";s:15:"Spanish (Chile)";s:11:"native_name";s:17:"Español de Chile";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/es_CL.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_MX";a:8:{s:8:"language";s:5:"es_MX";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-30 19:20:19";s:12:"english_name";s:16:"Spanish (Mexico)";s:11:"native_name";s:19:"Español de México";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/es_MX.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:2:"et";a:8:{s:8:"language";s:2:"et";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-05 16:34:02";s:12:"english_name";s:8:"Estonian";s:11:"native_name";s:5:"Eesti";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/et.zip";s:3:"iso";a:2:{i:1;s:2:"et";i:2;s:3:"est";}s:7:"strings";a:1:{s:8:"continue";s:6:"Jätka";}}s:2:"eu";a:8:{s:8:"language";s:2:"eu";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-12 17:21:08";s:12:"english_name";s:6:"Basque";s:11:"native_name";s:7:"Euskara";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/eu.zip";s:3:"iso";a:2:{i:1;s:2:"eu";i:2;s:3:"eus";}s:7:"strings";a:1:{s:8:"continue";s:8:"Jarraitu";}}s:5:"fa_IR";a:8:{s:8:"language";s:5:"fa_IR";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-20 13:36:08";s:12:"english_name";s:7:"Persian";s:11:"native_name";s:10:"فارسی";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/fa_IR.zip";s:3:"iso";a:2:{i:1;s:2:"fa";i:2;s:3:"fas";}s:7:"strings";a:1:{s:8:"continue";s:10:"ادامه";}}s:2:"fi";a:8:{s:8:"language";s:2:"fi";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-15 15:41:04";s:12:"english_name";s:7:"Finnish";s:11:"native_name";s:5:"Suomi";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/fi.zip";s:3:"iso";a:2:{i:1;s:2:"fi";i:2;s:3:"fin";}s:7:"strings";a:1:{s:8:"continue";s:5:"Jatka";}}s:5:"fr_BE";a:8:{s:8:"language";s:5:"fr_BE";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-06 20:37:24";s:12:"english_name";s:16:"French (Belgium)";s:11:"native_name";s:21:"Français de Belgique";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/fr_BE.zip";s:3:"iso";a:2:{i:1;s:2:"fr";i:2;s:3:"fra";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuer";}}s:5:"fr_FR";a:8:{s:8:"language";s:5:"fr_FR";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-14 11:44:29";s:12:"english_name";s:15:"French (France)";s:11:"native_name";s:9:"Français";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/fr_FR.zip";s:3:"iso";a:1:{i:1;s:2:"fr";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuer";}}s:2:"gd";a:8:{s:8:"language";s:2:"gd";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-24 15:25:30";s:12:"english_name";s:15:"Scottish Gaelic";s:11:"native_name";s:9:"Gàidhlig";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/gd.zip";s:3:"iso";a:3:{i:1;s:2:"gd";i:2;s:3:"gla";i:3;s:3:"gla";}s:7:"strings";a:1:{s:8:"continue";s:15:"Lean air adhart";}}s:5:"gl_ES";a:8:{s:8:"language";s:5:"gl_ES";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 23:34:00";s:12:"english_name";s:8:"Galician";s:11:"native_name";s:6:"Galego";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/gl_ES.zip";s:3:"iso";a:2:{i:1;s:2:"gl";i:2;s:3:"glg";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:3:"haz";a:8:{s:8:"language";s:3:"haz";s:7:"version";s:5:"4.1.8";s:7:"updated";s:19:"2015-03-26 15:20:27";s:12:"english_name";s:8:"Hazaragi";s:11:"native_name";s:15:"هزاره گی";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.1.8/haz.zip";s:3:"iso";a:1:{i:3;s:3:"haz";}s:7:"strings";a:1:{s:8:"continue";s:10:"ادامه";}}s:5:"he_IL";a:8:{s:8:"language";s:5:"he_IL";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-22 08:59:41";s:12:"english_name";s:6:"Hebrew";s:11:"native_name";s:16:"עִבְרִית";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/he_IL.zip";s:3:"iso";a:1:{i:1;s:2:"he";}s:7:"strings";a:1:{s:8:"continue";s:12:"להמשיך";}}s:2:"hr";a:8:{s:8:"language";s:2:"hr";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-01 20:42:02";s:12:"english_name";s:8:"Croatian";s:11:"native_name";s:8:"Hrvatski";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/hr.zip";s:3:"iso";a:2:{i:1;s:2:"hr";i:2;s:3:"hrv";}s:7:"strings";a:1:{s:8:"continue";s:7:"Nastavi";}}s:5:"hu_HU";a:8:{s:8:"language";s:5:"hu_HU";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-23 07:34:16";s:12:"english_name";s:9:"Hungarian";s:11:"native_name";s:6:"Magyar";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/hu_HU.zip";s:3:"iso";a:2:{i:1;s:2:"hu";i:2;s:3:"hun";}s:7:"strings";a:1:{s:8:"continue";s:7:"Tovább";}}s:2:"hy";a:8:{s:8:"language";s:2:"hy";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-17 13:36:47";s:12:"english_name";s:8:"Armenian";s:11:"native_name";s:14:"Հայերեն";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/hy.zip";s:3:"iso";a:2:{i:1;s:2:"hy";i:2;s:3:"hye";}s:7:"strings";a:1:{s:8:"continue";s:20:"Շարունակել";}}s:5:"id_ID";a:8:{s:8:"language";s:5:"id_ID";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-08 17:47:38";s:12:"english_name";s:10:"Indonesian";s:11:"native_name";s:16:"Bahasa Indonesia";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/id_ID.zip";s:3:"iso";a:2:{i:1;s:2:"id";i:2;s:3:"ind";}s:7:"strings";a:1:{s:8:"continue";s:9:"Lanjutkan";}}s:5:"is_IS";a:8:{s:8:"language";s:5:"is_IS";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-22 13:47:37";s:12:"english_name";s:9:"Icelandic";s:11:"native_name";s:9:"Íslenska";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/is_IS.zip";s:3:"iso";a:2:{i:1;s:2:"is";i:2;s:3:"isl";}s:7:"strings";a:1:{s:8:"continue";s:6:"Áfram";}}s:5:"it_IT";a:8:{s:8:"language";s:5:"it_IT";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-06 06:16:37";s:12:"english_name";s:7:"Italian";s:11:"native_name";s:8:"Italiano";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/it_IT.zip";s:3:"iso";a:2:{i:1;s:2:"it";i:2;s:3:"ita";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continua";}}s:2:"ja";a:8:{s:8:"language";s:2:"ja";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-30 16:23:05";s:12:"english_name";s:8:"Japanese";s:11:"native_name";s:9:"日本語";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/ja.zip";s:3:"iso";a:1:{i:1;s:2:"ja";}s:7:"strings";a:1:{s:8:"continue";s:9:"続ける";}}s:5:"ko_KR";a:8:{s:8:"language";s:5:"ko_KR";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-13 04:26:36";s:12:"english_name";s:6:"Korean";s:11:"native_name";s:9:"한국어";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/ko_KR.zip";s:3:"iso";a:2:{i:1;s:2:"ko";i:2;s:3:"kor";}s:7:"strings";a:1:{s:8:"continue";s:6:"계속";}}s:5:"lt_LT";a:8:{s:8:"language";s:5:"lt_LT";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 07:48:28";s:12:"english_name";s:10:"Lithuanian";s:11:"native_name";s:15:"Lietuvių kalba";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/lt_LT.zip";s:3:"iso";a:2:{i:1;s:2:"lt";i:2;s:3:"lit";}s:7:"strings";a:1:{s:8:"continue";s:6:"Tęsti";}}s:5:"my_MM";a:8:{s:8:"language";s:5:"my_MM";s:7:"version";s:5:"4.1.8";s:7:"updated";s:19:"2015-03-26 15:57:42";s:12:"english_name";s:17:"Myanmar (Burmese)";s:11:"native_name";s:15:"ဗမာစာ";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.1.8/my_MM.zip";s:3:"iso";a:2:{i:1;s:2:"my";i:2;s:3:"mya";}s:7:"strings";a:1:{s:8:"continue";s:54:"ဆက်လက်လုပ်ေဆာင်ပါ။";}}s:5:"nb_NO";a:8:{s:8:"language";s:5:"nb_NO";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-23 10:49:34";s:12:"english_name";s:19:"Norwegian (Bokmål)";s:11:"native_name";s:13:"Norsk bokmål";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/nb_NO.zip";s:3:"iso";a:2:{i:1;s:2:"nb";i:2;s:3:"nob";}s:7:"strings";a:1:{s:8:"continue";s:8:"Fortsett";}}s:5:"nl_NL";a:8:{s:8:"language";s:5:"nl_NL";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-14 19:32:52";s:12:"english_name";s:5:"Dutch";s:11:"native_name";s:10:"Nederlands";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/nl_NL.zip";s:3:"iso";a:2:{i:1;s:2:"nl";i:2;s:3:"nld";}s:7:"strings";a:1:{s:8:"continue";s:8:"Doorgaan";}}s:5:"nn_NO";a:8:{s:8:"language";s:5:"nn_NO";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-17 18:56:13";s:12:"english_name";s:19:"Norwegian (Nynorsk)";s:11:"native_name";s:13:"Norsk nynorsk";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/nn_NO.zip";s:3:"iso";a:2:{i:1;s:2:"nn";i:2;s:3:"nno";}s:7:"strings";a:1:{s:8:"continue";s:9:"Hald fram";}}s:3:"oci";a:8:{s:8:"language";s:3:"oci";s:7:"version";s:6:"4.3-RC";s:7:"updated";s:19:"2015-08-02 07:53:33";s:12:"english_name";s:7:"Occitan";s:11:"native_name";s:7:"Occitan";s:7:"package";s:63:"https://downloads.wordpress.org/translation/core/4.3-RC/oci.zip";s:3:"iso";a:2:{i:1;s:2:"oc";i:2;s:3:"oci";}s:7:"strings";a:1:{s:8:"continue";s:9:"Contunhar";}}s:5:"pl_PL";a:8:{s:8:"language";s:5:"pl_PL";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-27 13:38:57";s:12:"english_name";s:6:"Polish";s:11:"native_name";s:6:"Polski";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/pl_PL.zip";s:3:"iso";a:2:{i:1;s:2:"pl";i:2;s:3:"pol";}s:7:"strings";a:1:{s:8:"continue";s:9:"Kontynuuj";}}s:2:"ps";a:8:{s:8:"language";s:2:"ps";s:7:"version";s:5:"4.1.8";s:7:"updated";s:19:"2015-03-29 22:19:48";s:12:"english_name";s:6:"Pashto";s:11:"native_name";s:8:"پښتو";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.1.8/ps.zip";s:3:"iso";a:2:{i:1;s:2:"ps";i:2;s:3:"pus";}s:7:"strings";a:1:{s:8:"continue";s:8:"دوام";}}s:5:"pt_BR";a:8:{s:8:"language";s:5:"pt_BR";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-16 14:15:14";s:12:"english_name";s:19:"Portuguese (Brazil)";s:11:"native_name";s:20:"Português do Brasil";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/pt_BR.zip";s:3:"iso";a:2:{i:1;s:2:"pt";i:2;s:3:"por";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"pt_PT";a:8:{s:8:"language";s:5:"pt_PT";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-16 17:39:04";s:12:"english_name";s:21:"Portuguese (Portugal)";s:11:"native_name";s:10:"Português";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/pt_PT.zip";s:3:"iso";a:1:{i:1;s:2:"pt";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"ro_RO";a:8:{s:8:"language";s:5:"ro_RO";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 16:44:05";s:12:"english_name";s:8:"Romanian";s:11:"native_name";s:8:"Română";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/ro_RO.zip";s:3:"iso";a:2:{i:1;s:2:"ro";i:2;s:3:"ron";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuă";}}s:5:"ru_RU";a:8:{s:8:"language";s:5:"ru_RU";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-03 10:08:50";s:12:"english_name";s:7:"Russian";s:11:"native_name";s:14:"Русский";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/ru_RU.zip";s:3:"iso";a:2:{i:1;s:2:"ru";i:2;s:3:"rus";}s:7:"strings";a:1:{s:8:"continue";s:20:"Продолжить";}}s:5:"sk_SK";a:8:{s:8:"language";s:5:"sk_SK";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-20 09:27:40";s:12:"english_name";s:6:"Slovak";s:11:"native_name";s:11:"Slovenčina";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/sk_SK.zip";s:3:"iso";a:2:{i:1;s:2:"sk";i:2;s:3:"slk";}s:7:"strings";a:1:{s:8:"continue";s:12:"Pokračovať";}}s:5:"sl_SI";a:8:{s:8:"language";s:5:"sl_SI";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-06 16:10:24";s:12:"english_name";s:9:"Slovenian";s:11:"native_name";s:13:"Slovenščina";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/sl_SI.zip";s:3:"iso";a:2:{i:1;s:2:"sl";i:2;s:3:"slv";}s:7:"strings";a:1:{s:8:"continue";s:10:"Nadaljujte";}}s:2:"sq";a:8:{s:8:"language";s:2:"sq";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 17:16:31";s:12:"english_name";s:8:"Albanian";s:11:"native_name";s:5:"Shqip";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/sq.zip";s:3:"iso";a:2:{i:1;s:2:"sq";i:2;s:3:"sqi";}s:7:"strings";a:1:{s:8:"continue";s:6:"Vazhdo";}}s:5:"sr_RS";a:8:{s:8:"language";s:5:"sr_RS";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-17 18:31:56";s:12:"english_name";s:7:"Serbian";s:11:"native_name";s:23:"Српски језик";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/sr_RS.zip";s:3:"iso";a:2:{i:1;s:2:"sr";i:2;s:3:"srp";}s:7:"strings";a:1:{s:8:"continue";s:14:"Настави";}}s:5:"sv_SE";a:8:{s:8:"language";s:5:"sv_SE";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-19 10:43:45";s:12:"english_name";s:7:"Swedish";s:11:"native_name";s:7:"Svenska";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/sv_SE.zip";s:3:"iso";a:2:{i:1;s:2:"sv";i:2;s:3:"swe";}s:7:"strings";a:1:{s:8:"continue";s:9:"Fortsätt";}}s:2:"th";a:8:{s:8:"language";s:2:"th";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-19 16:06:20";s:12:"english_name";s:4:"Thai";s:11:"native_name";s:9:"ไทย";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/th.zip";s:3:"iso";a:2:{i:1;s:2:"th";i:2;s:3:"tha";}s:7:"strings";a:1:{s:8:"continue";s:15:"ต่อไป";}}s:2:"tl";a:8:{s:8:"language";s:2:"tl";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-20 03:52:15";s:12:"english_name";s:7:"Tagalog";s:11:"native_name";s:7:"Tagalog";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/tl.zip";s:3:"iso";a:2:{i:1;s:2:"tl";i:2;s:3:"tgl";}s:7:"strings";a:1:{s:8:"continue";s:10:"Magpatuloy";}}s:5:"tr_TR";a:8:{s:8:"language";s:5:"tr_TR";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-19 13:55:59";s:12:"english_name";s:7:"Turkish";s:11:"native_name";s:8:"Türkçe";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/tr_TR.zip";s:3:"iso";a:2:{i:1;s:2:"tr";i:2;s:3:"tur";}s:7:"strings";a:1:{s:8:"continue";s:5:"Devam";}}s:5:"ug_CN";a:8:{s:8:"language";s:5:"ug_CN";s:7:"version";s:5:"4.1.8";s:7:"updated";s:19:"2015-03-26 16:45:38";s:12:"english_name";s:6:"Uighur";s:11:"native_name";s:9:"Uyƣurqə";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.1.8/ug_CN.zip";s:3:"iso";a:2:{i:1;s:2:"ug";i:2;s:3:"uig";}s:7:"strings";a:1:{s:8:"continue";s:26:"داۋاملاشتۇرۇش";}}s:2:"uk";a:8:{s:8:"language";s:2:"uk";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-08 09:34:14";s:12:"english_name";s:9:"Ukrainian";s:11:"native_name";s:20:"Українська";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/uk.zip";s:3:"iso";a:2:{i:1;s:2:"uk";i:2;s:3:"ukr";}s:7:"strings";a:1:{s:8:"continue";s:20:"Продовжити";}}s:2:"vi";a:8:{s:8:"language";s:2:"vi";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-23 15:20:41";s:12:"english_name";s:10:"Vietnamese";s:11:"native_name";s:14:"Tiếng Việt";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/vi.zip";s:3:"iso";a:2:{i:1;s:2:"vi";i:2;s:3:"vie";}s:7:"strings";a:1:{s:8:"continue";s:12:"Tiếp tục";}}s:5:"zh_TW";a:8:{s:8:"language";s:5:"zh_TW";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-21 11:18:12";s:12:"english_name";s:16:"Chinese (Taiwan)";s:11:"native_name";s:12:"繁體中文";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/zh_TW.zip";s:3:"iso";a:2:{i:1;s:2:"zh";i:2;s:3:"zho";}s:7:"strings";a:1:{s:8:"continue";s:6:"繼續";}}s:5:"zh_CN";a:8:{s:8:"language";s:5:"zh_CN";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-20 19:10:20";s:12:"english_name";s:15:"Chinese (China)";s:11:"native_name";s:12:"简体中文";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/zh_CN.zip";s:3:"iso";a:2:{i:1;s:2:"zh";i:2;s:3:"zho";}s:7:"strings";a:1:{s:8:"continue";s:6:"继续";}}}', 'yes');
+(889, '_site_transient_available_translations', 'a:66:{s:2:"ar";a:8:{s:8:"language";s:2:"ar";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 00:32:07";s:12:"english_name";s:6:"Arabic";s:11:"native_name";s:14:"العربية";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/ar.zip";s:3:"iso";a:2:{i:1;s:2:"ar";i:2;s:3:"ara";}s:7:"strings";a:1:{s:8:"continue";s:16:"المتابعة";}}s:3:"ary";a:8:{s:8:"language";s:3:"ary";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-20 07:06:05";s:12:"english_name";s:15:"Moroccan Arabic";s:11:"native_name";s:31:"العربية المغربية";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.3.1/ary.zip";s:3:"iso";a:2:{i:1;s:5:"ar_MA";i:3;s:3:"ary";}s:7:"strings";a:1:{s:8:"continue";s:16:"المتابعة";}}s:2:"az";a:8:{s:8:"language";s:2:"az";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-22 14:16:17";s:12:"english_name";s:11:"Azerbaijani";s:11:"native_name";s:16:"Azərbaycan dili";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/az.zip";s:3:"iso";a:2:{i:1;s:2:"az";i:2;s:3:"aze";}s:7:"strings";a:1:{s:8:"continue";s:5:"Davam";}}s:5:"bg_BG";a:8:{s:8:"language";s:5:"bg_BG";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-17 10:33:13";s:12:"english_name";s:9:"Bulgarian";s:11:"native_name";s:18:"Български";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/bg_BG.zip";s:3:"iso";a:2:{i:1;s:2:"bg";i:2;s:3:"bul";}s:7:"strings";a:1:{s:8:"continue";s:22:"Продължение";}}s:5:"bn_BD";a:8:{s:8:"language";s:5:"bn_BD";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-16 05:09:40";s:12:"english_name";s:7:"Bengali";s:11:"native_name";s:15:"বাংলা";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/bn_BD.zip";s:3:"iso";a:1:{i:1;s:2:"bn";}s:7:"strings";a:1:{s:8:"continue";s:23:"এগিয়ে চল.";}}s:5:"bs_BA";a:8:{s:8:"language";s:5:"bs_BA";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 21:20:44";s:12:"english_name";s:7:"Bosnian";s:11:"native_name";s:8:"Bosanski";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/bs_BA.zip";s:3:"iso";a:2:{i:1;s:2:"bs";i:2;s:3:"bos";}s:7:"strings";a:1:{s:8:"continue";s:7:"Nastavi";}}s:2:"ca";a:8:{s:8:"language";s:2:"ca";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-07 03:25:59";s:12:"english_name";s:7:"Catalan";s:11:"native_name";s:7:"Català";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/ca.zip";s:3:"iso";a:2:{i:1;s:2:"ca";i:2;s:3:"cat";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continua";}}s:2:"cy";a:8:{s:8:"language";s:2:"cy";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-19 09:17:13";s:12:"english_name";s:5:"Welsh";s:11:"native_name";s:7:"Cymraeg";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/cy.zip";s:3:"iso";a:2:{i:1;s:2:"cy";i:2;s:3:"cym";}s:7:"strings";a:1:{s:8:"continue";s:6:"Parhau";}}s:5:"da_DK";a:8:{s:8:"language";s:5:"da_DK";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 19:34:34";s:12:"english_name";s:6:"Danish";s:11:"native_name";s:5:"Dansk";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/da_DK.zip";s:3:"iso";a:2:{i:1;s:2:"da";i:2;s:3:"dan";}s:7:"strings";a:1:{s:8:"continue";s:12:"Forts&#230;t";}}s:12:"de_DE_formal";a:8:{s:8:"language";s:12:"de_DE_formal";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-14 15:24:20";s:12:"english_name";s:15:"German (Formal)";s:11:"native_name";s:13:"Deutsch (Sie)";s:7:"package";s:71:"https://downloads.wordpress.org/translation/core/4.3.1/de_DE_formal.zip";s:3:"iso";a:1:{i:1;s:2:"de";}s:7:"strings";a:1:{s:8:"continue";s:10:"Fortfahren";}}s:5:"de_DE";a:8:{s:8:"language";s:5:"de_DE";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-30 07:30:55";s:12:"english_name";s:6:"German";s:11:"native_name";s:7:"Deutsch";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/de_DE.zip";s:3:"iso";a:1:{i:1;s:2:"de";}s:7:"strings";a:1:{s:8:"continue";s:10:"Fortfahren";}}s:5:"de_CH";a:8:{s:8:"language";s:5:"de_CH";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-02 05:19:03";s:12:"english_name";s:20:"German (Switzerland)";s:11:"native_name";s:17:"Deutsch (Schweiz)";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/de_CH.zip";s:3:"iso";a:1:{i:1;s:2:"de";}s:7:"strings";a:1:{s:8:"continue";s:10:"Fortfahren";}}s:2:"el";a:8:{s:8:"language";s:2:"el";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-22 08:30:00";s:12:"english_name";s:5:"Greek";s:11:"native_name";s:16:"Ελληνικά";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/el.zip";s:3:"iso";a:2:{i:1;s:2:"el";i:2;s:3:"ell";}s:7:"strings";a:1:{s:8:"continue";s:16:"Συνέχεια";}}s:5:"en_GB";a:8:{s:8:"language";s:5:"en_GB";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-17 20:57:21";s:12:"english_name";s:12:"English (UK)";s:11:"native_name";s:12:"English (UK)";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/en_GB.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_AU";a:8:{s:8:"language";s:5:"en_AU";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-13 23:56:05";s:12:"english_name";s:19:"English (Australia)";s:11:"native_name";s:19:"English (Australia)";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/en_AU.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_CA";a:8:{s:8:"language";s:5:"en_CA";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-14 00:38:16";s:12:"english_name";s:16:"English (Canada)";s:11:"native_name";s:16:"English (Canada)";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/en_CA.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_NZ";a:8:{s:8:"language";s:5:"en_NZ";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-17 22:20:50";s:12:"english_name";s:21:"English (New Zealand)";s:11:"native_name";s:21:"English (New Zealand)";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/en_NZ.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:2:"eo";a:8:{s:8:"language";s:2:"eo";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-16 10:50:33";s:12:"english_name";s:9:"Esperanto";s:11:"native_name";s:9:"Esperanto";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/eo.zip";s:3:"iso";a:2:{i:1;s:2:"eo";i:2;s:3:"epo";}s:7:"strings";a:1:{s:8:"continue";s:8:"Daŭrigi";}}s:5:"es_PE";a:8:{s:8:"language";s:5:"es_PE";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-19 14:33:57";s:12:"english_name";s:14:"Spanish (Peru)";s:11:"native_name";s:17:"Español de Perú";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/es_PE.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_CO";a:8:{s:8:"language";s:5:"es_CO";s:7:"version";s:6:"4.3-RC";s:7:"updated";s:19:"2015-08-04 06:10:33";s:12:"english_name";s:18:"Spanish (Colombia)";s:11:"native_name";s:20:"Español de Colombia";s:7:"package";s:65:"https://downloads.wordpress.org/translation/core/4.3-RC/es_CO.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_ES";a:8:{s:8:"language";s:5:"es_ES";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-26 22:31:40";s:12:"english_name";s:15:"Spanish (Spain)";s:11:"native_name";s:8:"Español";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/es_ES.zip";s:3:"iso";a:1:{i:1;s:2:"es";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_CL";a:8:{s:8:"language";s:5:"es_CL";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-21 19:03:32";s:12:"english_name";s:15:"Spanish (Chile)";s:11:"native_name";s:17:"Español de Chile";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/es_CL.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_MX";a:8:{s:8:"language";s:5:"es_MX";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-30 19:20:19";s:12:"english_name";s:16:"Spanish (Mexico)";s:11:"native_name";s:19:"Español de México";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/es_MX.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:2:"et";a:8:{s:8:"language";s:2:"et";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-05 16:34:02";s:12:"english_name";s:8:"Estonian";s:11:"native_name";s:5:"Eesti";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/et.zip";s:3:"iso";a:2:{i:1;s:2:"et";i:2;s:3:"est";}s:7:"strings";a:1:{s:8:"continue";s:6:"Jätka";}}s:2:"eu";a:8:{s:8:"language";s:2:"eu";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-12 17:21:08";s:12:"english_name";s:6:"Basque";s:11:"native_name";s:7:"Euskara";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/eu.zip";s:3:"iso";a:2:{i:1;s:2:"eu";i:2;s:3:"eus";}s:7:"strings";a:1:{s:8:"continue";s:8:"Jarraitu";}}s:5:"fa_IR";a:8:{s:8:"language";s:5:"fa_IR";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-20 13:36:08";s:12:"english_name";s:7:"Persian";s:11:"native_name";s:10:"فارسی";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/fa_IR.zip";s:3:"iso";a:2:{i:1;s:2:"fa";i:2;s:3:"fas";}s:7:"strings";a:1:{s:8:"continue";s:10:"ادامه";}}s:2:"fi";a:8:{s:8:"language";s:2:"fi";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-15 15:41:04";s:12:"english_name";s:7:"Finnish";s:11:"native_name";s:5:"Suomi";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/fi.zip";s:3:"iso";a:2:{i:1;s:2:"fi";i:2;s:3:"fin";}s:7:"strings";a:1:{s:8:"continue";s:5:"Jatka";}}s:5:"fr_BE";a:8:{s:8:"language";s:5:"fr_BE";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-06 20:37:24";s:12:"english_name";s:16:"French (Belgium)";s:11:"native_name";s:21:"Français de Belgique";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/fr_BE.zip";s:3:"iso";a:2:{i:1;s:2:"fr";i:2;s:3:"fra";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuer";}}s:5:"fr_FR";a:8:{s:8:"language";s:5:"fr_FR";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-14 11:44:29";s:12:"english_name";s:15:"French (France)";s:11:"native_name";s:9:"Français";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/fr_FR.zip";s:3:"iso";a:1:{i:1;s:2:"fr";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuer";}}s:2:"gd";a:8:{s:8:"language";s:2:"gd";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-24 15:25:30";s:12:"english_name";s:15:"Scottish Gaelic";s:11:"native_name";s:9:"Gàidhlig";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/gd.zip";s:3:"iso";a:3:{i:1;s:2:"gd";i:2;s:3:"gla";i:3;s:3:"gla";}s:7:"strings";a:1:{s:8:"continue";s:15:"Lean air adhart";}}s:5:"gl_ES";a:8:{s:8:"language";s:5:"gl_ES";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 23:34:00";s:12:"english_name";s:8:"Galician";s:11:"native_name";s:6:"Galego";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/gl_ES.zip";s:3:"iso";a:2:{i:1;s:2:"gl";i:2;s:3:"glg";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:3:"haz";a:8:{s:8:"language";s:3:"haz";s:7:"version";s:5:"4.1.8";s:7:"updated";s:19:"2015-03-26 15:20:27";s:12:"english_name";s:8:"Hazaragi";s:11:"native_name";s:15:"هزاره گی";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.1.8/haz.zip";s:3:"iso";a:1:{i:3;s:3:"haz";}s:7:"strings";a:1:{s:8:"continue";s:10:"ادامه";}}s:5:"he_IL";a:8:{s:8:"language";s:5:"he_IL";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-22 08:59:41";s:12:"english_name";s:6:"Hebrew";s:11:"native_name";s:16:"עִבְרִית";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/he_IL.zip";s:3:"iso";a:1:{i:1;s:2:"he";}s:7:"strings";a:1:{s:8:"continue";s:12:"להמשיך";}}s:2:"hr";a:8:{s:8:"language";s:2:"hr";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-01 20:42:02";s:12:"english_name";s:8:"Croatian";s:11:"native_name";s:8:"Hrvatski";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/hr.zip";s:3:"iso";a:2:{i:1;s:2:"hr";i:2;s:3:"hrv";}s:7:"strings";a:1:{s:8:"continue";s:7:"Nastavi";}}s:5:"hu_HU";a:8:{s:8:"language";s:5:"hu_HU";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-23 07:34:16";s:12:"english_name";s:9:"Hungarian";s:11:"native_name";s:6:"Magyar";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/hu_HU.zip";s:3:"iso";a:2:{i:1;s:2:"hu";i:2;s:3:"hun";}s:7:"strings";a:1:{s:8:"continue";s:7:"Tovább";}}s:2:"hy";a:8:{s:8:"language";s:2:"hy";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-17 13:36:47";s:12:"english_name";s:8:"Armenian";s:11:"native_name";s:14:"Հայերեն";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/hy.zip";s:3:"iso";a:2:{i:1;s:2:"hy";i:2;s:3:"hye";}s:7:"strings";a:1:{s:8:"continue";s:20:"Շարունակել";}}s:5:"id_ID";a:8:{s:8:"language";s:5:"id_ID";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-08 17:47:38";s:12:"english_name";s:10:"Indonesian";s:11:"native_name";s:16:"Bahasa Indonesia";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/id_ID.zip";s:3:"iso";a:2:{i:1;s:2:"id";i:2;s:3:"ind";}s:7:"strings";a:1:{s:8:"continue";s:9:"Lanjutkan";}}s:5:"is_IS";a:8:{s:8:"language";s:5:"is_IS";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-22 13:47:37";s:12:"english_name";s:9:"Icelandic";s:11:"native_name";s:9:"Íslenska";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/is_IS.zip";s:3:"iso";a:2:{i:1;s:2:"is";i:2;s:3:"isl";}s:7:"strings";a:1:{s:8:"continue";s:6:"Áfram";}}s:5:"it_IT";a:8:{s:8:"language";s:5:"it_IT";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-06 06:16:37";s:12:"english_name";s:7:"Italian";s:11:"native_name";s:8:"Italiano";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/it_IT.zip";s:3:"iso";a:2:{i:1;s:2:"it";i:2;s:3:"ita";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continua";}}s:2:"ja";a:8:{s:8:"language";s:2:"ja";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-30 16:23:05";s:12:"english_name";s:8:"Japanese";s:11:"native_name";s:9:"日本語";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/ja.zip";s:3:"iso";a:1:{i:1;s:2:"ja";}s:7:"strings";a:1:{s:8:"continue";s:9:"続ける";}}s:5:"ko_KR";a:8:{s:8:"language";s:5:"ko_KR";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-13 04:26:36";s:12:"english_name";s:6:"Korean";s:11:"native_name";s:9:"한국어";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/ko_KR.zip";s:3:"iso";a:2:{i:1;s:2:"ko";i:2;s:3:"kor";}s:7:"strings";a:1:{s:8:"continue";s:6:"계속";}}s:5:"lt_LT";a:8:{s:8:"language";s:5:"lt_LT";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 07:48:28";s:12:"english_name";s:10:"Lithuanian";s:11:"native_name";s:15:"Lietuvių kalba";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/lt_LT.zip";s:3:"iso";a:2:{i:1;s:2:"lt";i:2;s:3:"lit";}s:7:"strings";a:1:{s:8:"continue";s:6:"Tęsti";}}s:5:"my_MM";a:8:{s:8:"language";s:5:"my_MM";s:7:"version";s:5:"4.1.8";s:7:"updated";s:19:"2015-03-26 15:57:42";s:12:"english_name";s:17:"Myanmar (Burmese)";s:11:"native_name";s:15:"ဗမာစာ";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.1.8/my_MM.zip";s:3:"iso";a:2:{i:1;s:2:"my";i:2;s:3:"mya";}s:7:"strings";a:1:{s:8:"continue";s:54:"ဆက်လက်လုပ်ေဆာင်ပါ။";}}s:5:"nb_NO";a:8:{s:8:"language";s:5:"nb_NO";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-23 10:49:34";s:12:"english_name";s:19:"Norwegian (Bokmål)";s:11:"native_name";s:13:"Norsk bokmål";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/nb_NO.zip";s:3:"iso";a:2:{i:1;s:2:"nb";i:2;s:3:"nob";}s:7:"strings";a:1:{s:8:"continue";s:8:"Fortsett";}}s:5:"nl_NL";a:8:{s:8:"language";s:5:"nl_NL";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-14 19:32:52";s:12:"english_name";s:5:"Dutch";s:11:"native_name";s:10:"Nederlands";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/nl_NL.zip";s:3:"iso";a:2:{i:1;s:2:"nl";i:2;s:3:"nld";}s:7:"strings";a:1:{s:8:"continue";s:8:"Doorgaan";}}s:5:"nn_NO";a:8:{s:8:"language";s:5:"nn_NO";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-17 18:56:13";s:12:"english_name";s:19:"Norwegian (Nynorsk)";s:11:"native_name";s:13:"Norsk nynorsk";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/nn_NO.zip";s:3:"iso";a:2:{i:1;s:2:"nn";i:2;s:3:"nno";}s:7:"strings";a:1:{s:8:"continue";s:9:"Hald fram";}}s:3:"oci";a:8:{s:8:"language";s:3:"oci";s:7:"version";s:6:"4.3-RC";s:7:"updated";s:19:"2015-08-02 07:53:33";s:12:"english_name";s:7:"Occitan";s:11:"native_name";s:7:"Occitan";s:7:"package";s:63:"https://downloads.wordpress.org/translation/core/4.3-RC/oci.zip";s:3:"iso";a:2:{i:1;s:2:"oc";i:2;s:3:"oci";}s:7:"strings";a:1:{s:8:"continue";s:9:"Contunhar";}}s:5:"pl_PL";a:8:{s:8:"language";s:5:"pl_PL";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-27 13:38:57";s:12:"english_name";s:6:"Polish";s:11:"native_name";s:6:"Polski";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/pl_PL.zip";s:3:"iso";a:2:{i:1;s:2:"pl";i:2;s:3:"pol";}s:7:"strings";a:1:{s:8:"continue";s:9:"Kontynuuj";}}s:2:"ps";a:8:{s:8:"language";s:2:"ps";s:7:"version";s:5:"4.1.8";s:7:"updated";s:19:"2015-03-29 22:19:48";s:12:"english_name";s:6:"Pashto";s:11:"native_name";s:8:"پښتو";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.1.8/ps.zip";s:3:"iso";a:2:{i:1;s:2:"ps";i:2;s:3:"pus";}s:7:"strings";a:1:{s:8:"continue";s:8:"دوام";}}s:5:"pt_BR";a:8:{s:8:"language";s:5:"pt_BR";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-16 14:15:14";s:12:"english_name";s:19:"Portuguese (Brazil)";s:11:"native_name";s:20:"Português do Brasil";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/pt_BR.zip";s:3:"iso";a:2:{i:1;s:2:"pt";i:2;s:3:"por";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"pt_PT";a:8:{s:8:"language";s:5:"pt_PT";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-16 17:39:04";s:12:"english_name";s:21:"Portuguese (Portugal)";s:11:"native_name";s:10:"Português";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/pt_PT.zip";s:3:"iso";a:1:{i:1;s:2:"pt";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"ro_RO";a:8:{s:8:"language";s:5:"ro_RO";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 16:44:05";s:12:"english_name";s:8:"Romanian";s:11:"native_name";s:8:"Română";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/ro_RO.zip";s:3:"iso";a:2:{i:1;s:2:"ro";i:2;s:3:"ron";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuă";}}s:5:"ru_RU";a:8:{s:8:"language";s:5:"ru_RU";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-03 10:08:50";s:12:"english_name";s:7:"Russian";s:11:"native_name";s:14:"Русский";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/ru_RU.zip";s:3:"iso";a:2:{i:1;s:2:"ru";i:2;s:3:"rus";}s:7:"strings";a:1:{s:8:"continue";s:20:"Продолжить";}}s:5:"sk_SK";a:8:{s:8:"language";s:5:"sk_SK";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-20 09:27:40";s:12:"english_name";s:6:"Slovak";s:11:"native_name";s:11:"Slovenčina";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/sk_SK.zip";s:3:"iso";a:2:{i:1;s:2:"sk";i:2;s:3:"slk";}s:7:"strings";a:1:{s:8:"continue";s:12:"Pokračovať";}}s:5:"sl_SI";a:8:{s:8:"language";s:5:"sl_SI";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-06 16:10:24";s:12:"english_name";s:9:"Slovenian";s:11:"native_name";s:13:"Slovenščina";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/sl_SI.zip";s:3:"iso";a:2:{i:1;s:2:"sl";i:2;s:3:"slv";}s:7:"strings";a:1:{s:8:"continue";s:10:"Nadaljujte";}}s:2:"sq";a:8:{s:8:"language";s:2:"sq";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-18 17:16:31";s:12:"english_name";s:8:"Albanian";s:11:"native_name";s:5:"Shqip";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/sq.zip";s:3:"iso";a:2:{i:1;s:2:"sq";i:2;s:3:"sqi";}s:7:"strings";a:1:{s:8:"continue";s:6:"Vazhdo";}}s:5:"sr_RS";a:8:{s:8:"language";s:5:"sr_RS";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-17 18:31:56";s:12:"english_name";s:7:"Serbian";s:11:"native_name";s:23:"Српски језик";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/sr_RS.zip";s:3:"iso";a:2:{i:1;s:2:"sr";i:2;s:3:"srp";}s:7:"strings";a:1:{s:8:"continue";s:14:"Настави";}}s:5:"sv_SE";a:8:{s:8:"language";s:5:"sv_SE";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-19 10:43:45";s:12:"english_name";s:7:"Swedish";s:11:"native_name";s:7:"Svenska";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/sv_SE.zip";s:3:"iso";a:2:{i:1;s:2:"sv";i:2;s:3:"swe";}s:7:"strings";a:1:{s:8:"continue";s:9:"Fortsätt";}}s:2:"th";a:8:{s:8:"language";s:2:"th";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-19 16:06:20";s:12:"english_name";s:4:"Thai";s:11:"native_name";s:9:"ไทย";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/th.zip";s:3:"iso";a:2:{i:1;s:2:"th";i:2;s:3:"tha";}s:7:"strings";a:1:{s:8:"continue";s:15:"ต่อไป";}}s:2:"tl";a:8:{s:8:"language";s:2:"tl";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-20 03:52:15";s:12:"english_name";s:7:"Tagalog";s:11:"native_name";s:7:"Tagalog";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/tl.zip";s:3:"iso";a:2:{i:1;s:2:"tl";i:2;s:3:"tgl";}s:7:"strings";a:1:{s:8:"continue";s:10:"Magpatuloy";}}s:5:"tr_TR";a:8:{s:8:"language";s:5:"tr_TR";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-19 13:55:59";s:12:"english_name";s:7:"Turkish";s:11:"native_name";s:8:"Türkçe";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/tr_TR.zip";s:3:"iso";a:2:{i:1;s:2:"tr";i:2;s:3:"tur";}s:7:"strings";a:1:{s:8:"continue";s:5:"Devam";}}s:5:"ug_CN";a:8:{s:8:"language";s:5:"ug_CN";s:7:"version";s:5:"4.1.8";s:7:"updated";s:19:"2015-03-26 16:45:38";s:12:"english_name";s:6:"Uighur";s:11:"native_name";s:9:"Uyƣurqə";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.1.8/ug_CN.zip";s:3:"iso";a:2:{i:1;s:2:"ug";i:2;s:3:"uig";}s:7:"strings";a:1:{s:8:"continue";s:26:"داۋاملاشتۇرۇش";}}s:2:"uk";a:8:{s:8:"language";s:2:"uk";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-08 09:34:14";s:12:"english_name";s:9:"Ukrainian";s:11:"native_name";s:20:"Українська";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/uk.zip";s:3:"iso";a:2:{i:1;s:2:"uk";i:2;s:3:"ukr";}s:7:"strings";a:1:{s:8:"continue";s:20:"Продовжити";}}s:2:"vi";a:8:{s:8:"language";s:2:"vi";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-10-23 15:20:41";s:12:"english_name";s:10:"Vietnamese";s:11:"native_name";s:14:"Tiếng Việt";s:7:"package";s:61:"https://downloads.wordpress.org/translation/core/4.3.1/vi.zip";s:3:"iso";a:2:{i:1;s:2:"vi";i:2;s:3:"vie";}s:7:"strings";a:1:{s:8:"continue";s:12:"Tiếp tục";}}s:5:"zh_TW";a:8:{s:8:"language";s:5:"zh_TW";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-09-21 11:18:12";s:12:"english_name";s:16:"Chinese (Taiwan)";s:11:"native_name";s:12:"繁體中文";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/zh_TW.zip";s:3:"iso";a:2:{i:1;s:2:"zh";i:2;s:3:"zho";}s:7:"strings";a:1:{s:8:"continue";s:6:"繼續";}}s:5:"zh_CN";a:8:{s:8:"language";s:5:"zh_CN";s:7:"version";s:5:"4.3.1";s:7:"updated";s:19:"2015-08-20 19:10:20";s:12:"english_name";s:15:"Chinese (China)";s:11:"native_name";s:12:"简体中文";s:7:"package";s:64:"https://downloads.wordpress.org/translation/core/4.3.1/zh_CN.zip";s:3:"iso";a:2:{i:1;s:2:"zh";i:2;s:3:"zho";}s:7:"strings";a:1:{s:8:"continue";s:6:"继续";}}}', 'yes'),
+(905, '_transient_firegento_stammtisch_categories', '1', 'yes'),
+(909, '_site_transient_timeout_wporg_theme_feature_list', '1445702031', 'yes'),
+(910, '_site_transient_wporg_theme_feature_list', 'a:4:{s:6:"Colors";a:15:{i:0;s:5:"black";i:1;s:4:"blue";i:2;s:5:"brown";i:3;s:4:"gray";i:4;s:5:"green";i:5;s:6:"orange";i:6;s:4:"pink";i:7;s:6:"purple";i:8;s:3:"red";i:9;s:6:"silver";i:10;s:3:"tan";i:11;s:5:"white";i:12;s:6:"yellow";i:13;s:4:"dark";i:14;s:5:"light";}s:6:"Layout";a:9:{i:0;s:12:"fixed-layout";i:1;s:12:"fluid-layout";i:2;s:17:"responsive-layout";i:3;s:10:"one-column";i:4;s:11:"two-columns";i:5;s:13:"three-columns";i:6;s:12:"four-columns";i:7;s:12:"left-sidebar";i:8;s:13:"right-sidebar";}s:8:"Features";a:20:{i:0;s:19:"accessibility-ready";i:1;s:8:"blavatar";i:2;s:10:"buddypress";i:3;s:17:"custom-background";i:4;s:13:"custom-colors";i:5;s:13:"custom-header";i:6;s:11:"custom-menu";i:7;s:12:"editor-style";i:8;s:21:"featured-image-header";i:9;s:15:"featured-images";i:10;s:15:"flexible-header";i:11;s:20:"front-page-post-form";i:12;s:19:"full-width-template";i:13;s:12:"microformats";i:14;s:12:"post-formats";i:15;s:20:"rtl-language-support";i:16;s:11:"sticky-post";i:17;s:13:"theme-options";i:18;s:17:"threaded-comments";i:19;s:17:"translation-ready";}s:7:"Subject";a:3:{i:0;s:7:"holiday";i:1;s:13:"photoblogging";i:2;s:8:"seasonal";}}', 'yes'),
+(950, '_site_transient_update_themes', 'O:8:"stdClass":4:{s:12:"last_checked";i:1445698727;s:7:"checked";a:5:{s:20:"firegento_stammtisch";s:5:"1.0.0";s:6:"januas";s:4:"1.34";s:13:"twentyfifteen";s:3:"1.3";s:14:"twentyfourteen";s:3:"1.5";s:14:"twentythirteen";s:3:"1.6";}s:8:"response";a:0:{}s:12:"translations";a:0:{}}', 'yes'),
+(951, 'theme_mods_januas', 'a:4:{i:0;b:0;s:18:"nav_menu_locations";a:1:{s:7:"primary";i:2;}s:12:"header_image";s:84:"http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/magento-stammtisch2.png";s:17:"header_image_data";O:8:"stdClass":5:{s:13:"attachment_id";i:49;s:3:"url";s:84:"http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/magento-stammtisch2.png";s:13:"thumbnail_url";s:84:"http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/magento-stammtisch2.png";s:6:"height";i:87;s:5:"width";i:306;}}', 'yes'),
+(952, 'ef_activation_license_options', 'a:2:{s:7:"api_key";s:38:"wc_order_562b7ed39efe1_am_8ntzjtOLVijU";s:16:"activation_email";s:14:"info@icyapp.de";}', 'yes'),
+(953, 'ef_activation_product_id', 'Januas', 'yes'),
+(954, 'ef_activation_instance', 'qE2RYwW12ERN', 'yes'),
+(955, 'ef_activation_deactivate_checkbox', 'off', 'yes'),
+(956, 'ef_activation_activated', 'Deactivated', 'yes'),
+(957, 'ef_activation_license_options_version', '1.34', 'yes'),
+(959, 'januas_theme_options', 'a:7:{s:11:"home-layout";s:11:"two-columns";s:11:"theme-color";s:0:"";s:13:"search-layout";s:11:"fixed-range";s:17:"home-quick-search";s:8:"category";s:11:"footer-left";s:0:"";s:12:"footer-right";s:0:"";s:13:"dummy-content";i:0;}', 'yes'),
+(962, 'widget_feedburner-widget', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
+(963, 'widget_linkedin-widget', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
+(964, 'widget_latest-news', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
+(965, 'widget_twitter-widget', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
+(966, 'widget_connect-widget', 'a:2:{i:1;a:0:{}s:12:"_multiwidget";i:1;}', 'yes'),
+(968, 'ef_activation_license_options_activated', 'Activated', 'yes'),
+(983, 'ja-event-category-metas', 'a:3:{i:0;b:0;i:2;a:0:{}i:24;a:0:{}}', 'yes'),
+(984, 'ja-session-track-metas', 'a:3:{i:0;b:0;i:2;a:0:{}i:24;a:0:{}}', 'yes'),
+(985, 'ja-session-location-metas', 'a:3:{i:0;b:0;i:2;a:0:{}i:24;a:0:{}}', 'yes'),
+(990, '_site_transient_timeout_browser_f17158549169c0110ce3122bf897ae75', '1446297520', 'yes'),
+(991, '_site_transient_browser_f17158549169c0110ce3122bf897ae75', 'a:9:{s:8:"platform";s:7:"Windows";s:4:"name";s:7:"Firefox";s:7:"version";s:4:"41.0";s:10:"update_url";s:23:"http://www.firefox.com/";s:7:"img_src";s:50:"http://s.wordpress.org/images/browsers/firefox.png";s:11:"img_src_ssl";s:49:"https://wordpress.org/images/browsers/firefox.png";s:15:"current_version";s:2:"16";s:7:"upgrade";b:0;s:8:"insecure";b:0;}', 'yes'),
+(1044, 'category_children', 'a:0:{}', 'yes'),
+(1047, 'rewrite_rules', 'a:122:{s:47:"category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:42:"category/(.+?)/(feed|rdf|rss|rss2|atom)/?$";s:52:"index.php?category_name=$matches[1]&feed=$matches[2]";s:35:"category/(.+?)/page/?([0-9]{1,})/?$";s:53:"index.php?category_name=$matches[1]&paged=$matches[2]";s:17:"category/(.+?)/?$";s:35:"index.php?category_name=$matches[1]";s:44:"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:39:"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?tag=$matches[1]&feed=$matches[2]";s:32:"tag/([^/]+)/page/?([0-9]{1,})/?$";s:43:"index.php?tag=$matches[1]&paged=$matches[2]";s:14:"tag/([^/]+)/?$";s:25:"index.php?tag=$matches[1]";s:45:"type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:40:"type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?post_format=$matches[1]&feed=$matches[2]";s:33:"type/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?post_format=$matches[1]&paged=$matches[2]";s:15:"type/([^/]+)/?$";s:33:"index.php?post_format=$matches[1]";s:34:"events/[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:44:"events/[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:64:"events/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:59:"events/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:59:"events/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:27:"events/([^/]+)/trackback/?$";s:35:"index.php?ja-event=$matches[1]&tb=1";s:35:"events/([^/]+)/page/?([0-9]{1,})/?$";s:48:"index.php?ja-event=$matches[1]&paged=$matches[2]";s:42:"events/([^/]+)/comment-page-([0-9]{1,})/?$";s:48:"index.php?ja-event=$matches[1]&cpage=$matches[2]";s:27:"events/([^/]+)(/[0-9]+)?/?$";s:47:"index.php?ja-event=$matches[1]&page=$matches[2]";s:23:"events/[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:33:"events/[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:53:"events/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:48:"events/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:48:"events/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:36:"speakers/[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:46:"speakers/[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:66:"speakers/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:61:"speakers/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:61:"speakers/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:29:"speakers/([^/]+)/trackback/?$";s:37:"index.php?ja-speaker=$matches[1]&tb=1";s:37:"speakers/([^/]+)/page/?([0-9]{1,})/?$";s:50:"index.php?ja-speaker=$matches[1]&paged=$matches[2]";s:44:"speakers/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?ja-speaker=$matches[1]&cpage=$matches[2]";s:29:"speakers/([^/]+)(/[0-9]+)?/?$";s:49:"index.php?ja-speaker=$matches[1]&page=$matches[2]";s:25:"speakers/[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:35:"speakers/[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:55:"speakers/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:50:"speakers/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:50:"speakers/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:36:"sessions/[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:46:"sessions/[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:66:"sessions/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:61:"sessions/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:61:"sessions/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:29:"sessions/([^/]+)/trackback/?$";s:37:"index.php?ja-session=$matches[1]&tb=1";s:37:"sessions/([^/]+)/page/?([0-9]{1,})/?$";s:50:"index.php?ja-session=$matches[1]&paged=$matches[2]";s:44:"sessions/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?ja-session=$matches[1]&cpage=$matches[2]";s:29:"sessions/([^/]+)(/[0-9]+)?/?$";s:49:"index.php?ja-session=$matches[1]&page=$matches[2]";s:25:"sessions/[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:35:"sessions/[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:55:"sessions/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:50:"sessions/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:50:"sessions/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:55:"event-category/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:56:"index.php?ja-event-category=$matches[1]&feed=$matches[2]";s:50:"event-category/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:56:"index.php?ja-event-category=$matches[1]&feed=$matches[2]";s:43:"event-category/([^/]+)/page/?([0-9]{1,})/?$";s:57:"index.php?ja-event-category=$matches[1]&paged=$matches[2]";s:25:"event-category/([^/]+)/?$";s:39:"index.php?ja-event-category=$matches[1]";s:57:"ja-session-track/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:55:"index.php?ja-session-track=$matches[1]&feed=$matches[2]";s:52:"ja-session-track/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:55:"index.php?ja-session-track=$matches[1]&feed=$matches[2]";s:45:"ja-session-track/([^/]+)/page/?([0-9]{1,})/?$";s:56:"index.php?ja-session-track=$matches[1]&paged=$matches[2]";s:27:"ja-session-track/([^/]+)/?$";s:38:"index.php?ja-session-track=$matches[1]";s:60:"ja-session-location/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:58:"index.php?ja-session-location=$matches[1]&feed=$matches[2]";s:55:"ja-session-location/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:58:"index.php?ja-session-location=$matches[1]&feed=$matches[2]";s:48:"ja-session-location/([^/]+)/page/?([0-9]{1,})/?$";s:59:"index.php?ja-session-location=$matches[1]&paged=$matches[2]";s:30:"ja-session-location/([^/]+)/?$";s:41:"index.php?ja-session-location=$matches[1]";s:12:"robots\\.txt$";s:18:"index.php?robots=1";s:48:".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$";s:18:"index.php?feed=old";s:20:".*wp-app\\.php(/.*)?$";s:19:"index.php?error=403";s:18:".*wp-register.php$";s:23:"index.php?register=true";s:32:"feed/(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:27:"(feed|rdf|rss|rss2|atom)/?$";s:27:"index.php?&feed=$matches[1]";s:20:"page/?([0-9]{1,})/?$";s:28:"index.php?&paged=$matches[1]";s:41:"comments/feed/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:36:"comments/(feed|rdf|rss|rss2|atom)/?$";s:42:"index.php?&feed=$matches[1]&withcomments=1";s:44:"search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:39:"search/(.+)/(feed|rdf|rss|rss2|atom)/?$";s:40:"index.php?s=$matches[1]&feed=$matches[2]";s:32:"search/(.+)/page/?([0-9]{1,})/?$";s:41:"index.php?s=$matches[1]&paged=$matches[2]";s:14:"search/(.+)/?$";s:23:"index.php?s=$matches[1]";s:47:"author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:42:"author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:50:"index.php?author_name=$matches[1]&feed=$matches[2]";s:35:"author/([^/]+)/page/?([0-9]{1,})/?$";s:51:"index.php?author_name=$matches[1]&paged=$matches[2]";s:17:"author/([^/]+)/?$";s:33:"index.php?author_name=$matches[1]";s:69:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:64:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:80:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]";s:57:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:81:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&paged=$matches[4]";s:39:"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$";s:63:"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]";s:56:"([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:51:"([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$";s:64:"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]";s:44:"([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$";s:65:"index.php?year=$matches[1]&monthnum=$matches[2]&paged=$matches[3]";s:26:"([0-9]{4})/([0-9]{1,2})/?$";s:47:"index.php?year=$matches[1]&monthnum=$matches[2]";s:43:"([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:38:"([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?year=$matches[1]&feed=$matches[2]";s:31:"([0-9]{4})/page/?([0-9]{1,})/?$";s:44:"index.php?year=$matches[1]&paged=$matches[2]";s:13:"([0-9]{4})/?$";s:26:"index.php?year=$matches[1]";s:27:".?.+?/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:37:".?.+?/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:57:".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:20:"(.?.+?)/trackback/?$";s:35:"index.php?pagename=$matches[1]&tb=1";s:40:"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:35:"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$";s:47:"index.php?pagename=$matches[1]&feed=$matches[2]";s:28:"(.?.+?)/page/?([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&paged=$matches[2]";s:35:"(.?.+?)/comment-page-([0-9]{1,})/?$";s:48:"index.php?pagename=$matches[1]&cpage=$matches[2]";s:20:"(.?.+?)(/[0-9]+)?/?$";s:47:"index.php?pagename=$matches[1]&page=$matches[2]";s:27:"[^/]+/attachment/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:37:"[^/]+/attachment/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:57:"[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:"[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:52:"[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";s:20:"([^/]+)/trackback/?$";s:31:"index.php?name=$matches[1]&tb=1";s:40:"([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?name=$matches[1]&feed=$matches[2]";s:35:"([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:43:"index.php?name=$matches[1]&feed=$matches[2]";s:28:"([^/]+)/page/?([0-9]{1,})/?$";s:44:"index.php?name=$matches[1]&paged=$matches[2]";s:35:"([^/]+)/comment-page-([0-9]{1,})/?$";s:44:"index.php?name=$matches[1]&cpage=$matches[2]";s:20:"([^/]+)(/[0-9]+)?/?$";s:43:"index.php?name=$matches[1]&page=$matches[2]";s:16:"[^/]+/([^/]+)/?$";s:32:"index.php?attachment=$matches[1]";s:26:"[^/]+/([^/]+)/trackback/?$";s:37:"index.php?attachment=$matches[1]&tb=1";s:46:"[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:41:"[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$";s:49:"index.php?attachment=$matches[1]&feed=$matches[2]";s:41:"[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$";s:50:"index.php?attachment=$matches[1]&cpage=$matches[2]";}', 'yes'),
+(1067, '_site_transient_timeout_theme_roots', '1445700526', 'yes'),
+(1068, '_site_transient_theme_roots', 'a:5:{s:20:"firegento_stammtisch";s:7:"/themes";s:6:"januas";s:7:"/themes";s:13:"twentyfifteen";s:7:"/themes";s:14:"twentyfourteen";s:7:"/themes";s:14:"twentythirteen";s:7:"/themes";}', 'yes'),
+(1077, 'ja-event-category_children', 'a:0:{}', 'yes');
 
 -- --------------------------------------------------------
 
@@ -1094,6 +1188,7 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 -- Tabellenstruktur für Tabelle `wp_postmeta`
 --
 
+DROP TABLE IF EXISTS `wp_postmeta`;
 CREATE TABLE IF NOT EXISTS `wp_postmeta` (
   `meta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `post_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -1102,7 +1197,7 @@ CREATE TABLE IF NOT EXISTS `wp_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=561 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1312 ;
 
 --
 -- Daten für Tabelle `wp_postmeta`
@@ -1110,22 +1205,6 @@ CREATE TABLE IF NOT EXISTS `wp_postmeta` (
 
 INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
 (1, 2, '_wp_page_template', 'default'),
-(2, 9, '_menu_item_type', 'post_type'),
-(3, 9, '_menu_item_menu_item_parent', '0'),
-(4, 9, '_menu_item_object_id', '4'),
-(5, 9, '_menu_item_object', 'page'),
-(6, 9, '_menu_item_target', ''),
-(7, 9, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
-(8, 9, '_menu_item_xfn', ''),
-(9, 9, '_menu_item_url', ''),
-(11, 10, '_menu_item_type', 'post_type'),
-(12, 10, '_menu_item_menu_item_parent', '0'),
-(13, 10, '_menu_item_object_id', '6'),
-(14, 10, '_menu_item_object', 'page'),
-(15, 10, '_menu_item_target', ''),
-(16, 10, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
-(17, 10, '_menu_item_xfn', ''),
-(18, 10, '_menu_item_url', ''),
 (31, 13, '_location_id', '1'),
 (32, 13, '_blog_id', ''),
 (33, 13, '_location_address', 'Mattentwiete 8'),
@@ -1483,7 +1562,595 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (557, 43, '_snap_forceSURL', '2'),
 (558, 43, 'snap_MYURL', ''),
 (559, 43, 'snapEdIT', '1'),
-(560, 43, 'snapTW', 's:141:"a:1:{i:0;a:5:{s:10:"SNAPformat";s:15:"%TITLE% - %URL%";s:8:"attchImg";s:1:"0";s:9:"isAutoImg";s:1:"A";s:8:"imgToUse";s:0:"";s:4:"doTW";i:0;}}";');
+(560, 43, 'snapTW', 's:141:"a:1:{i:0;a:5:{s:10:"SNAPformat";s:15:"%TITLE% - %URL%";s:8:"attchImg";s:1:"0";s:9:"isAutoImg";s:1:"A";s:8:"imgToUse";s:0:"";s:4:"doTW";i:0;}}";'),
+(561, 44, '_edit_last', '1'),
+(562, 44, '_edit_lock', '1445687213:1'),
+(567, 44, 'snap_isAutoPosted', '1'),
+(572, 44, '_event_id', '2'),
+(573, 44, '_event_start_time', '18:30:00'),
+(574, 44, '_event_end_time', '20:30:00'),
+(575, 44, '_event_all_day', '0'),
+(576, 44, '_event_start_date', '2015-11-18'),
+(577, 44, '_event_end_date', '2015-11-18'),
+(578, 44, '_event_rsvp', '0'),
+(579, 44, '_event_rsvp_date', ''),
+(580, 44, '_event_rsvp_time', '00:00:00'),
+(581, 44, '_event_rsvp_spaces', ''),
+(582, 44, '_event_spaces', ''),
+(583, 44, '_location_id', '6'),
+(584, 44, '_recurrence_id', ''),
+(585, 44, '_event_status', '1'),
+(586, 44, '_event_private', '0'),
+(587, 44, '_event_date_created', ''),
+(588, 44, '_event_date_modified', ''),
+(589, 44, '_blog_id', ''),
+(590, 44, '_group_id', '0'),
+(591, 44, '_recurrence', '0'),
+(592, 44, '_recurrence_interval', ''),
+(593, 44, '_recurrence_freq', ''),
+(594, 44, '_recurrence_days', '0'),
+(595, 44, '_recurrence_byday', ''),
+(596, 44, '_recurrence_byweekno', ''),
+(597, 44, '_recurrence_rsvp_days', ''),
+(598, 44, '_start_ts', '1447871400'),
+(599, 44, '_end_ts', '1447878600'),
+(600, 44, '_snap_forceSURL', '2'),
+(601, 44, 'snap_MYURL', ''),
+(602, 44, 'snapEdIT', '1'),
+(603, 44, 'snapTW', 's:141:"a:1:{i:0;a:5:{s:10:"SNAPformat";s:15:"%TITLE% - %URL%";s:8:"attchImg";s:1:"0";s:9:"isAutoImg";s:1:"A";s:8:"imgToUse";s:0:"";s:4:"doTW";i:0;}}";'),
+(606, 47, '_edit_last', '1'),
+(607, 47, '_edit_lock', '1445701823:1'),
+(610, 49, '_wp_attached_file', '2015/10/magento-stammtisch2.png'),
+(611, 49, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:306;s:6:"height";i:87;s:4:"file";s:31:"2015/10/magento-stammtisch2.png";s:5:"sizes";a:3:{s:9:"thumbnail";a:4:{s:4:"file";s:30:"magento-stammtisch2-150x87.png";s:5:"width";i:150;s:6:"height";i:87;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:30:"magento-stammtisch2-300x85.png";s:5:"width";i:300;s:6:"height";i:85;s:9:"mime-type";s:9:"image/png";}s:13:"januas-medium";a:4:{s:4:"file";s:30:"magento-stammtisch2-306x87.png";s:5:"width";i:306;s:6:"height";i:87;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(612, 49, '_wp_attachment_image_alt', 'Magento Stammtisch'),
+(613, 49, '_wp_attachment_custom_header_last_used_januas', '1445691828'),
+(614, 49, '_wp_attachment_is_custom_header', 'januas'),
+(615, 47, 'januas_eventdata_startdate', '1446681600'),
+(616, 47, 'januas_eventdata_starttime', '19:00 - 22:00'),
+(617, 47, 'januas_eventdata_city', 'Paderborn'),
+(618, 47, 'januas_eventdata_address', 'Technologiepark, Raum A'),
+(619, 47, 'januas_eventdata_state', 'active'),
+(620, 47, 'januas_eventdata_featured', 'y'),
+(621, 47, 'januas_eventdata_homepage', 'y'),
+(622, 47, 'januas_eventdata_showtitle', 'y'),
+(623, 47, 'januas_eventdata_showinmenu', 'y'),
+(624, 47, 'januas_eventdata_showrelated', 'y'),
+(625, 47, 'januas_speakers_visible', 'n'),
+(626, 47, 'januas_speakers_position', 'main'),
+(627, 47, 'januas_speakers_order', '1'),
+(628, 47, 'januas_speakers_showtitle', 'y'),
+(629, 47, 'januas_speakers_showinmenu', 'y'),
+(630, 47, 'januas_registration_visible', 'y'),
+(631, 47, 'januas_registration_order', '1'),
+(632, 47, 'januas_registration_showtitle', 'y'),
+(633, 47, 'januas_registration_showinmenu', 'y'),
+(634, 47, 'januas_schedule_visible', 'y'),
+(635, 47, 'januas_schedule_position', 'main'),
+(636, 47, 'januas_schedule_order', '2'),
+(637, 47, 'januas_schedule_showtitle', 'y'),
+(638, 47, 'januas_schedule_showinmenu', 'y'),
+(639, 47, 'januas_video_visible', 'y'),
+(640, 47, 'januas_video_position', 'main'),
+(641, 47, 'januas_video_order', '3'),
+(642, 47, 'januas_video_showtitle', 'y'),
+(643, 47, 'januas_video_showinmenu', 'y'),
+(644, 47, 'januas_sponsor_visible', 'n'),
+(645, 47, 'januas_sponsor_position', 'sidebar'),
+(646, 47, 'januas_sponsor_order', '1'),
+(647, 47, 'januas_sponsor_showtitle', 'y'),
+(648, 47, 'januas_sponsor_showinmenu', 'n'),
+(649, 47, 'januas_map_visible', 'y'),
+(650, 47, 'januas_map_position', 'sidebar'),
+(651, 47, 'januas_map_order', '2'),
+(652, 47, 'januas_map_showtitle', 'y'),
+(653, 47, 'januas_map_showinmenu', 'y'),
+(654, 47, 'januas_map_address', 'Technologiepark 19, 33100 Paderborn, Deutschland'),
+(655, 47, 'januas_files_visible', 'n'),
+(656, 47, 'januas_files_position', 'sidebar'),
+(657, 47, 'januas_files_order', '3'),
+(658, 47, 'januas_files_showtitle', 'y'),
+(659, 47, 'januas_files_showinmenu', 'n'),
+(660, 47, 'januas_images_visible', 'y'),
+(661, 47, 'januas_images_position', 'sidebar'),
+(662, 47, 'januas_images_order', '4'),
+(663, 47, 'januas_images_showtitle', 'y'),
+(664, 47, 'januas_images_showinmenu', 'y'),
+(665, 47, 'januas_social_visible', 'n'),
+(666, 47, 'januas_social_position', 'sidebar'),
+(667, 47, 'januas_social_order', '5'),
+(668, 47, 'januas_social_showtitle', 'y'),
+(669, 47, 'januas_social_showinmenu', 'y'),
+(670, 47, 'januas_social_faces', 'true'),
+(671, 47, 'januas_social_colorscheme', 'light'),
+(672, 47, 'januas_social_stream', 'true'),
+(673, 47, 'januas_social_header', 'true'),
+(674, 47, 'januas_otherinfo_visible', 'n'),
+(675, 47, 'januas_otherinfo_position', 'main'),
+(676, 47, 'januas_otherinfo_order', '6'),
+(677, 47, 'januas_otherinfo_showtitle', 'y'),
+(678, 47, 'januas_otherinfo_showinmenu', 'y'),
+(679, 51, '_edit_last', '1'),
+(680, 51, '_edit_lock', '1445699883:1'),
+(681, 52, '_edit_last', '1'),
+(682, 52, '_edit_lock', '1445692534:1'),
+(683, 51, 'januas_eventdata_starttime', '18:30'),
+(684, 51, 'januas_eventdata_city', 'Zürich'),
+(685, 51, 'januas_eventdata_address', 'Heinrichstrasse 267a'),
+(686, 51, 'januas_eventdata_state', 'active'),
+(687, 51, 'januas_eventdata_featured', 'n'),
+(688, 51, 'januas_eventdata_homepage', 'y'),
+(689, 51, 'januas_eventdata_showtitle', 'y'),
+(690, 51, 'januas_eventdata_showinmenu', 'y'),
+(691, 51, 'januas_eventdata_showrelated', 'y'),
+(692, 51, 'januas_speakers_visible', 'n'),
+(693, 51, 'januas_speakers_position', 'main'),
+(694, 51, 'januas_speakers_showtitle', 'y'),
+(695, 51, 'januas_speakers_showinmenu', 'y'),
+(696, 51, 'januas_registration_visible', 'y'),
+(697, 51, 'januas_registration_order', '1'),
+(698, 51, 'januas_registration_showtitle', 'y'),
+(699, 51, 'januas_registration_showinmenu', 'y'),
+(700, 51, 'januas_schedule_visible', 'n'),
+(701, 51, 'januas_schedule_position', 'main'),
+(702, 51, 'januas_schedule_order', '2'),
+(703, 51, 'januas_schedule_showtitle', 'y'),
+(704, 51, 'januas_schedule_showinmenu', 'y'),
+(705, 51, 'januas_video_visible', 'n'),
+(706, 51, 'januas_video_position', 'main'),
+(707, 51, 'januas_video_order', '3'),
+(708, 51, 'januas_video_showtitle', 'y'),
+(709, 51, 'januas_video_showinmenu', 'y'),
+(710, 51, 'januas_sponsor_visible', 'n'),
+(711, 51, 'januas_sponsor_position', 'sidebar'),
+(712, 51, 'januas_sponsor_order', '1'),
+(713, 51, 'januas_sponsor_showtitle', 'y'),
+(714, 51, 'januas_sponsor_showinmenu', 'n'),
+(715, 51, 'januas_map_visible', 'y'),
+(716, 51, 'januas_map_position', 'sidebar'),
+(717, 51, 'januas_map_order', '2'),
+(718, 51, 'januas_map_showtitle', 'y'),
+(719, 51, 'januas_map_showinmenu', 'y'),
+(720, 51, 'januas_files_visible', 'n'),
+(721, 51, 'januas_files_position', 'sidebar'),
+(722, 51, 'januas_files_order', '3'),
+(723, 51, 'januas_files_showtitle', 'y'),
+(724, 51, 'januas_files_showinmenu', 'n'),
+(725, 51, 'januas_images_visible', 'n'),
+(726, 51, 'januas_images_position', 'sidebar'),
+(727, 51, 'januas_images_order', '4'),
+(728, 51, 'januas_images_showtitle', 'y'),
+(729, 51, 'januas_images_showinmenu', 'y'),
+(730, 51, 'januas_social_visible', 'n'),
+(731, 51, 'januas_social_position', 'sidebar'),
+(732, 51, 'januas_social_order', '5'),
+(733, 51, 'januas_social_showtitle', 'y'),
+(734, 51, 'januas_social_showinmenu', 'y'),
+(735, 51, 'januas_social_faces', 'true'),
+(736, 51, 'januas_social_colorscheme', 'light'),
+(737, 51, 'januas_social_stream', 'true'),
+(738, 51, 'januas_social_header', 'true'),
+(739, 51, 'januas_otherinfo_visible', 'n'),
+(740, 51, 'januas_otherinfo_position', 'main'),
+(741, 51, 'januas_otherinfo_order', '6'),
+(742, 51, 'januas_otherinfo_showtitle', 'y'),
+(743, 51, 'januas_otherinfo_showinmenu', 'y'),
+(744, 51, 'januas_speakers_order', '1'),
+(746, 52, 'januas_speaker_company', 'Sieling Rechtsanwaltskanzlei'),
+(747, 52, 'januas_speaker_website', 'https://www.kanzlei-sieling.de/'),
+(748, 52, 'januas_speaker_twitter', 'carola_sieling'),
+(749, 53, '_edit_last', '1'),
+(750, 53, '_edit_lock', '1445699554:1'),
+(753, 55, '_wp_attached_file', '2015/10/magento-stammtisch-zuerich.jpg'),
+(754, 55, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1200;s:6:"height";i:900;s:4:"file";s:38:"2015/10/magento-stammtisch-zuerich.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:38:"magento-stammtisch-zuerich-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:38:"magento-stammtisch-zuerich-300x225.jpg";s:5:"width";i:300;s:6:"height";i:225;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:39:"magento-stammtisch-zuerich-1024x768.jpg";s:5:"width";i:1024;s:6:"height";i:768;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:38:"magento-stammtisch-zuerich-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:38:"magento-stammtisch-zuerich-642x360.jpg";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:1;}}'),
+(755, 53, 'januas_session_date', '1446681600'),
+(756, 53, 'januas_session_time', '19:30'),
+(757, 53, 'januas_session_event', '47'),
+(758, 53, 'januas_speakers_list', '52'),
+(759, 55, '_wp_attachment_image_alt', 'Magento Stammtisch Zürich'),
+(760, 51, '_thumbnail_id', '55'),
+(761, 56, '_wp_attached_file', '2015/10/carolina-Sieling.jpeg'),
+(762, 56, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1752;s:6:"height";i:1752;s:4:"file";s:29:"2015/10/carolina-Sieling.jpeg";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:29:"carolina-Sieling-150x150.jpeg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:29:"carolina-Sieling-300x300.jpeg";s:5:"width";i:300;s:6:"height";i:300;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:31:"carolina-Sieling-1024x1024.jpeg";s:5:"width";i:1024;s:6:"height";i:1024;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:29:"carolina-Sieling-306x306.jpeg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:29:"carolina-Sieling-642x360.jpeg";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(763, 52, '_thumbnail_id', '56'),
+(764, 51, 'januas_map_address', 'Heinrichstrasse 267a, 8005 Zürich'),
+(766, 58, '_wp_attached_file', '2015/10/08.jpg'),
+(767, 59, '_wp_attached_file', '2015/10/02.jpg'),
+(768, 59, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:2024;s:6:"height";i:1350;s:4:"file";s:14:"2015/10/02.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:14:"02-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:14:"02-300x200.jpg";s:5:"width";i:300;s:6:"height";i:200;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:15:"02-1024x683.jpg";s:5:"width";i:1024;s:6:"height";i:683;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:14:"02-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:14:"02-642x360.jpg";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:1;}}'),
+(769, 60, '_wp_attached_file', '2015/10/06.jpg'),
+(770, 60, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:2237;s:6:"height";i:1491;s:4:"file";s:14:"2015/10/06.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:14:"06-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:14:"06-300x200.jpg";s:5:"width";i:300;s:6:"height";i:200;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:15:"06-1024x683.jpg";s:5:"width";i:1024;s:6:"height";i:683;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:14:"06-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:14:"06-642x360.jpg";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:1;}}'),
+(771, 61, '_wp_attached_file', '2015/10/05.jpg'),
+(772, 61, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:2455;s:6:"height";i:1637;s:4:"file";s:14:"2015/10/05.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:14:"05-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:14:"05-300x200.jpg";s:5:"width";i:300;s:6:"height";i:200;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:15:"05-1024x683.jpg";s:5:"width";i:1024;s:6:"height";i:683;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:14:"05-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:14:"05-642x360.jpg";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:1;}}'),
+(773, 62, '_wp_attached_file', '2015/10/04.jpg'),
+(774, 62, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:2461;s:6:"height";i:1641;s:4:"file";s:14:"2015/10/04.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:14:"04-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:14:"04-300x200.jpg";s:5:"width";i:300;s:6:"height";i:200;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:15:"04-1024x683.jpg";s:5:"width";i:1024;s:6:"height";i:683;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:14:"04-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:14:"04-642x360.jpg";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:1;}}'),
+(775, 63, '_wp_attached_file', '2015/10/03.jpg'),
+(776, 63, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:2216;s:6:"height";i:1477;s:4:"file";s:14:"2015/10/03.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:14:"03-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:14:"03-300x200.jpg";s:5:"width";i:300;s:6:"height";i:200;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:15:"03-1024x683.jpg";s:5:"width";i:1024;s:6:"height";i:683;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:14:"03-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:14:"03-642x360.jpg";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:1;}}'),
+(777, 64, '_wp_attached_file', '2015/10/07.jpg'),
+(778, 64, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1911;s:6:"height";i:1274;s:4:"file";s:14:"2015/10/07.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:14:"07-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:14:"07-300x200.jpg";s:5:"width";i:300;s:6:"height";i:200;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:15:"07-1024x683.jpg";s:5:"width";i:1024;s:6:"height";i:683;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:14:"07-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:14:"07-642x360.jpg";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:1;}}'),
+(779, 65, '_wp_attached_file', '2015/10/01.jpg'),
+(780, 65, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:2784;s:6:"height";i:1856;s:4:"file";s:14:"2015/10/01.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:14:"01-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:14:"01-300x200.jpg";s:5:"width";i:300;s:6:"height";i:200;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:15:"01-1024x683.jpg";s:5:"width";i:1024;s:6:"height";i:683;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:14:"01-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:14:"01-642x360.jpg";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";d:2.7999999999999998;s:6:"credit";s:15:"Sebastian Meyer";s:6:"camera";s:20:"Canon EOS 5D Mark II";s:7:"caption";s:0:"";s:17:"created_timestamp";i:1430342087;s:9:"copyright";s:0:"";s:12:"focal_length";s:2:"17";s:3:"iso";s:3:"160";s:13:"shutter_speed";s:17:"0.033333333333333";s:5:"title";s:0:"";s:11:"orientation";i:1;}}'),
+(781, 47, '_thumbnail_id', '65'),
+(782, 47, 'januas_speakers_speakersorder', 'a:2:{i:102;a:1:{s:5:"order";s:1:"0";}i:52;a:1:{s:5:"order";s:1:"0";}}'),
+(783, 47, 'januas_video_1', 'https://www.youtube.com/watch?v=_wqSeA7iQhY'),
+(784, 47, 'januas_video_2', 'https://youtu.be/FhMM2gK8EBo'),
+(794, 67, '_menu_item_type', 'post_type'),
+(795, 67, '_menu_item_menu_item_parent', '0'),
+(796, 67, '_menu_item_object_id', '4'),
+(797, 67, '_menu_item_object', 'page'),
+(798, 67, '_menu_item_target', ''),
+(799, 67, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(800, 67, '_menu_item_xfn', ''),
+(801, 67, '_menu_item_url', ''),
+(802, 67, '_menu_item_orphaned', '1445693223'),
+(803, 68, '_menu_item_type', 'custom'),
+(804, 68, '_menu_item_menu_item_parent', '0'),
+(805, 68, '_menu_item_object_id', '68'),
+(806, 68, '_menu_item_object', 'custom'),
+(807, 68, '_menu_item_target', ''),
+(808, 68, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(809, 68, '_menu_item_xfn', ''),
+(810, 68, '_menu_item_url', 'http://beta.magento-stammtisch.de/?s=&event-category'),
+(812, 51, 'januas_eventdata_startdate', '1447632000'),
+(813, 69, '_edit_last', '2'),
+(814, 69, '_edit_lock', '1445694464:2'),
+(815, 69, '_wp_page_template', 'default'),
+(825, 6, '_wp_trash_meta_status', 'publish'),
+(826, 6, '_wp_trash_meta_time', '1445693899'),
+(827, 7, '_wp_trash_meta_status', 'publish'),
+(828, 7, '_wp_trash_meta_time', '1445693906'),
+(829, 8, '_wp_trash_meta_status', 'publish'),
+(830, 8, '_wp_trash_meta_time', '1445693913'),
+(831, 5, '_wp_trash_meta_status', 'publish'),
+(832, 5, '_wp_trash_meta_time', '1445693920'),
+(835, 2, '_wp_trash_meta_status', 'publish'),
+(836, 2, '_wp_trash_meta_time', '1445693931'),
+(837, 76, '_menu_item_type', 'post_type'),
+(838, 76, '_menu_item_menu_item_parent', '0'),
+(839, 76, '_menu_item_object_id', '69'),
+(840, 76, '_menu_item_object', 'page'),
+(841, 76, '_menu_item_target', ''),
+(842, 76, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(843, 76, '_menu_item_xfn', ''),
+(844, 76, '_menu_item_url', ''),
+(846, 78, '_edit_lock', '1445694627:1'),
+(847, 78, '_edit_last', '1'),
+(848, 78, '_wp_page_template', 'page-event-schedule.php'),
+(849, 80, '_wp_attached_file', '2015/10/hammer-719062_1280.jpg'),
+(850, 80, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1280;s:6:"height";i:960;s:4:"file";s:30:"2015/10/hammer-719062_1280.jpg";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:30:"hammer-719062_1280-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:30:"hammer-719062_1280-300x225.jpg";s:5:"width";i:300;s:6:"height";i:225;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:31:"hammer-719062_1280-1024x768.jpg";s:5:"width";i:1024;s:6:"height";i:768;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:30:"hammer-719062_1280-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:30:"hammer-719062_1280-642x360.jpg";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(852, 51, 'januas_registration_script', 'Anmeldung auf &lt;a href=&quot;https://www.xing.com/events/19-magento-usergroup-treffen-1577255&quot;&gt;XING&lt;/a&gt; oder &lt;a href=&quot;https://www.facebook.com/events/1680899868804841/&quot;&gt;Facebook&lt;/a&gt;.'),
+(853, 81, '_edit_lock', '1445701671:1'),
+(854, 81, '_edit_last', '1'),
+(855, 1, '_edit_lock', '1445700349:1'),
+(856, 81, 'januas_eventdata_starttime', '19:00 - 22:00'),
+(857, 81, 'januas_eventdata_city', 'Krefeld'),
+(858, 81, 'januas_eventdata_address', 'Mies van der Rohe Business Parks'),
+(859, 81, 'januas_eventdata_state', 'active'),
+(860, 81, 'januas_eventdata_featured', 'n'),
+(861, 81, 'januas_eventdata_homepage', 'y'),
+(862, 81, 'januas_eventdata_showtitle', 'y'),
+(863, 81, 'januas_eventdata_showinmenu', 'y'),
+(864, 81, 'januas_eventdata_showrelated', 'y'),
+(865, 81, 'januas_speakers_visible', 'n'),
+(866, 81, 'januas_speakers_position', 'main'),
+(867, 81, 'januas_speakers_order', '1'),
+(868, 81, 'januas_speakers_showtitle', 'y'),
+(869, 81, 'januas_speakers_showinmenu', 'y'),
+(870, 81, 'januas_registration_visible', 'y'),
+(871, 81, 'januas_registration_order', '1'),
+(872, 81, 'januas_registration_showtitle', 'y'),
+(873, 81, 'januas_registration_showinmenu', 'y'),
+(874, 81, 'januas_schedule_visible', 'n'),
+(875, 81, 'januas_schedule_position', 'main'),
+(876, 81, 'januas_schedule_order', '2'),
+(877, 81, 'januas_schedule_showtitle', 'y'),
+(878, 81, 'januas_schedule_showinmenu', 'y'),
+(879, 81, 'januas_video_visible', 'n'),
+(880, 81, 'januas_video_position', 'main'),
+(881, 81, 'januas_video_order', '3'),
+(882, 81, 'januas_video_showtitle', 'y'),
+(883, 81, 'januas_video_showinmenu', 'y'),
+(884, 81, 'januas_sponsor_visible', 'n'),
+(885, 81, 'januas_sponsor_position', 'sidebar'),
+(886, 81, 'januas_sponsor_order', '1'),
+(887, 81, 'januas_sponsor_showtitle', 'y'),
+(888, 81, 'januas_sponsor_showinmenu', 'n'),
+(889, 81, 'januas_map_visible', 'y'),
+(890, 81, 'januas_map_position', 'sidebar'),
+(891, 81, 'januas_map_order', '2'),
+(892, 81, 'januas_map_showtitle', 'y'),
+(893, 81, 'januas_map_showinmenu', 'y'),
+(894, 81, 'januas_map_address', 'Girmesgath 5, 47803 Krefeld'),
+(895, 81, 'januas_files_visible', 'n'),
+(896, 81, 'januas_files_position', 'sidebar'),
+(897, 81, 'januas_files_order', '3'),
+(898, 81, 'januas_files_showtitle', 'y'),
+(899, 81, 'januas_files_showinmenu', 'n'),
+(900, 81, 'januas_images_visible', 'n'),
+(901, 81, 'januas_images_position', 'sidebar'),
+(902, 81, 'januas_images_order', '4'),
+(903, 81, 'januas_images_showtitle', 'y'),
+(904, 81, 'januas_images_showinmenu', 'y'),
+(905, 81, 'januas_social_visible', 'n'),
+(906, 81, 'januas_social_position', 'sidebar'),
+(907, 81, 'januas_social_order', '5'),
+(908, 81, 'januas_social_showtitle', 'y'),
+(909, 81, 'januas_social_showinmenu', 'y'),
+(910, 81, 'januas_social_faces', 'true'),
+(911, 81, 'januas_social_colorscheme', 'light'),
+(912, 81, 'januas_social_stream', 'true'),
+(913, 81, 'januas_social_header', 'true'),
+(914, 81, 'januas_otherinfo_visible', 'n'),
+(915, 81, 'januas_otherinfo_position', 'main'),
+(916, 81, 'januas_otherinfo_order', '6'),
+(917, 81, 'januas_otherinfo_showtitle', 'y'),
+(918, 81, 'januas_otherinfo_showinmenu', 'y'),
+(919, 1, '_edit_last', '1'),
+(948, 81, 'januas_eventdata_startdate', '1446940800'),
+(949, 83, '_wp_attached_file', '2015/10/Krefeld.png'),
+(950, 83, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:200;s:6:"height";i:130;s:4:"file";s:19:"2015/10/Krefeld.png";s:5:"sizes";a:1:{s:9:"thumbnail";a:4:{s:4:"file";s:19:"Krefeld-150x130.png";s:5:"width";i:150;s:6:"height";i:130;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(951, 81, '_thumbnail_id', '83'),
+(952, 85, '_edit_lock', '1445701938:1'),
+(953, 85, '_edit_last', '1'),
+(954, 86, '_wp_attached_file', '2015/10/Magento-Stammtisch-Mixer.jpg'),
+(955, 86, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:660;s:6:"height";i:442;s:4:"file";s:36:"2015/10/Magento-Stammtisch-Mixer.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:36:"Magento-Stammtisch-Mixer-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:36:"Magento-Stammtisch-Mixer-300x201.jpg";s:5:"width";i:300;s:6:"height";i:201;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:36:"Magento-Stammtisch-Mixer-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:36:"Magento-Stammtisch-Mixer-642x360.jpg";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(956, 85, 'januas_eventdata_startdate', '1447804800'),
+(957, 85, 'januas_eventdata_starttime', '19:00 - 22:00'),
+(958, 85, 'januas_eventdata_city', 'Hamburg'),
+(959, 85, 'januas_eventdata_address', 'TUDOCK GmbH Holländischer Brook 2 20457 Hamburg Deutschland'),
+(960, 85, 'januas_eventdata_state', 'active'),
+(961, 85, 'januas_eventdata_featured', 'n'),
+(962, 85, 'januas_eventdata_homepage', 'y'),
+(963, 85, 'januas_eventdata_showtitle', 'y'),
+(964, 85, 'januas_eventdata_showinmenu', 'y'),
+(965, 85, 'januas_eventdata_showrelated', 'y'),
+(966, 85, 'januas_speakers_visible', 'n'),
+(967, 85, 'januas_speakers_position', 'main'),
+(968, 85, 'januas_speakers_order', '1'),
+(969, 85, 'januas_speakers_showtitle', 'y'),
+(970, 85, 'januas_speakers_showinmenu', 'y'),
+(971, 85, 'januas_registration_visible', 'y'),
+(972, 85, 'januas_registration_order', '1'),
+(973, 85, 'januas_registration_showtitle', 'y'),
+(974, 85, 'januas_registration_showinmenu', 'y'),
+(975, 85, 'januas_schedule_visible', 'n'),
+(976, 85, 'januas_schedule_position', 'main'),
+(977, 85, 'januas_schedule_order', '2'),
+(978, 85, 'januas_schedule_showtitle', 'y'),
+(979, 85, 'januas_schedule_showinmenu', 'y'),
+(980, 85, 'januas_video_visible', 'n'),
+(981, 85, 'januas_video_position', 'main'),
+(982, 85, 'januas_video_order', '3'),
+(983, 85, 'januas_video_showtitle', 'y'),
+(984, 85, 'januas_video_showinmenu', 'y'),
+(985, 85, 'januas_sponsor_visible', 'n'),
+(986, 85, 'januas_sponsor_position', 'sidebar'),
+(987, 85, 'januas_sponsor_order', '1'),
+(988, 85, 'januas_sponsor_showtitle', 'y'),
+(989, 85, 'januas_sponsor_showinmenu', 'n'),
+(990, 85, 'januas_map_visible', 'y'),
+(991, 85, 'januas_map_position', 'sidebar'),
+(992, 85, 'januas_map_order', '2'),
+(993, 85, 'januas_map_showtitle', 'y'),
+(994, 85, 'januas_map_showinmenu', 'y'),
+(995, 85, 'januas_map_address', 'Holländischer Brook 2'),
+(996, 85, 'januas_files_visible', 'n'),
+(997, 85, 'januas_files_position', 'sidebar'),
+(998, 85, 'januas_files_order', '3'),
+(999, 85, 'januas_files_showtitle', 'y'),
+(1000, 85, 'januas_files_showinmenu', 'n'),
+(1001, 85, 'januas_images_visible', 'y'),
+(1002, 85, 'januas_images_position', 'sidebar'),
+(1003, 85, 'januas_images_order', '4'),
+(1004, 85, 'januas_images_showtitle', 'y'),
+(1005, 85, 'januas_images_showinmenu', 'y'),
+(1006, 85, 'januas_social_visible', 'n'),
+(1007, 85, 'januas_social_position', 'sidebar'),
+(1008, 85, 'januas_social_order', '5'),
+(1009, 85, 'januas_social_showtitle', 'y'),
+(1010, 85, 'januas_social_showinmenu', 'y'),
+(1011, 85, 'januas_social_faces', 'true'),
+(1012, 85, 'januas_social_colorscheme', 'light'),
+(1013, 85, 'januas_social_stream', 'true'),
+(1014, 85, 'januas_social_header', 'true'),
+(1015, 85, 'januas_otherinfo_visible', 'n'),
+(1016, 85, 'januas_otherinfo_position', 'main'),
+(1017, 85, 'januas_otherinfo_order', '6'),
+(1018, 85, 'januas_otherinfo_showtitle', 'y'),
+(1019, 85, 'januas_otherinfo_showinmenu', 'y'),
+(1020, 85, '_thumbnail_id', '86'),
+(1035, 89, '_edit_lock', '1445698383:1'),
+(1036, 89, '_edit_last', '1'),
+(1037, 89, 'januas_session_date', '1446681600'),
+(1038, 89, 'januas_session_time', '19:00'),
+(1039, 89, 'januas_session_event', '47'),
+(1040, 91, '_edit_lock', '1445701556:1'),
+(1041, 91, '_edit_last', '1'),
+(1042, 92, '_wp_attached_file', '2015/05/Magento-Stammtisch.png'),
+(1043, 92, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:2180;s:6:"height";i:2776;s:4:"file";s:30:"2015/05/Magento-Stammtisch.png";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:30:"Magento-Stammtisch-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:30:"Magento-Stammtisch-236x300.png";s:5:"width";i:236;s:6:"height";i:300;s:9:"mime-type";s:9:"image/png";}s:5:"large";a:4:{s:4:"file";s:31:"Magento-Stammtisch-804x1024.png";s:5:"width";i:804;s:6:"height";i:1024;s:9:"mime-type";s:9:"image/png";}s:13:"januas-medium";a:4:{s:4:"file";s:30:"Magento-Stammtisch-306x306.png";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:9:"image/png";}s:12:"januas-large";a:4:{s:4:"file";s:30:"Magento-Stammtisch-642x360.png";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(1044, 92, '_wp_attachment_image_alt', 'Alte Magento Stammtisch Webseite'),
+(1045, 93, '_wp_attached_file', '2015/05/Magento-Stammtisch-Zurich.png'),
+(1046, 93, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:2180;s:6:"height";i:5520;s:4:"file";s:37:"2015/05/Magento-Stammtisch-Zurich.png";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:37:"Magento-Stammtisch-Zurich-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:37:"Magento-Stammtisch-Zurich-118x300.png";s:5:"width";i:118;s:6:"height";i:300;s:9:"mime-type";s:9:"image/png";}s:5:"large";a:4:{s:4:"file";s:38:"Magento-Stammtisch-Zurich-404x1024.png";s:5:"width";i:404;s:6:"height";i:1024;s:9:"mime-type";s:9:"image/png";}s:13:"januas-medium";a:4:{s:4:"file";s:37:"Magento-Stammtisch-Zurich-306x306.png";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:9:"image/png";}s:12:"januas-large";a:4:{s:4:"file";s:37:"Magento-Stammtisch-Zurich-642x360.png";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(1047, 93, '_wp_attachment_image_alt', 'Alte Magento Stammtisch Webseite'),
+(1048, 94, '_wp_attached_file', '2015/10/magento-stammtisch-10-vortrag-matthias-zeis.jpg');
+INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
+(1049, 94, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:600;s:6:"height";i:450;s:4:"file";s:55:"2015/10/magento-stammtisch-10-vortrag-matthias-zeis.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:55:"magento-stammtisch-10-vortrag-matthias-zeis-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:55:"magento-stammtisch-10-vortrag-matthias-zeis-300x225.jpg";s:5:"width";i:300;s:6:"height";i:225;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:55:"magento-stammtisch-10-vortrag-matthias-zeis-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:55:"magento-stammtisch-10-vortrag-matthias-zeis-600x360.jpg";s:5:"width";i:600;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(1050, 91, '_thumbnail_id', '94'),
+(1065, 91, 'januas_eventdata_startdate', '1448323200'),
+(1066, 91, 'januas_eventdata_starttime', '18.30 - 22:00'),
+(1067, 91, 'januas_eventdata_city', 'Wien'),
+(1068, 91, 'januas_eventdata_address', 'LimeSoda Office Syringgasse 5 1170 Wien Österreich'),
+(1069, 91, 'januas_eventdata_state', 'active'),
+(1070, 91, 'januas_eventdata_featured', 'n'),
+(1071, 91, 'januas_eventdata_homepage', 'y'),
+(1072, 91, 'januas_eventdata_showtitle', 'y'),
+(1073, 91, 'januas_eventdata_showinmenu', 'y'),
+(1074, 91, 'januas_eventdata_showrelated', 'y'),
+(1075, 91, 'januas_speakers_visible', 'n'),
+(1076, 91, 'januas_speakers_position', 'main'),
+(1077, 91, 'januas_speakers_order', '1'),
+(1078, 91, 'januas_speakers_showtitle', 'y'),
+(1079, 91, 'januas_speakers_showinmenu', 'y'),
+(1080, 91, 'januas_registration_visible', 'y'),
+(1081, 91, 'januas_registration_order', '1'),
+(1082, 91, 'januas_registration_showtitle', 'y'),
+(1083, 91, 'januas_registration_showinmenu', 'y'),
+(1084, 91, 'januas_schedule_visible', 'n'),
+(1085, 91, 'januas_schedule_position', 'main'),
+(1086, 91, 'januas_schedule_order', '2'),
+(1087, 91, 'januas_schedule_showtitle', 'y'),
+(1088, 91, 'januas_schedule_showinmenu', 'y'),
+(1089, 91, 'januas_video_visible', 'n'),
+(1090, 91, 'januas_video_position', 'main'),
+(1091, 91, 'januas_video_order', '3'),
+(1092, 91, 'januas_video_showtitle', 'y'),
+(1093, 91, 'januas_video_showinmenu', 'y'),
+(1094, 91, 'januas_sponsor_visible', 'n'),
+(1095, 91, 'januas_sponsor_position', 'sidebar'),
+(1096, 91, 'januas_sponsor_order', '1'),
+(1097, 91, 'januas_sponsor_showtitle', 'y'),
+(1098, 91, 'januas_sponsor_showinmenu', 'n'),
+(1099, 91, 'januas_map_visible', 'y'),
+(1100, 91, 'januas_map_position', 'sidebar'),
+(1101, 91, 'januas_map_order', '2'),
+(1102, 91, 'januas_map_showtitle', 'y'),
+(1103, 91, 'januas_map_showinmenu', 'y'),
+(1104, 91, 'januas_map_address', 'LimeSoda Office Syringgasse 5 1170 Wien Österreich'),
+(1105, 91, 'januas_files_visible', 'n'),
+(1106, 91, 'januas_files_position', 'sidebar'),
+(1107, 91, 'januas_files_order', '3'),
+(1108, 91, 'januas_files_showtitle', 'y'),
+(1109, 91, 'januas_files_showinmenu', 'n'),
+(1110, 91, 'januas_images_visible', 'n'),
+(1111, 91, 'januas_images_position', 'sidebar'),
+(1112, 91, 'januas_images_order', '4'),
+(1113, 91, 'januas_images_showtitle', 'y'),
+(1114, 91, 'januas_images_showinmenu', 'y'),
+(1115, 91, 'januas_social_visible', 'n'),
+(1116, 91, 'januas_social_position', 'sidebar'),
+(1117, 91, 'januas_social_order', '5'),
+(1118, 91, 'januas_social_showtitle', 'y'),
+(1119, 91, 'januas_social_showinmenu', 'y'),
+(1120, 91, 'januas_social_faces', 'true'),
+(1121, 91, 'januas_social_colorscheme', 'light'),
+(1122, 91, 'januas_social_stream', 'true'),
+(1123, 91, 'januas_social_header', 'true'),
+(1124, 91, 'januas_otherinfo_visible', 'n'),
+(1125, 91, 'januas_otherinfo_position', 'main'),
+(1126, 91, 'januas_otherinfo_order', '6'),
+(1127, 91, 'januas_otherinfo_showtitle', 'y'),
+(1128, 91, 'januas_otherinfo_showinmenu', 'y'),
+(1129, 96, '_edit_last', '1'),
+(1130, 96, '_wp_page_template', 'default'),
+(1131, 96, '_edit_lock', '1445698603:1'),
+(1132, 96, '_wp_trash_meta_status', 'publish'),
+(1133, 96, '_wp_trash_meta_time', '1445698748'),
+(1134, 98, '_menu_item_type', 'taxonomy'),
+(1135, 98, '_menu_item_menu_item_parent', '0'),
+(1136, 98, '_menu_item_object_id', '26'),
+(1137, 98, '_menu_item_object', 'category'),
+(1138, 98, '_menu_item_target', ''),
+(1139, 98, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(1140, 98, '_menu_item_xfn', ''),
+(1141, 98, '_menu_item_url', ''),
+(1153, 1, '_wp_old_slug', 'hello-world'),
+(1158, 100, '_edit_lock', '1445699099:1'),
+(1159, 100, '_edit_last', '1'),
+(1160, 101, '_wp_attached_file', '2015/10/andreas-koch.jpg'),
+(1161, 101, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:223;s:6:"height";i:243;s:4:"file";s:24:"2015/10/andreas-koch.jpg";s:5:"sizes";a:1:{s:9:"thumbnail";a:4:{s:4:"file";s:24:"andreas-koch-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(1163, 100, 'januas_session_date', '1446681600'),
+(1164, 100, 'januas_session_time', '20:00'),
+(1165, 100, 'januas_session_event', '47'),
+(1166, 102, '_edit_lock', '1445698979:1'),
+(1167, 102, '_edit_last', '1'),
+(1168, 102, 'januas_speaker_company', 'arvato eCommerce'),
+(1169, 102, 'januas_speaker_website', 'https://andykdocs.de/'),
+(1170, 102, 'januas_speaker_twitter', 'andreaskoch'),
+(1171, 103, '_wp_attached_file', '2015/10/andreas-koch.png'),
+(1172, 103, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:400;s:6:"height";i:400;s:4:"file";s:24:"2015/10/andreas-koch.png";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:24:"andreas-koch-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:24:"andreas-koch-300x300.png";s:5:"width";i:300;s:6:"height";i:300;s:9:"mime-type";s:9:"image/png";}s:13:"januas-medium";a:4:{s:4:"file";s:24:"andreas-koch-306x306.png";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:9:"image/png";}s:12:"januas-large";a:4:{s:4:"file";s:24:"andreas-koch-400x360.png";s:5:"width";i:400;s:6:"height";i:360;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(1187, 102, '_thumbnail_id', '103'),
+(1188, 104, '_wp_attached_file', '2015/05/Screen-Shot-2015-10-24-at-17.05.11.png'),
+(1189, 104, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:2058;s:6:"height";i:1320;s:4:"file";s:46:"2015/05/Screen-Shot-2015-10-24-at-17.05.11.png";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:46:"Screen-Shot-2015-10-24-at-17.05.11-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:46:"Screen-Shot-2015-10-24-at-17.05.11-300x192.png";s:5:"width";i:300;s:6:"height";i:192;s:9:"mime-type";s:9:"image/png";}s:5:"large";a:4:{s:4:"file";s:47:"Screen-Shot-2015-10-24-at-17.05.11-1024x657.png";s:5:"width";i:1024;s:6:"height";i:657;s:9:"mime-type";s:9:"image/png";}s:13:"januas-medium";a:4:{s:4:"file";s:46:"Screen-Shot-2015-10-24-at-17.05.11-306x306.png";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:9:"image/png";}s:12:"januas-large";a:4:{s:4:"file";s:46:"Screen-Shot-2015-10-24-at-17.05.11-642x360.png";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(1205, 100, 'januas_speakers_list', '102'),
+(1206, 105, '_edit_lock', '1445700919:1'),
+(1207, 105, '_edit_last', '1'),
+(1208, 105, 'januas_eventdata_startdate', '1445558400'),
+(1209, 105, 'januas_eventdata_starttime', '9:00'),
+(1210, 105, 'januas_eventdata_city', 'Glattfelden '),
+(1211, 105, 'januas_eventdata_address', 'Spinnerei-lettenstrasse,  8192,  Glattfelden'),
+(1212, 105, 'januas_eventdata_state', 'ended'),
+(1213, 105, 'januas_eventdata_featured', 'y'),
+(1214, 105, 'januas_eventdata_homepage', 'y'),
+(1215, 105, 'januas_eventdata_showtitle', 'y'),
+(1216, 105, 'januas_eventdata_showinmenu', 'y'),
+(1217, 105, 'januas_eventdata_showrelated', 'y'),
+(1218, 105, 'januas_speakers_visible', 'n'),
+(1219, 105, 'januas_speakers_position', 'main'),
+(1220, 105, 'januas_speakers_order', '1'),
+(1221, 105, 'januas_speakers_showtitle', 'y'),
+(1222, 105, 'januas_speakers_showinmenu', 'y'),
+(1223, 105, 'januas_registration_visible', 'n'),
+(1224, 105, 'januas_registration_order', '1'),
+(1225, 105, 'januas_registration_showtitle', 'y'),
+(1226, 105, 'januas_registration_showinmenu', 'y'),
+(1227, 105, 'januas_schedule_visible', 'n'),
+(1228, 105, 'januas_schedule_position', 'main'),
+(1229, 105, 'januas_schedule_order', '2'),
+(1230, 105, 'januas_schedule_showtitle', 'y'),
+(1231, 105, 'januas_schedule_showinmenu', 'y'),
+(1232, 105, 'januas_video_visible', 'n'),
+(1233, 105, 'januas_video_position', 'main'),
+(1234, 105, 'januas_video_order', '3'),
+(1235, 105, 'januas_video_showtitle', 'y'),
+(1236, 105, 'januas_video_showinmenu', 'y'),
+(1237, 105, 'januas_sponsor_visible', 'n'),
+(1238, 105, 'januas_sponsor_position', 'sidebar'),
+(1239, 105, 'januas_sponsor_order', '1'),
+(1240, 105, 'januas_sponsor_showtitle', 'y'),
+(1241, 105, 'januas_sponsor_showinmenu', 'n'),
+(1242, 105, 'januas_map_visible', 'y'),
+(1243, 105, 'januas_map_position', 'sidebar'),
+(1244, 105, 'januas_map_order', '2'),
+(1245, 105, 'januas_map_showtitle', 'y'),
+(1246, 105, 'januas_map_showinmenu', 'y'),
+(1247, 105, 'januas_map_address', 'Spinnerei-lettenstrasse  8192  Glattfelden'),
+(1248, 105, 'januas_files_visible', 'n'),
+(1249, 105, 'januas_files_position', 'sidebar'),
+(1250, 105, 'januas_files_order', '3'),
+(1251, 105, 'januas_files_showtitle', 'y'),
+(1252, 105, 'januas_files_showinmenu', 'n'),
+(1253, 105, 'januas_images_visible', 'n'),
+(1254, 105, 'januas_images_position', 'sidebar'),
+(1255, 105, 'januas_images_order', '4'),
+(1256, 105, 'januas_images_showtitle', 'y'),
+(1257, 105, 'januas_images_showinmenu', 'y'),
+(1258, 105, 'januas_social_visible', 'n'),
+(1259, 105, 'januas_social_position', 'sidebar'),
+(1260, 105, 'januas_social_order', '5'),
+(1261, 105, 'januas_social_showtitle', 'y'),
+(1262, 105, 'januas_social_showinmenu', 'y'),
+(1263, 105, 'januas_social_faces', 'true'),
+(1264, 105, 'januas_social_colorscheme', 'light'),
+(1265, 105, 'januas_social_stream', 'true'),
+(1266, 105, 'januas_social_header', 'true'),
+(1267, 105, 'januas_otherinfo_visible', 'n'),
+(1268, 105, 'januas_otherinfo_position', 'main'),
+(1269, 105, 'januas_otherinfo_order', '6'),
+(1270, 105, 'januas_otherinfo_showtitle', 'y'),
+(1271, 105, 'januas_otherinfo_showinmenu', 'y'),
+(1272, 106, '_wp_attached_file', '2015/10/magento-stammtisch-10-vortrag-matthias-zeis1.jpg'),
+(1273, 106, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:600;s:6:"height";i:450;s:4:"file";s:56:"2015/10/magento-stammtisch-10-vortrag-matthias-zeis1.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:56:"magento-stammtisch-10-vortrag-matthias-zeis1-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:56:"magento-stammtisch-10-vortrag-matthias-zeis1-300x225.jpg";s:5:"width";i:300;s:6:"height";i:225;s:9:"mime-type";s:10:"image/jpeg";}s:13:"januas-medium";a:4:{s:4:"file";s:56:"magento-stammtisch-10-vortrag-matthias-zeis1-306x306.jpg";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:10:"image/jpeg";}s:12:"januas-large";a:4:{s:4:"file";s:56:"magento-stammtisch-10-vortrag-matthias-zeis1-600x360.jpg";s:5:"width";i:600;s:6:"height";i:360;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(1274, 107, '_wp_attached_file', '2015/10/7568c31866.png'),
+(1275, 107, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:900;s:6:"height";i:599;s:4:"file";s:22:"2015/10/7568c31866.png";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:22:"7568c31866-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:22:"7568c31866-300x200.png";s:5:"width";i:300;s:6:"height";i:200;s:9:"mime-type";s:9:"image/png";}s:13:"januas-medium";a:4:{s:4:"file";s:22:"7568c31866-306x306.png";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:9:"image/png";}s:12:"januas-large";a:4:{s:4:"file";s:22:"7568c31866-642x360.png";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(1276, 105, '_thumbnail_id', '107'),
+(1277, 47, 'januas_registration_script', 'Anmeldung auf &lt;a href=&quot;https://www.xing.com/events/magento-stammtisch-paderborn-1611187&quot;&gt;XING&lt;/a&gt;.'),
+(1292, 109, '_wp_attached_file', '2015/05/Screen-Shot-2015-10-24-at-17.26.54.png'),
+(1293, 109, '_wp_attachment_metadata', 'a:5:{s:5:"width";i:1342;s:6:"height";i:944;s:4:"file";s:46:"2015/05/Screen-Shot-2015-10-24-at-17.26.54.png";s:5:"sizes";a:5:{s:9:"thumbnail";a:4:{s:4:"file";s:46:"Screen-Shot-2015-10-24-at-17.26.54-150x150.png";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:9:"image/png";}s:6:"medium";a:4:{s:4:"file";s:46:"Screen-Shot-2015-10-24-at-17.26.54-300x211.png";s:5:"width";i:300;s:6:"height";i:211;s:9:"mime-type";s:9:"image/png";}s:5:"large";a:4:{s:4:"file";s:47:"Screen-Shot-2015-10-24-at-17.26.54-1024x720.png";s:5:"width";i:1024;s:6:"height";i:720;s:9:"mime-type";s:9:"image/png";}s:13:"januas-medium";a:4:{s:4:"file";s:46:"Screen-Shot-2015-10-24-at-17.26.54-306x306.png";s:5:"width";i:306;s:6:"height";i:306;s:9:"mime-type";s:9:"image/png";}s:12:"januas-large";a:4:{s:4:"file";s:46:"Screen-Shot-2015-10-24-at-17.26.54-642x360.png";s:5:"width";i:642;s:6:"height";i:360;s:9:"mime-type";s:9:"image/png";}}s:10:"image_meta";a:11:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";s:11:"orientation";i:0;}}'),
+(1294, 1, '_thumbnail_id', '109'),
+(1305, 1, '_snap_forceSURL', '2'),
+(1306, 1, 'snap_MYURL', ''),
+(1307, 1, 'snapEdIT', '1'),
+(1308, 1, 'snapTW', 's:141:"a:1:{i:0;a:5:{s:4:"doTW";i:0;s:10:"SNAPformat";s:15:"%TITLE% - %URL%";s:8:"attchImg";s:1:"0";s:9:"isAutoImg";s:1:"A";s:8:"imgToUse";s:0:"";}}";'),
+(1309, 85, 'januas_registration_script', 'Anmeldung auf &lt;a href=&quot;https://www.xing.com/events/26-magento-stammtisch-hamburg-1603777&quot;&gt;XING&lt;/a&gt;.'),
+(1310, 91, 'januas_registration_script', 'Anmeldung auf &lt;a href=&quot;https://www.xing.com/events/14-magento-stammtisch-wien-1611601&quot;&gt;XING&lt;/a&gt;.'),
+(1311, 81, 'januas_registration_script', 'Anmeldung auf &lt;a href=&quot;https://www.xing.com/events/1-magento-stammtisch-krefeld-1611262&quot;&gt;XING&lt;/a&gt;.\r\n\r\n');
 
 -- --------------------------------------------------------
 
@@ -1491,6 +2158,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 -- Tabellenstruktur für Tabelle `wp_posts`
 --
 
+DROP TABLE IF EXISTS `wp_posts`;
 CREATE TABLE IF NOT EXISTS `wp_posts` (
   `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `post_author` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -1520,22 +2188,20 @@ CREATE TABLE IF NOT EXISTS `wp_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=111 ;
 
 --
 -- Daten für Tabelle `wp_posts`
 --
 
 INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
-(1, 1, '2015-05-09 09:44:22', '2015-05-09 09:44:22', 'Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!', 'Hello world!', '', 'publish', 'open', 'open', '', 'hello-world', '', '', '2015-05-09 09:44:22', '2015-05-09 09:44:22', '', 0, 'http://stammtisch.localhost/?p=1', 0, 'post', '', 1),
-(2, 1, '2015-05-09 09:44:22', '2015-05-09 09:44:22', 'This is an example page. It''s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\n\n<blockquote>Hi there! I''m a bike messenger by day, aspiring actor by night, and this is my blog. I live in Los Angeles, have a great dog named Jack, and I like pi&#241;a coladas. (And gettin'' caught in the rain.)</blockquote>\n\n...or something like this:\n\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\n\nAs a new WordPress user, you should go to <a href="http://stammtisch.localhost/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'publish', 'open', 'open', '', 'sample-page', '', '', '2015-05-09 09:44:22', '2015-05-09 09:44:22', '', 0, 'http://stammtisch.localhost/?page_id=2', 0, 'page', '', 0),
+(1, 2, '2015-05-09 09:44:22', '2015-05-09 09:44:22', 'Während den letzten Hackathons wurde an einem neuen Theme für die Magento Stammtisch Seite gearbeitet, das es allen Stammtisch-Organisatoren ermöglichen soll, selbst Ihre Events zu erfassen. Vielen Dank an Falk Opiz und Rico Neitzel für den langjährigen Support des alten Themes.\r\n\r\n[gallery columns="2" link="file" ids="92,93"]', 'Neues Theme', '', 'publish', 'open', 'open', '', 'neues-theme', '', '', '2015-10-24 17:28:11', '2015-10-24 15:28:11', '', 0, 'http://stammtisch.localhost/?p=1', 0, 'post', '', 0),
+(2, 1, '2015-05-09 09:44:22', '2015-05-09 09:44:22', 'This is an example page. It''s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\n\n<blockquote>Hi there! I''m a bike messenger by day, aspiring actor by night, and this is my blog. I live in Los Angeles, have a great dog named Jack, and I like pi&#241;a coladas. (And gettin'' caught in the rain.)</blockquote>\n\n...or something like this:\n\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\n\nAs a new WordPress user, you should go to <a href="http://stammtisch.localhost/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'trash', 'open', 'open', '', 'sample-page', '', '', '2015-10-24 15:38:51', '2015-10-24 13:38:51', '', 0, 'http://stammtisch.localhost/?page_id=2', 0, 'page', '', 0),
 (4, 1, '2015-05-09 09:44:50', '2015-05-09 09:44:50', 'CONTENTS', 'Alle Termine', 'CONTENTS', 'publish', 'closed', 'open', '', 'events', '', '', '2015-05-09 16:58:36', '2015-05-09 14:58:36', '', 0, 'http://stammtisch.localhost/events/', 0, 'page', '', 0),
-(5, 1, '2015-05-09 09:44:50', '2015-05-09 09:44:50', 'CONTENTS', 'Locations', '', 'publish', 'closed', 'open', '', 'locations', '', '', '2015-05-09 16:59:11', '2015-05-09 14:59:11', '', 4, 'http://stammtisch.localhost/events/locations/', 0, 'page', '', 0),
-(6, 1, '2015-05-09 09:44:50', '2015-05-09 09:44:50', 'CONTENTS', 'Magento Stammtische', '', 'publish', 'closed', 'open', '', 'categories', '', '', '2015-05-09 16:57:12', '2015-05-09 14:57:12', '', 4, 'http://stammtisch.localhost/events/categories/', 0, 'page', '', 0),
-(7, 1, '2015-05-09 09:44:50', '2015-05-09 09:44:50', 'CONTENTS', 'Tags', '', 'publish', 'open', 'open', '', 'tags', '', '', '2015-05-09 09:44:50', '2015-05-09 09:44:50', '', 4, 'http://stammtisch.localhost/events/tags/', 0, 'page', '', 0),
-(8, 1, '2015-05-09 09:44:50', '2015-05-09 09:44:50', 'CONTENTS', 'My Bookings', '', 'publish', 'closed', 'open', '', 'my-bookings', '', '', '2015-05-09 16:59:47', '2015-05-09 14:59:47', '', 4, 'http://stammtisch.localhost/events/my-bookings/', 0, 'page', '', 0),
-(9, 1, '2015-05-09 09:50:10', '2015-05-09 09:50:10', ' ', '', '', 'publish', 'open', 'open', '', '9', '', '', '2015-05-09 18:35:46', '2015-05-09 16:35:46', '', 0, 'http://stammtisch.localhost/?p=9', 1, 'nav_menu_item', '', 0),
-(10, 1, '2015-05-09 09:50:10', '2015-05-09 09:50:10', ' ', '', '', 'publish', 'open', 'open', '', '10', '', '', '2015-05-09 18:35:46', '2015-05-09 16:35:46', '', 4, 'http://stammtisch.localhost/?p=10', 2, 'nav_menu_item', '', 0),
+(5, 1, '2015-05-09 09:44:50', '2015-05-09 09:44:50', 'CONTENTS', 'Locations', '', 'trash', 'closed', 'open', '', 'locations', '', '', '2015-10-24 15:38:40', '2015-10-24 13:38:40', '', 4, 'http://stammtisch.localhost/events/locations/', 0, 'page', '', 0),
+(6, 1, '2015-05-09 09:44:50', '2015-05-09 09:44:50', 'CONTENTS', 'Magento Stammtische', '', 'trash', 'closed', 'open', '', 'categories', '', '', '2015-10-24 15:38:19', '2015-10-24 13:38:19', '', 4, 'http://stammtisch.localhost/events/categories/', 0, 'page', '', 0),
+(7, 1, '2015-05-09 09:44:50', '2015-05-09 09:44:50', 'CONTENTS', 'Tags', '', 'trash', 'open', 'open', '', 'tags', '', '', '2015-10-24 15:38:26', '2015-10-24 13:38:26', '', 4, 'http://stammtisch.localhost/events/tags/', 0, 'page', '', 0),
+(8, 1, '2015-05-09 09:44:50', '2015-05-09 09:44:50', 'CONTENTS', 'My Bookings', '', 'trash', 'closed', 'open', '', 'my-bookings', '', '', '2015-10-24 15:38:34', '2015-10-24 13:38:34', '', 4, 'http://stammtisch.localhost/events/my-bookings/', 0, 'page', '', 0),
 (13, 1, '2015-05-09 09:56:33', '2015-05-09 09:56:33', '', 'Shopwerft GmbH', '', 'publish', 'open', 'open', '', 'hamburg', '', '', '2015-05-09 14:59:46', '2015-05-09 12:59:46', '', 0, 'http://stammtisch.localhost/locations/hamburg/', 0, 'location', '', 0),
 (14, 1, '2015-05-09 09:58:37', '2015-05-09 09:58:37', '', 'Shopwerft A', '', 'inherit', 'open', 'open', '', '13-autosave-v1', '', '', '2015-05-09 09:58:37', '2015-05-09 09:58:37', '', 13, 'http://stammtisch.localhost/2015/05/09/13-autosave-v1/', 0, 'revision', '', 0),
 (15, 1, '2015-05-09 12:17:55', '2015-05-09 10:17:55', '', 'Activity', '', 'publish', 'closed', 'closed', '', 'activity', '', '', '2015-05-09 12:17:55', '2015-05-09 10:17:55', '', 0, 'http://stammtisch.localhost/activity/', 0, 'page', '', 0),
@@ -1555,7 +2221,69 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (38, 1, '2015-05-09 18:04:04', '2015-05-09 16:04:04', '', 'magento-stammtisch', '', 'inherit', 'closed', 'open', '', 'magento-stammtisch', '', '', '2015-05-09 18:04:04', '2015-05-09 16:04:04', '', 0, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/magento-stammtisch1.png', 0, 'attachment', 'image/png', 0),
 (39, 1, '2015-10-24 12:21:47', '0000-00-00 00:00:00', '', 'Automatisch gespeicherter Entwurf', '', 'auto-draft', 'closed', 'open', '', '', '', '', '2015-10-24 12:21:47', '0000-00-00 00:00:00', '', 0, 'http://beta.magento-stammtisch.de/?p=39', 0, 'post', '', 0),
 (42, 1, '2015-10-24 13:42:13', '2015-10-24 11:42:13', 'test', 'Test Paderborn', '', 'publish', 'closed', 'closed', '', 'test-paderborn', '', '', '2015-10-24 13:42:13', '2015-10-24 11:42:13', '', 0, 'http://beta.magento-stammtisch.de/?post_type=event&#038;p=42', 0, 'event', '', 0),
-(43, 1, '2015-10-24 13:42:20', '2015-10-24 11:42:20', 'In charaktervollen Räumen des Industriezeitalters arbeiten, via W-Lan weltweit kommunizieren, am Nebentisch Ideen diskutieren. Und das heisst auch: Pause machen – Ideen finden.\r\n\r\nMehr Infos über die Location unter <a href="http://citizen-space.ch" target="_blank">citizen-space.ch</a>', 'Citizen Space', '', 'publish', 'closed', 'closed', '', 'citizen-space', '', '', '2015-10-24 13:42:20', '2015-10-24 11:42:20', '', 0, 'http://beta.magento-stammtisch.de/?post_type=location&#038;p=43', 0, 'location', '', 0);
+(43, 1, '2015-10-24 13:42:20', '2015-10-24 11:42:20', 'In charaktervollen Räumen des Industriezeitalters arbeiten, via W-Lan weltweit kommunizieren, am Nebentisch Ideen diskutieren. Und das heisst auch: Pause machen – Ideen finden.\r\n\r\nMehr Infos über die Location unter <a href="http://citizen-space.ch" target="_blank">citizen-space.ch</a>', 'Citizen Space', '', 'publish', 'closed', 'closed', '', 'citizen-space', '', '', '2015-10-24 13:42:20', '2015-10-24 11:42:20', '', 0, 'http://beta.magento-stammtisch.de/?post_type=location&#038;p=43', 0, 'location', '', 0),
+(44, 1, '2015-10-24 13:47:50', '2015-10-24 11:47:50', 'Monatliches Treffen der Schweizer Magento Community dieses mal im Citizen Space in Zürich, sonst auch in anderen Locations in Zürich oder anderen Schweizer Städten. Openstream sponsort kaltes Bier und Fingerfood, die Themen richten sich an Entwickler und Shop-Betreiber. Jeder ist willkommen, alte Hasen und Magento-Neulinge.', 'Magento Stammtisch #20', '', 'publish', 'closed', 'closed', '', 'magento-stammtisch-20', '', '', '2015-10-24 13:47:50', '2015-10-24 11:47:50', '', 0, 'http://beta.magento-stammtisch.de/?post_type=event&#038;p=44', 0, 'event', '', 0),
+(46, 1, '2015-10-24 14:56:07', '0000-00-00 00:00:00', '', 'Automatisch gespeicherter Entwurf', '', 'auto-draft', 'closed', 'open', '', '', '', '', '2015-10-24 14:56:07', '0000-00-00 00:00:00', '', 0, 'http://beta.magento-stammtisch.de/?p=46', 0, 'post', '', 0),
+(47, 1, '2015-10-24 15:04:20', '2015-10-24 13:04:20', 'Der Magento Stammtisch OWL richtet sich an Shop-Betreiber, Entwickler, Agenturen und auch Dienstleister. Der Stammtisch findet hauptsächlich in Paderborn und Bielefeld statt. Unsere Gäste kommen überwiegend aus Ostwestfalen-Lippe, also aus den Kreisen Bielefeld, Gütersloh, Herford, Höxter, Lippe, Minden und Paderborn.\r\n\r\nDer Abend beginnt um 19 Uhr. Die Teilnehmer erhalten die Gelegenheit, sich mit Getränken zu versorgen und miteinander ins Gespräch zu kommen. Gegen 19:15 Uhr wird der Stammtisch mit einer kleinen Vorstellrunde eröffnet. Danach gibt es zwei Themen, die entweder in einem Vortrag behandelt oder im Rahmen einer Diskussionsrunde erörtert werden.\r\n\r\nIm Anschluss an die beiden offiziellen Stammtisch-Themen tauschen wir uns in einem gemeinsamen, freien Gespräch über die vielfältigen Probleme und Fragen rund um „Magento“, „Online Shopping“ und „Agentur Geschäft“ aus.', '8. Stammtisch Paderborn', '', 'publish', 'closed', 'closed', '', '99-stammtisch-paderborn', '', '', '2015-10-24 17:42:46', '2015-10-24 15:42:46', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-event&#038;p=47', 0, 'ja-event', '', 0),
+(49, 1, '2015-10-24 15:03:06', '2015-10-24 13:03:06', '', 'Magento Stammtisch', '', 'inherit', 'closed', 'closed', '', 'magento-stammtisch2', '', '', '2015-10-24 15:03:24', '2015-10-24 13:03:24', '', 0, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/magento-stammtisch2.png', 0, 'attachment', 'image/png', 0),
+(50, 1, '2015-10-24 15:06:18', '0000-00-00 00:00:00', '', 'Automatisch gespeicherter Entwurf', '', 'auto-draft', 'closed', 'closed', '', '', '', '', '2015-10-24 15:06:18', '0000-00-00 00:00:00', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-event&p=50', 0, 'ja-event', '', 0),
+(51, 1, '2015-10-24 15:09:16', '2015-10-24 13:09:16', 'Monatliches Treffen der Schweizer Magento Community dieses mal im Citizen Space in Zürich, sonst auch in anderen Locations in Zürich oder anderen Schweizer Städten. Openstream sponsort kaltes Bier und Fingerfood, die Themen richten sich an Entwickler und Shop-Betreiber. Jeder ist willkommen, alte Hasen und Magento-Neulinge.', '20. Stammtisch Zürich', '', 'publish', 'closed', 'closed', '', '20-stammtisch-zuerich', '', '', '2015-10-24 17:02:02', '2015-10-24 15:02:02', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-event&#038;p=51', 0, 'ja-event', '', 0),
+(52, 1, '2015-10-24 15:10:59', '2015-10-24 13:10:59', 'Fachanwältin für IT-Recht / BLAWgerin seit 2005 / Lehrbeauftragte der Universität Paderborn und der FH Flensburg', 'Carola Sieling', '', 'publish', 'closed', 'closed', '', 'carola-sieling', '', '', '2015-10-24 15:14:36', '2015-10-24 13:14:36', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-speaker&#038;p=52', 0, 'ja-speaker', '', 0),
+(53, 1, '2015-10-24 15:12:08', '2015-10-24 13:12:08', 'Impressumspflicht, Datenschutzerklärung, Domains, Urheberrecht, Social Media und Co. – hilfreiche Tipps zur Gestaltung von Webshops. -', 'Der rechtssichere Webshop', '', 'publish', 'closed', 'closed', '', 'der-rechtssichere-webshop', '', '', '2015-10-24 15:57:42', '2015-10-24 13:57:42', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-session&#038;p=53', 0, 'ja-session', '', 0),
+(55, 1, '2015-10-24 15:12:07', '2015-10-24 13:12:07', '', 'Magento Stammtisch Zürich', '', 'inherit', 'closed', 'closed', '', 'magento-stammtisch-zuerich', '', '', '2015-10-24 15:12:16', '2015-10-24 13:12:16', '', 51, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/magento-stammtisch-zuerich.jpg', 0, 'attachment', 'image/jpeg', 0),
+(56, 1, '2015-10-24 15:14:32', '2015-10-24 13:14:32', '', 'carolina Sieling', '', 'inherit', 'closed', 'closed', '', 'carolina-sieling', '', '', '2015-10-24 15:14:32', '2015-10-24 13:14:32', '', 52, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/carolina-Sieling.jpeg', 0, 'attachment', 'image/jpeg', 0),
+(57, 1, '2015-10-24 15:15:00', '0000-00-00 00:00:00', '', 'Automatisch gespeicherter Entwurf', '', 'auto-draft', 'closed', 'closed', '', '', '', '', '2015-10-24 15:15:00', '0000-00-00 00:00:00', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-session&p=57', 0, 'ja-session', '', 0),
+(58, 1, '2015-10-24 15:20:06', '2015-10-24 13:20:06', '', '08', '', 'inherit', 'closed', 'closed', '', '08', '', '', '2015-10-24 16:30:01', '2015-10-24 14:30:01', '', 0, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/08.jpg', 0, 'attachment', 'image/jpeg', 0),
+(59, 1, '2015-10-24 15:20:06', '2015-10-24 13:20:06', '', '02', '', 'inherit', 'closed', 'closed', '', '02', '', '', '2015-10-24 15:20:06', '2015-10-24 13:20:06', '', 47, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/02.jpg', 0, 'attachment', 'image/jpeg', 0),
+(60, 1, '2015-10-24 15:20:07', '2015-10-24 13:20:07', '', '06', '', 'inherit', 'closed', 'closed', '', '06', '', '', '2015-10-24 15:20:07', '2015-10-24 13:20:07', '', 47, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/06.jpg', 0, 'attachment', 'image/jpeg', 0),
+(61, 1, '2015-10-24 15:20:08', '2015-10-24 13:20:08', '', '05', '', 'inherit', 'closed', 'closed', '', '05', '', '', '2015-10-24 15:20:08', '2015-10-24 13:20:08', '', 47, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/05.jpg', 0, 'attachment', 'image/jpeg', 0),
+(62, 1, '2015-10-24 15:20:09', '2015-10-24 13:20:09', '', '04', '', 'inherit', 'closed', 'closed', '', '04', '', '', '2015-10-24 15:20:09', '2015-10-24 13:20:09', '', 47, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/04.jpg', 0, 'attachment', 'image/jpeg', 0),
+(63, 1, '2015-10-24 15:20:09', '2015-10-24 13:20:09', '', '03', '', 'inherit', 'closed', 'closed', '', '03', '', '', '2015-10-24 15:20:09', '2015-10-24 13:20:09', '', 47, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/03.jpg', 0, 'attachment', 'image/jpeg', 0),
+(64, 1, '2015-10-24 15:20:10', '2015-10-24 13:20:10', '', '07', '', 'inherit', 'closed', 'closed', '', '07', '', '', '2015-10-24 15:20:10', '2015-10-24 13:20:10', '', 47, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/07.jpg', 0, 'attachment', 'image/jpeg', 0),
+(65, 1, '2015-10-24 15:20:11', '2015-10-24 13:20:11', '', '01', '', 'inherit', 'closed', 'closed', '', '01', '', '', '2015-10-24 15:20:11', '2015-10-24 13:20:11', '', 47, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/01.jpg', 0, 'attachment', 'image/jpeg', 0),
+(67, 1, '2015-10-24 15:27:03', '0000-00-00 00:00:00', ' ', '', '', 'draft', 'closed', 'closed', '', '', '', '', '2015-10-24 15:27:03', '0000-00-00 00:00:00', '', 0, 'http://beta.magento-stammtisch.de/?p=67', 1, 'nav_menu_item', '', 0),
+(68, 1, '2015-10-24 15:28:50', '2015-10-24 13:28:50', '', 'Alle Termine', '', 'publish', 'closed', 'closed', '', 'alle-termine', '', '', '2015-10-24 16:59:51', '2015-10-24 14:59:51', '', 0, 'http://beta.magento-stammtisch.de/?p=68', 1, 'nav_menu_item', '', 0),
+(69, 2, '2015-10-24 15:35:43', '2015-10-24 13:35:43', 'FireGento e.V.\r\nc/o Fabian Blechschmidt\r\nCrailsheimer Str. 10\r\n12247 Berlin / Germany\r\n\r\nE-Mail: <a href="mailto:contact@firegento.com">contact@firegento.com</a>\r\n\r\nSteuernummer: 27/653/56925\r\nFinanzbehörde: Finanzamt Berlin\r\n\r\nFiregento e. V. ist eingetragen im Vereinsregister des Amtsgerichts Berlin (Charlottenburg) unter der Vereinsregisternummer 32430.\r\n\r\n<hr />\r\n\r\n<h2>Support</h2>\r\n<ul>\r\n	<li>Bitte die Kontaktinformationen nicht für Supportanfragen verwenden!</li>\r\n	<li>Supportanfragen an die oben genannten Emailadresse werden nicht beantwortet.</li>\r\n	<li>Haben Sie Fragen, Wünsche, Anregungen oder Fehler gefunden dann erstellen Sie bitte ein Ticket auf <a href="https://github.com/firegento/" target="_blank">Github</a></li>\r\n</ul>\r\n\r\n<hr />\r\n\r\n<h2>Sponsoring</h2>\r\nmagento-stammtisch.de ist ein Community-Projekt. Es lebt davon, dass jeder etwas beiträgt, egal wie groß oder klein der Aufwand ist.\r\n\r\nIn der Vergangenheit wurde das Projekt nicht nur durch viele Helfer, sondern auch durch folgende Sponsoren unterstützt:\r\n<ul>\r\n	<li><a href="https://www.mittwald.de/" target="_blank">Mittwald</a> (ermöglicht seit Projektbeginn ein kostenfreies Hosting dieser Webseite)</li>\r\n	<li><a href="http://www.galileocomputing.de/" target="_blank">Galileo Computing</a> (stellte Magento Bücher zur Verlosung zur Verfügung)</li>\r\n	<li><a href="http://www.oreilly.de/" target="_blank">O''Reilly</a> (stellte Magento Bücher zur Verlosung zur Verfügung)</li>\r\n</ul>\r\nFür folgende Dinge kann derzeit ein Sponsoring übernommen werden:\r\n<ul>\r\n	<li>T-Shirts (für die Veranstalter der einzelnen Stammtische)</li>\r\n	<li>Drinks (auf den jeweiligen Stammtischen)</li>\r\n	<li>Bücher (zum Verlosen)\r\n...</li>\r\n</ul>\r\nDer Magento Hackathon ist auch ein Community-Projekt und benötigt für die einzelnen Veranstaltungen ebenfalls finanzielle Unterstützung.\r\n<h2>License</h2>\r\n<ul>\r\n	<li>All modules by FireGento are published under the <a href="http://www.opensource.org/licenses/GPL-3.0" target="_blank">GPLv3</a> license.</li>\r\n	<li>All modules by FireGento are free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.</li>\r\n	<li>This script is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</li>\r\n</ul>', 'Impressum', '', 'publish', 'closed', 'closed', '', 'impressum', '', '', '2015-10-24 15:50:06', '2015-10-24 13:50:06', '', 0, 'http://beta.magento-stammtisch.de/?page_id=69', 0, 'page', '', 0),
+(70, 1, '2015-10-24 15:35:43', '2015-10-24 13:35:43', 'FireGento e.V.\r\nc/o Fabian Blechschmidt\r\nCrailsheimer Str. 10\r\n12247 Berlin / Germany\r\n\r\nE-Mail: <a href="mailto:contact@firegento.com">contact@firegento.com</a>\r\n\r\nSteuernummer: 27/653/56925\r\nFinanzbehörde: Finanzamt Berlin\r\n\r\nFiregento e. V. ist eingetragen im Vereinsregister des Amtsgerichts Berlin (Charlottenburg) unter der Vereinsregisternummer 32430.\r\n\r\n<hr />\r\n\r\n<h2>Support</h2>\r\n<ul>\r\n	<li>Bitte die Kontaktinformationen nicht für Supportanfragen verwenden!</li>\r\n	<li>Supportanfragen an die oben genannten Emailadresse werden nicht beantwortet.</li>\r\n	<li>Haben Sie Fragen,Wünsche, Anregungen oder Fehler gefunden dann erstellen Sie bitte ein Ticket auf <a href="https://github.com/firegento/" target="_blank">Github</a></li>\r\n</ul>\r\n\r\n<hr />\r\n\r\n<h2>License</h2>\r\n<ul>\r\n	<li>All modules by FireGento are published under the <a href="http://www.opensource.org/licenses/GPL-3.0" target="_blank">GPLv3</a> license.</li>\r\n	<li>All modules by FireGento are free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.</li>\r\n	<li>This script is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</li>\r\n</ul>', 'Impressum', '', 'inherit', 'closed', 'closed', '', '69-revision-v1', '', '', '2015-10-24 15:35:43', '2015-10-24 13:35:43', '', 69, 'http://beta.magento-stammtisch.de/2015/10/24/69-revision-v1/', 0, 'revision', '', 0),
+(72, 1, '2015-10-24 15:38:26', '2015-10-24 13:38:26', 'CONTENTS', 'Tags', '', 'inherit', 'closed', 'closed', '', '7-revision-v1', '', '', '2015-10-24 15:38:26', '2015-10-24 13:38:26', '', 7, 'http://beta.magento-stammtisch.de/2015/10/24/7-revision-v1/', 0, 'revision', '', 0),
+(73, 1, '2015-10-24 15:38:51', '2015-10-24 13:38:51', 'This is an example page. It''s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\n\n<blockquote>Hi there! I''m a bike messenger by day, aspiring actor by night, and this is my blog. I live in Los Angeles, have a great dog named Jack, and I like pi&#241;a coladas. (And gettin'' caught in the rain.)</blockquote>\n\n...or something like this:\n\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\n\nAs a new WordPress user, you should go to <a href="http://stammtisch.localhost/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'inherit', 'closed', 'closed', '', '2-revision-v1', '', '', '2015-10-24 15:38:51', '2015-10-24 13:38:51', '', 2, 'http://beta.magento-stammtisch.de/2015/10/24/2-revision-v1/', 0, 'revision', '', 0),
+(74, 1, '2015-10-24 15:44:59', '2015-10-24 13:44:59', 'FireGento e.V.\nc/o Fabian Blechschmidt\nCrailsheimer Str. 10\n12247 Berlin / Germany\n\nE-Mail: <a href="mailto:contact@firegento.com">contact@firegento.com</a>\n\nSteuernummer: 27/653/56925\nFinanzbehörde: Finanzamt Berlin\n\nFiregento e. V. ist eingetragen im Vereinsregister des Amtsgerichts Berlin (Charlottenburg) unter der Vereinsregisternummer 32430.\n\n<hr />\n\n<h2>Support</h2>\n<ul>\n	<li>Bitte die Kontaktinformationen nicht für Supportanfragen verwenden!</li>\n	<li>Supportanfragen an die oben genannten Emailadresse werden nicht beantwortet.</li>\n	<li>Haben Sie Fragen, Wünsche, Anregungen oder Fehler gefunden dann erstellen Sie bitte ein Ticket auf <a href="https://github.com/firegento/" target="_blank">Github</a></li>\n</ul>\n\n<hr />\n\n<h2>Sponsoring</h2>\nmagento-stammtisch.de ist ein Community-Projekt. Es lebt davon, dass jeder etwas beiträgt, egal wie groß oder klein der Aufwand ist.\n\nIn der Vergangenheit wurde das Projekt nicht nur durch viele Helfer, sondern auch durch folgende Sponsoren unterstützt:\n<ul>\n	<li><a href="https://www.mittwald.de/" target="_blank">Mittwald</a> (ermöglicht seit Projektbeginn ein kostenfreies Hosting dieser Webseite)</li>\n	<li>Galileo Computing (stellte Magento Bücher zur Verlosung zur Verfügung)</li>\n	<li>O''Reilly (stellte Magento Bücher zur Verlosung zur Verfügung)</li>\n</ul>\nFür folgende Dinge kann derzeit ein Sponsoring übernommen werden:\n<ul>\n	<li>T-Shirts (für die Veranstalter der einzelnen Stammtische)</li>\n	<li>Drinks (auf den jeweiligen Stammtischen)</li>\n	<li>Bücher (zum Verlosen)\n...</li>\n</ul>\nDer Magento Hackathon ist auch ein Community-Projekt und benötigt für die einzelnen Veranstaltungen ebenfalls finanzielle Unterstützung.\n<h2>License</h2>\n<ul>\n	<li>All modules by FireGento are published under the <a href="http://www.opensource.org/licenses/GPL-3.0" target="_blank">GPLv3</a> license.</li>\n	<li>All modules by FireGento are free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.</li>\n	<li>This script is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</li>\n</ul>', 'Impressum', '', 'inherit', 'closed', 'closed', '', '69-autosave-v1', '', '', '2015-10-24 15:44:59', '2015-10-24 13:44:59', '', 69, 'http://beta.magento-stammtisch.de/2015/10/24/69-autosave-v1/', 0, 'revision', '', 0),
+(75, 1, '2015-10-24 15:45:44', '2015-10-24 13:45:44', 'FireGento e.V.\r\nc/o Fabian Blechschmidt\r\nCrailsheimer Str. 10\r\n12247 Berlin / Germany\r\n\r\nE-Mail: <a href="mailto:contact@firegento.com">contact@firegento.com</a>\r\n\r\nSteuernummer: 27/653/56925\r\nFinanzbehörde: Finanzamt Berlin\r\n\r\nFiregento e. V. ist eingetragen im Vereinsregister des Amtsgerichts Berlin (Charlottenburg) unter der Vereinsregisternummer 32430.\r\n\r\n<hr />\r\n\r\n<h2>Support</h2>\r\n<ul>\r\n	<li>Bitte die Kontaktinformationen nicht für Supportanfragen verwenden!</li>\r\n	<li>Supportanfragen an die oben genannten Emailadresse werden nicht beantwortet.</li>\r\n	<li>Haben Sie Fragen, Wünsche, Anregungen oder Fehler gefunden dann erstellen Sie bitte ein Ticket auf <a href="https://github.com/firegento/" target="_blank">Github</a></li>\r\n</ul>\r\n\r\n<hr />\r\n\r\n<h2>Sponsoring</h2>\r\nmagento-stammtisch.de ist ein Community-Projekt. Es lebt davon, dass jeder etwas beiträgt, egal wie groß oder klein der Aufwand ist.\r\n\r\nIn der Vergangenheit wurde das Projekt nicht nur durch viele Helfer, sondern auch durch folgende Sponsoren unterstützt:\r\n<ul>\r\n	<li><a href="https://www.mittwald.de/" target="_blank">Mittwald</a> (ermöglicht seit Projektbeginn ein kostenfreies Hosting dieser Webseite)</li>\r\n	<li><a href="http://www.galileocomputing.de/" target="_blank">Galileo Computing</a> (stellte Magento Bücher zur Verlosung zur Verfügung)</li>\r\n	<li><a href="http://www.oreilly.de/" target="_blank">O''Reilly</a> (stellte Magento Bücher zur Verlosung zur Verfügung)</li>\r\n</ul>\r\nFür folgende Dinge kann derzeit ein Sponsoring übernommen werden:\r\n<ul>\r\n	<li>T-Shirts (für die Veranstalter der einzelnen Stammtische)</li>\r\n	<li>Drinks (auf den jeweiligen Stammtischen)</li>\r\n	<li>Bücher (zum Verlosen)\r\n...</li>\r\n</ul>\r\nDer Magento Hackathon ist auch ein Community-Projekt und benötigt für die einzelnen Veranstaltungen ebenfalls finanzielle Unterstützung.\r\n<h2>License</h2>\r\n<ul>\r\n	<li>All modules by FireGento are published under the <a href="http://www.opensource.org/licenses/GPL-3.0" target="_blank">GPLv3</a> license.</li>\r\n	<li>All modules by FireGento are free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.</li>\r\n	<li>This script is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</li>\r\n</ul>', 'Impressum', '', 'inherit', 'closed', 'closed', '', '69-revision-v1', '', '', '2015-10-24 15:45:44', '2015-10-24 13:45:44', '', 69, 'http://beta.magento-stammtisch.de/2015/10/24/69-revision-v1/', 0, 'revision', '', 0),
+(76, 1, '2015-10-24 15:47:03', '2015-10-24 13:47:03', ' ', '', '', 'publish', 'closed', 'closed', '', '76', '', '', '2015-10-24 16:59:51', '2015-10-24 14:59:51', '', 0, 'http://beta.magento-stammtisch.de/?p=76', 3, 'nav_menu_item', '', 0),
+(77, 2, '2015-10-24 15:49:36', '0000-00-00 00:00:00', '', 'Automatisch gespeicherter Entwurf', '', 'auto-draft', 'closed', 'open', '', '', '', '', '2015-10-24 15:49:36', '0000-00-00 00:00:00', '', 0, 'http://beta.magento-stammtisch.de/?p=77', 0, 'post', '', 0),
+(78, 1, '2015-10-24 15:51:52', '2015-10-24 13:51:52', '', 'Schedule', '', 'publish', 'closed', 'closed', '', 'schedule', '', '', '2015-10-24 15:51:52', '2015-10-24 13:51:52', '', 0, 'http://beta.magento-stammtisch.de/?page_id=78', 0, 'page', '', 0),
+(79, 1, '2015-10-24 15:51:52', '2015-10-24 13:51:52', '', 'Schedule', '', 'inherit', 'closed', 'closed', '', '78-revision-v1', '', '', '2015-10-24 15:51:52', '2015-10-24 13:51:52', '', 78, 'http://beta.magento-stammtisch.de/2015/10/24/78-revision-v1/', 0, 'revision', '', 0),
+(80, 1, '2015-10-24 15:56:07', '2015-10-24 13:56:07', '', 'hammer-719062_1280', '', 'inherit', 'closed', 'closed', '', 'hammer-719062_1280', '', '', '2015-10-24 15:56:07', '2015-10-24 13:56:07', '', 53, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/hammer-719062_1280.jpg', 0, 'attachment', 'image/jpeg', 0),
+(81, 1, '2015-10-24 16:32:45', '2015-10-24 14:32:45', 'Der 1. Magento Stammtisch in der Samt- und Seidenstadt findet in den Räumen der <b>AOE Niederlassung Krefeld</b> statt.\r\n\r\nParkmöglichkeiten stehen auf dem Gelände des <b>Mies van der Rohe Business Parks</b> ausreichend zur Verfügung. Ihr findet das Büro in <b>Gebäude A10</b>.', '1. Stammtisch Krefeld', '', 'publish', 'closed', 'closed', '', 'magento-stammtisch-in-krefeld', '', '', '2015-10-24 17:50:03', '2015-10-24 15:50:03', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-event&#038;p=81', 0, 'ja-event', '', 0),
+(82, 2, '2015-10-24 16:34:25', '2015-10-24 14:34:25', 'Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!', 'Hello world!', '', 'inherit', 'closed', 'closed', '', '1-revision-v1', '', '', '2015-10-24 16:34:25', '2015-10-24 14:34:25', '', 1, 'http://beta.magento-stammtisch.de/2015/10/24/1-revision-v1/', 0, 'revision', '', 0),
+(83, 1, '2015-10-24 16:37:20', '2015-10-24 14:37:20', '', 'Krefeld', '', 'inherit', 'closed', 'closed', '', 'krefeld', '', '', '2015-10-24 16:37:20', '2015-10-24 14:37:20', '', 81, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/Krefeld.png', 0, 'attachment', 'image/png', 0),
+(84, 2, '2015-10-24 16:45:27', '2015-10-24 14:45:27', 'Während den letzten Hackathons wurde an einem neuen Theme für die', 'Hello Stammtisch', '', 'inherit', 'closed', 'closed', '', '1-autosave-v1', '', '', '2015-10-24 16:45:27', '2015-10-24 14:45:27', '', 1, 'http://beta.magento-stammtisch.de/1-autosave-v1/', 0, 'revision', '', 0),
+(85, 1, '2015-10-24 16:45:06', '2015-10-24 14:45:06', 'Alle zwei Monate findet in Hamburg der Magento-Stammtisch statt. Eingeladen sind alle, die sich mit Magento beschäftigen oder daran interessiert sind. Ob Shop-Betreiber, Entwickler, Agenturen oder Dienstleister, alle sind herzlich willkommen.\r\n\r\nDie Veranstaltung findet in den Räumlichkeiten von TUDOCK in der Hamburger Speicherstadt statt. Gesponsert werden von den Gastgebern regelmäßig kleinere Snacks und kalte Getränke.\r\n\r\nDer Abend folgt einem erprobten Ritual: Es beginnt um 19 Uhr, wenn sich so langsam die Teilnehmer versammeln, mit Getränken versorgen und miteinander ins Gespräch kommen. Um 19:30 Uhr eröffnet Niels von TUDOCK den Abend und startet die obligatorische Vorstellungsrunde. Im Anschluss gibt es ein bis zwei kurze Vorträge oder moderierte Themen. Anschließend klingt der Abend bei Snacks und Getränken mit einem entspannten Networking und Gedankenaustausch aus.', '26. Stammtisch Hamburg', '', 'publish', 'closed', 'closed', '', '26-magento-stammtisch-in-hamburg', '', '', '2015-10-24 17:46:42', '2015-10-24 15:46:42', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-event&#038;p=85', 0, 'ja-event', '', 0),
+(86, 1, '2015-10-24 16:44:43', '2015-10-24 14:44:43', '', 'Magento-Stammtisch-Mixer', '', 'inherit', 'closed', 'closed', '', 'magento-stammtisch-mixer', '', '', '2015-10-24 16:44:43', '2015-10-24 14:44:43', '', 85, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/Magento-Stammtisch-Mixer.jpg', 0, 'attachment', 'image/jpeg', 0),
+(87, 2, '2015-10-24 16:46:28', '2015-10-24 14:46:28', 'Während den letzten Hackathons wurde an einem neuen Theme für die', 'Hello Stammtisch', '', 'inherit', 'closed', 'closed', '', '1-revision-v1', '', '', '2015-10-24 16:46:28', '2015-10-24 14:46:28', '', 1, 'http://beta.magento-stammtisch.de/1-revision-v1/', 0, 'revision', '', 0),
+(88, 1, '2015-10-24 17:26:06', '2015-10-24 15:26:06', 'Während der letzten Hackathons wurde an einem neuen Theme für die Magento Stammtisch Seite gearbeitet, das es allen Stammtisch-Organisatoren ermöglichen soll, selbst Ihre Events zu erfassen. Vielen Dank an Falk Opiz und Rico Neitzel für den langjährigen Support des alten Themes.\n\nH\n\n[gallery columns="2" link="file" ids="92,93"]', 'Neues Theme', '', 'inherit', 'closed', 'closed', '', '1-autosave-v1', '', '', '2015-10-24 17:26:06', '2015-10-24 15:26:06', '', 1, 'http://beta.magento-stammtisch.de/1-autosave-v1/', 0, 'revision', '', 0),
+(89, 1, '2015-10-24 16:55:06', '2015-10-24 14:55:06', 'Ankommen und kennen lernen. Im Anschluß kurze Vorstellungsrunde der Teilnehmer und Begrüßung durch den Veranstalter.', 'Networking', '', 'publish', 'closed', 'closed', '', 'networking', '', '', '2015-10-24 16:55:06', '2015-10-24 14:55:06', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-session&#038;p=89', 0, 'ja-session', '', 0),
+(90, 1, '2015-10-24 16:54:53', '0000-00-00 00:00:00', '', 'Automatisch gespeicherter Entwurf', '', 'auto-draft', 'closed', 'open', '', '', '', '', '2015-10-24 16:54:53', '0000-00-00 00:00:00', '', 0, 'http://beta.magento-stammtisch.de/?p=90', 0, 'post', '', 0),
+(91, 1, '2015-10-24 16:58:53', '2015-10-24 14:58:53', 'Hallo!\r\n\r\nIch freue mich, Sie zum <b>14. Magento-Stammtisch Wien </b>einladen zu dürfen.\r\n\r\nDas Event startet Dienstag, den 24. November  2015, ab 18:30 Uhr.\r\n\r\nPizza und Getränke werden gesponsert von LimeSoda.\r\n\r\n<b>Agenda</b>\r\n<ul>\r\n	<li>18:30 Uhr: Kennenlernen bei Pizza und Getränken</li>\r\n</ul>\r\n<ul>\r\n	<li>19:00 Uhr: Einleitung</li>\r\n</ul>\r\n<ul>\r\n	<li>Vortrag 1</li>\r\n</ul>\r\n<ul>\r\n	<li>Vortrag 2</li>\r\n</ul>\r\n<ul>\r\n	<li>Gemütliches Plaudern mit Open End</li>\r\n</ul>\r\n<b>Vorträge gesucht!</b>\r\n\r\nWenn Sie uns etwas erzählen möchten über Ihr letztes Projekt, Ihre neueste Extension, Ihre Anbindung an ein Third-Party-System, vielleicht ein ganz anderes Shop-System - wir wollen es hören! Bitte melden Sie sich bei mir, wenn Sie Interesse haben.\r\n\r\nMit besten Grüßen,\r\nAnna Völkl', '13. Stammtisch Wien', '', 'publish', 'closed', 'closed', '', '13-magento-stammtisch-in-wien', '', '', '2015-10-24 17:48:13', '2015-10-24 15:48:13', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-event&#038;p=91', 0, 'ja-event', '', 0),
+(92, 1, '2015-10-24 16:56:12', '2015-10-24 14:56:12', '', 'Alte Magento Stammtisch Webseite', '', 'inherit', 'closed', 'closed', '', 'magento-stammtisch-2', '', '', '2015-10-24 16:56:57', '2015-10-24 14:56:57', '', 1, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/Magento-Stammtisch.png', 0, 'attachment', 'image/png', 0),
+(93, 1, '2015-10-24 16:56:33', '2015-10-24 14:56:33', '', 'Alte Magento Stammtisch Webseite', '', 'inherit', 'closed', 'closed', '', 'magento-stammtisch-zurich', '', '', '2015-10-24 16:56:51', '2015-10-24 14:56:51', '', 1, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/Magento-Stammtisch-Zurich.png', 0, 'attachment', 'image/png', 0),
+(94, 1, '2015-10-24 16:56:58', '2015-10-24 14:56:58', '', 'magento-stammtisch-10-vortrag-matthias-zeis', '', 'inherit', 'closed', 'closed', '', 'magento-stammtisch-10-vortrag-matthias-zeis', '', '', '2015-10-24 16:56:58', '2015-10-24 14:56:58', '', 91, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/magento-stammtisch-10-vortrag-matthias-zeis.jpg', 0, 'attachment', 'image/jpeg', 0),
+(95, 1, '2015-10-24 16:57:31', '2015-10-24 14:57:31', 'Während den letzten Hackathons wurde an einem neuen Theme für die Magento Stammtisch Seite gearbeitet, das es allen Stammtisch-Organisatoren ermöglichen soll, selbst Ihre Events zu erfassen. Vielen Dank an Falk Opiz und Rico Neitzel für den langjährigen Support des alten Themes.\r\n\r\n[gallery columns="2" link="file" ids="92,93"]', 'Hello Stammtisch', '', 'inherit', 'closed', 'closed', '', '1-revision-v1', '', '', '2015-10-24 16:57:31', '2015-10-24 14:57:31', '', 1, 'http://beta.magento-stammtisch.de/1-revision-v1/', 0, 'revision', '', 0),
+(96, 1, '2015-10-24 16:59:01', '2015-10-24 14:59:01', '', 'Blog', '', 'trash', 'closed', 'closed', '', 'blog', '', '', '2015-10-24 16:59:08', '2015-10-24 14:59:08', '', 0, 'http://beta.magento-stammtisch.de/?page_id=96', 0, 'page', '', 0),
+(97, 1, '2015-10-24 16:59:01', '2015-10-24 14:59:01', '', 'Blog', '', 'inherit', 'closed', 'closed', '', '96-revision-v1', '', '', '2015-10-24 16:59:01', '2015-10-24 14:59:01', '', 96, 'http://beta.magento-stammtisch.de/96-revision-v1/', 0, 'revision', '', 0),
+(98, 1, '2015-10-24 16:59:43', '2015-10-24 14:59:43', '', 'Blog', '', 'publish', 'closed', 'closed', '', 'blog', '', '', '2015-10-24 16:59:51', '2015-10-24 14:59:51', '', 0, 'http://beta.magento-stammtisch.de/?p=98', 2, 'nav_menu_item', '', 0),
+(99, 1, '2015-10-24 17:00:20', '2015-10-24 15:00:20', 'Während den letzten Hackathons wurde an einem neuen Theme für die Magento Stammtisch Seite gearbeitet, das es allen Stammtisch-Organisatoren ermöglichen soll, selbst Ihre Events zu erfassen. Vielen Dank an Falk Opiz und Rico Neitzel für den langjährigen Support des alten Themes.\r\n\r\n[gallery columns="2" link="file" ids="92,93"]', 'Neues Theme', '', 'inherit', 'closed', 'closed', '', '1-revision-v1', '', '', '2015-10-24 17:00:20', '2015-10-24 15:00:20', '', 1, 'http://beta.magento-stammtisch.de/1-revision-v1/', 0, 'revision', '', 0),
+(100, 1, '2015-10-24 17:05:43', '2015-10-24 15:05:43', 'Platzhalter - Docker im Einsatz', 'Platzhalter - Docker im Einsatz', '', 'publish', 'closed', 'closed', '', 'platzhalter-docker-im-einsatz', '', '', '2015-10-24 17:05:43', '2015-10-24 15:05:43', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-session&#038;p=100', 0, 'ja-session', '', 0),
+(101, 1, '2015-10-24 17:01:28', '2015-10-24 15:01:28', '', 'andreas koch', '', 'inherit', 'closed', 'closed', '', 'andreas-koch', '', '', '2015-10-24 17:01:28', '2015-10-24 15:01:28', '', 100, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/andreas-koch.jpg', 0, 'attachment', 'image/jpeg', 0),
+(102, 1, '2015-10-24 17:03:04', '2015-10-24 15:03:04', 'Lead Magento Developer arvato', 'Andreas Koch', '', 'publish', 'closed', 'closed', '', 'andreas-koch', '', '', '2015-10-24 17:04:38', '2015-10-24 15:04:38', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-speaker&#038;p=102', 0, 'ja-speaker', '', 0),
+(103, 1, '2015-10-24 17:04:33', '2015-10-24 15:04:33', '', 'andreas koch', '', 'inherit', 'closed', 'closed', '', 'andreas-koch-2', '', '', '2015-10-24 17:04:33', '2015-10-24 15:04:33', '', 102, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/andreas-koch.png', 0, 'attachment', 'image/png', 0),
+(104, 1, '2015-10-24 17:05:36', '2015-10-24 15:05:36', '', 'Screen Shot 2015-10-24 at 17.05.11', '', 'inherit', 'closed', 'closed', '', 'screen-shot-2015-10-24-at-17-05-11', '', '', '2015-10-24 17:05:36', '2015-10-24 15:05:36', '', 1, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/Screen-Shot-2015-10-24-at-17.05.11.png', 0, 'attachment', 'image/png', 0),
+(105, 1, '2015-10-24 17:10:25', '2015-10-24 15:10:25', 'Meet Magento Switzerland is the first community driven conference about the Magento Online Shop ecosystem. The conference program is focused on interesting topics for merchants, experts, developers and web agencies. Presentation will be done about new technologies, case studies and new trends. It''s a tradition to have an AfterShow party helping to do intensive Networking', 'Meet Magento CH', '', 'publish', 'closed', 'closed', '', 'meet-magento-ch', '', '', '2015-10-24 17:16:22', '2015-10-24 15:16:22', '', 0, 'http://beta.magento-stammtisch.de/?post_type=ja-event&#038;p=105', 0, 'ja-event', '', 0),
+(106, 1, '2015-10-24 17:12:48', '2015-10-24 15:12:48', '', 'magento-stammtisch-10-vortrag-matthias-zeis', '', 'inherit', 'closed', 'closed', '', 'magento-stammtisch-10-vortrag-matthias-zeis-2', '', '', '2015-10-24 17:12:48', '2015-10-24 15:12:48', '', 105, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/magento-stammtisch-10-vortrag-matthias-zeis1.jpg', 0, 'attachment', 'image/jpeg', 0),
+(107, 1, '2015-10-24 17:12:57', '2015-10-24 15:12:57', '', '7568c31866', '', 'inherit', 'closed', 'closed', '', '7568c31866', '', '', '2015-10-24 17:12:57', '2015-10-24 15:12:57', '', 105, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/10/7568c31866.png', 0, 'attachment', 'image/png', 0),
+(108, 1, '2015-10-24 17:26:23', '2015-10-24 15:26:23', 'Während der letzten Hackathons wurde an einem neuen Theme für die Magento Stammtisch Seite gearbeitet, das es allen Stammtisch-Organisatoren ermöglichen soll, selbst Ihre Events zu erfassen. Vielen Dank an Falk Opiz und Rico Neitzel für den langjährigen Support des alten Themes.\r\n\r\nHier noch zwei Screenshots des alten Themes.\r\n\r\n[gallery columns="2" link="file" ids="92,93"]', 'Neues Theme', '', 'inherit', 'closed', 'closed', '', '1-revision-v1', '', '', '2015-10-24 17:26:23', '2015-10-24 15:26:23', '', 1, 'http://beta.magento-stammtisch.de/1-revision-v1/', 0, 'revision', '', 0),
+(109, 1, '2015-10-24 17:28:07', '2015-10-24 15:28:07', '', 'Screen Shot 2015-10-24 at 17.26.54', '', 'inherit', 'closed', 'closed', '', 'screen-shot-2015-10-24-at-17-26-54', '', '', '2015-10-24 17:28:07', '2015-10-24 15:28:07', '', 1, 'http://beta.magento-stammtisch.de/wp-content/uploads/2015/05/Screen-Shot-2015-10-24-at-17.26.54.png', 0, 'attachment', 'image/png', 0),
+(110, 1, '2015-10-24 17:28:11', '2015-10-24 15:28:11', 'Während den letzten Hackathons wurde an einem neuen Theme für die Magento Stammtisch Seite gearbeitet, das es allen Stammtisch-Organisatoren ermöglichen soll, selbst Ihre Events zu erfassen. Vielen Dank an Falk Opiz und Rico Neitzel für den langjährigen Support des alten Themes.\r\n\r\n[gallery columns="2" link="file" ids="92,93"]', 'Neues Theme', '', 'inherit', 'closed', 'closed', '', '1-revision-v1', '', '', '2015-10-24 17:28:11', '2015-10-24 15:28:11', '', 1, 'http://beta.magento-stammtisch.de/1-revision-v1/', 0, 'revision', '', 0);
 
 -- --------------------------------------------------------
 
@@ -1563,6 +2291,7 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 -- Tabellenstruktur für Tabelle `wp_signups`
 --
 
+DROP TABLE IF EXISTS `wp_signups`;
 CREATE TABLE IF NOT EXISTS `wp_signups` (
   `signup_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `domain` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -1588,6 +2317,7 @@ CREATE TABLE IF NOT EXISTS `wp_signups` (
 -- Tabellenstruktur für Tabelle `wp_terms`
 --
 
+DROP TABLE IF EXISTS `wp_terms`;
 CREATE TABLE IF NOT EXISTS `wp_terms` (
   `term_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -1596,7 +2326,7 @@ CREATE TABLE IF NOT EXISTS `wp_terms` (
   PRIMARY KEY (`term_id`),
   KEY `slug` (`slug`(191)),
   KEY `name` (`name`(191))
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=29 ;
 
 --
 -- Daten für Tabelle `wp_terms`
@@ -1604,7 +2334,7 @@ CREATE TABLE IF NOT EXISTS `wp_terms` (
 
 INSERT INTO `wp_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
 (1, 'Uncategorized', 'uncategorized', 0),
-(2, 'Navigation', 'navigation', 0),
+(2, 'Header', 'header', 0),
 (3, 'Hamburg', 'magento-stammtisch-hamburg', 0),
 (4, 'Aachen', 'magento-stammtisch-aachen', 0),
 (5, 'Berlin', 'magento-stammtisch-berlin', 0),
@@ -1623,7 +2353,13 @@ INSERT INTO `wp_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
 (18, 'Wien', 'magento-stammtisch-wien', 0),
 (19, 'Wiesbaden', 'magento-stammtisch-wiesbaden', 0),
 (20, 'Würzburg', 'magento-stammtisch-wuerzburg', 0),
-(21, 'Zürich', 'magento-stammtisch-zuerich', 0);
+(21, 'Zürich', 'magento-stammtisch-zuerich', 0),
+(22, 'Magento Stammtisch', 'magento-stammtisch', 0),
+(24, 'Footer', 'footer', 0),
+(25, 'Händler', 'haendler', 0),
+(26, 'News', 'news', 0),
+(27, 'Entwickler', 'entwickler', 0),
+(28, 'Meet Magento', 'meet-magento', 0);
 
 -- --------------------------------------------------------
 
@@ -1631,6 +2367,7 @@ INSERT INTO `wp_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
 -- Tabellenstruktur für Tabelle `wp_term_relationships`
 --
 
+DROP TABLE IF EXISTS `wp_term_relationships`;
 CREATE TABLE IF NOT EXISTS `wp_term_relationships` (
   `object_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `term_taxonomy_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -1644,15 +2381,25 @@ CREATE TABLE IF NOT EXISTS `wp_term_relationships` (
 --
 
 INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_order`) VALUES
-(1, 1, 0),
-(9, 2, 0),
-(10, 2, 0),
+(1, 26, 0),
 (18, 3, 0),
 (27, 17, 0),
 (29, 7, 0),
 (31, 4, 0),
 (33, 18, 0),
-(42, 7, 0);
+(42, 7, 0),
+(44, 21, 0),
+(47, 22, 0),
+(51, 22, 0),
+(53, 25, 0),
+(68, 2, 0),
+(76, 2, 0),
+(81, 22, 0),
+(85, 22, 0),
+(91, 22, 0),
+(98, 2, 0),
+(100, 27, 0),
+(105, 28, 0);
 
 -- --------------------------------------------------------
 
@@ -1660,6 +2407,7 @@ INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_orde
 -- Tabellenstruktur für Tabelle `wp_term_taxonomy`
 --
 
+DROP TABLE IF EXISTS `wp_term_taxonomy`;
 CREATE TABLE IF NOT EXISTS `wp_term_taxonomy` (
   `term_taxonomy_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `term_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -1670,15 +2418,15 @@ CREATE TABLE IF NOT EXISTS `wp_term_taxonomy` (
   PRIMARY KEY (`term_taxonomy_id`),
   UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
   KEY `taxonomy` (`taxonomy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=29 ;
 
 --
 -- Daten für Tabelle `wp_term_taxonomy`
 --
 
 INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `description`, `parent`, `count`) VALUES
-(1, 1, 'category', '', 0, 1),
-(2, 2, 'nav_menu', '', 0, 2),
+(1, 1, 'category', '', 0, 0),
+(2, 2, 'nav_menu', '', 0, 3),
 (3, 3, 'event-categories', '', 0, 1),
 (4, 4, 'event-categories', '', 0, 1),
 (5, 5, 'event-categories', '', 0, 0),
@@ -1697,7 +2445,13 @@ INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `desc
 (18, 18, 'event-categories', '', 0, 1),
 (19, 19, 'event-categories', '', 0, 0),
 (20, 20, 'event-categories', '', 0, 0),
-(21, 21, 'event-categories', '', 0, 0);
+(21, 21, 'event-categories', '', 0, 1),
+(22, 22, 'ja-event-category', '', 0, 5),
+(24, 24, 'nav_menu', '', 0, 0),
+(25, 25, 'ja-session-track', '', 0, 1),
+(26, 26, 'category', '', 0, 1),
+(27, 27, 'ja-session-track', '', 0, 1),
+(28, 28, 'ja-event-category', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -1705,6 +2459,7 @@ INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `desc
 -- Tabellenstruktur für Tabelle `wp_usermeta`
 --
 
+DROP TABLE IF EXISTS `wp_usermeta`;
 CREATE TABLE IF NOT EXISTS `wp_usermeta` (
   `umeta_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) unsigned NOT NULL DEFAULT '0',
@@ -1713,7 +2468,7 @@ CREATE TABLE IF NOT EXISTS `wp_usermeta` (
   PRIMARY KEY (`umeta_id`),
   KEY `user_id` (`user_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=53 ;
 
 --
 -- Daten für Tabelle `wp_usermeta`
@@ -1721,8 +2476,8 @@ CREATE TABLE IF NOT EXISTS `wp_usermeta` (
 
 INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALUES
 (1, 1, 'nickname', 'admin'),
-(2, 1, 'first_name', ''),
-(3, 1, 'last_name', ''),
+(2, 1, 'first_name', 'Hackathon'),
+(3, 1, 'last_name', 'Team'),
 (4, 1, 'description', ''),
 (5, 1, 'rich_editing', 'true'),
 (6, 1, 'comment_shortcuts', 'false'),
@@ -1738,14 +2493,33 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (17, 1, 'managenav-menuscolumnshidden', 'a:4:{i:0;s:11:"link-target";i:1;s:11:"css-classes";i:2;s:3:"xfn";i:3;s:11:"description";}'),
 (18, 1, 'metaboxhidden_nav-menus', 'a:7:{i:0;s:8:"add-post";i:1;s:12:"add-location";i:2;s:9:"add-event";i:3;s:12:"add-post_tag";i:4;s:15:"add-post_format";i:5;s:14:"add-event-tags";i:6;s:20:"add-event-categories";}'),
 (19, 1, 'manageedit-locationcolumnshidden', 'a:1:{i:0;s:11:"location-id";}'),
-(20, 1, 'session_tokens', 'a:4:{s:64:"6f61f09721bda316e7194f33af60201398b42e19b2f20f2e30df310991706afb";a:4:{s:10:"expiration";i:1445854904;s:2:"ip";s:12:"80.87.117.90";s:2:"ua";s:76:"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:41.0) Gecko/20100101 Firefox/41.0";s:5:"login";i:1445682104;}s:64:"df96ac685a40c2486073a358f9a0891365587569999e5c22e47e9b9699604132";a:4:{s:10:"expiration";i:1445855092;s:2:"ip";s:12:"80.87.117.90";s:2:"ua";s:76:"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:41.0) Gecko/20100101 Firefox/41.0";s:5:"login";i:1445682292;}s:64:"bc3fde6f005607b8d3f1b3c54021eb6873e32f70fd3d7f546ffdd7d6b46340e7";a:4:{s:10:"expiration";i:1445855460;s:2:"ip";s:15:"195.191.132.191";s:2:"ua";s:120:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36";s:5:"login";i:1445682660;}s:64:"2c15f438b2a1681a39422a24f0f378cfc2d198555ee2d11090fa159309d9a004";a:4:{s:10:"expiration";i:1445855474;s:2:"ip";s:15:"195.191.132.191";s:2:"ua";s:108:"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36";s:5:"login";i:1445682674;}}'),
-(21, 1, 'last_activity', '2015-10-24 11:36:17'),
+(20, 1, 'session_tokens', 'a:6:{s:64:"6f61f09721bda316e7194f33af60201398b42e19b2f20f2e30df310991706afb";a:4:{s:10:"expiration";i:1445854904;s:2:"ip";s:12:"80.87.117.90";s:2:"ua";s:76:"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:41.0) Gecko/20100101 Firefox/41.0";s:5:"login";i:1445682104;}s:64:"df96ac685a40c2486073a358f9a0891365587569999e5c22e47e9b9699604132";a:4:{s:10:"expiration";i:1445855092;s:2:"ip";s:12:"80.87.117.90";s:2:"ua";s:76:"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:41.0) Gecko/20100101 Firefox/41.0";s:5:"login";i:1445682292;}s:64:"2c15f438b2a1681a39422a24f0f378cfc2d198555ee2d11090fa159309d9a004";a:4:{s:10:"expiration";i:1445855474;s:2:"ip";s:15:"195.191.132.191";s:2:"ua";s:108:"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36";s:5:"login";i:1445682674;}s:64:"ff30487b5045e79343297663e02f8de45d9049060928e121cc7c103f87df9a31";a:4:{s:10:"expiration";i:1445865519;s:2:"ip";s:15:"195.191.132.191";s:2:"ua";s:72:"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0";s:5:"login";i:1445692719;}s:64:"505ea6797578518016429405ff1e84bd0075dba489633bb3e8776bc2b94e44a6";a:4:{s:10:"expiration";i:1446902342;s:2:"ip";s:15:"195.191.132.191";s:2:"ua";s:108:"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36";s:5:"login";i:1445692742;}s:64:"38ea9e1e9b278add3a950ad45e16a26b409fae2f8e3bc07be434f17ea1518e58";a:4:{s:10:"expiration";i:1445871102;s:2:"ip";s:15:"195.191.132.191";s:2:"ua";s:120:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36";s:5:"login";i:1445698302;}}'),
+(21, 1, 'last_activity', '2015-10-24 12:00:14'),
 (22, 1, 'wp_user-settings', 'editor=tinymce&libraryContent=browse&posts_list_mode=list'),
 (23, 1, 'wp_user-settings-time', '1445686517'),
 (24, 1, 'nav_menu_recently_edited', '2'),
 (25, 1, 'closedpostboxes_page', 'a:0:{}'),
 (26, 1, 'metaboxhidden_page', 'a:4:{i:0;s:12:"revisionsdiv";i:1;s:10:"postcustom";i:2;s:7:"slugdiv";i:3;s:9:"authordiv";}'),
-(27, 1, 'dbem_phone', '');
+(27, 1, 'dbem_phone', ''),
+(28, 1, 'closedpostboxes_ja-event', 'a:0:{}'),
+(29, 1, 'metaboxhidden_ja-event', 'a:1:{i:0;s:7:"slugdiv";}'),
+(30, 2, 'nickname', 'openstream'),
+(31, 2, 'first_name', 'Nick'),
+(32, 2, 'last_name', 'Weisser'),
+(33, 2, 'description', ''),
+(34, 2, 'rich_editing', 'true'),
+(35, 2, 'comment_shortcuts', 'false'),
+(36, 2, 'admin_color', 'fresh'),
+(37, 2, 'use_ssl', '0'),
+(38, 2, 'show_admin_bar_front', 'true'),
+(39, 2, 'wp_capabilities', 'a:1:{s:13:"administrator";b:1;}'),
+(40, 2, 'wp_user_level', '10'),
+(41, 2, 'dismissed_wp_pointers', ''),
+(45, 2, 'wp_dashboard_quick_press_last_post_id', '77'),
+(46, 2, 'closedpostboxes_page', 'a:0:{}'),
+(47, 2, 'metaboxhidden_page', 'a:5:{i:0;s:12:"revisionsdiv";i:1;s:10:"postcustom";i:2;s:16:"commentstatusdiv";i:3;s:11:"commentsdiv";i:4;s:7:"slugdiv";}'),
+(51, 1, 'closedpostboxes_post', 'a:0:{}'),
+(52, 1, 'metaboxhidden_post', 'a:7:{i:0;s:12:"revisionsdiv";i:1;s:11:"postexcerpt";i:2;s:13:"trackbacksdiv";i:3;s:10:"postcustom";i:4;s:16:"commentstatusdiv";i:5;s:11:"commentsdiv";i:6;s:7:"slugdiv";}');
 
 -- --------------------------------------------------------
 
@@ -1753,6 +2527,7 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 -- Tabellenstruktur für Tabelle `wp_users`
 --
 
+DROP TABLE IF EXISTS `wp_users`;
 CREATE TABLE IF NOT EXISTS `wp_users` (
   `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_login` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
@@ -1767,14 +2542,15 @@ CREATE TABLE IF NOT EXISTS `wp_users` (
   PRIMARY KEY (`ID`),
   KEY `user_login_key` (`user_login`),
   KEY `user_nicename` (`user_nicename`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `wp_users`
 --
 
 INSERT INTO `wp_users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`) VALUES
-(1, 'admin', '$P$BwYMVFMOtK869yEmtBYbTHoDDRENvz1', 'admin', 'daim1985@gmail.com', '', '2015-05-09 09:44:21', '', 0, 'admin');
+(1, 'admin', '$P$BwYMVFMOtK869yEmtBYbTHoDDRENvz1', 'admin', 'daim1985@gmail.com', '', '2015-05-09 09:44:21', '', 0, 'Hackathon Team'),
+(2, 'openstream', '$P$BEebaz66hJLlwqlZss.vt7GDQ9kero1', 'openstream', 'nick@openstream.ch', 'http://www.openstream.ch', '2015-10-24 13:48:25', '1445694505:$P$BL6oDuJFGzKZJkEK9/3E.qlv.aIezd1', 0, 'Nick Weisser');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
