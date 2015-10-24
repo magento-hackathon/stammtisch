@@ -9,7 +9,7 @@
  Text Domain:  firegento-theme-adjustment
 */
 
-.search {
+input.search {
  width: 50% !important;
 }
 .upcoming_title{
