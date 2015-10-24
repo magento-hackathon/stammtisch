@@ -187,7 +187,7 @@ msgstr "Nächsten 7 Tage"
 #: ../../header.php:110 ../../section-upcoming_search.php:18
 #: ../../sidebar-search.php:61
 msgid "Next 14 Days"
-msgstr "Nvchsten 14 Tage"
+msgstr "Nächsten 14 Tage"
 
 #: ../../header.php:111 ../../section-upcoming_search.php:19
 #: ../../sidebar-search.php:62
@@ -339,7 +339,7 @@ msgstr "&raquo; Event ansehen"
 
 #: ../../section-slider.php:60
 msgid "Register today &gt;"
-msgstr "Meld dich heute an &gt;"
+msgstr "Anmelden &gt;"
 
 #: ../../section-upcoming_search.php:7
 msgid "Upcoming events"
