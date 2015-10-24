@@ -1,0 +1,17 @@
+/*
+ Description:  Magento Stammtisch Theme adjustments for Januas
+ Author:       Benno Lippert
+ Author URI:   http://www.mash2.com
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         magento, hackathon
+ Text Domain:  firegento-theme-adjustment
+*/
+
+.search {
+ width: 50% !important;
+}
+.upcoming_title{
+ display: none !important;
+}
