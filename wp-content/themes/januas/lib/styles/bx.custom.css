@@ -1,0 +1,29 @@
+.bx-wrapper {
+	/*background:none repeat scroll 0 0 #262626;*/
+	border:medium none;
+	box-shadow:none;
+	margin:0;
+}
+.bx-wrapper .bx-controls-direction a {text-indent:0;}
+.bxArrow { font-size:26px !important; color:#FFF;}
+@media (min-width:800px){
+#image_home {
+  float: left;
+  height: 300px;
+  margin-bottom: 40px;
+  width: 48%;
+}
+.bx-viewport {
+  height: 549px !important;
+}
+
+}
+@media (max-width:799px){
+	.bx-wrapper .bx-controls-direction a {  top: 33%;}
+}
+
+@media (max-width:640px){
+	.bx-wrapper .bx-controls-direction a {  top: 30%;}
+}
+
+@media (max-width:480px){.bx-wrapper .bx-controls-direction a {  top: 24%;}}

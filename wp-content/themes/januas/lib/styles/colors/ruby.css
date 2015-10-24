@@ -1,0 +1,76 @@
+/*RUBY*/
+/*#8c0718, #f4213f*/
+.ruby #slider { background: #8c0718; }
+.ruby #slider #sub-info-main-event div.informazioni.register h5 { background: #f4213f; }
+.ruby #slider #sub-info-main-event div.informazioni.register h4 { background: #f4213f; }
+.ruby .home article.post { border-top: 4px solid #f4213f; }
+.ruby .home article.post footer.article-footer p a { background: #f4213f; }
+.ruby footer.footer { background-color: #8c0718; }
+.ruby .widget_feedburner { background: #f4213f; }
+.ruby #slider #info-main-event a { color: #fff; }
+.ruby .menu a:hover { border-bottom: 6px solid #f4213f; }
+.ruby .search .menu_search h1.archive-title span { color: #f4213f; }
+.ruby .search #content article.post { border-top: 4px solid #f4213f; }
+.ruby .search article.post footer.article-footer p a { background: #f4213f; }
+.ruby .januas_page_navi li.bpn-current, .januas_page_navi li a:hover { background: #f4213f; }
+.ruby .widget_feedburner .submit { background: #8c0718; }
+.ruby .menu_choice_top_event li a:hover { color: #8c0718; }
+.ruby #menu_top_event .button_go { background: #8c0718; }
+.ruby .event_element h4 { background: #f4213f; }
+.ruby #top_event { background: #8c0718 url(../../images/event_bottom_top_search_x.png) bottom left repeat-x; }
+.ruby #top_event .entry-title { color: #fff; }
+/*immagini*/
+.ruby #top_event .data.where { background: #f4213f url(../../images/pointer_red_ruby.png) no-repeat 16px 21px; }
+.ruby #top_event .data.when { background: #f4213f url(../../images/date_red_ruby.png) no-repeat 16px 21px; }
+.ruby #top_event .data.social { background: #f4213f; }
+.ruby .single-ja-event #menu_top_event { background: transparent url('../../images/top_menu_search_event_ruby.png') repeat-x top left; }
+.ruby #related_events_section article { border-top: 4px solid #f4213f !important; }
+.ruby #related_events_section article ul.post-categories { background: #f4213f; }
+.ruby #top_event .data p { color: #fff; }
+.ruby .video_channel { background: #f4213f; }
+.ruby #sidebar1 h3.widget-title { background: #f4213f; }
+.ruby .button { background: #f4213f; }
+
+
+
+
+#info-main-event a.goto { color:white !important; font-weight:bold;}
+#inner-footer .widget_third div h3 {
+color: white;
+}
+.more_videos a { color:white;}
+
+.category .three-columns #content article.post {
+	border-color:#f4213f !important;
+}
+article ul.post-categories {
+background: #f4213f !important;
+}
+
+
+@media only screen and (max-width: 800px) {
+.home #info-main-event h2 { color:white !important;}
+#slider_home_content p {  color:white !important;}
+.home #slider_home_content, .home #sub-info-main-event {  color:white !important;}
+#slider #sub-info-main-event div.informazioni.register h5, #slider #sub-info-main-event div.informazioni.register h4 { padding:10px;
+}
+article.soldout img.soldout, article.ended img.ended { display:none !important;}
+#content article.post, .home #slider {border-top: 4px solid #8c0718; 
+}
+.ruby .event_element h4 { background: #f4213f; }
+section.entry-content .wp-post-image {
+min-height: auto !important;
+min-width: auto !important;
+display: block;
+}
+
+h1.page-title {
+font-weight: bold;
+font-size: 1.5em !important;
+text-align: left !important;
+text-transform: uppercase;
+margin: 0;
+}
+
+}
+/*END RUBY*/

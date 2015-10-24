@@ -1,0 +1,1614 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: januas\n"
+"POT-Creation-Date: 2013-02-25 21:55+0100\n"
+"PO-Revision-Date: 2013-08-28 17:52+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: ../../404.php:13
+msgid "404 - Not Found"
+msgstr "Erreur 404 - Non Trouvé"
+
+#: ../../404.php:19
+msgid ""
+"The article you were looking for was not found, but maybe try looking again!"
+msgstr "L'article n'a pas été trouvé, mais essayez une nouvelle recherche !"
+
+#: ../../archive.php:26 ../../taxonomy-ja-session-location.php:26
+msgid "Posts By:"
+msgstr "Messages De :"
+
+#: ../../archive.php:31 ../../taxonomy-ja-session-location.php:31
+msgid "Daily Archives:"
+msgstr "Archives Quotidiennes :"
+
+#: ../../archive.php:36 ../../taxonomy-ja-session-location.php:36
+msgid "Monthly Archives:"
+msgstr "Archives Mensuelles :"
+
+#: ../../archive.php:41 ../../taxonomy-ja-session-location.php:41
+msgid "Yearly Archives:"
+msgstr "Archives Annuelles :"
+
+#: ../../archive.php:56 ../../page.php:17 ../../single.php:19
+#: ../../taxonomy-ja-session-location.php:56
+msgid "Posted"
+msgstr "Posté"
+
+#: ../../archive.php:56 ../../page.php:17 ../../single.php:19
+#: ../../taxonomy-ja-session-location.php:56
+msgid "by"
+msgstr "par"
+
+#: ../../archive.php:56 ../../taxonomy-ja-session-location.php:56
+msgid "filed under"
+msgstr "porté sous"
+
+#: ../../archive.php:72 ../../search.php:119
+#: ../../taxonomy-ja-session-location.php:72
+msgid "&laquo; Older Entries"
+msgstr "&laquo; Entrées Plus Anciennes"
+
+#: ../../archive.php:73 ../../search.php:120
+#: ../../taxonomy-ja-session-location.php:73
+msgid "Newer Entries &raquo;"
+msgstr "Entrées Plus Récentes &raquo;"
+
+#: ../../archive.php:82 ../../page.php:42 ../../single-ja-event.php:24
+#: ../../single-ja-speaker.php:121 ../../single.php:44
+#: ../../taxonomy-ja-session-location.php:82
+msgid "Post Not Found!"
+msgstr "Message Non Trouvé !"
+
+#: ../../comments.php:9
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+"Ce message est protégé par mot de passe. Entrez le mot de passe pour voir "
+"les commentaires."
+
+#: ../../comments.php:48
+msgid "Comments are closed."
+msgstr "Les commentaires sont fermés."
+
+#: ../../comments.php:59
+msgid "Leave a Reply"
+msgstr "Répondre"
+
+#: ../../comments.php:59
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr "Répondre à %s"
+
+#: ../../comments.php:75
+msgid "Logged in as"
+msgstr "Connecté en tant que"
+
+#: ../../comments.php:75
+msgid "Log out of this account"
+msgstr "Se déconnecter de ce compte"
+
+#: ../../comments.php:75
+msgid "Log out"
+msgstr "Déconnection"
+
+#: ../../comments.php:75
+msgid "&raquo;"
+msgstr "&raquo;"
+
+#: ../../comments.php:82
+msgid "Name"
+msgstr "Nom"
+
+#: ../../comments.php:82 ../../comments.php:87
+msgid "(required)"
+msgstr "(requis)"
+
+#: ../../comments.php:83
+msgid "Your Name*"
+msgstr "Votre Nom*"
+
+#: ../../comments.php:87
+msgid "Mail"
+msgstr "Email"
+
+#: ../../comments.php:88
+msgid "Your E-Mail*"
+msgstr "Votre Email*"
+
+#: ../../comments.php:89
+msgid "(will not be published)"
+msgstr "(ne sera pas publié)"
+
+#: ../../comments.php:93
+msgid "Website"
+msgstr "Site internet"
+
+#: ../../comments.php:94
+msgid "Got a website?"
+msgstr "Vous avez un site internet ?"
+
+#: ../../comments.php:101
+msgid "Your Comment here..."
+msgstr "Votre Commentaire ici..."
+
+#: ../../comments.php:104
+msgid "Submit"
+msgstr "Soumettre"
+
+#: ../../comments.php:109
+msgid "You can use these tags"
+msgstr "Vous pouvez utiliser ces tags"
+
+#: ../../footer.php:4 ../../header.php:98
+msgid "Search button"
+msgstr "Bouton de recherche"
+
+#: ../../footer.php:9 ../../header.php:101 ../../header.php:117
+#: ../../section-upcoming_search.php:27 ../../sidebar-search.php:21
+#: ../../sidebar-search.php:86
+msgid "Search"
+msgstr "Recherche"
+
+#: ../../footer.php:13 ../../section-menu_top_event.php:36
+#: ../../lib/include/metaboxes.php:11 ../../lib/include/metaboxes.php:376
+#: ../../lib/metaboxes/metabox-registration.php:6
+msgid "Register"
+msgstr "S'inscrire"
+
+#: ../../header.php:40
+msgid "Search For More Great Events..."
+msgstr "Rechercher Plus d'Événements Marquants..."
+
+#: ../../header.php:105 ../../lib/widgets/widget-latest-news.php:104
+msgid "Category"
+msgstr "Catégorie"
+
+#: ../../header.php:107 ../../section-upcoming_search.php:15
+msgid "By time"
+msgstr "Chronologiquement"
+
+#: ../../header.php:108 ../../section-upcoming_search.php:16
+#: ../../sidebar-search.php:59
+msgid "Next 24 Hours"
+msgstr "Prochaines 24 Heures"
+
+#: ../../header.php:109 ../../section-upcoming_search.php:17
+#: ../../sidebar-search.php:60
+msgid "Next 7 Days"
+msgstr "7 Prochains Jours"
+
+#: ../../header.php:110 ../../section-upcoming_search.php:18
+#: ../../sidebar-search.php:61
+msgid "Next 14 Days"
+msgstr "14 Prochains Jours"
+
+#: ../../header.php:111 ../../section-upcoming_search.php:19
+#: ../../sidebar-search.php:62
+msgid "Next 4 Weeks"
+msgstr "4 Prochaines Semaines"
+
+#: ../../header.php:112 ../../section-upcoming_search.php:20
+#: ../../sidebar-search.php:63
+msgid "Next 3 Months"
+msgstr "3 Prochains Mois"
+
+#: ../../header.php:113 ../../section-upcoming_search.php:21
+#: ../../sidebar-search.php:64
+msgid "Next 6 Months"
+msgstr "6 Prochains Mois"
+
+#: ../../header.php:114 ../../section-upcoming_search.php:22
+#: ../../sidebar-search.php:65
+msgid "Next Year"
+msgstr "L'An Prochain"
+
+#: ../../index.php:36 ../../search.php:93
+msgid "When:"
+msgstr "Quand :"
+
+#: ../../index.php:46 ../../search.php:103
+msgid "SHARE"
+msgstr "PARTAGER"
+
+#: ../../index.php:47 ../../search.php:104
+msgid "MORE"
+msgstr "PLUS"
+
+#: ../../index.php:56 ../../search.php:108 ../../lib/include/metaboxes.php:249
+msgid "Sold Out"
+msgstr "Épuisé"
+
+#: ../../index.php:57 ../../search.php:109 ../../lib/include/metaboxes.php:250
+msgid "Ended"
+msgstr "Terminé"
+
+#: ../../index.php:66
+msgid "Create your first event"
+msgstr "Créez votre premier événement"
+
+#: ../../page-event-schedule.php:42
+msgid "Filter by track"
+msgstr "Filtrer par piste"
+
+#: ../../page-event-schedule.php:42 ../../page-event-schedule.php:43
+msgid "No Filter"
+msgstr "Pas de filtre"
+
+#: ../../page-event-schedule.php:43
+msgid "Filter by location"
+msgstr "Filtrer par lieu"
+
+#: ../../page-event-schedule.php:143 ../../lib/include/metaboxes.php:25
+msgid "Back to top"
+msgstr "Retour en haut"
+
+#: ../../page-event-schedule.php:192
+msgid "Event Not Found!"
+msgstr "Événement Non Trouvé !"
+
+#: ../../page-event-schedule.php:195 ../../page.php:45
+#: ../../single-ja-event.php:27 ../../single-ja-speaker.php:124
+#: ../../single.php:47 ../../taxonomy-ja-session-location.php:85
+msgid "Something is missing. Try double checking things."
+msgstr "Quelque chose manque. Essayez de revérifier."
+
+#: ../../page.php:48 ../../single.php:50
+msgid "This is the error message in the page.php template."
+msgstr "Voici le message d'erreur dans le template de la page.php"
+
+#: ../../search.php:129
+msgid "Sorry, No Results."
+msgstr "Désolé, Pas de Résultats."
+
+#: ../../search.php:132
+msgid "Try your search again."
+msgstr "Relancez votre recherche."
+
+#: ../../section-menu_search.php:3
+msgid "Search Results for:"
+msgstr "Résultats de Recherche pour :"
+
+#: ../../section-menu_top_event.php:6
+msgid "Description"
+msgstr "Description"
+
+#: ../../section-menu_top_event.php:9 ../../lib/include/metaboxes.php:10
+#: ../../lib/include/metaboxes.php:437
+#: ../../lib/metaboxes/metabox-schedule.php:20
+msgid "Schedule"
+msgstr "Horaire"
+
+#: ../../section-menu_top_event.php:12 ../../lib/include/metaboxes.php:502
+#: ../../lib/metaboxes/metabox-video.php:6
+msgid "Videos"
+msgstr "Vidéos"
+
+#: ../../section-menu_top_event.php:15 ../../lib/include/metaboxes.php:13
+#: ../../lib/metaboxes/metabox-sponsor.php:6
+msgid "Sponsor"
+msgstr "Sponsor"
+
+#: ../../section-menu_top_event.php:18 ../../lib/include/metaboxes.php:14
+#: ../../lib/include/metaboxes.php:668 ../../lib/metaboxes/metabox-map.php:6
+msgid "Map"
+msgstr "Carte"
+
+#: ../../section-menu_top_event.php:21 ../../lib/include/metaboxes.php:16
+#: ../../lib/include/metaboxes.php:822
+#: ../../lib/metaboxes/metabox-images.php:20
+msgid "Pictures"
+msgstr "Photos"
+
+#: ../../section-menu_top_event.php:24
+#: ../../lib/metaboxes/metabox-files.php:21
+msgid "Downloads"
+msgstr "Téléchargements"
+
+#: ../../section-menu_top_event.php:27
+#: ../../lib/metaboxes/metabox-social.php:6
+msgid "Facebook"
+msgstr "Facebook"
+
+#: ../../section-menu_top_event.php:30 ../../lib/include/metaboxes.php:8
+#: ../../lib/include/metaboxes.php:1010
+#: ../../lib/metaboxes/metabox-otherinfo.php:7
+msgid "More"
+msgstr "Plus"
+
+#: ../../section-menu_top_event.php:33 ../../lib/include/metaboxes.php:7
+#: ../../lib/include/metaboxes.php:305 ../../lib/include/metaboxes.php:1145
+#: ../../lib/include/post-types.php:42 ../../lib/include/post-types.php:52
+#: ../../lib/metaboxes/metabox-speakers.php:20
+msgid "Speakers"
+msgstr "Présentateurs"
+
+#: ../../section-related-events.php:42
+msgid "RELATED EVENTS"
+msgstr "ÉVÉNEMENTS LIÉS"
+
+#: ../../section-slider.php:40
+msgid "&raquo; View Event"
+msgstr "&raquo; Voir l'Événement"
+
+#: ../../section-slider.php:60
+msgid "Register today &gt;"
+msgstr "S'inscrire aujourd'hui &gt;"
+
+#: ../../section-upcoming_search.php:7
+msgid "Upcoming events"
+msgstr "Événements à venir"
+
+#: ../../section-upcoming_search.php:8
+msgid "OR"
+msgstr "OU"
+
+#: ../../section-upcoming_search.php:11
+msgid "By Category..."
+msgstr "Par Catégorie..."
+
+#: ../../sidebar-search.php:24 ../../lib/include/taxonomies.php:17
+msgid "Categories"
+msgstr "Catégories"
+
+#: ../../sidebar-search.php:37 ../../lib/include/taxonomies.php:97
+msgid "Locations"
+msgstr "Lieux"
+
+#: ../../sidebar-search.php:51 ../../lib/include/metaboxes.php:219
+#: ../../lib/include/metaboxes.php:1127
+msgid "Time"
+msgstr "Moment"
+
+#: ../../sidebar-search.php:55
+msgid "All"
+msgstr "Tout"
+
+#: ../../sidebar-search.php:81
+msgid "From"
+msgstr "De"
+
+#: ../../sidebar-search.php:83
+msgid "To"
+msgstr "À"
+
+#: ../../single-ja-session.php:75
+msgid "Date:"
+msgstr "Date :"
+
+#: ../../single-ja-session.php:78
+msgid "Time:"
+msgstr "Heure :"
+
+#: ../../single-ja-session.php:81
+msgid "Event:"
+msgstr "Événement"
+
+#: ../../single-ja-session.php:112
+msgid "Session Not Found!"
+msgstr "Session Non Trouvée !"
+
+#: ../../single-ja-speaker.php:30
+msgid "Company:"
+msgstr "Société :"
+
+#: ../../single-ja-speaker.php:33
+msgid "Short Bio:"
+msgstr "Courte Bio :"
+
+#: ../../single-ja-speaker.php:39
+msgid "Twitter:"
+msgstr "Twitter :"
+
+#: ../../single-ja-speaker.php:42
+msgid "Go back"
+msgstr "Retour"
+
+#: ../../single-ja-speaker.php:43 ../../lib/include/post-types.php:75
+#: ../../lib/include/post-types.php:85
+msgid "Sessions"
+msgstr "Sessions"
+
+#: ../../single-ja-speaker.php:105
+msgid "No sessions found"
+msgstr "Pas de Sessions Trouvées"
+
+#: ../../taxonomy-ja-session-location.php:88
+msgid "This is the error message in the archive.php template."
+msgstr "Voici le message d'erreur dans le template d'archive.php"
+
+#: ../../lib/class/taxonomy-meta.php:125 ../../lib/class/taxonomy-meta.php:479
+msgid "Delete this image"
+msgstr "Effacer cette image"
+
+#: ../../lib/class/taxonomy-meta.php:125 ../../lib/class/taxonomy-meta.php:448
+#: ../../lib/class/taxonomy-meta.php:479
+msgid "Delete"
+msgstr "Effacer"
+
+#: ../../lib/class/taxonomy-meta.php:454
+msgid "Upload new files"
+msgstr "Charger de nouveaux fichiers"
+
+#: ../../lib/class/taxonomy-meta.php:457
+msgid "Add more file"
+msgstr "Ajouter plus de fichiers"
+
+#: ../../lib/class/taxonomy-meta.php:485
+msgid "Upload new image"
+msgstr "Charger une nouvelle image"
+
+#: ../../lib/class/taxonomy-meta.php:493
+msgid "Select a color"
+msgstr "Choisir une couleur"
+
+#: ../../lib/include/functions.php:118
+#, php-format
+msgid "<cite class=\"fn\">%s</cite>"
+msgstr "<cite class=\"fn\">%s</cite>"
+
+#: ../../lib/include/functions.php:120
+msgid "(Edit)"
+msgstr "(Modifier)"
+
+#: ../../lib/include/functions.php:124
+msgid "Your comment is awaiting moderation."
+msgstr "Votre commentaire est en attente de modération."
+
+#: ../../lib/include/functions.php:166
+#, php-format
+msgid "Go to <a href=\"%s\">Widgets</a> %s %s to add widgets to this area."
+msgstr ""
+"Consulter <a href=\"%s\">Widgets</a> %s %s pour ajouter des widgets à cette "
+"région."
+
+#: ../../lib/include/menus.php:6
+msgid "Primary Menu"
+msgstr "Menu Primaire"
+
+#: ../../lib/include/metaboxes.php:9 ../../lib/include/metaboxes.php:206
+msgid "Event information"
+msgstr "Information sur l'événement"
+
+#: ../../lib/include/metaboxes.php:12
+msgid "Video"
+msgstr "Vidéo"
+
+#: ../../lib/include/metaboxes.php:15 ../../lib/include/metaboxes.php:751
+msgid "Files"
+msgstr "Fichiers"
+
+#: ../../lib/include/metaboxes.php:17 ../../lib/include/metaboxes.php:893
+msgid "Social Box"
+msgstr "Boîte Sociale"
+
+#: ../../lib/include/metaboxes.php:63
+msgid "Hide"
+msgstr "Masquer"
+
+#: ../../lib/include/metaboxes.php:77
+msgid "Select grouping"
+msgstr "Choisir le regroupement"
+
+#: ../../lib/include/metaboxes.php:99
+msgid "Check address"
+msgstr "Vérifier l'adresse"
+
+#: ../../lib/include/metaboxes.php:111
+msgid ""
+"Warning! If you add a file that is not an image, it will be shown in the "
+"\"Files\" section"
+msgstr ""
+"Attention ! Si vous ajoutez un fichier autre qu'une image, il sera visible "
+"dans la rubrique \"Fichiers\""
+
+#: ../../lib/include/metaboxes.php:112
+msgid "Add Image"
+msgstr "Ajouter une Image"
+
+#: ../../lib/include/metaboxes.php:112
+msgid "Upload Images"
+msgstr "Charger des Images"
+
+#: ../../lib/include/metaboxes.php:113
+msgid "Manage Gallery"
+msgstr "Gérer la Galerie"
+
+#: ../../lib/include/metaboxes.php:114
+msgid "Update Gallery"
+msgstr "Mettre à Jour la Galerie"
+
+#: ../../lib/include/metaboxes.php:118
+msgid "No images."
+msgstr "Pas d'images."
+
+#: ../../lib/include/metaboxes.php:133
+msgid ""
+"Warning! If you add an image file, it will be shown in the \"Pictures\" "
+"section"
+msgstr ""
+"Attention ! Si vous ajoutez un fichier image, il sera visible dans la "
+"rubrique \"Images\""
+
+#: ../../lib/include/metaboxes.php:134
+msgid "Add File"
+msgstr "Ajouter un Fichier"
+
+#: ../../lib/include/metaboxes.php:134
+msgid "Upload File"
+msgstr "Charger un Fichier"
+
+#: ../../lib/include/metaboxes.php:135
+msgid "Manage Files"
+msgstr "Gérer les Fichiers"
+
+#: ../../lib/include/metaboxes.php:136
+msgid "Update Files"
+msgstr "Mettre à Jour les Fichiers"
+
+#: ../../lib/include/metaboxes.php:137
+msgid "(doc, pdf, zip, rar, xls, txt)"
+msgstr "(doc, pdf, zip, rar, xls, txt)"
+
+#: ../../lib/include/metaboxes.php:142
+msgid "No files."
+msgstr "Pas de fichiers."
+
+#: ../../lib/include/metaboxes.php:159
+#, php-format
+msgid ""
+"Warning! You cannot set this event as featured because there is <a href=\"%s"
+"\">another event</a> with this status."
+msgstr ""
+"Attention ! Vous ne pouvez définir cet événement comme celui du jour, car il "
+"y a un <a href=\"%s\">autre événement</a> avec ce statut."
+
+#: ../../lib/include/metaboxes.php:188
+msgid "Navigation"
+msgstr "Navigation"
+
+#: ../../lib/include/metaboxes.php:213 ../../lib/include/metaboxes.php:1122
+#: ../../lib/widgets/widget-latest-news.php:124
+msgid "Date"
+msgstr "Date"
+
+#: ../../lib/include/metaboxes.php:214
+msgid "Insert the event date"
+msgstr "Insérer la date de l'événement"
+
+#: ../../lib/include/metaboxes.php:220
+msgid "Insert the event time (format: hh:mm, ex: 08:00)"
+msgstr "Insérer l'heure de l'événement (format : hh:mm, ex : 08:00)"
+
+#: ../../lib/include/metaboxes.php:225
+msgid "City"
+msgstr "Ville"
+
+#: ../../lib/include/metaboxes.php:226
+msgid "Insert the event's city name (ex: San Francisco)"
+msgstr "Insérer le nom de la ville siège de l'événement (ex : Paris)"
+
+#: ../../lib/include/metaboxes.php:231 ../../lib/include/metaboxes.php:722
+msgid "Address"
+msgstr "Adresse"
+
+#: ../../lib/include/metaboxes.php:232
+msgid "Insert the event's address (ex: Moscone Center, 603 Red River St)"
+msgstr ""
+"Insérer l'adresse de l'événement (ex : POPB Bercy, bvd de Bercy, Paris 12e)"
+
+#: ../../lib/include/metaboxes.php:237
+msgid "Price"
+msgstr "Prix"
+
+#: ../../lib/include/metaboxes.php:238
+msgid "Insert a short information about ticket price (ex: tickets from $ 120)"
+msgstr ""
+"Insérer une courte info sur le prix des billets (ex : billets à partir de 20 "
+"euros)"
+
+#: ../../lib/include/metaboxes.php:243
+msgid "Status"
+msgstr "Statut"
+
+#: ../../lib/include/metaboxes.php:244
+msgid "Select the event status"
+msgstr "Choisir le statut de l'événement"
+
+#: ../../lib/include/metaboxes.php:248
+msgid "Active"
+msgstr "Actif"
+
+#: ../../lib/include/metaboxes.php:254
+msgid "Featured"
+msgstr "Du Jour"
+
+#: ../../lib/include/metaboxes.php:255
+msgid ""
+"Check to mark the event as featured. It will be shown in the top section of "
+"the home page."
+msgstr ""
+"Cocher pour signaler l'événement comme Du Jour. Il sera visible dans la "
+"partie supérieure de la page d'accueil."
+
+#: ../../lib/include/metaboxes.php:259 ../../lib/include/metaboxes.php:270
+#: ../../lib/include/metaboxes.php:280 ../../lib/include/metaboxes.php:290
+#: ../../lib/include/metaboxes.php:318 ../../lib/include/metaboxes.php:345
+#: ../../lib/include/metaboxes.php:355 ../../lib/include/metaboxes.php:389
+#: ../../lib/include/metaboxes.php:406 ../../lib/include/metaboxes.php:416
+#: ../../lib/include/metaboxes.php:450 ../../lib/include/metaboxes.php:477
+#: ../../lib/include/metaboxes.php:487 ../../lib/include/metaboxes.php:515
+#: ../../lib/include/metaboxes.php:542 ../../lib/include/metaboxes.php:552
+#: ../../lib/include/metaboxes.php:604 ../../lib/include/metaboxes.php:631
+#: ../../lib/include/metaboxes.php:640 ../../lib/include/metaboxes.php:681
+#: ../../lib/include/metaboxes.php:708 ../../lib/include/metaboxes.php:718
+#: ../../lib/include/metaboxes.php:764 ../../lib/include/metaboxes.php:791
+#: ../../lib/include/metaboxes.php:800 ../../lib/include/metaboxes.php:835
+#: ../../lib/include/metaboxes.php:862 ../../lib/include/metaboxes.php:872
+#: ../../lib/include/metaboxes.php:906 ../../lib/include/metaboxes.php:933
+#: ../../lib/include/metaboxes.php:943 ../../lib/include/metaboxes.php:959
+#: ../../lib/include/metaboxes.php:979 ../../lib/include/metaboxes.php:995
+#: ../../lib/include/metaboxes.php:1023 ../../lib/include/metaboxes.php:1050
+#: ../../lib/include/metaboxes.php:1060
+msgid "No"
+msgstr "Non"
+
+#: ../../lib/include/metaboxes.php:260 ../../lib/include/metaboxes.php:269
+#: ../../lib/include/metaboxes.php:279 ../../lib/include/metaboxes.php:289
+#: ../../lib/include/metaboxes.php:317 ../../lib/include/metaboxes.php:344
+#: ../../lib/include/metaboxes.php:354 ../../lib/include/metaboxes.php:388
+#: ../../lib/include/metaboxes.php:405 ../../lib/include/metaboxes.php:415
+#: ../../lib/include/metaboxes.php:449 ../../lib/include/metaboxes.php:476
+#: ../../lib/include/metaboxes.php:486 ../../lib/include/metaboxes.php:514
+#: ../../lib/include/metaboxes.php:541 ../../lib/include/metaboxes.php:551
+#: ../../lib/include/metaboxes.php:603 ../../lib/include/metaboxes.php:630
+#: ../../lib/include/metaboxes.php:641 ../../lib/include/metaboxes.php:680
+#: ../../lib/include/metaboxes.php:707 ../../lib/include/metaboxes.php:717
+#: ../../lib/include/metaboxes.php:763 ../../lib/include/metaboxes.php:790
+#: ../../lib/include/metaboxes.php:801 ../../lib/include/metaboxes.php:834
+#: ../../lib/include/metaboxes.php:861 ../../lib/include/metaboxes.php:871
+#: ../../lib/include/metaboxes.php:905 ../../lib/include/metaboxes.php:932
+#: ../../lib/include/metaboxes.php:942 ../../lib/include/metaboxes.php:958
+#: ../../lib/include/metaboxes.php:978 ../../lib/include/metaboxes.php:994
+#: ../../lib/include/metaboxes.php:1022 ../../lib/include/metaboxes.php:1049
+#: ../../lib/include/metaboxes.php:1059
+msgid "Yes"
+msgstr "Oui"
+
+#: ../../lib/include/metaboxes.php:264
+msgid "Show Item Title"
+msgstr "Montrer le Titre de l'Objet"
+
+#: ../../lib/include/metaboxes.php:265
+msgid "Select Yes to show the \"Description\" box title, No to hide it."
+msgstr ""
+"choisir Oui pour afficher le titre de la case \"Description\", Non pour le "
+"masquer."
+
+#: ../../lib/include/metaboxes.php:274
+msgid "Show in Top Menu"
+msgstr "Montrer dans le Menu Principal"
+
+#: ../../lib/include/metaboxes.php:275
+msgid ""
+"Select Yes to show the \"Description\" menu item in the event page top menu, "
+"No to hide it."
+msgstr ""
+"Choisir Oui pour afficher le menu \"Description\" dans le menu principal de "
+"la page événement, Non pour le masquer. "
+
+#: ../../lib/include/metaboxes.php:284
+msgid "Show Related Events"
+msgstr "Montrer les Événements Liés"
+
+#: ../../lib/include/metaboxes.php:312 ../../lib/include/metaboxes.php:383
+#: ../../lib/include/metaboxes.php:444 ../../lib/include/metaboxes.php:509
+#: ../../lib/include/metaboxes.php:598 ../../lib/include/metaboxes.php:675
+#: ../../lib/include/metaboxes.php:758 ../../lib/include/metaboxes.php:829
+#: ../../lib/include/metaboxes.php:900 ../../lib/include/metaboxes.php:1017
+msgid "Visible"
+msgstr "Visible"
+
+#: ../../lib/include/metaboxes.php:313 ../../lib/include/metaboxes.php:384
+#: ../../lib/include/metaboxes.php:445 ../../lib/include/metaboxes.php:510
+#: ../../lib/include/metaboxes.php:599 ../../lib/include/metaboxes.php:676
+#: ../../lib/include/metaboxes.php:759 ../../lib/include/metaboxes.php:830
+#: ../../lib/include/metaboxes.php:901 ../../lib/include/metaboxes.php:1018
+msgid "Select Yes to show the box in the event page, No to hide it."
+msgstr ""
+"Choisir Oui pour afficher la case dans la page événement, Non pour la "
+"masquer."
+
+#: ../../lib/include/metaboxes.php:322 ../../lib/include/metaboxes.php:454
+#: ../../lib/include/metaboxes.php:519 ../../lib/include/metaboxes.php:608
+#: ../../lib/include/metaboxes.php:685 ../../lib/include/metaboxes.php:768
+#: ../../lib/include/metaboxes.php:839 ../../lib/include/metaboxes.php:910
+#: ../../lib/include/metaboxes.php:1027
+msgid "Position"
+msgstr "Position"
+
+#: ../../lib/include/metaboxes.php:323 ../../lib/include/metaboxes.php:455
+#: ../../lib/include/metaboxes.php:520 ../../lib/include/metaboxes.php:609
+#: ../../lib/include/metaboxes.php:686 ../../lib/include/metaboxes.php:769
+#: ../../lib/include/metaboxes.php:840 ../../lib/include/metaboxes.php:911
+#: ../../lib/include/metaboxes.php:1028
+msgid "Select the preferred position for the box."
+msgstr "Choisir la position voulue pour la case."
+
+#: ../../lib/include/metaboxes.php:327 ../../lib/include/metaboxes.php:459
+#: ../../lib/include/metaboxes.php:524 ../../lib/include/metaboxes.php:614
+#: ../../lib/include/metaboxes.php:691 ../../lib/include/metaboxes.php:774
+#: ../../lib/include/metaboxes.php:845 ../../lib/include/metaboxes.php:916
+#: ../../lib/include/metaboxes.php:1032
+msgid "Main"
+msgstr "Principal"
+
+#: ../../lib/include/metaboxes.php:328 ../../lib/include/metaboxes.php:460
+#: ../../lib/include/metaboxes.php:525 ../../lib/include/metaboxes.php:613
+#: ../../lib/include/metaboxes.php:690 ../../lib/include/metaboxes.php:773
+#: ../../lib/include/metaboxes.php:844 ../../lib/include/metaboxes.php:915
+#: ../../lib/include/metaboxes.php:1033
+msgid "Sidebar"
+msgstr "barre Latérale"
+
+#: ../../lib/include/metaboxes.php:332 ../../lib/include/metaboxes.php:393
+#: ../../lib/include/metaboxes.php:464 ../../lib/include/metaboxes.php:529
+#: ../../lib/include/metaboxes.php:618 ../../lib/include/metaboxes.php:695
+#: ../../lib/include/metaboxes.php:778 ../../lib/include/metaboxes.php:849
+#: ../../lib/include/metaboxes.php:920 ../../lib/include/metaboxes.php:1037
+msgid "Order"
+msgstr "Ordre"
+
+#: ../../lib/include/metaboxes.php:333 ../../lib/include/metaboxes.php:394
+#: ../../lib/include/metaboxes.php:465 ../../lib/include/metaboxes.php:530
+#: ../../lib/include/metaboxes.php:619 ../../lib/include/metaboxes.php:696
+#: ../../lib/include/metaboxes.php:779 ../../lib/include/metaboxes.php:850
+#: ../../lib/include/metaboxes.php:921 ../../lib/include/metaboxes.php:1038
+msgid "Insert the box order (ex: 1)."
+msgstr "Insérer l'ordre de la case (ex : 1)."
+
+#: ../../lib/include/metaboxes.php:339 ../../lib/include/metaboxes.php:400
+#: ../../lib/include/metaboxes.php:471 ../../lib/include/metaboxes.php:536
+#: ../../lib/include/metaboxes.php:625 ../../lib/include/metaboxes.php:702
+#: ../../lib/include/metaboxes.php:785 ../../lib/include/metaboxes.php:856
+#: ../../lib/include/metaboxes.php:927 ../../lib/include/metaboxes.php:1044
+msgid "Show Title"
+msgstr "Afficher le Titre"
+
+#: ../../lib/include/metaboxes.php:340 ../../lib/include/metaboxes.php:401
+#: ../../lib/include/metaboxes.php:472 ../../lib/include/metaboxes.php:537
+#: ../../lib/include/metaboxes.php:626 ../../lib/include/metaboxes.php:703
+#: ../../lib/include/metaboxes.php:786 ../../lib/include/metaboxes.php:857
+#: ../../lib/include/metaboxes.php:928 ../../lib/include/metaboxes.php:1045
+msgid "Select Yes to show the box title, No to hide it."
+msgstr "Choisir Oui pour montrer le titre de la case, Non pour le masquer."
+
+#: ../../lib/include/metaboxes.php:349 ../../lib/include/metaboxes.php:410
+#: ../../lib/include/metaboxes.php:481 ../../lib/include/metaboxes.php:546
+#: ../../lib/include/metaboxes.php:635 ../../lib/include/metaboxes.php:712
+#: ../../lib/include/metaboxes.php:795 ../../lib/include/metaboxes.php:866
+#: ../../lib/include/metaboxes.php:937 ../../lib/include/metaboxes.php:1054
+msgid "Show in Top menu"
+msgstr "Afficher dans le menu Principal"
+
+#: ../../lib/include/metaboxes.php:350 ../../lib/include/metaboxes.php:411
+#: ../../lib/include/metaboxes.php:482 ../../lib/include/metaboxes.php:547
+#: ../../lib/include/metaboxes.php:636 ../../lib/include/metaboxes.php:713
+#: ../../lib/include/metaboxes.php:796 ../../lib/include/metaboxes.php:867
+#: ../../lib/include/metaboxes.php:938 ../../lib/include/metaboxes.php:1055
+msgid ""
+"Select Yes to show the menu item in the event page top menu, No to hide it."
+msgstr ""
+"Choisir Oui pour afficher le menu dans le menu principal de la page "
+"événement, Non pour le masquer."
+
+#: ../../lib/include/metaboxes.php:359
+msgid "Display order"
+msgstr "Afficher l'ordre"
+
+#: ../../lib/include/metaboxes.php:420
+msgid "Registration script"
+msgstr "Script d'inscription"
+
+#: ../../lib/include/metaboxes.php:421
+msgid "Drop an iframe from your registration service (ex: EventBrite)."
+msgstr "Inclure une iframe de votre service d'inscription (ex : EventBrite)."
+
+#: ../../lib/include/metaboxes.php:556 ../../lib/include/metaboxes.php:562
+msgid "Video URL"
+msgstr "URL de la Vidéo"
+
+#: ../../lib/include/metaboxes.php:557 ../../lib/include/metaboxes.php:563
+msgid "Insert the video url (ex: http://www.youtube.com/XXXXXXXXXXX)."
+msgstr "Insérer l'url de la vidéo (ex : http://www.youtube.com/XXXXXXXXXXX)."
+
+#: ../../lib/include/metaboxes.php:568
+msgid "Video channel url"
+msgstr "Url du canal vidéo"
+
+#: ../../lib/include/metaboxes.php:569
+msgid ""
+"Insert the url of your video channel (ex: http://www.youtube.com/user/"
+"XXXXXXXXXXX)"
+msgstr ""
+"Insérez l'url de votre canal vidéo (ex : http://www.youtube.com/user/"
+"XXXXXXXXXXX)."
+
+#: ../../lib/include/metaboxes.php:574
+msgid "Video channel url text"
+msgstr "Texte de l'url du canal vidéo"
+
+#: ../../lib/include/metaboxes.php:575
+msgid "Insert the text of your video channel url (ex: More videos)"
+msgstr "Insérez le texte de l'url de votre canal vidéo (ex : Plus de Vidéos)"
+
+#: ../../lib/include/metaboxes.php:645
+msgid "Image"
+msgstr "Image"
+
+#: ../../lib/include/metaboxes.php:646
+msgid "Upload an image or enter an URL."
+msgstr "Charger une image ou entrer une URL"
+
+#: ../../lib/include/metaboxes.php:652
+msgid "Image link URL"
+msgstr "URL du lien d'image"
+
+#: ../../lib/include/metaboxes.php:723
+msgid ""
+"Insert an address (with street number) and click to check it on the map."
+msgstr ""
+"Insérez une adresse (avec numéro de rue) et cliquez pour la vérifier sur la "
+"carte."
+
+#: ../../lib/include/metaboxes.php:728
+msgid "Map preview"
+msgstr "Aperçu de la carte"
+
+#: ../../lib/include/metaboxes.php:734
+msgid "Map Information"
+msgstr "Information sur la carte"
+
+#: ../../lib/include/metaboxes.php:735
+msgid "Information text showing below the map."
+msgstr "Texte d'information montré sous la carte"
+
+#: ../../lib/include/metaboxes.php:947
+msgid "Facebook page url"
+msgstr "Url de la page Facebook"
+
+#: ../../lib/include/metaboxes.php:948
+msgid "Ex.: http://www.facebook.com/platform"
+msgstr "Ex. : http://www.facebook.com/platform"
+
+#: ../../lib/include/metaboxes.php:953
+msgid "Show faces"
+msgstr "Afficher les visages"
+
+#: ../../lib/include/metaboxes.php:954
+msgid "Show profile photos."
+msgstr "Afficher les photos de profils"
+
+#: ../../lib/include/metaboxes.php:963
+msgid "Color scheme"
+msgstr "Schéma de couleurs"
+
+#: ../../lib/include/metaboxes.php:964
+msgid "Select the preferred color scheme."
+msgstr "Choisir le schéma de couleurs voulu."
+
+#: ../../lib/include/metaboxes.php:968
+msgid "Light"
+msgstr "Clair"
+
+#: ../../lib/include/metaboxes.php:969
+msgid "Dark"
+msgstr "Foncé"
+
+#: ../../lib/include/metaboxes.php:973
+msgid "Show stream"
+msgstr "Afficher le flux de couleurs"
+
+#: ../../lib/include/metaboxes.php:974
+msgid "Show the profile stream for the public profile."
+msgstr "Afficher le flux de profil pour le profil public."
+
+#: ../../lib/include/metaboxes.php:983
+msgid "Border color"
+msgstr "Couleur des bords"
+
+#: ../../lib/include/metaboxes.php:984
+msgid "The box border color"
+msgstr "La case couleur des bords"
+
+#: ../../lib/include/metaboxes.php:989
+msgid "Show header"
+msgstr "Afficher l'en-tête"
+
+#: ../../lib/include/metaboxes.php:990
+msgid ""
+"Show the 'Find us on Facebook' bar at top. Only shown when either stream or "
+"faces are present."
+msgstr ""
+"Afficher la barre \"Nous retrouver sur Facebook\" en haut. Seulement "
+"affichée en présence du flux ou des visages."
+
+#: ../../lib/include/metaboxes.php:1064
+msgid "Content"
+msgstr "Contenu"
+
+#: ../../lib/include/metaboxes.php:1065
+msgid "Arbitrary text or HTML."
+msgstr "Texte arbitraire ou HTML."
+
+#: ../../lib/include/metaboxes.php:1082
+msgid "Speaker Details"
+msgstr "Infos sur le présentateur"
+
+#: ../../lib/include/metaboxes.php:1089
+msgid "Company"
+msgstr "Société"
+
+#: ../../lib/include/metaboxes.php:1094
+msgid "Short Bio"
+msgstr "Courte Bio"
+
+#: ../../lib/include/metaboxes.php:1099
+msgid "Website Url"
+msgstr "Url du Site Internet"
+
+#: ../../lib/include/metaboxes.php:1104
+msgid "Twitter Username"
+msgstr "Nom d'utilisateur Twitter"
+
+#: ../../lib/include/metaboxes.php:1115
+msgid "Session Details"
+msgstr "Détails de session"
+
+#: ../../lib/include/metaboxes.php:1130
+msgid "Format hh:mm"
+msgstr "Format hh:mm"
+
+#: ../../lib/include/metaboxes.php:1133 ../../lib/include/post-types.php:10
+msgid "Event"
+msgstr "Événement"
+
+#: ../../lib/include/metaboxes.php:1134
+msgid "Select the event to associate to this session."
+msgstr "Choisir l'événement à associer à cette session."
+
+#: ../../lib/include/metaboxes.php:1153
+msgid "Add Speakers in the Speakers Section"
+msgstr "Ajouter des Présentateurs dans la Rubrique Présentateurs"
+
+#: ../../lib/include/metaboxes.php:1244
+msgid "Remove Image"
+msgstr "Enlever l'Image"
+
+#: ../../lib/include/metaboxes.php:1252
+msgid "Remove File"
+msgstr "Enlever le Fichier"
+
+#: ../../lib/include/post-types.php:9 ../../lib/include/post-types.php:19
+msgid "Events"
+msgstr "Événements"
+
+#: ../../lib/include/post-types.php:11 ../../lib/include/post-types.php:44
+#: ../../lib/include/post-types.php:77
+msgid "Add New"
+msgstr "Ajouter un Nouveau"
+
+#: ../../lib/include/post-types.php:12
+msgid "Add New Event"
+msgstr "Ajouter un Nouvel Événement"
+
+#: ../../lib/include/post-types.php:13
+msgid "Edit Event"
+msgstr "Modifier l'Événement"
+
+#: ../../lib/include/post-types.php:14
+msgid "New Event"
+msgstr "Nouvel Événement"
+
+#: ../../lib/include/post-types.php:15
+msgid "View Event"
+msgstr "Voir l'Événement"
+
+#: ../../lib/include/post-types.php:16
+msgid "Search Events"
+msgstr "Rechercher des Événements"
+
+#: ../../lib/include/post-types.php:17
+msgid "No Events found"
+msgstr "Aucun Événement trouvé"
+
+#: ../../lib/include/post-types.php:18
+msgid "No Events found in trash"
+msgstr "Aucun Événement trouvé dans la poubelle"
+
+#: ../../lib/include/post-types.php:43
+msgid "Speaker"
+msgstr "Présentateur"
+
+#: ../../lib/include/post-types.php:45
+msgid "Add New Speaker"
+msgstr "Ajouter un Nouveau Présentateur"
+
+#: ../../lib/include/post-types.php:46
+msgid "Edit Speaker"
+msgstr "Modifier le Présentateur"
+
+#: ../../lib/include/post-types.php:47
+msgid "New Speaker"
+msgstr "Nouveau Présentateur"
+
+#: ../../lib/include/post-types.php:48
+msgid "View Speaker"
+msgstr "Voir le Présentateur"
+
+#: ../../lib/include/post-types.php:49
+msgid "Search Speakers"
+msgstr "Rechercher des Présentateurs"
+
+#: ../../lib/include/post-types.php:50
+msgid "No Speakers found"
+msgstr "Aucun Présentateur trouvé"
+
+#: ../../lib/include/post-types.php:51
+msgid "No Speakers found in trash"
+msgstr "Aucun Présentateur trouvé dans la poubelle"
+
+#: ../../lib/include/post-types.php:76
+msgid "Session"
+msgstr "Session"
+
+#: ../../lib/include/post-types.php:78
+msgid "Add New Session"
+msgstr "Ajouter une Nouvelle Session"
+
+#: ../../lib/include/post-types.php:79
+msgid "Edit Session"
+msgstr "Modifier la Session"
+
+#: ../../lib/include/post-types.php:80
+msgid "New Session"
+msgstr "Nouvelle Session"
+
+#: ../../lib/include/post-types.php:81
+msgid "View Session"
+msgstr "Voir la Session"
+
+#: ../../lib/include/post-types.php:82
+msgid "Search Sessions"
+msgstr "Rechercher des Sessions"
+
+#: ../../lib/include/post-types.php:83
+msgid "No Sessions found"
+msgstr "Aucune Session trouvée"
+
+#: ../../lib/include/post-types.php:84
+msgid "No Sessions found in trash"
+msgstr "Aucune Session trouvée dans la poubelle"
+
+#: ../../lib/include/sidebars.php:8
+msgid "Primary Sidebar"
+msgstr "Barre Latérale Principale"
+
+#: ../../lib/include/sidebars.php:17
+msgid "Header Right"
+msgstr "En-tête Droit"
+
+#: ../../lib/include/sidebars.php:26
+msgid "Home Top Left Sidebar"
+msgstr "Barre Latérale d'Accueil Haut Gauche"
+
+#: ../../lib/include/sidebars.php:35
+msgid "Home Top Right Sidebar"
+msgstr "Barre Latérale d'Accueil Haut Droit"
+
+#: ../../lib/include/sidebars.php:44
+msgid "Home Bottom Sidebar"
+msgstr "Barrre Latérale d'Accueil Bas"
+
+#: ../../lib/include/sidebars.php:53
+msgid "Footer Top Sidebar"
+msgstr "Barre Latérale Pied de Page Haut"
+
+#: ../../lib/include/sidebars.php:62
+msgid "Footer Middle Sidebar"
+msgstr "Barre Latérale Pied de Page Intermédiaire"
+
+#: ../../lib/include/sidebars.php:71
+msgid "Footer Bottom Left Sidebar"
+msgstr "Barre Latérale Pied de Page Bas Gauche"
+
+#: ../../lib/include/sidebars.php:80
+msgid "Footer Bottom Center Sidebar"
+msgstr "Barre Latérale Pied de Page bas Centre"
+
+#: ../../lib/include/sidebars.php:89
+msgid "Footer Bottom Right Sidebar"
+msgstr "Barre latérale Pied de Page bas Droit"
+
+#: ../../lib/include/taxonomies.php:7
+msgid "Event Categories"
+msgstr "Catégories d'Événement"
+
+#: ../../lib/include/taxonomies.php:8
+msgid "Event Category"
+msgstr "Catégorie d'Événement"
+
+#: ../../lib/include/taxonomies.php:9
+msgid "Search Event Categories"
+msgstr "Rechercher des catégories d'Événement"
+
+#: ../../lib/include/taxonomies.php:10
+msgid "All Event Categories"
+msgstr "Toutes les Catégories d'Événement"
+
+#: ../../lib/include/taxonomies.php:11
+msgid "Parent Event Category"
+msgstr "Catégorie d'Événement Parent"
+
+#: ../../lib/include/taxonomies.php:12
+msgid "Parent Event Category:"
+msgstr "Catégorie d'Événement Parent :"
+
+#: ../../lib/include/taxonomies.php:13
+msgid "Edit Event Category"
+msgstr "Modifier la Catégorie d'Événement"
+
+#: ../../lib/include/taxonomies.php:14
+msgid "Update Event Category"
+msgstr "Mettre à Jour la Catégorie d'Événement"
+
+#: ../../lib/include/taxonomies.php:15
+msgid "Add New Event Category"
+msgstr "Ajouter une Nouvelle Catégorie d'Événement"
+
+#: ../../lib/include/taxonomies.php:16
+msgid "New Event Category"
+msgstr "Nouvelle Catégorie d'Événement"
+
+#: ../../lib/include/taxonomies.php:33 ../../lib/include/taxonomies.php:73
+#: ../../lib/include/taxonomies.php:113
+msgid "Color"
+msgstr "Couleur"
+
+#: ../../lib/include/taxonomies.php:47
+msgid "Session Tracks"
+msgstr "Suivis de Session"
+
+#: ../../lib/include/taxonomies.php:48
+msgid "Session Track"
+msgstr "Suivi de Session"
+
+#: ../../lib/include/taxonomies.php:49
+msgid "Search Session Tracks"
+msgstr "Rechercher des Suivis de Session"
+
+#: ../../lib/include/taxonomies.php:50
+msgid "All Session Tracks"
+msgstr "Tous les Suivis de Session"
+
+#: ../../lib/include/taxonomies.php:51
+msgid "Parent Session Track"
+msgstr "Suivi de Session Parent"
+
+#: ../../lib/include/taxonomies.php:52
+msgid "Parent Session Track:"
+msgstr "Suivi de Session Parent :"
+
+#: ../../lib/include/taxonomies.php:53
+msgid "Edit Session Track"
+msgstr "Modifier le Suivi de Session"
+
+#: ../../lib/include/taxonomies.php:54
+msgid "Update Session Track"
+msgstr "Mettre à Jour le Suivi de Session"
+
+#: ../../lib/include/taxonomies.php:55
+msgid "Add New Session Track"
+msgstr "Ajouter un Nouveau Suivi de Session"
+
+#: ../../lib/include/taxonomies.php:56
+msgid "New Session Track"
+msgstr "Nouveau Suivi de Session"
+
+#: ../../lib/include/taxonomies.php:57
+msgid "Tracks"
+msgstr "Suivis"
+
+#: ../../lib/include/taxonomies.php:87
+msgid "Session Locations"
+msgstr "Lieux de Session"
+
+#: ../../lib/include/taxonomies.php:88
+msgid "Session Location"
+msgstr "Lieu de Session"
+
+#: ../../lib/include/taxonomies.php:89
+msgid "Search Session Locations"
+msgstr "Rechercher des Lieux de Session"
+
+#: ../../lib/include/taxonomies.php:90
+msgid "All Session Locations"
+msgstr "Tous les Lieux de Session"
+
+#: ../../lib/include/taxonomies.php:91
+msgid "Parent Session Location"
+msgstr "Lieu de Session Parent"
+
+#: ../../lib/include/taxonomies.php:92
+msgid "Parent Session Location:"
+msgstr "Lieu de Session Parent :"
+
+#: ../../lib/include/taxonomies.php:93
+msgid "Edit Session Location"
+msgstr "Modifier le Lieu de Session"
+
+#: ../../lib/include/taxonomies.php:94
+msgid "Update Session Location"
+msgstr "Mettre à Jour le Lieu de Session"
+
+#: ../../lib/include/taxonomies.php:95
+msgid "Add New Session Location"
+msgstr "Ajouter un Nouveau Lieu de Session"
+
+#: ../../lib/include/taxonomies.php:96
+msgid "New Session Location"
+msgstr "Nouveau Lieu de Session"
+
+#: ../../lib/include/theme-options.php:9
+#: ../../lib/include/theme-options.php:225
+msgid "Theme Color"
+msgstr "Couleur de Thème"
+
+#: ../../lib/include/theme-options.php:10
+#: ../../lib/include/theme-options.php:230
+#: ../../lib/include/theme-options.php:283
+#: ../../lib/include/theme-options.php:290
+msgid "Home Layout"
+msgstr "Agencement de l'Accueil"
+
+#: ../../lib/include/theme-options.php:11
+#: ../../lib/include/theme-options.php:235
+#: ../../lib/include/theme-options.php:297
+msgid "Search Layout"
+msgstr "Agencement de la Recherche"
+
+#: ../../lib/include/theme-options.php:12
+#: ../../lib/include/theme-options.php:240
+#: ../../lib/include/theme-options.php:304
+msgid "Home Quick Search"
+msgstr "Recherche Rapide en Accueil"
+
+#: ../../lib/include/theme-options.php:13
+#: ../../lib/include/theme-options.php:310
+msgid "Footer Left Text"
+msgstr "Texte de Pied de Page Gauche"
+
+#: ../../lib/include/theme-options.php:14
+#: ../../lib/include/theme-options.php:316
+msgid "Footer Right Text"
+msgstr "Texte de Pied de Page Droit"
+
+#: ../../lib/include/theme-options.php:15
+msgid "Dummy Content"
+msgstr "Contenu Factice"
+
+#: ../../lib/include/theme-options.php:32
+msgid ""
+"Powered by <strong><a href=\"http://www.eventmanagerblog.com\">Event Manager "
+"Blog</a></strong>"
+msgstr ""
+"Généré par <strong><a href=\"http://www.eventmanagerblog.com\">Event Manager "
+"Blog</a></strong>"
+
+#: ../../lib/include/theme-options.php:33
+msgid "&copy; 2013 Social Coup LTD. All rights reserved."
+msgstr "&copy; 2013 Social Coup LTD. Tous Droits Réservés."
+
+#: ../../lib/include/theme-options.php:48
+msgid "Januas Options"
+msgstr "Options Januas"
+
+#: ../../lib/include/theme-options.php:67
+#: ../../lib/include/theme-options.php:282
+msgid "Default"
+msgstr "Défaut"
+
+#: ../../lib/include/theme-options.php:75
+#: ../../lib/include/theme-options.php:282
+msgid "Red"
+msgstr "Rouge"
+
+#: ../../lib/include/theme-options.php:83
+#: ../../lib/include/theme-options.php:282
+msgid "Green"
+msgstr "Vert"
+
+#: ../../lib/include/theme-options.php:91
+#: ../../lib/include/theme-options.php:282
+msgid "Blue"
+msgstr "Bleu"
+
+#: ../../lib/include/theme-options.php:99
+#: ../../lib/include/theme-options.php:282
+msgid "Orange"
+msgstr "Orange"
+
+#: ../../lib/include/theme-options.php:107
+#: ../../lib/include/theme-options.php:282
+msgid "Yellow"
+msgstr "Jaune"
+
+#: ../../lib/include/theme-options.php:122
+#: ../../lib/include/theme-options.php:289
+msgid "Two Columns"
+msgstr "Deux Colonnes"
+
+#: ../../lib/include/theme-options.php:131
+#: ../../lib/include/theme-options.php:289
+msgid "Three Columns"
+msgstr "Trois Colonnes"
+
+#: ../../lib/include/theme-options.php:143
+msgid "Fixed time ranges (ex. Next 24 Hours, Next 7 Days, etc.)"
+msgstr ""
+"Périodes de Temps Définies (ex. : Prochaines 24 Heures, 7 Prochains Jours, "
+"etc.)"
+
+#: ../../lib/include/theme-options.php:147
+msgid "Custom time range (allows to select the search start/end date)"
+msgstr ""
+"Périodes de Temps Personnalisées (permet de choisir la date de départ/fin à "
+"rechercher)"
+
+#: ../../lib/include/theme-options.php:157
+#: ../../lib/include/theme-options.php:303
+msgid "Show categories"
+msgstr "Afficher les catégories"
+
+#: ../../lib/include/theme-options.php:161
+#: ../../lib/include/theme-options.php:303
+msgid "Show time ranges"
+msgstr "Afficher les périodes de temps"
+
+#: ../../lib/include/theme-options.php:189
+msgid ""
+"If you check the checkbox and save this page the theme will import dummy data"
+msgstr ""
+"Si vous cochez la case et sauvergardez cette page, le thème importera des "
+"données factices"
+
+#: ../../lib/include/theme-options.php:245
+msgid "Footer Text"
+msgstr "Texte de Pied de Page"
+
+#: ../../lib/include/theme-options.php:296
+msgid "Fixed time ranges"
+msgstr "Périodes de temps définies"
+
+#: ../../lib/include/theme-options.php:296
+msgid "Custom range"
+msgstr "Période personnalisée"
+
+#: ../../lib/metaboxes/metabox-description.php:6
+msgid "Event description"
+msgstr "Description d'Événement"
+
+#: ../../lib/metaboxes/metabox-map.php:21
+msgid "Show on Google Maps"
+msgstr "Montrer sur Google Maps"
+
+#: ../../lib/metaboxes/metabox-schedule.php:96
+msgid "View the Full Schedule"
+msgstr "Voir l'Horaire Complet"
+
+#: ../../lib/widgets/widget-connect.php:11
+msgid "Displays icons for Email, RSS, Twitter, Facebook and LinkedIn"
+msgstr "Affiche les icônes d'Email, RSS, Twitter, Facebook et LinkedIn"
+
+#: ../../lib/widgets/widget-connect.php:13
+msgid "Januas Connect Widget"
+msgstr "Widget Connection Januas"
+
+#: ../../lib/widgets/widget-connect.php:50
+msgid "Connect With Us"
+msgstr "Connectez-Vous à Nous"
+
+#: ../../lib/widgets/widget-connect.php:54
+#: ../../lib/widgets/widget-feedburner.php:81
+#: ../../lib/widgets/widget-linkedin.php:45
+#: ../../lib/widgets/widget-twitter.php:46
+msgid "Title:"
+msgstr "Titre :"
+
+#: ../../lib/widgets/widget-connect.php:58
+msgid "Email:"
+msgstr "Email :"
+
+#: ../../lib/widgets/widget-connect.php:62
+msgid "RSS URL:"
+msgstr "URL RSS :"
+
+#: ../../lib/widgets/widget-connect.php:66
+msgid "Twitter URL:"
+msgstr "URL Twitter :"
+
+#: ../../lib/widgets/widget-connect.php:70
+msgid "Facebook URL:"
+msgstr "URL Facebook :"
+
+#: ../../lib/widgets/widget-connect.php:74
+msgid "LinkedIn URL:"
+msgstr "URL LinkedIn :"
+
+#: ../../lib/widgets/widget-feedburner.php:13
+msgid "Subscribe to our future Events"
+msgstr "S'abonner à nos futurs Événements"
+
+#: ../../lib/widgets/widget-feedburner.php:13
+msgid "Subscribe"
+msgstr "S'abonner"
+
+#: ../../lib/widgets/widget-feedburner.php:13
+msgid "Enter Your Email Address..."
+msgstr "Entrez Votre Adresse d'Email..."
+
+#: ../../lib/widgets/widget-feedburner.php:15
+msgid "Adds a Feedburner email subscription form"
+msgstr "Ajoute un formulaire d'abonnement email Feedburner"
+
+#: ../../lib/widgets/widget-feedburner.php:17
+msgid "Januas Feedburner Email Widget"
+msgstr "Widget Email Feedburner Januas"
+
+#: ../../lib/widgets/widget-feedburner.php:85
+msgid "Feed URL:"
+msgstr "URL de Feed :"
+
+#: ../../lib/widgets/widget-feedburner.php:89
+msgid "Submit Text:"
+msgstr "Soumettre le Texte :"
+
+#: ../../lib/widgets/widget-feedburner.php:93
+msgid "Email Watermark:"
+msgstr "Emailer le Filigrane :"
+
+#: ../../lib/widgets/widget-latest-news.php:15
+msgid "Latest News"
+msgstr "Dernières Actualités"
+
+#: ../../lib/widgets/widget-latest-news.php:29
+msgid "Displays latest news with thumbnails"
+msgstr "Affiche les dernières actualités avec des vignettes"
+
+#: ../../lib/widgets/widget-latest-news.php:38
+msgid "Januas Latest News"
+msgstr "Dernières Nouvelles Januas"
+
+#: ../../lib/widgets/widget-latest-news.php:100
+#: ../../lib/widgets/widget-latest-news.php:125
+msgid "Title"
+msgstr "Titre"
+
+#: ../../lib/widgets/widget-latest-news.php:111
+msgid "All Categories"
+msgstr "Toutes les Catégories"
+
+#: ../../lib/widgets/widget-latest-news.php:118
+msgid "Number of Posts to Show"
+msgstr "Nombre de Messages à Afficher"
+
+#: ../../lib/widgets/widget-latest-news.php:122
+msgid "Order By"
+msgstr "Ordonner Par"
+
+#: ../../lib/widgets/widget-latest-news.php:126
+msgid "Parent"
+msgstr "Parent"
+
+#: ../../lib/widgets/widget-latest-news.php:127
+msgid "ID"
+msgstr "ID"
+
+#: ../../lib/widgets/widget-latest-news.php:128
+msgid "Comment Count"
+msgstr "Nombre de Commentaires"
+
+#: ../../lib/widgets/widget-latest-news.php:129
+msgid "Random"
+msgstr "Aléatoire"
+
+#: ../../lib/widgets/widget-latest-news.php:133
+msgid "Sort Order"
+msgstr "Ordre de Tri"
+
+#: ../../lib/widgets/widget-latest-news.php:135
+msgid "Descending"
+msgstr "Descendant"
+
+#: ../../lib/widgets/widget-latest-news.php:136
+msgid "Ascending"
+msgstr "Ascendant"
+
+#: ../../lib/widgets/widget-latest-news.php:141
+msgid "Show Featured Image"
+msgstr "Afficher l'Image du Jour"
+
+#: ../../lib/widgets/widget-latest-news.php:144
+msgid "Image Size"
+msgstr "Dimensions d'Image"
+
+#: ../../lib/widgets/widget-latest-news.php:158
+msgid "Show Date"
+msgstr "Afficher la Date"
+
+#: ../../lib/widgets/widget-linkedin.php:13
+msgid "Share on Linkedin"
+msgstr "Partager sur LinkedIn"
+
+#: ../../lib/widgets/widget-linkedin.php:15
+msgid ""
+"Enable users to share your website with LinkedIn's professional audience, "
+"and drive traffic back to your site."
+msgstr ""
+"Permet aux utilisateurs de partager votre site internet avec le public de "
+"professionnels de LinkedIn, et de rediriger l'affluence vers votre site."
+
+#: ../../lib/widgets/widget-linkedin.php:17
+msgid "Januas Linkedin Widget"
+msgstr "Widget LinkedIn Januas"
+
+#: ../../lib/widgets/widget-linkedin.php:49
+#: ../../lib/widgets/widget-twitter.php:58
+msgid "URL:"
+msgstr "URL :"
+
+#: ../../lib/widgets/widget-linkedin.php:53
+msgid "Counter:"
+msgstr "Compteur :"
+
+#: ../../lib/widgets/widget-twitter.php:13
+msgid "Tweet our hashtag"
+msgstr "Twittez notre hashtag"
+
+#: ../../lib/widgets/widget-twitter.php:15
+msgid "Add button to help your visitors share content on Twitter"
+msgstr ""
+"Ajouter un bouton pour aider voss visiteurs à partager le contenu sur Twitter"
+
+#: ../../lib/widgets/widget-twitter.php:17
+msgid "Januas Twitter Widget"
+msgstr "Widget Twitter Januas"
+
+#: ../../lib/widgets/widget-twitter.php:50
+msgid "Hashtag:"
+msgstr "Hashtag :"
+
+#: ../../lib/widgets/widget-twitter.php:54
+msgid "Large Button:"
+msgstr "Bouton Large :"
+
+#: ../../lib/include/metaboxes.php:265
+msgid "Add this event to Home Page"
+msgstr "Ajouter cet événément à la Page d'Accueil"
+
+#: ../../lib/include/metaboxes.php:264
+msgid "Home Page"
+msgstr "Page d'Accueil"
+
+#: ../../lib/include/functions.php:329
+msgid "All Events"
+msgstr "Tous les Événements"
+
+#: ../../lib/include/functions.php:308
+#, php-format
+msgid "Page %s"
+msgstr "Page %s"

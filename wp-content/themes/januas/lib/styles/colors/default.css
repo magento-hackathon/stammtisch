@@ -1,0 +1,5 @@
+/*Default*/
+
+@media only screen and (max-width: 800px) {
+	.informazioni.register h4 a {color:#f4422e;}
+}

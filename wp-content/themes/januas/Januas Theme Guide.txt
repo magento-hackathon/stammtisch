@@ -1,0 +1,25 @@
+Please find Januas theme Guide at
+
+http://www.eventmanagerblog.com/januas-theme-guide
+
+== Changelog ==
+
+(23/12/2014)
+* Version updated to 1.21
+* Fix "Include Word and Excel in the allowed file types list"
+    - lib/januas.php
+
+(26/08/2014)
+* Version updated to 1.21
+* Fix "Event searching by time not working in home page"
+    - section-upcoming_search.php
+
+(23/07/2014)
+* Version updated to 1.20
+* Fix "'Show map' link in Map Section now links to maps.google.com"
+    - lib/metaboxes/metabox-map.php
+
+(03/07/2014)
+* Version updated to 1.19
+* Fix "Register button not working on IE"
+    - lib/styles/style.css
