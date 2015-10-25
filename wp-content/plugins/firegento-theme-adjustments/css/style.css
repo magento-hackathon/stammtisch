@@ -9,9 +9,22 @@
  Text Domain:  firegento-theme-adjustment
 */
 
-input.search {
- width: 50% !important;
-}
-.upcoming_title{
- display: none !important;
+@media only screen and (min-width: 800px) {
+
+ input.search {
+  width: 50% !important;
+ }
+
+ .upcoming_title {
+  display: none !important;
+ }
+
+ .widget_third .widget_left, .widget_third .widget_center, .widget_third .widget_right {
+  width: 33%;
+ }
+
+ .widget_third div {
+  width: auto;
+  text-align: left;
+ }
 }
