@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: januas\n"
 "POT-Creation-Date: 2013-02-25 21:55+0100\n"
-"PO-Revision-Date: 2015-10-24 15:50+0100\n"
+"PO-Revision-Date: 2015-10-25 10:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -581,7 +581,7 @@ msgstr "Datum"
 
 #: ../../lib/include/metaboxes.php:214
 msgid "Insert the event date"
-msgstr "Gib das Veranstaltungsdatum ein."
+msgstr "Gib das Veranstaltungsdatum ein. (MM/DD/YY)"
 
 #: ../../lib/include/metaboxes.php:220
 msgid "Insert the event time (format: hh:mm, ex: 08:00)"
@@ -980,7 +980,7 @@ msgstr "Veranstaltung"
 
 #: ../../lib/include/metaboxes.php:1134
 msgid "Select the event to associate to this session."
-msgstr "Wähle die Veranstaltung die mit dieser SItzung verbunden werden soll."
+msgstr "Wähle die Veranstaltung die mit dieser Sitzung verbunden werden soll."
 
 #: ../../lib/include/metaboxes.php:1153
 msgid "Add Speakers in the Speakers Section"
@@ -1005,7 +1005,7 @@ msgstr "Neue hunzufügen"
 
 #: ../../lib/include/post-types.php:12
 msgid "Add New Event"
-msgstr "Neue Veranstaltung hinzufvgen"
+msgstr "Neue Veranstaltung hinzufügen"
 
 #: ../../lib/include/post-types.php:13
 msgid "Edit Event"
