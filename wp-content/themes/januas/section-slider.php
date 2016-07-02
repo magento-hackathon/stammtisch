@@ -54,7 +54,8 @@ $featured_query = new WP_Query($args);
 
 
 
-                <h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+                <h2<?php if (strlen(get_the_title()) > 24) { ?> class="long-text"<?php } ?>>
+                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
 
                 <div id="image_home">
 
