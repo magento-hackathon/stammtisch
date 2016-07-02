@@ -27,4 +27,8 @@
   width: auto;
   text-align: left;
  }
+
+ #slider #info-main-event h2 {
+  font-size: 3em;
+ }
 }
