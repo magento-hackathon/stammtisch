@@ -2,7 +2,7 @@
 //## NextScripts deviantART Connection Class
 $nxs_snapAvNts[] = array('code'=>'DA', 'lcode'=>'da', 'name'=>'deviantART (!)');
 
-if (!class_exists("nxs_snapClassDA")) { class nxs_snapClassDA {
+if (!class_exists("nxs_snapClassDA")) { class nxs_snapClassDA { var $ntInfo = array('code'=>'DA', 'lcode'=>'da', 'name'=>'deviantART', 'defNName'=>'', 'tstReq' => false);
   //#### Show Common Settings
   function showGenNTSettings($ntOpts){  global $nxs_plurl; $ntInfo = array('code'=>'DA', 'lcode'=>'da', 'name'=>'deviantART', 'defNName'=>'daUName', 'tstReq' => false); ?>    
     <div class="nxs_box">
@@ -139,7 +139,8 @@ if (!class_exists("nxs_snapClassDA")) { class nxs_snapClassDA {
       <?php if ($post->post_status == "publish") { ?> <input type="hidden" name="da[<?php echo $ii; ?>][doDA]" value="<?php echo $doDA;?>"> <?php } ?> <?php } ?>
       
       <div class="nsx_iconedTitle" style="display: inline; font-size: 13px; background-image: url(<?php echo $nxs_plurl; ?>img/da16.png);">deviantART - <?php _e('publish to', 'social-networks-auto-poster-facebook-twitter-g') ?> (<i style="color: #005800;"><?php echo $ntOpt['nName']; ?></i>)</div></th> <td><?php //## Only show RePost button if the post is "published"
-                    if ($post->post_status == "publish" && $isAvailDA) { ?><input alt="<?php echo $ii; ?>" style="float: right;" onmouseout="hidePopShAtt('SV');" onmouseover="showPopShAtt('SV', event);" onclick="return false;" type="button" class="button" name="rePostToDA_repostButton" id="rePostToDA_button" value="<?php _e('Repost to deviantART', 'social-networks-auto-poster-facebook-twitter-g') ?>" />
+                    if ($post->post_status == "publish" && $isAvailDA) { ?><?php $ntName = $this->ntInfo['name']; ?>
+                    <input alt="<?php echo $ii; ?>" style="float: right;" onmouseout="hidePopShAtt('SV');" onmouseover="showPopShAtt('SV', event);" onclick="return false;" data-ntname="<?php echo $ntName; ?>" type="button" class="button manualPostBtn" name="<?php echo $nt."-".$post->ID; ?>" value="<?php _e('Post to ', 'social-networks-auto-poster-facebook-twitter-g'); echo $ntName; ?>" />
                     <?php } ?>
                     
                     <?php  if (is_array($pMeta) && !empty($pMeta[$ii]) && is_array($pMeta[$ii]) && isset($pMeta[$ii]['pgID']) ) { 
@@ -217,8 +218,8 @@ if (!function_exists("nxs_doPublishToDA")) { //## Second Function to Post to DA
       $ntToPost = new nxs_class_SNAP_DA(); $ret = $ntToPost->doPostToNT($options, $message); // echo "~~~"; prr($ret); echo "+++";
       //## Save Session
       if (empty($options['ck'])) $options['ck'] = '';
-      if (!empty($ret) && is_array($ret) && !empty($ret['ck']) && !empty($ret['ck']) && serialize($ret['ck'])!=$options['ck']) { $options['ck'] = serialize($ret['ck']); $options['mh'] = serialize($ret['mh']);
-        if (function_exists('get_option')) $nxs_gOptions = get_option('NS_SNAutoPoster'); if(!empty($nxs_gOptions)) { $nxs_gOptions['da'][$ii] = $options; nxs_settings_save($nxs_gOptions); }
+      if (!empty($ret) && is_array($ret) && !empty($ret['ck']) && !empty($ret['ck']) && serialize($ret['ck'])!=$options['ck']) { $options['ck'] = serialize($ret['ck']); $options['mh'] = serialize($ret['mh']); nxs_save_glbNtwrks($ntInfo['lcode'],$ii,$options,'*'); 
+        //if (function_exists('get_option')) $nxs_gOptions = get_option('NS_SNAutoPoster'); if(!empty($nxs_gOptions)) { $nxs_gOptions['da'][$ii] = $options; nxs_settings_save($nxs_gOptions); }
       } 
       //## Process Results
       if (!is_array($ret) || $ret['isPosted']!='1') { //## Error 

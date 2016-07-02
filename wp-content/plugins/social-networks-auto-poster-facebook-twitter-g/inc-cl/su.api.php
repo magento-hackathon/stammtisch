@@ -30,35 +30,30 @@ if (!class_exists("nxs_class_SNAP_SU")) { class nxs_class_SNAP_SU {
       } else return 'No Saved Login';
       return false;  
     }
+    
     function nxs_doConnectToSU($u, $p){ global $nxs_suCkArray; $hdrsArr = $this->nxs_getSUHeaders('https://www.stumbleupon.com/', false, false); //   echo "LOGGIN";
-      $response = wp_remote_get('https://www.stumbleupon.com/login', array('headers' => $hdrsArr)); $p = substr($p, 0, 16);      
+      $response = wp_remote_get('http://www.stumbleupon.com', array('headers' => $hdrsArr)); $p = substr($p, 0, 16);      
       if (is_wp_error($response)) { nxs_addToLogN('E', 'Error', $logNT, '-=ERROR=- '.print_r($response, true), ''); return "Connection ERROR. Please see log";}
       $contents = $response['body']; $ckArr = $response['cookies']; //$response['body'] = htmlentities($response['body']);  prr($response);    die();       
-      $frmTxt = CutFromTo($contents, '<form id="login-form"','</form>'); $md = array(); $flds  = array();  $mids = '';// prr($frmTxt); 
-      while (stripos($frmTxt, '<input')!==false){ $inpField = trim(CutFromTo($frmTxt,'<input', '>')); $name = trim(CutFromTo($inpField,'name="', '"'));
-        if ( stripos($inpField, '"hidden"')!==false && $name!='' && !in_array($name, $md)) { $md[] = $name; $val = trim(CutFromTo($inpField,'value="', '"')); $flds[$name]= $val; $mids .= "&".$name."=".$val;}
-        $frmTxt = substr($frmTxt, stripos($frmTxt, '<input')+8);
-      } $flds['user'] = $u; $flds['pass'] = $p; $flds['remember'] = 'true'; $flds['nativeSubmit'] = '0'; $flds['_method'] = 'create'; $flds['_output'] = 'Json';    
-      $hdrsArr = $this->nxs_getSUHeaders('https://www.stumbleupon.com/login', true, true);
-      $r2 = wp_remote_post( 'https://www.stumbleupon.com/login?_nospa=true', array( 'method' => 'POST', 'timeout' => 45, 'redirection' => 0,  'headers' => $hdrsArr, 'body' => $flds, 'cookies' => $ckArr));
-      if (is_wp_error($r2)) { nxs_addToLogN('E', 'Error', $logNT, '-=ERROR=- '.print_r($r2, true), ''); return "Connection ERROR. Please see log";}
-      $ckArr = nxsMergeArraysOV($ckArr, $r2['cookies']); //prr($flds); prr($ckArr); prr($r2); prr($ckArr);   
-      if (is_array($r2) && !empty($r2['response']['code']) && $r2['response']['code']=='302') { $hdrsArr = $this->nxs_getSUHeaders('https://www.stumbleupon.com/login', false, false); 
-        $r2 = wp_remote_get( 'https://www.stumbleupon.com/settings/profile/', array( 'timeout' => 45, 'redirection' => 0,  'headers' => $hdrsArr, 'cookies' => $ckArr)); 
-        if (is_wp_error($r2)) { nxs_addToLogN('E', 'Error', $logNT, '-=ERROR=- '.print_r($r2, true), ''); return "Connection ERROR. Please see log";} //prr($r2);
-        if (stripos($r2['body'], '<a href="#" class="logout ')!==false) { $nxs_suCkArray = $ckArr; return false; }
-      } $resp = json_decode($r2['body'], true);  
-      if ($resp['_success']=='1') { $ckArr = nxsMergeArraysOV($ckArr, $r2['cookies']); $nxs_suCkArray = $ckArr; return false; } elseif (isset($resp['_reason'])) { return $resp['_reason']; } else return "ERROR";   
+      $flds  = array(); $flds['username'] = $u; $flds['password'] = $p;
+      $hdrsArr = $this->nxs_getSUHeaders('https://www.stumbleupon.com', true, true);
+      $r2 = wp_remote_post( 'https://www.stumbleupon.com/api/v2_0/auth/login', array( 'method' => 'POST', 'timeout' => 45, 'redirection' => 0,  'headers' => $hdrsArr, 'body' => $flds, 'cookies' => $ckArr));
+      //prr($flds); prr($ckArr); prr($r2); prr($ckArr); 
+      if (is_wp_error($r2)) { nxs_addToLogN('E', 'Error', $logNT, '-=ERROR=- '.print_r($r2, true), ''); return "Connection ERROR (2). Please see log";}
+      if (stripos($r2['body'],',"_error":"Invalid username') !==false ) { nxs_addToLogN('E', 'Error', $logNT, '-=ERROR=- '.print_r($r2['body'], true), ''); return "Invalid username or password";} 
+      if (stripos($r2['body'],'"_success":true') !==false){ $ckArr[] = new WP_Http_Cookie( array( 'name' => 'SU_REMEMBER', 'value' => urlencode(CutFromTo($r2['body'],'"},"su_remember":"','"')) ) );
+        $ckArr[] = new WP_Http_Cookie( array( 'name' => 'seulepage', 'value' => 'oui') ); $nxs_suCkArray=$ckArr; return false;
+      } else { nxs_addToLogN('E','Error',$logNT,'-=ERROR=- '.print_r($r2, true), ''); return "Connection ERROR (3). Please see log"; }
     }
+        
     function nxs_doPostToSU($msg, $lnk, $cat, $tags, $nsfw=false){ global $nxs_suCkArray; $r2 = wp_remote_get($lnk); 
       $hdrsArr = $this->nxs_getSUHeaders('https://www.stumbleupon.com/submit', false, false); $ckArr = $nxs_suCkArray;   
-      $response = wp_remote_get('https://www.stumbleupon.com/submit', array( 'method' => 'GET', 'timeout' => 45, 'redirection' => 0,  'headers' => $hdrsArr, 'cookies' => $ckArr));   
-      if (is_wp_error($response)) return "Connection ERROR. ".print_r($response, true);   $ckArr2 = nxsMergeArraysOV($ckArr, $response['cookies']); //$nxs_suCkArray = $ckArr;
-  
-      $contents = $response['body']; //$response['body'] = htmlentities($response['body']);  prr($response);   
+      $response = wp_remote_get('http://www.stumbleupon.com/submit?_nospa=true&_notoolbar=true&_notoolbar=true&_nospa=true', array( 'method' => 'GET', 'timeout' => 45, 'redirection' => 0,  'headers' => $hdrsArr, 'cookies' => $ckArr));   
+      if (is_wp_error($response)) return "Connection ERROR. ".print_r($response, true);   $ckArr2 = nxsMergeArraysOV($ckArr, $response['cookies']); //$nxs_suCkArray = $ckArr;  
+      $contents = $response['body']; //$response['body'] = htmlentities($response['body']);        
       //$ckArr = nxsMergeArraysOV($ckArr, $response['cookies']);  
       $hdrsArr = $this->nxs_getSUHeaders('https://www.stumbleupon.com/submit', true);
-      $frmTxt = CutFromTo($contents, '<form method="post" id="submit-form"','</form>'); $md = array(); $flds  = array(); $mids = ''; // prr($contents);
+      $frmTxt = CutFromTo($contents, '<form method="post" id="submit-form"','</form>'); $md = array(); $flds  = array(); $mids = ''; // prr($frmTxt);
       while (stripos($frmTxt, '<input')!==false){ $inpField = trim(CutFromTo($frmTxt,'<input', '>')); $name = trim(CutFromTo($inpField,'name="', '"'));
         if ( stripos($inpField, '"hidden"')!==false && $name!='' && !in_array($name, $md)) { $md[] = $name; $val = trim(CutFromTo($inpField,'value="', '"')); $flds[$name]= $val; $mids .= "&".$name."=".$val;}
         $frmTxt = substr($frmTxt, stripos($frmTxt, '<input')+8);

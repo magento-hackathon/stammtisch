@@ -1,5 +1,5 @@
 <?php
-if (!function_exists('prr')){ function prr($str) { echo "<pre>"; print_r($str); echo "</pre>\r\n"; }}        
+if (!function_exists('prr')){ function prr($str,$id='') { echo $id."<pre>"; print_r($str); echo "</pre>\r\n"; }}
 if (!function_exists('nsx_stripSlashes')){ function nsx_stripSlashes(&$value){$value = stripslashes($value);}}
 if (!function_exists('nsx_fixSlashes')){ function nsx_fixSlashes(&$value){ while (strpos($value, '\\\\')!==false) $value = str_replace('\\\\','\\',$value);
    if (strpos($value, "\\'")!==false) $value = str_replace("\\'","'",$value); if (strpos($value, '\\"')!==false) $value = str_replace('\\"','"',$value);
@@ -105,7 +105,7 @@ if (!function_exists('nxs_getPostImage')){ function nxs_getPostImage($postID, $s
   if ((int)$postID>0 && isset($options['featImgLoc']) && $options['featImgLoc']!=='') {  $afiLoc= get_post_meta($postID, $options['featImgLoc'], true); 
     if (is_array($afiLoc) && $options['featImgLocArrPath']!='') { $cPath = $options['featImgLocArrPath'];
       while (strpos($cPath, '[')!==false){ $arrIt = CutFromTo($cPath, '[', ']'); $arrIt = str_replace("'", "", str_replace('"', '', $arrIt)); $afiLoc = $afiLoc[$arrIt]; $cPath = substr($cPath, strpos($cPath, ']'));}    
-    } $imgURL = trim($options['featImgLocPrefix']).trim($afiLoc); if ($imgURL!='' && stripos($imgURL, 'http')===false) $imgURL =  home_url().$imgURL;
+    } $imgURL = ""; if (trim($afiLoc) !="") $imgURL = trim($options['featImgLocPrefix']) . trim($afiLoc); if ($imgURL!='' && stripos($imgURL, 'http')===false) $imgURL =  home_url().$imgURL;
   }
   if ($imgURL!='' && $options['imgNoCheck']!='1' && nxs_chckRmImage($imgURL)==false) $imgURL = '';  if ($imgURL!='') return $imgURL;
   //## Featured Image
@@ -183,10 +183,12 @@ if (!function_exists("jsPostToSNAP")) { function jsPostToSNAP() {  global $nxs_s
     }    
     function nxs_getOriginalWidthOfImg(img_element) { var t = new Image();  t.src = (img_element.getAttribute ? img_element.getAttribute("src") : false) || img_element.src; /* alert(t.src+" | "+t.width); */ return t.width; }        
     function nxs_updateGetImgs(e){ 
-        var textOut='';
+        var textOut=''; var text = '';
         var tId = e.target.id; 
         var tIdN = tId.replace("isAutoImg-", "");
-        if ( tinymce.activeEditor ) text = tinymce.activeEditor.getContent(); else text = jQuery('#content').val();                
+        if ( tinymce.activeEditor ) text = tinymce.activeEditor.getContent();
+        if ( text == '' ) text = jQuery('#content').val();                
+        
         jQuery('#NS_SNAP_AddPostMetaTags').append('<div id="nxs_tempDivImgs" style="display: none;"></div>'); jQuery('#nxs_tempDivImgs').append(text);
         var textOutA = new Array(); var currSelImg =  jQuery("#imgToUse-"+tIdN).val();
                 
@@ -218,13 +220,10 @@ if (!function_exists("jsPostToSNAP")) { function jsPostToSNAP() {  global $nxs_s
         nxs_updateGetImgs();
     });       
     jQuery(document).ready(function($) {          
-    <?php       
-      foreach ($nxs_snapAvNts as $avNt) {?>
-        jQuery('input#rePostTo<?php echo $avNt['code']; ?>_button').click(function() { var data = { action: 'rePostTo<?php echo $avNt['code']; ?>', id: jQuery('input#post_ID').val(), nid:jQuery(this).attr('alt'), _wpnonce: jQuery('input#nxsSsPageWPN_wpnonce').val()}; callAjSNAP(data, '<?php echo $avNt['name']; ?>'); });
-    <?php } 
-     foreach ($nxs_snapAvNts as $avNt) {?>
-        jQuery('input#riTo<?php echo $avNt['code']; ?>_button').click(function() { var data = { action: 'rePostTo<?php echo $avNt['code']; ?>', id: jQuery('input#post_ID').val(), ri:1, nid:jQuery(this).attr('alt'), _wpnonce: jQuery('input#nxsSsPageWPN_wpnonce').val()}; callAjSNAP(data, '<?php echo $avNt['name']; ?>'); });
-    <?php } ?>
+            
+      jQuery('input#riToFB_button').click(function() { var data = { action: 'rePostToFB', id: jQuery('input#post_ID').val(), ri:1, nid:jQuery(this).attr('alt'), _wpnonce: jQuery('input#nxsSsPageWPN_wpnonce').val()}; callAjSNAP(data, 'Facebook'); });            
+      jQuery('input#riToTW_button').click(function() { var data = { action: 'rePostToTW', id: jQuery('input#post_ID').val(), ri:1, nid:jQuery(this).attr('alt'), _wpnonce: jQuery('input#nxsSsPageWPN_wpnonce').val()}; callAjSNAP(data, 'Twitter'); });
+    
        function callAjSNAP(data, label) { 
             var style = "position: fixed; display: none; z-index: 1000; top: 50%; left: 50%; background-color: #E8E8E8; border: 1px solid #555; padding: 15px; width: 350px; min-height: 80px; margin-left: -175px; margin-top: -40px; text-align: center; vertical-align: middle;";
             jQuery('body').append("<div id='test_results' style='" + style + "'></div>");
@@ -279,7 +278,26 @@ if (!function_exists("nxs_jsPostToSNAP2")){ function nxs_jsPostToSNAP2() { globa
       if (jQuery.trim(j)=='OK') window.location = "<?php echo $nxs_snapThisPageUrl; ?>"; else alert('<?php _e('Wrong key, please contact support', 'social-networks-auto-poster-facebook-twitter-g'); ?>');
     }, "html")
   }
-  function testPost(nt, nid){ jQuery(".blnkg").hide(); <?php foreach ($nxs_snapAvNts as $avNt) {?>
+  
+  function testPost(nt, nid){  var data = {  action:'nxs_snap_aj', nxsact: 'testPost', nt:nt, id: 0, nid: nid, _wpnonce: jQuery('input#nxsSsPageWPN_wpnonce').val()};
+     jQuery('#nxs_gPopupContent').html("<p>Sending update to "+nt+" ....</p>" + "<p><img src='<?php echo NXS_PLURL; ?>img/ajax-loader-med.gif' /></p>");
+     jQuery('#nxs_gPopup').bPopup({ modalClose: false, appendTo: '#nsStForm', opacity: 0.6, positionStyle: 'fixed'});  
+     jQuery.post(ajaxurl, data, function(response) { if (response=='') response = 'Message Posted';
+       jQuery('#nxs_gPopupContent').html('<p> ' + response + '</p>' +'<input type="button" class="bClose" value="OK" />');
+     });      
+       
+  }
+    
+  function nxs_doAJXPopup(act, nt, nid, msg, addprms, butText){  var data = {  action:'nxs_snap_aj', nxsact: act, nt:nt, id: 0, nid: nid, _wpnonce: jQuery('input#nxsSsPageWPN_wpnonce').val()};
+     jQuery('#nxs_gPopupContent').html(msg+" <p><img src='<?php echo NXS_PLURL; ?>img/ajax-loader-med.gif' /></p>");
+     jQuery('#nxs_gPopup').bPopup({ modalClose: false, appendTo: '#wpbody-content', opacity: 0.6, positionStyle: 'fixed'});  
+     jQuery.post(ajaxurl, data, function(response) { if (response=='') response = 'Message Posted'; if (butText === undefined || butText=='undefined' || butText=='') butText = 'Close';
+       jQuery('#nxs_gPopupContent').html('<p> ' + response + '</p>' +'<input type="button" class="bClose" value="'+butText+'" />');
+     });      
+       
+  }
+  
+  function testPost_V3(nt, nid){ jQuery(".blnkg").hide(); <?php foreach ($nxs_snapAvNts as $avNt) {?>
     if (nt=='<?php echo $avNt['code']; ?>') { 
        var data = { action: 'rePostTo<?php echo $avNt['code']; ?>', id: 0, nid: nid, _wpnonce: jQuery('input#nxsSsPageWPN_wpnonce').val()}; callAjSNAP(data, '<?php echo $avNt['name']; ?>'); 
     }<?php } ?>
@@ -353,6 +371,16 @@ if (!function_exists("nxs_jsPostToSNAP2")){ function nxs_jsPostToSNAP2() { globa
       } setTimeout(nxs_checkTagsChangesX, 50);
     }
     
+    function nxs_doManPost(obj){ var nnid = jQuery( this ).attr('name'); var nid = jQuery( this ).attr('alt'); var res = nnid.split("-"); var nt = res[0]; var pid = res[1]; var ntn = jQuery( this ).attr('data-ntname');
+     var data = {  action:'nxs_snap_aj', nxsact: 'manPost', nt:nt, id: pid, nid: nid, et_load_builder_modules:1, _wpnonce: jQuery('input#nxsSsPageWPN_wpnonce').val()};
+     jQuery('#nxs_gPopupContent').html("<p>Sending update to "+ntn+" ....</p>" + "<p><img src='<?php echo NXS_PLURL; ?>img/ajax-loader-med.gif' /></p>");
+     jQuery('#nxs_gPopup').bPopup({ modalClose: false, appendTo: '#nsStForm', opacity: 0.6, positionStyle: 'fixed'});  
+     jQuery.post(ajaxurl, data, function(response) { if (response=='') response = 'Message Posted';
+       jQuery('#nxs_gPopupContent').html('<p> ' + response + '</p>' +'<input type="button" class="bClose" value="Close" />');
+      }); 
+    }
+    
+    jQuery( ".manualPostBtn" ).on( "click", nxs_doManPost);
   });
 </script>
 
@@ -441,14 +469,28 @@ background:#f1f1f1;background-image:-webkit-gradient(linear,left bottom,left top
 /* #nxsDivWrap .postbox .inside {overflow: hidden;}  */
 #nxsDivWrap .postbox .description {vertical-align: middle; color: #ACACAC;}  
 
+.doneMsg {color:#005800; font-weight: bold; display: inline-block; font-size: 16px; display: none; float: right; margin-right: 50px;}
+
 .submitX {padding-top: 7px; padding-bottom: 5px;}
+
+  #nxs_spPopup, #nxs_spNTPopup, #nxs_gPopup, #nxs_spFltPopup, #nxs_popupDiv, #showLicForm, .nxsbPP{ min-height: 250px; z-index:999991; background-color: #FFFFFF; border-radius: 5px 5px 5px 5px;  box-shadow: 0 0 3px 2px #999999; color: #111111; display: none;  min-width: 850px; padding: 25px;}
+  #nxs_gPopup {min-width: 650px;}
+  #nxs_gPopupContent {overflow-y: auto; overflow-x: auto;  max-width: 700px; max-height: 700px; min-height: 300px;}
+
 
 .nxs_txtIcon { margin: 0px; padding-left: 20px; background-repeat: no-repeat;} .nxs_ti_gp {background-image: url('<?php echo $nxs_plurl; ?>img/gp16.png');} 
             .nxs_ti_li {background-image: url('<?php echo $nxs_plurl; ?>img/li16.png');}  .nxs_ti_rd {background-image: url('<?php echo $nxs_plurl; ?>img/rd16.png');} 
             .nxs_ti_fp {background-image: url('<?php echo $nxs_plurl; ?>img/fp16.png');}  .nxs_ti_yt {background-image: url('<?php echo $nxs_plurl; ?>img/yt16.png');} 
             .nxs_ti_bg {background-image: url('<?php echo $nxs_plurl; ?>img/bg16.png');}  .nxs_ti_pn {background-image: url('<?php echo $nxs_plurl; ?>img/pn16.png');} 
+            .nxs_ti_ig {background-image: url('<?php echo $nxs_plurl; ?>img/ig16.png');} 
             
-input[readonly]{ background-color:white; }            
+input[readonly]{ background-color:white; }         
+.nxs-selz-dropwodn {max-width: 200px;}
+
+.dd-container {display:inline-block;}
+.dd-selected {color:black;}
+.dd-selected-text {line-height: 20px; color:black;}
+.dd-options {max-height: 500px;}
 </style>
 <?php }}
 
@@ -500,12 +542,12 @@ if (!function_exists('nxs_checkAddLogTable')){ function nxs_checkAddLogTable(){ 
     nt VARCHAR(255) DEFAULT '' NOT NULL,
     type VARCHAR(255) DEFAULT '' NOT NULL,
     msg text NOT NULL,    
-    extInfo text NOT NULL,    
+    extInfo text NULL,    
     UNIQUE KEY id (id)
   ) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;";
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php'); dbDelta($sql);
   delete_option("nxs_log_db_table_version"); add_option("nxs_log_db_table_version", '1.1');
-  if($nxs_tpWMPU=='S') restore_current_blog();
+  if($nxs_tpWMPU=='S' && function_exists("restore_current_blog")) restore_current_blog();
 }}
 if (!function_exists('nxs_getnxsLog')){ function nxs_getnxsLog(){ global $nxs_tpWMPU, $wpdb; if($nxs_tpWMPU=='S') switch_to_blog(1);  
    $log = $wpdb->get_results( "SELECT * FROM ". $wpdb->prefix . "nxs_log ORDER BY id", ARRAY_A ); if (!is_array($log)) return array(); else return $log;
@@ -524,11 +566,7 @@ if (!function_exists('nxs_addToLogN')){ function nxs_addToLogN ($type, $action, 
   if ($type=='E' && (isset($options['errNotifEmailCB']) && (int)$options['errNotifEmailCB'] == 1 && isset($options['errNotifEmail']) && trim($options['errNotifEmail']) != '')) { 
     $log = maybe_unserialize(get_option('NSX_LogToEmail')); if (!is_array($log)) $log = array(); $log[] = $logItem; delete_option("NSX_LogToEmail"); add_option("NSX_LogToEmail", $log, '', 'no');
   }
-  
-  // $nxsDBLog = get_option('NS_SNAutoPosterLog'); $nxsDBLog = maybe_unserialize($nxsDBLog); if(!is_array($nxsDBLog)) $nxsDBLog = array(); $nxsDBLog[] = $logItem; $nxsDBLog = array_slice($nxsDBLog, -150);  
-  // $res = update_option('NS_SNAutoPosterLog', ($nxsDBLog));   
-  //delete_option('NS_SNAutoPosterLog'); add_option('NS_SNAutoPosterLog', ($nxsDBLog));   
-  if($nxs_tpWMPU=='S') restore_current_blog(); 
+  if($nxs_tpWMPU=='S' && function_exists("restore_current_blog")) restore_current_blog(); 
 }}
 
 
@@ -607,7 +645,7 @@ if (!function_exists("nxs_mkShortURL")) { function nxs_mkShortURL($url, $postID=
     if ($options['nxsURLShrtnr']=='Y' && trim($options['YOURLSKey']!='') && trim($options['YOURLSURL']!='')) { $timestamp = time(); $signature = md5( $timestamp . $options['YOURLSKey'] ); 
       $flds = array('signature'=>$signature, 'action' => 'shorturl', 'url'=>$url, 'format'=>'json', 'timestamp'=>$timestamp);  
       $response  = wp_remote_post(($options['YOURLSURL']), array('body' => $flds)); 
-      if (is_wp_error($response)) {  nxs_addToLogN('E', 'goo.gl', '', '-=ERROR=- '.print_r($response, true)); return $url; } 
+      if (is_wp_error($response)) {  nxs_addToLogN('E', 'YOURLS', '', '-=ERROR=- '.print_r($response, true)); return $url; } 
       $rtr = json_decode($response['body'],true);  if (!is_array($rtr) || !isset($rtr['shorturl']) ) {   nxs_addToLogN('E', 'goo.gl', '', '-=ERROR=- '.print_r($response, true));  return $url; }      
       $rurl = $rtr['shorturl'];
     
@@ -675,7 +713,9 @@ if (!function_exists("nxs_postNewComment")) { function nxs_postNewComment($cmnt,
   if ( 'spam' !== $cmnt['comment_approved'] ) { if ( '0' == $cmnt['comment_approved'] ) wp_notify_moderator($cmntID); $post = get_post($cmnt['comment_post_ID']);
     if ( get_option('comments_notify') && $cmnt['comment_approved'] && ( ! isset( $cmnt['user_id'] ) || $post->post_author != $cmnt['user_id'] ) ) wp_notify_postauthor($cmntID);  
     global $wpdb, $dsq_api;
-    if (isset($dsq_api) && is_object($post)) { $plugins_url = str_replace( 'social-networks-auto-poster-facebook-twitter-g/', '', plugin_dir_path( __FILE__ )); require_once( $plugins_url.'disqus-comment-system/export.php'); 
+    if (isset($dsq_api) && is_object($post)) { $plugins_url = str_replace( 'social-networks-auto-poster-facebook-twitter-g/', '', plugin_dir_path( __FILE__ )); 
+    if (file_exists($plugins_url.'disqus-conditional-load/disqus-core/export.php')) require_once( $plugins_url.'disqus-conditional-load/disqus-core/export.php'); 
+      elseif (file_exists($plugins_url.'disqus-comment-system/export.php')) require_once( $plugins_url.'disqus-comment-system/export.php');
     if (function_exists('dsq_export_wp')) {
       $comments = $wpdb->get_results( $wpdb->prepare("SELECT * FROM $wpdb->comments WHERE comment_ID = %d", $cmntID) ); 
       $wxr = nxs_dsq_export_wp($post, $comments); $response = $dsq_api->import_wordpress_comments($wxr, time()); 
@@ -789,7 +829,7 @@ if (!function_exists('nxs_showURLToUseDlg')){ function nxs_showURLToUseDlg($nt, 
 
 //## Tests
 function nxs_cURLTestCode($url){  
-  $out = 'There is a problem with cURL. You need to contact your server admin or hosting provider. Here is the PHP code to reproduce the problem:<br/><pre style="color:#005800">&lt;?php '."\r\n".' $ch = curl_init(); '."\r\n".' curl_setopt($ch, CURLOPT_URL, "'.$url.'"); '."\r\n".' curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)"); '."\r\n".' curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); '."\r\n".' curl_setopt($ch, CURLOPT_TIMEOUT, 10); '."\r\n".' curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10); '."\r\n".' $response = curl_exec($ch); '."\r\n".' $errmsg = curl_error($ch); '."\r\n".' $cInfo = curl_getinfo($ch); '."\r\n".' curl_close($ch); '."\r\n".' print_r($errmsg); '."\r\n".' print_r($cInfo); '."\r\n".' print_r($response); '."\r\n".'?&gt;</pre>'; return $out; 
+  $out = 'There is a problem with cURL. You need to contact your server admin or hosting provider. Here is the PHP code to reproduce the problem:<br/><pre style="color:#005800">&lt;?php '."\r\n".' $ch = curl_init(); '."\r\n".' curl_setopt($ch, CURLOPT_URL, "'.$url.'"); '."\r\n".' curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36"); '."\r\n".' curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); '."\r\n".' curl_setopt($ch, CURLOPT_TIMEOUT, 10); '."\r\n".' curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10); '."\r\n".' $response = curl_exec($ch); '."\r\n".' $errmsg = curl_error($ch); '."\r\n".' $cInfo = curl_getinfo($ch); '."\r\n".' curl_close($ch); '."\r\n".' print_r($errmsg); '."\r\n".' print_r($cInfo); '."\r\n".' print_r($response); '."\r\n".'?&gt;</pre>'; return $out; 
 }
 function nxs_cURLTest($url, $msg, $testText){ echo "<br/>--== Test Requested ... ".$url."<br/>";  $ch = curl_init(); curl_setopt($ch, CURLOPT_URL, $url); 
   curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.39 Safari/537.36"); 
@@ -830,6 +870,10 @@ function nxs_adjRpst($optionsii, $pval){  if (empty($optionsii['rpstDays'])) $op
     
     if (isset($pval['fltrsOn'])) $optionsii['fltrsOn'] = trim($pval['fltrsOn']); else $optionsii['fltrsOn'] = 0;     
     
+    if (isset($pval['catSel'])) $optionsii['catSel'] = trim($pval['catSel']);
+    if (!empty($optionsii['catSel']) && $optionsii['catSel']=='1' && trim($pval['catSelEd'])!='') $optionsii['catSelEd'] = trim($pval['catSelEd']); else $optionsii['catSelEd'] = '';
+      
+
     if (isset($pval['tagsSel'])) {  $optionsii['tagsSel'] = trim($pval['tagsSel']); $tagsSelX = array(); $tggsSel = explode(',', $optionsii['tagsSel']); 
       foreach ($tggsSel as $tggg){ $tggg = trim($tggg); $tagsSelX[] = $tggg;  
         if (stripos($tggg, '|')!==false) { $tgArr =  explode('|', $tggg); $taxonomy = $tgArr[0]; $tgggT = $tgArr[1]; } else { $taxonomy = 'post_tag'; $tgggT = $tggg; } 
@@ -871,7 +915,7 @@ function nxs_showRepostSettings($nt, $ii, $options){ global $nxs_snapAvNts, $nxs
 
   ?>
     <div class="nxs_tls_cpt">
-   <?php _e('Auto Reposting', 'social-networks-auto-poster-facebook-twitter-g'); ?>&nbsp;&nbsp;<span class="nxsInstrSpan"><a href="http://www.nextscripts.com/snap-features/old-posts-auto-reposting/" target="_blank"><?php _e('[Instructions]', 'social-networks-auto-poster-facebook-twitter-g'); ?></a> &nbsp;&nbsp; <b style="color: darkred;">Please note:</b> This feature is depreciated, <a href="http://www.nextscripts.com/blog/old-posts-reposting-no-longer-supported/" target="_blank">no longer supported</a> and will be replaced with something much better in the upcoming ver 3.5 </span>
+   <?php _e('Auto Reposting', 'social-networks-auto-poster-facebook-twitter-g'); ?>&nbsp;&nbsp;<span class="nxsInstrSpan"><a href="http://www.nextscripts.com/snap-features/old-posts-auto-reposting/" target="_blank"><?php _e('[Instructions]', 'social-networks-auto-poster-facebook-twitter-g'); ?></a> &nbsp;&nbsp; <b style="color: darkred;">Please note:</b> This feature is depreciated, <a href="http://www.nextscripts.com/blog/old-posts-reposting-no-longer-supported/" target="_blank">no longer supported</a> and will be replaced with something much better in the upcoming <a href="http://www.nextscripts.com/tag/v4/" target="_blank">SNAP Version 4</a> </span>
    </div>
    
    <?php $cr = get_option('NXS_cronCheck'); if (!empty($cr) && is_array($cr) && isset($cr['status']) && $cr['status']=='0') { 
@@ -1149,7 +1193,7 @@ function nxs_do_this_hourly() {  $options = get_option('NS_SNAutoPoster');
   } 
 }
 
-if (!function_exists('nxsClnCookies')){ function nxsClnCookies($ck) { $ckOut = array(); $t =time(); foreach ($ck as $c) { if ($c->value!='deleted' && $c->expires>$t) $ckOut[] = $c; } return $ckOut; }}
+if (!function_exists('nxsClnCookies')){ function nxsClnCookies($ck) { $ckOut = array(); $t =time(); foreach ($ck as $c) { if ($c->value!='deleted' && $c->value!='deleteMe' && $c->value!='delete me' && (empty($c->expires) || $c->expires>$t)) $ckOut[] = $c; } return $ckOut; }}
 
 //#### V3 new Query Poster
 function nxs_addToPostingQuery($postID){ global $plgn_NS_SNAutoPoster; if (!isset($plgn_NS_SNAutoPoster)) return; $options = $plgn_NS_SNAutoPoster->nxs_options; 
@@ -1290,10 +1334,26 @@ if (!function_exists("NXS_doSetArrRecursive")) { function NXS_doSetArrRecursive(
   if (empty($path)) if (trim($key)=='')  $array[] = $value;  else  $array[$key] = $value; else { if (!isset($array[$key]) || !is_array($array[$key])) $array[$key] = array(); NXS_doSetArrRecursive($array[$key], $path, $value); }
 }}
 if (!function_exists("NXS_parseQueryStr")) { function NXS_parseQueryStr($url){ $tokens = explode("&", $url); $urlVars = array();
-  foreach ($tokens as $token) { $token = urldecode($token); $value = NXS_parseEQStr($token, "=", ""); 
+  foreach ($tokens as $token) { $token = urldecode($token); $value = NXS_parseEQStr($token, "=", "");
     if (preg_match('/^([^\[]*)(\[.*\])$/', $token, $matches)) { if (preg_match_all('/\[([^\]]*)\]/', $matches[2], $matches2)) $gg = $matches2[1]; array_unshift($gg, $matches[1]); NXS_doSetArrRecursive($urlVars, $gg, $value);} 
       else $urlVars[$token] = $value;
   } return $urlVars;
 }}
 if (!function_exists("NXS_parseEQStr")) { function NXS_parseEQStr(&$a, $delim='.', $default=false){ $n = strpos($a, $delim); if ($n === false) return $default; $result = substr($a, $n+strlen($delim)); $a = substr($a, 0, $n); return $result;}}
+
+
+//## V4 Future
+function nxs_showNTFilters($nt, $ii, $options){
+  nxs_showCatTagsCTFilters($nt, $ii, $options); //nxs_showRepostSettings($nt, $ii, $options);
+}
+
+ function V4nxs_showNTFilters($nt, $ii, $options){ ?> <h3 style="padding-left: 0px;font-size: 16px;"> 
+   <input value="1" name="<?php echo $nt ?>[<?php echo $ii; ?>][fltrsOn]" type="checkbox" onchange="if (jQuery(this).is(':checked')) jQuery('#nxs_flrts<?php echo $nt.$ii; ?>').show(); else jQuery('#nxs_flrts<?php echo $nt.$ii; ?>').hide();" class="nxs_acctcb" <?php if ((int)$options['fltrsOn'] == 1) echo "checked"; ?> /> 
+   <?php  _e('Filter Posts (Only posts that meet the following criteria will be autoposted)', 'social-networks-auto-poster-facebook-twitter-g'); ?> </h3><div id="nxs_flrts<?php echo $nt.$ii; ?>" style="margin-left: 30px;<?php if ((int)$options['fltrsOn'] != 1) echo "display:none;"; ?>"> 
+   <?php nxs_Filters::print_posts_metabox(0,$nt,$ii, $options['fltrs']);?> </div> <?php
+ }
+
+function nxs_addPostingDelaySelV4($nt, $ii, $options) {
+    nxs_addPostingDelaySelV3($nt, $ii, $options['nHrs'], $options['nMin'], $options['nDays']); 
+}
 ?>

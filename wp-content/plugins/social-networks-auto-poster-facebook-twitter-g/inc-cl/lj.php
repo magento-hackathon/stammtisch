@@ -2,7 +2,7 @@
 //## NextScripts Facebook Connection Class
 $nxs_snapAvNts[] = array('code'=>'LJ', 'lcode'=>'lj', 'name'=>'LiveJournal');
 
-if (!class_exists("nxs_snapClassLJ")) { class nxs_snapClassLJ {
+if (!class_exists("nxs_snapClassLJ")) { class nxs_snapClassLJ {var $ntInfo = array('code'=>'LJ', 'lcode'=>'lj', 'name'=>'LiveJournal', 'defNName'=>'', 'tstReq' => false);
   //#### Show Common Settings
   function showGenNTSettings($ntOpts){  global $nxs_plurl; $ntInfo = array('code'=>'LJ', 'lcode'=>'lj', 'name'=>'LiveJournal', 'defNName'=>'', 'tstReq' => false); ?>    
     <div class="nxs_box">
@@ -144,7 +144,8 @@ if (!class_exists("nxs_snapClassLJ")) { class nxs_snapClassLJ {
       
       <?php if ($post->post_status == "publish") { ?> <input type="hidden" name="lj[<?php echo $ii; ?>][doLJ]" value="<?php echo $doLJ;?>"> <?php } ?> <?php } ?>
       <div class="nsx_iconedTitle" style="display: inline; font-size: 13px; background-image: url(<?php echo $nxs_plurl; ?>img/lj16.png);">LiveJournal - <?php _e('publish to', 'social-networks-auto-poster-facebook-twitter-g') ?> (<i style="color: #005800;"><?php echo $ntOpt['nName']; ?></i>)</div></th> <td><?php //## Only show RePost button if the post is "published"
-                    if ($post->post_status == "publish" && $isAvailLJ) { ?><input alt="<?php echo $ii; ?>" style="float: right;" onmouseout="hidePopShAtt('SV');" onmouseover="shoLJopShAtt('SV', event);" onclick="return false;" type="button" class="button" name="rePostToLJ_repostButton" id="rePostToLJ_button" value="<?php _e('Repost to LiveJournal', 'social-networks-auto-poster-facebook-twitter-g') ?>" />
+                    if ($post->post_status == "publish" && $isAvailLJ) { ?><?php $ntName = $this->ntInfo['name']; ?>
+                    <input alt="<?php echo $ii; ?>" style="float: right;" onmouseout="hidePopShAtt('SV');" onmouseover="showPopShAtt('SV', event);" onclick="return false;" data-ntname="<?php echo $ntName; ?>" type="button" class="button manualPostBtn" name="<?php echo $nt."-".$post->ID; ?>" value="<?php _e('Post to ', 'social-networks-auto-poster-facebook-twitter-g'); echo $ntName; ?>" />
                     <?php } ?>
                     
                      <?php  if (is_array($pMeta) && is_array($pMeta[$ii]) && isset($pMeta[$ii]['pgID']) ) {                         

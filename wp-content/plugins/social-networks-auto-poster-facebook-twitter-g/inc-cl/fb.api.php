@@ -55,17 +55,18 @@ if (!class_exists("nxs_class_SNAP_FB")) { class nxs_class_SNAP_FB {
             $badOut['Warning'] = 'Unvalid URL: '.$message['url'].'| Will be posting as text message'; $fbPostType='T'; 
         } 
         if ($fbPostType=='A' || $fbPostType=='') {
-          if (($attachType=='A' || $attachType=='S')) { $attArr = array('name' => $message['urlTitle'], 'caption' => $message['siteName'], 'link' =>$message['url'], 'description' => $message['urlDescr']); 
-          $mssg = array_merge($mssg, $attArr); ; }
-          if ($attachType=='A') $mssg['actions'] = json_encode(array('name' => $message['siteName'], 'link' =>$message['url']));        
+          if (($attachType=='A' || $attachType=='S')) { $message['urlTitle'] = nsTrnc($message['urlTitle'], 250, " ", "...");
+            $attArr = array('name' => $message['urlTitle'], 'caption' => $message['siteName'], 'link' =>$message['url'], 'description' => $message['urlDescr']); $mssg = array_merge($mssg, $attArr); ; 
+          }
+          if ($attachType=='A') $mssg['actions'] = json_encode(array('name' => nsTrnc($message['siteName'], 250, " ", "..."), 'link' =>$message['url']));        
           if (trim($imgURL)!='') $mssg['picture'] = $imgURL;  //if (trim($message['videoURL'])!='') $mssg['source'] = $message['videoURL'];        
         } elseif ($fbPostType=='I') { /* $facebook->setFileUploadSupport(true); */ $fbWhere = 'photos'; $mssg['url'] = $imgURL; 
           if ($options['imgUpl']=='T') { //## Try to Post to TImeline
             $aacct = array('access_token'=>$options['fbAppPageAuthToken'], 'appsecret_proof'=>$options['appsecret_proof'], 'method'=>'get');  
             $res = wp_remote_get( "https://graph.facebook.com/$page_id/albums?".http_build_query($aacct, null, '&'),$wprg); 
             if (is_wp_error($res) || empty($res['body'])) $badOut['Error'] = ' [ERROR(Albums)] '.print_r($res, true); else {
-              $albums = json_decode($res['body'], true);  if (empty($albums)) $badOut['Error'] .= "JSON ERROR (Albums): ".print_r($res, true); else {
-                if (is_array($albums) && is_array($albums["data"])) foreach ($albums["data"] as $album) { if ($album["type"] == "wall") { $chosen_album = $album; break;}}
+              $albums = json_decode($res['body'], true);  if (empty($albums)) $badOut['Error'] .= "JSON ERROR (Albums): ".print_r($res, true); else { 
+                if (is_array($albums) && is_array($albums["data"])) foreach ($albums["data"] as $album) { if (!empty($album["type"]) && $album["type"] == "wall") { $chosen_album = $album; break;}}
                 if (isset($chosen_album) && isset($chosen_album["id"])) $page_id = $chosen_album["id"];
               }
             }

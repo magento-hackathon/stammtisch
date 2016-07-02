@@ -46,10 +46,9 @@ if (!class_exists("nxs_class_SNAP_AP")) { class nxs_class_SNAP_AP {
         if ($test && array_key_exists('mime', $test)) { $data['kind'] = 'image'; if (!$mimeType) $mimeType = $test['mime']; } else $data['kind'] = 'other';
       }
       if (!$mimeType && function_exists('finfo_open') ) { $finfo = finfo_open(FILEINFO_MIME_TYPE); $mimeType = finfo_file($finfo, $tmp); finfo_close($finfo); }
-      if (!$mimeType) return 'Unable to determine mime type of file, try specifying it explicitly';  $data['type'] = "com.nextscripts.photos";
-      $data['content'] = "@$tmp;type=$mimeType";
+      if (!$mimeType) return 'Unable to determine mime type of file, try specifying it explicitly';  $data['type'] = "com.nextscripts.photos";      
+      if (function_exists('curl_file_create')) $data['content'] = curl_file_create($tmp,$mimeType); else $data['content'] = "@$tmp;type=$mimeType";      
       $url = "https://alpha-api.app.net/stream/0/files?access_token=".$auth; 
-
       $ch = curl_init(); curl_setopt($ch, CURLOPT_URL, $url); curl_setopt($ch, CURLOPT_POST, 1); curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
       global $nxs_skipSSLCheck; if ($nxs_skipSSLCheck===true) curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
       curl_setopt($ch, CURLOPT_POSTFIELDS, $data); $response = curl_exec($ch); $errmsg = curl_error($ch); curl_close($ch); //prr($response);
@@ -67,13 +66,12 @@ if (!class_exists("nxs_class_SNAP_AP")) { class nxs_class_SNAP_AP {
       if (!empty($message['pText'])) $text = $message['pText']; else $text = nxs_doFormatMsg($options['apTextFormat'], $message); $text = nsTrnc($text, 256); 
       //## Make Post            
       if (isset($message['imageURL'])) $img = trim(nxs_getImgfrOpt($message['imageURL'], $options['imgSize'])); else $img = '';  
-      if ($options['attchImg']!=false && $img!='') $remoteImg = $this->createFile($img, $options['apAppAuthToken']); $ann = array();       
+      if ($options['attchImg']!=false && $img!='') $remoteImg = $this->createFile($img, $options['apAppAuthToken']); $ann = array();   
       if (is_array($remoteImg)) {
          $ann[] = array("type"=>"net.app.core.oembed", "value"=> array("+net.app.core.file"=>array("file_id" => $remoteImg['id'], "file_token" => $remoteImg['file_token'], "format"=> "oembed"))); 
       }
       $url = "https://alpha-api.app.net/stream/0/posts?include_post_annotations=1&access_token=".$options['apAppAuthToken'];            
-      $flds = array('text' => $text, 'annotations' => $ann); $flds = json_encode($flds); $hdrsArr = array('Content-Type' => 'application/json');
-      $response = wp_remote_post( $url, array( 'method' => 'POST', 'timeout' => 45, 'redirection' => 0,  'headers' => $hdrsArr, 'body' => $flds));   
+      $flds = array('text' => $text, 'annotations' => $ann); $flds = json_encode($flds); $hdrsArr = array('Content-Type' => 'application/json');  $advSet = nxs_mkRemOptsArr($hdrsArr,'',$flds); $response = wp_remote_post($url, $advSet);  
       if (is_wp_error($response)) {  $badOut['Error'] = print_r($response, true)." - ERROR"; return $badOut; } 
       $response = json_decode($response['body'], true); //prr($response); die();      
       //## Check Result

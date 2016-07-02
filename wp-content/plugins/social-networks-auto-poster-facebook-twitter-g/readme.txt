@@ -2,23 +2,24 @@
 
 Contributors: NextScripts
 Donate link: http://www.nextscripts.com/social-networks-auto-poster-for-wordpress
-Tags: automation, autopost, auto-post, auto post, socialnetworks, socialnetwork, social networks, social network, facebook, Flipboard, google, google+, Flickr, twitter, google plus, pinterest, tumblr, blogger, blogspot, blogpost, linkedin, delicious, delicious.com, reddit, reddit.com, plugin, links, Post, posts, api, automatic, seo, scoop.it, integration, bookmark, bookmarks, admin, images, image, social, sharing, share, repost, re-post, wordpress.com, StumbleUpon, Diigo, vBulletin, Plurk, forums, vKontakte, open graph, LiveJournal, SETT, YouTube, Kippt, xing
+Tags: automation, autopost, auto-post, auto post, socialnetworks, socialnetwork, social networks, social network, facebook, Flipboard, google, google+, Flickr, twitter, google plus, pinterest, tumblr, blogger, blogspot, blogpost, linkedin, delicious, delicious.com, reddit, reddit.com, plugin, links, Post, posts, api, automatic, seo, scoop.it, integration, bookmark, bookmarks, admin, images, image, social, sharing, share, repost, re-post, wordpress.com, StumbleUpon, Diigo, vBulletin, Plurk, forums, vKontakte, open graph, LiveJournal, SETT, YouTube, Telegram, Instagram, xing
 Requires at least: 3.4
-Tested up to: 4.3.1
-Stable tag: 3.4.26
+Tested up to: 4.5.0
+Stable tag: 3.5.5
 License: GPLv2 or later
 
 Automatically re-publishes blogposts to Facebook, Twitter, Google+, Pinterest, LinkedIn, Blogger, Tumblr, Delicious, Plurk, etc profiles and/or pages
 
 == Description ==
 
-**This plugin automatically publishes posts from your blog to your Social Network accounts** such as Facebook, Twitter, Google+(Google Plus), Blogger, Tumblr, Flickr, LiveJournal, Flipboard, DreamWidth, Delicious, Diigo, Instapaper, Stumbleupon, LinkedIn, Pinterest, Plurk, VKontakte(VK.com), YouTube, App.net, Scoop.It, Wordpress, XING etc. The whole process is completely automated. Just write a new post and either entire post or it's nicely formatted announcement with backlink will be published to all your configured social networks. You can reach the most audience and tell all your friends, readers and followers about your new post. Plugin works with profiles, business pages, community pages, groups, etc. Messages are 100% customizable and adopted for each network requirements.
+**This plugin automatically publishes posts from your blog to your Social Network accounts** such as Facebook, Twitter, Google+(Google Plus), Blogger, Tumblr, Flickr, LiveJournal, Flipboard, Instagram, Telegram, DreamWidth, Delicious, Diigo, Instapaper, Stumbleupon, LinkedIn, Pinterest, Plurk, VKontakte(VK.com), YouTube, App.net, Scoop.It, Wordpress, XING etc. The whole process is completely automated. Just write a new post and either entire post or it's nicely formatted announcement with backlink will be published to all your configured social networks. You can reach the most audience and tell all your friends, readers and followers about your new post. Plugin works with profiles, business pages, community pages, groups, etc. Messages are 100% customizable and adopted for each network requirements.
 
 **ALL NEW SNAP for Wordpress Version 4 is coming soon...**
 
 More V4 info: http://www.nextscripts.com/tag/v4/
 
-* **Latest version 3.4** - New networks - XING, Kippt, compatibility with WP 3.9, 4.0, 4.1 and PHP 5.5. 
+* **Latest version 3.5** - "*gram" Release. New networks - Telegram and Instagram. New publishing platform.
+* *Version 3.4* - New networks - XING, Kippt, compatibility with WP 3.9, 4.0, 4.1 and PHP 5.5. 
 * *Version 3.3* - Post to all social accounts without creating a Wordpress Post. New networks - Flickr, Flipboard, SETT and Scoop.It. 
 * *Version 3.0* - Auto-repost existing posts, autoposting query, select what image to use for autopost, "Custom URLs" for posts, New networks: App.net, Reddit and deviantart.com
 * *Version 2.7* - YouTube Support, FriendFeed support, Auto-import comments from Facebook and Twitter as Wordpress Comments, goo.gl and YOURLS support, ability to spin message text
@@ -38,9 +39,9 @@ More V4 info: http://www.nextscripts.com/tag/v4/
 * **Facebook** - Autopost to your profile, business page, community page, or Facebook group page. Ability to attach your blogpost to Facebook post. Ability to make "Image" posts.
 * **Flickr** - Autopost images to your photostream and/or sets. Tags are supported. 
 * **Flipboard** (*with third party API library*) - post to your magazines.
+* [New]**Instagram** - (*with third party API library*) - Post your blogpost's featured image to your Instagram account.
 * **Instapaper** - Auto-submit bookmark to your account. 
 * **Google+** (*with third party API library*) - Autopost to your profile, business page or community. Ability to attach your blogpost to Google+ post. Ability to make "Image" posts.
-* **Kippt** - Auto-submit links to your blogpost to your Kippt list.
 * **LinkedIn** - Autopost to your account. Ability to attach your blogpost to LinkedIn post. Autopost to LinkedIn Company pages and/or Groups (*with third party API library*)
 * **LiveJournal** - Auto-submit your blogpost to LiveJournal blog or community. "LiveJournal Engine" based website DreamWidth.org is also supported. 
 * **Pinterest** (*with third party API library*) - Pin your blogpost's featured image to your Pinterest board.
@@ -48,6 +49,7 @@ More V4 info: http://www.nextscripts.com/tag/v4/
 * **Scoop.It** - Autopost to your "Topics". Ability to attach your blogpost to scoop. Ability to make "Image" posts.
 * **SETT** - Auto-post to your Sett.com blog.
 * **Stumbleupon** - Auto-submit bookmark to your account. 
+* [New]**Telegram** - Autopost to your channel, group or chat.
 * **Tumblr** - Autopost to your account. Ability to attach your blogpost to Tumblr post. HTML is supported.
 * **Twitter** - Autopost to your account. Ability to attach Image to tweets.
 * **Plurk**  - Autopost to your account. Ability to attach Image to messages.
@@ -86,11 +88,6 @@ Please see <a href="http://www.nextscripts.com/installation-of-social-networks-a
 * Ability to make Scheduled and Delayed postings
 * Auto-repost existing random posts from from specific dates or "older then N days and younger then X days".
 * Limit random or one-by-one auto-reposting for specific days of the week and times. (like Monday-Friday from 8AM to 7PM Only)
-* Reddit Autoposting Support
-* LinkedIn Company Pages Autoposting support
-* Advanced Autoposting to Blogger
-* [Limited Time Only - included to "Pro" for free] Google+ Autoposting Support ($49.95 value)
-* [Limited Time Only - included to "Pro" for free] Pinterest Autoposting Support ($49.95 value)
 
 **Get Support**
 
@@ -167,6 +164,77 @@ Please see more <a href="http://www.nextscripts.com/faq/">Frequently asked quest
 4. Google+: Types of Post 
 
 == Changelog ==
+
+= 3.5.5 [04/18/2016] =
+
+* New - Wordpress 4.5 Compatibility
+* New [Telegram] - Ability to attach image to the post.
+* Improvement - Speed improvement via removal of unnsessary Javascript code. 
+* Bug Fix - [Telegram] "Bad Request: channel not found" error.
+* Bug Fix - [Plurk] "missing request token" Error
+
+= 3.5.4 [04/11/2016] =
+
+* New/Improvement - Support for Disqus Conditional Load (DCL) plugin
+* Improvement/Bug Fix - Better compatibility with some themes. Plugin was causing conflicts with media upload when used with some popular themes.
+* Bug Fix - [Flickr] Authorization problems and/or "Call to undefined function" error.
+* Bug Fix - [LinkedIn] Authorization problems and/or "Call to undefined function" error.
+* Bug Fix - [Tumblr] Authorization problems and/or "Call to undefined function" error.
+* Bug Fix - [Plurk] Authorization problems and/or "Call to undefined function" error.
+* Bug Fix - [LinkedIn] fix for broken posts with attachment links. 
+* Bug Fix - [LinkedIn] fix for "No posting form found" error. 
+
+= 3.5.3 [04/02/2016] =
+
+* Bug Fix - [Instagram] Some people were unable to add new account.
+
+= 3.5.2 [03/31/2016] =
+
+* Improvement [Instagram] You can choose what to do with image. Make it square (crop), Make it square (extend), leave as is.
+* Improvement [Instagram] Better image quality.
+* Improvement [Instagram] Better support for international characters
+* Improvement [Telegram] Telegram API now accepts group chat IDs in it's native gXXXXXXXXXX format.
+* Fix for youtube "200|{"redirect_url":" problem.
+* Fix for "Required parameter oauth_token missing" error
+
+= 3.5.1 [03/07/2016] =
+
+* New network "Telegram" - Autopost to your channel, group or chat.
+* New network "Instagram" - Post your blogpost's featured image along with message to your Instagram account.(*SNAP API Library subscription required*)
+* Kippit has been permanently shut down. So we removed it from the plugin. 
+* Bug Fix - [Facebook] Error: (#100) name parameter cannot be longer than 255 characters.
+* Bug Fix - [app.net] "Incomplete file" error with PHP >= 5.5
+* Bug Fix - [LinkedIn] Unable to save Group Title Format.
+
+= 3.4.31 [01/14/2016] =
+
+* Bug Fix - "Show ALL Debug Info" was left "ON" in the 3.4.30 causing all kind of "warnings", "notices" and "errors" to appear.
+
+= 3.4.30 [01/14/2016] =
+
+* New - New setting. It adds an ability to Force SSL/https or NON-SSL/http in all links. 
+* Improvement - Better support for Custom Post types. 
+* Improvement/Bug Fix Perfomance Improvement. 
+* Improvement/Bug Fix [vk.com] Update to the new API version.
+
+= 3.4.29 [11/24/2015] =
+
+* Bug Fix - [Critical] Fix for "Call to undefined function restore_current_blog()" error on some messed up WordPress installations.
+
+= 3.4.28 [11/23/2015] =
+
+* Improvement - Better compatibility with TinyMCE Advanced.
+* Bug Fix - get_the_excerpt was called with an argument that is deprecated
+* Bug Fix - [LinkedIn] Fix for: LinkedIn Groups - "Error: No posting form found on..." 
+* Improvement - LinkedIn is slowly rolling out new interface for groups. That new interface is bringing support for "Image" posts to groups. This release adds it to the SNAP as well. (Will work only if you already got new Interface)
+
+= 3.4.27 [11/02/2015] =
+
+* Bug Fix - [StumbleUpon] Fixed:  "BAD USER / PASS" error.
+* Improvement/Bug Fix - [Twitter] %TAGS% and %CATS% will just post a list of tags and categories without # sign. Please use %HTAGS% and %HCATS% to get hashtags.
+* Improvement/Bug Fix - [Twitter] Fixed "Status over 140 characters" error. Twitter increased the length of URL and image - cutting two characters from the available text space. 
+* Bug Fix - [Facebook] Fixed: [Error] => (#100) name parameter cannot be longer than 255 bytes.
+* Bug Fix - Fixed a rare issue with some users not being able to remove accounts.
 
 = 3.4.26 [10/20/2015] =
 

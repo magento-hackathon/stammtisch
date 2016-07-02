@@ -1,6 +1,6 @@
 <?php
 
-abstract class nxssc_SignatureMethod
+if (!class_exists('nxssc_SignatureMethod')) { abstract class nxssc_SignatureMethod
 {
     abstract public function signing_base($request, $consumer, $token);
     abstract public function sign($request, $consumer, $token);
@@ -8,9 +8,9 @@ abstract class nxssc_SignatureMethod
     $built = $this->sign($request, $consumer, $token);
     return $built == $signature;
     }
-}
+}}
 
-class nxssc_SigMethod_HMAC_SHA1 extends nxssc_SignatureMethod {
+if (!class_exists('nxssc_SigMethod_HMAC_SHA1')) { class nxssc_SigMethod_HMAC_SHA1 extends nxssc_SignatureMethod {
     public $name = 'HMAC-SHA1';
     public function signing_base($request, $consumer_secret, $token) {
       $sig = array(rawurlencode($request['method']), rawurlencode($request['normalized_url']), rawurlencode($request['normalized_parameters']));
@@ -79,7 +79,7 @@ class nxssc_SigMethod_HMAC_SHA1 extends nxssc_SignatureMethod {
       $built = $this->sign($request, $consumer_secret, $token);
       return $built == $signature;
     }
-}
+}}
 
 class wpScoopITOAuth{
     public $baseURL = 'http://www.scoop.it';

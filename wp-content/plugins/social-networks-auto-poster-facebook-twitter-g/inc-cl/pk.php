@@ -18,8 +18,7 @@ if (!class_exists("nxs_snapClassPK")) { class nxs_snapClassPK { var $ntInfo = ar
 
               //prr($tum_oauth); prr($options); die();
               
-              switch ($tum_oauth->http_code) { case 200: $url = 'http://www.plurk.com/OAuth/authorize?oauth_token='.$options['pkOAuthToken'];                 
-                if (function_exists('get_option')) $nxs_gOptions = get_option('NS_SNAutoPoster'); if(!empty($nxs_gOptions)) { $nxs_gOptions['pk'][$_GET['acc']] = $options; nxs_settings_save($nxs_gOptions); }
+              switch ($tum_oauth->http_code) { case 200: $url = 'http://www.plurk.com/OAuth/authorize?oauth_token='.$options['pkOAuthToken']; nxs_save_glbNtwrks($ntInfo['lcode'],$_GET['acc'],$options,'*');
                 echo '<br/><br/>All good?! Redirecting ..... <script type="text/javascript">window.location = "'.$url.'"</script>'; break; 
                 default: echo '<br/><b style="color:red">Could not connect to Plurk. Refresh the page or try again later.</b>'; die();
               }
@@ -30,14 +29,13 @@ if (!class_exists("nxs_snapClassPK")) { class nxs_snapClassPK { var $ntInfo = ar
             
               $tum_oauth = new wpPlurkOAuth($consumer_key, $consumer_secret, $options['pkOAuthToken'], $options['pkOAuthTokenSecret']); //prr($tum_oauth);
               $access_token = $tum_oauth->getAccToken($_GET['oauth_verifier']); prr($access_token);
-              $options['pkAccessTocken'] = $access_token['oauth_token'];  $options['pkAccessTockenSec'] = $access_token['oauth_token_secret'];
-              if (function_exists('get_option')) $nxs_gOptions = get_option('NS_SNAutoPoster'); if(!empty($nxs_gOptions)) { $nxs_gOptions['pk'][$_GET['acc']] = $options; nxs_settings_save($nxs_gOptions); }
-              
+              $options['pkAccessTocken'] = $access_token['oauth_token'];  $options['pkAccessTockenSec'] = $access_token['oauth_token_secret'];              
+              nxs_save_glbNtwrks($ntInfo['lcode'],$_GET['acc'],$options,'*');
               $tum_oauth = new wpPlurkOAuth($consumer_key, $consumer_secret, $options['pkAccessTocken'], $options['pkAccessTockenSec']); 
               $uinfo = $tum_oauth->makeReq('http://www.plurk.com/APP/Profile/getOwnProfile', $params); 
               if (is_array($uinfo) && isset($uinfo['user_info'])) $userinfo = $uinfo['user_info']['display_name'];
               if (empty($userinfo) && is_array($uinfo) && isset($uinfo['user_info'])) $userinfo = $uinfo['user_info']['nick_name'];  $options['pkPgID'] = $userinfo; 
-              if (function_exists('get_option')) $nxs_gOptions = get_option('NS_SNAutoPoster'); if(!empty($nxs_gOptions)) { $nxs_gOptions['pk'][$_GET['acc']] = $options; nxs_settings_save($nxs_gOptions); }
+              nxs_save_glbNtwrks($ntInfo['lcode'],$_GET['acc'],$options,'*');
               if ($options['pkPgID']!='') {  
                   $gGet = $_GET; unset($gGet['auth']); unset($gGet['acc']); unset($gGet['oauth_token']);  unset($gGet['oauth_verifier']); unset($gGet['post_type']);
                   $sturl = explode('?',$nxs_snapSetPgURL); $nxs_snapSetPgURL = $sturl[0].((!empty($gGet))?'?'.http_build_query($gGet):'');
@@ -196,7 +194,8 @@ if (!class_exists("nxs_snapClassPK")) { class nxs_snapClassPK { var $ntInfo = ar
       <?php if ($isAvailPK) { ?><input class="nxsGrpDoChb" value="1" id="doPK<?php echo $ii; ?>" <?php if ($post->post_status == "publish") echo 'disabled="disabled"';?> type="checkbox" name="pk[<?php echo $ii; ?>][doPK]" <?php if ((int)$doPK == 1) echo 'checked="checked" title="def"';  ?> /> 
       <?php if ($post->post_status == "publish") { ?> <input type="hidden" name="pk[<?php echo $ii; ?>][doPK]" value="<?php echo $doPK;?>"> <?php } ?> <?php } ?>
       <div class="nsx_iconedTitle" style="display: inline; font-size: 13px; background-image: url(<?php echo $nxs_plurl; ?>img/pk16.png);">Plurk - <?php _e('publish to', 'social-networks-auto-poster-facebook-twitter-g') ?> (<i style="color: #005800;"><?php echo $ntOpt['nName']; ?></i>) </div></th><td><?php //## Only show RePost button if the post is "published"
-                    if ($post->post_status == "publish" && $isAvailPK) { ?><input alt="<?php echo $ii; ?>" style="float: right;" onmouseout="hidePopShAtt('SV');" onmouseover="showPopShAtt('SV', event);" onclick="return false;" type="button" class="button" name="rePostToPK_repostButton" id="rePostToPK_button" value="<?php _e('Repost to Plurk', 'social-networks-auto-poster-facebook-twitter-g') ?>" />
+                    if ($post->post_status == "publish" && $isAvailPK) { ?><?php $ntName = $this->ntInfo['name']; ?>
+                    <input alt="<?php echo $ii; ?>" style="float: right;" onmouseout="hidePopShAtt('SV');" onmouseover="showPopShAtt('SV', event);" onclick="return false;" data-ntname="<?php echo $ntName; ?>" type="button" class="button manualPostBtn" name="<?php echo $nt."-".$post->ID; ?>" value="<?php _e('Post to ', 'social-networks-auto-poster-facebook-twitter-g'); echo $ntName; ?>" />
                     <?php } ?>
                     
                     <?php  if (is_array($pMeta) && is_array($pMeta[$ii]) && isset($pMeta[$ii]['pgID']) ) {                         

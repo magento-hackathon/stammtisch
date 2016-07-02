@@ -12,7 +12,7 @@ if (!class_exists("nxs_snapClassFL")) { class nxs_snapClassFL { var $ntInfo = ar
            $tum_oauth->baseURL = 'https://www.flickr.com/services'; $tum_oauth->request_token_path = '/oauth/request_token'; $tum_oauth->access_token_path = '/oauth/access_token';
            $request_token = $tum_oauth->getReqToken($callback_url); $options['oAuthToken'] = $request_token['oauth_token']; $options['oAuthTokenSecret'] = $request_token['oauth_token_secret'];
            switch ($tum_oauth->http_code) { case 200: $url = 'https://www.flickr.com/services/oauth/authorize?oauth_token='.$options['oAuthToken'];
-             if (function_exists('get_option')) $nxs_gOptions = get_option('NS_SNAutoPoster'); if(!empty($nxs_gOptions)) { $nxs_gOptions[$ntInfo['lcode']][$_GET['acc']] = $options; nxs_settings_save($nxs_gOptions);}
+             nxs_save_glbNtwrks($ntInfo['lcode'],$_GET['acc'],$options,'*');
              echo '<br/><br/>All good?! Redirecting ..... <script type="text/javascript">window.location = "'.$url.'"</script>'; break;
              default: echo '<br/><b style="color:red">Could not connect to Flickr. Refresh the page or try again later.</b>'; die();
            } die();
@@ -24,14 +24,14 @@ if (!class_exists("nxs_snapClassFL")) { class nxs_snapClassFL { var $ntInfo = ar
            $tum_oauth->baseURL = 'https://www.flickr.com/services'; $tum_oauth->request_token_path = '/oauth/request_token'; $tum_oauth->access_token_path = '/oauth/access_token';
            $access_token = $tum_oauth->getAccToken($_GET['oauth_verifier']); prr($access_token);
            $options['accessToken'] = $access_token['oauth_token'];  $options['accessTokenSec'] = $access_token['oauth_token_secret'];
-           if (function_exists('get_option')) $nxs_gOptions = get_option('NS_SNAutoPoster'); if(!empty($nxs_gOptions)) { $nxs_gOptions[$ntInfo['lcode']][$_GET['acc']] = $options; nxs_settings_save($nxs_gOptions); }
+           nxs_save_glbNtwrks($ntInfo['lcode'],$_GET['acc'],$options,'*');
            $tum_oauth = new wpScoopITOAuth($consumer_key, $consumer_secret, $options['accessToken'], $options['accessTokenSec']);
            echo "OK. Let's Get Profile: "; prr($access_token);
            $params = array ('format' => 'php_serial', 'method'=>'flickr.urls.getUserProfile');
            $uinfo = $tum_oauth->makeReq('https://api.flickr.com/services/rest/',$params); // prr($uinfo);die();
            if (is_array($uinfo) && isset($uinfo['user'])) { $options['appAppUserName'] = $access_token['username']."(".urldecode($access_token['fullname']).")";
              $options['appAppUserID'] = urldecode($uinfo['user']['nsid']);  $options['userURL'] = urldecode($uinfo['user']['url']);
-             if (function_exists('get_option')) $nxs_gOptions = get_option('NS_SNAutoPoster'); if(!empty($nxs_gOptions)) { $nxs_gOptions[$ntInfo['lcode']][$_GET['acc']] = $options; nxs_settings_save($nxs_gOptions); }
+             nxs_save_glbNtwrks($ntInfo['lcode'],$_GET['acc'],$options,'*');
            } //die();
            if (!empty($options['appAppUserID'])) {
              $gGet = $_GET; unset($gGet['auth']); unset($gGet['acc']); unset($gGet['oauth_token']);  unset($gGet['oauth_verifier']); unset($gGet['post_type']);
@@ -190,7 +190,8 @@ if (!class_exists("nxs_snapClassFL")) { class nxs_snapClassFL { var $ntInfo = ar
        <?php } ?>
 
       <div class="nsx_iconedTitle" style="display: inline; font-size: 13px; background-image: url(<?php echo $nxs_plurl; ?>img/<?php echo $nt; ?>16.png);"><?php echo $this->ntInfo['name']; ?> - <?php _e('publish to', 'social-networks-auto-poster-facebook-twitter-g') ?> (<i style="color: #005800;"><?php echo $ntOpt['nName']; ?></i>)</div></th> <td><?php //## Only show RePost button if the post is "published"
-                    if ($post->post_status == "publish" && $isAvail) { ?><input alt="<?php echo $ii; ?>" style="float: right;" onmouseout="hidePopShAtt('SV');" onmouseover="showPopShAtt('SV', event);" onclick="return false;" type="button" class="button" name="rePostTo<?php echo $ntU; ?>_repostButton" id="rePostTo<?php echo $ntU; ?>_button" value="<?php _e('Repost to '.$this->ntInfo['name'], 'social-networks-auto-poster-facebook-twitter-g') ?>" />
+                    if ($post->post_status == "publish" && $isAvail) { ?><?php $ntName = $this->ntInfo['name']; ?>
+                    <input alt="<?php echo $ii; ?>" style="float: right;" onmouseout="hidePopShAtt('SV');" onmouseover="showPopShAtt('SV', event);" onclick="return false;" data-ntname="<?php echo $ntName; ?>" type="button" class="button manualPostBtn" name="<?php echo $nt."-".$post->ID; ?>" value="<?php _e('Post to ', 'social-networks-auto-poster-facebook-twitter-g'); echo $ntName; ?>" />
                     <?php  } ?>
 
                     <?php  if (is_array($pMeta) && is_array($pMeta[$ii]) && isset($pMeta[$ii]['pgID']) ) {

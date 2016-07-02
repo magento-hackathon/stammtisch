@@ -52,10 +52,10 @@ if (!class_exists("nxs_class_SNAP_LI")) { class nxs_class_SNAP_LI {
       if (function_exists("doConnectToLinkedIn") && $options['ulName']!='' && $options['uPass']!='') {
         $dusername = $options['ulName']; $pass = (substr($options['uPass'], 0, 5)=='n5g9a'?nsx_doDecode(substr($options['uPass'], 5)):$options['uPass']); // ??? Do we need that??????
         $auth = doConnectToLinkedIn($options['ulName'], $options['uPass'], $options['ii']); if ($auth!=false) { $badOut['Error'] .= "|Auth Error - ".$auth;  return $badOut; }
-        $to = $options['uPage']!=''?$options['uPage']:'https://www.linkedin.com/home'; $lnk = array(); $msg = str_ireplace('&nbsp;',' ',$msg);  $msg = nsTrnc(strip_tags($msg), 700);
-        if ($options['postType'] == 'A'){ $lnk['title']=$message['urlTitle']; $lnk['postTitle'] = $msgT; $lnk['desc'] =  $message['urlDescr']; $lnk['url'] = $urlToGo; $lnk['img'] = $imgURL; $lnk['postType'] = 'A';}
-        if ($options['postType'] == 'I'){ $lnk['title'] = ''; $lnk['postTitle'] = ''; $lnk['desc'] =  ''; $lnk['url'] = $imgURL; $lnk['img'] = $imgURL; $lnk['postType'] = 'I'; $lnk['postTitle'] = $msgT;}              
-        if ($options['postType'] == 'T'){ $lnk['postTitle'] = $msgT;  $lnk['postType'] = 'T'; }
+        $to = $options['uPage']!=''?$options['uPage']:'https://www.linkedin.com/home'; $lnk = array(); $msg = str_ireplace('&nbsp;',' ',$msg);  $msg = nsTrnc(strip_tags($msg), 700); $lnk['postTitle'] = $msgT;
+        if ($options['postType'] == 'A'){ $lnk['title']=$message['urlTitle']; $lnk['desc'] =  $message['urlDescr']; $lnk['url'] = $urlToGo; $lnk['img'] = $imgURL; $lnk['postType'] = 'A';}
+        if ($options['postType'] == 'I'){ $lnk['title'] = '';  $lnk['desc']=''; $lnk['url'] = $imgURL; $lnk['img'] = $imgURL; $lnk['postType'] = 'I'; $lnk['postTitle'] = $msgT;}             
+        if ($options['postType'] == 'T'){ $lnk['postType'] = 'T'; }
         global $nxs_gCookiesArr; $li = new nxsAPI_LI(); $li->debug = false; if (!empty($nxs_gCookiesArr)) $li->ck = $nxs_gCookiesArr; $ret = $li->post($msg, $lnk, $to); 
         if (is_array($ret) && !empty($ret['isPosted'])) return $ret; $liPostID = $options['uPage'];
       } else {
