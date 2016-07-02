@@ -15,6 +15,7 @@ Tags:         magento, hackathon
 Author URI: http://www.mash2.com/
 */
 //defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+require_once __DIR__ . '/src/feeds.php';
 
 function adjustments_enqueue_styles()
 {
